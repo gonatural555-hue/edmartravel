@@ -5,6 +5,7 @@
  * NO rompe el flujo de compra si el email falla.
  */
 import { SITE_CONFIG } from "@/lib/config";
+import { formatOrderMoney } from "@/lib/format-price";
 
 type OrderItem = {
   id: string;
@@ -21,15 +22,8 @@ type SendOrderCreatedEmailParams = {
   items: OrderItem[];
 };
 
-/**
- * Formatea el monto con la moneda
- */
 function formatAmount(amount: number, currency: string): string {
-  return new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 2,
-  }).format(amount);
+  return formatOrderMoney(amount, currency);
 }
 
 /**

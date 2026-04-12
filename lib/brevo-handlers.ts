@@ -74,7 +74,7 @@ async function handleOrderCreated(event: OrderEvent): Promise<void> {
     await syncBuyerToBrevo(order.email, {
       fechaPrimeraCompra,
       totalGastado,
-      idioma: order.currency === "USD" ? "en" : "es", // Simplificado
+      idioma: order.currency === "ARS" ? "es" : "en",
       pais: country,
       consentimiento,
     });
@@ -110,7 +110,7 @@ async function handleOrderPaid(event: OrderEvent): Promise<void> {
     await syncBuyerToBrevo(order.email, {
       fechaPrimeraCompra,
       totalGastado,
-      idioma: order.currency === "USD" ? "en" : "es",
+      idioma: order.currency === "ARS" ? "es" : "en",
       pais: country,
       consentimiento,
     });
@@ -146,7 +146,7 @@ async function handleOrderCompleted(event: OrderEvent): Promise<void> {
     await syncBuyerToBrevo(order.email, {
       fechaPrimeraCompra,
       totalGastado,
-      idioma: order.currency === "USD" ? "en" : "es",
+      idioma: order.currency === "ARS" ? "es" : "en",
       pais: country,
       consentimiento,
     });

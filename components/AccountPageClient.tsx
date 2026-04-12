@@ -8,6 +8,7 @@ import AccountAddresses from "@/components/AccountAddresses";
 import AccountProfileForm from "@/components/AccountProfileForm";
 import { isSupabaseConfigured } from "@/lib/supabase/client";
 import type { ProfileRow } from "@/lib/auth/profile";
+import { formatPriceARS } from "@/lib/format-price";
 
 type SectionKey = "account" | "orders" | "addresses";
 
@@ -34,24 +35,6 @@ export default function AccountPageClient({
   const locale = localeProp || localeFromContext;
   const t = useTranslations();
   const [activeSection, setActiveSection] = useState<SectionKey>("account");
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(
-      locale === "es"
-        ? "es-AR"
-        : locale === "fr"
-          ? "fr-FR"
-          : locale === "it"
-            ? "it-IT"
-            : "en-US",
-      {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }
-    ).format(price);
-  };
 
   const userOrders = orders;
 
@@ -104,7 +87,7 @@ export default function AccountPageClient({
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-sm text-text-primary">
-                  {formatPrice(order.subtotal)}
+                  {formatPriceARS(order.subtotal)}
                 </span>
                 <span className="text-xs uppercase tracking-[0.12em] text-text-muted">
                   {order.status}

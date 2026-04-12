@@ -10,6 +10,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import { PRODUCTS_DATA } from "@/lib/products-data";
 import type { TourismExperience } from "@/lib/product-types";
 import ProductCardSimple from "@/components/ProductCardSimple";
+import { formatPriceARS } from "@/lib/format-price";
 
 function hasShippingLines(order: Order) {
   const a = order.address;
@@ -65,24 +66,6 @@ export default function OrderSuccessPage() {
     });
   }, [order?.date, locale]);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(
-      locale === "es"
-        ? "es-AR"
-        : locale === "fr"
-          ? "fr-FR"
-          : locale === "it"
-            ? "it-IT"
-            : "en-US",
-      {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }
-    ).format(price);
-  };
-
   const stepSetKey = useMemo(() => {
     if (!order) return "default";
     if (order.paymentMethod === "whatsapp") return "whatsapp";
@@ -102,7 +85,7 @@ export default function OrderSuccessPage() {
     if (!whatsappDigits || !order) return null;
     const text = t("orderSuccessPage.whatsappMessage")
       .replace("{id}", order.id)
-      .replace("{amount}", formatPrice(order.subtotal));
+      .replace("{amount}", formatPriceARS(order.subtotal));
     return `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(text)}`;
   }, [order, t, whatsappDigits, locale]);
 
@@ -336,11 +319,11 @@ export default function OrderSuccessPage() {
                         <p className="font-medium text-white">{item.title}</p>
                         <p className="mt-1 text-xs text-white/45">
                           {t("checkoutPage.quantity")}: {item.quantity} ×{" "}
-                          {formatPrice(item.price)}
+                          {formatPriceARS(item.price)}
                         </p>
                       </div>
                       <span className="shrink-0 font-semibold text-white">
-                        {formatPrice(item.price * item.quantity)}
+                        {formatPriceARS(item.price * item.quantity)}
                       </span>
                     </div>
                   ))}
@@ -349,7 +332,7 @@ export default function OrderSuccessPage() {
                 <div className="mt-8 border-t border-white/10 pt-6">
                   <div className="flex flex-col items-center justify-center gap-1 text-lg font-semibold text-white">
                     <span>{t("orderSuccessPage.totalLabel")}</span>
-                    <span>{formatPrice(order.subtotal)}</span>
+                    <span>{formatPriceARS(order.subtotal)}</span>
                   </div>
                   {formattedDate && (
                     <p className="mt-3 text-xs text-white/45">

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { formatPriceARS } from "@/lib/format-price";
 import { useEffect, useMemo, useState } from "react";
 import { Product } from "@/lib/products";
 import { defaultLocale, type Locale } from "@/lib/i18n/config";
@@ -207,7 +208,7 @@ export default function ProductCardSimple({
           </p>
           <div className="flex items-center justify-between gap-3 pt-1.5">
             <span className="text-sm font-semibold tabular-nums text-[#1C1F1D]">
-              ${product.price.toFixed(2)}
+              {formatPriceARS(product.price)}
             </span>
             <span className="text-xs font-semibold text-[#8B6914] transition-colors duration-200 ease-out group-hover:text-accent-gold">
               {viewProductLabel}

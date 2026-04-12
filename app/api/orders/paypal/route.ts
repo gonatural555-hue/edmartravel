@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       orderId,
       paypalOrderId,
       totalAmount,
-      currency: currency || "USD",
+      currency: currency || "ARS",
       hasEmail: Boolean(safeEmail),
       itemsCount: items.length,
     });
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       email: safeEmail,
       items,
       totalAmount,
-      currency: currency || "USD",
+      currency: currency || "ARS",
       paymentMethod: "paypal",
     });
 

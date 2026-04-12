@@ -12,7 +12,7 @@ type PayPalButtonProps = {
 
 export default function PayPalButton({
   amount,
-  currency = "USD",
+  currency = "ARS",
   onSuccess,
   onError,
   onCancel,

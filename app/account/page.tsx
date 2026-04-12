@@ -6,6 +6,7 @@ import AuthModal from "@/components/AuthModal";
 import { useUser } from "@/context/UserContext";
 import { defaultLocale } from "@/lib/i18n/config";
 import AccountAddresses from "@/components/AccountAddresses";
+import { formatPriceARS } from "@/lib/format-price";
 
 type SectionKey = "account" | "orders" | "addresses";
 
@@ -15,14 +16,6 @@ export default function AccountPage() {
   const [activeSection, setActiveSection] = useState<SectionKey>("account");
   const [authOpen, setAuthOpen] = useState(false);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
   const userOrders = orders;
 
   const content = useMemo(() => {
@@ -51,7 +44,7 @@ export default function AccountPage() {
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-sm text-text-primary">
-                  {formatPrice(order.subtotal)}
+                  {formatPriceARS(order.subtotal)}
                 </span>
                 <span className="text-xs uppercase tracking-[0.12em] text-text-muted">
                   {order.status}

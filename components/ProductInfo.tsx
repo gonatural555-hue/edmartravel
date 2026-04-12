@@ -1,5 +1,6 @@
 // components/ProductInfo.tsx
 import AddToCartButton from "./AddToCartButton";
+import { formatPriceARS } from "@/lib/format-price";
 
 type Product = {
   id: string;
@@ -19,7 +20,7 @@ export default function ProductInfo({ product }: Props) {
     <div>
       <h1 className="text-3xl font-bold mb-4">{product.title}</h1>
 
-      <p className="text-2xl font-semibold mb-6">${product.price}</p>
+      <p className="text-2xl font-semibold mb-6">{formatPriceARS(product.price)}</p>
 
       <p className="text-gray-600 mb-6">{product.description}</p>
 

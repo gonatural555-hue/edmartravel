@@ -15,6 +15,7 @@ import type {
 import type { ProductVariants, VariantDefinition } from "@/lib/product-variants";
 import type { ExperienceRichContent } from "@/lib/experience-model";
 import { PRODUCT_BLUR_DATA_URL } from "@/lib/product-image-helper";
+import { formatPriceARS } from "@/lib/format-price";
 import {
   EditorialColumns,
   FaqAccordion,
@@ -91,7 +92,7 @@ function BookingPanel({
           {labels.fromPrice}
         </p>
         <p className="mt-2 text-3xl font-bold tabular-nums text-accent-gold">
-          ${resolvedPrice.toFixed(2)}
+          {formatPriceARS(resolvedPrice)}
         </p>
         <p className="mt-1 text-xs text-text-muted">{labels.perPerson}</p>
       </div>
@@ -456,7 +457,7 @@ export default function ExperiencePageClient({
                 {labels.fromPrice}
               </p>
               <p className="mt-1 text-4xl font-bold tabular-nums text-accent-gold sm:text-5xl">
-                ${resolvedPrice.toFixed(2)}
+                {formatPriceARS(resolvedPrice)}
               </p>
               <p className="mt-1 text-xs text-white/60">{labels.perPerson}</p>
             </div>
@@ -690,7 +691,7 @@ export default function ExperiencePageClient({
               {labels.fromPrice}
             </p>
             <p className="truncate text-xl font-bold tabular-nums text-accent-gold">
-              ${resolvedPrice.toFixed(2)}
+              {formatPriceARS(resolvedPrice)}
             </p>
           </div>
           {whatsappLinkWithText ? (

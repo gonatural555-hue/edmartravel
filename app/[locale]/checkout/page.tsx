@@ -16,6 +16,7 @@ import {
   BOOKING_SECTION_TITLE,
   bookingMotion,
 } from "@/lib/booking-ui";
+import { formatPriceARS } from "@/lib/format-price";
 
 type TravelerForm = {
   firstName: string;
@@ -123,24 +124,6 @@ export default function CheckoutPage() {
   }, [user?.first_name, user?.last_name, user?.email]);
 
   const travelerOk = useMemo(() => isTravelerComplete(traveler), [traveler]);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(
-      locale === "es"
-        ? "es-AR"
-        : locale === "fr"
-          ? "fr-FR"
-          : locale === "it"
-            ? "it-IT"
-            : "en-US",
-      {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }
-    ).format(price);
-  };
 
   const reservationSnapshot = useMemo(
     () => ({
@@ -298,7 +281,7 @@ export default function CheckoutPage() {
           quantity: item.quantity,
         })),
         totalAmount: subtotal,
-        currency: "USD" as const,
+        currency: "ARS" as const,
         paypalOrderId: details?.id,
       };
 
@@ -659,7 +642,7 @@ export default function CheckoutPage() {
                     ) : (
                       <PayPalButton
                         amount={subtotal}
-                        currency="USD"
+                        currency="ARS"
                         onSuccess={handlePayPalSuccess}
                         onError={handlePayPalError}
                         onCancel={() => setIsLoading(false)}
@@ -692,11 +675,11 @@ export default function CheckoutPage() {
                       <p className="font-medium text-white/90">{item.title}</p>
                       <p className="mt-1 text-xs text-white/45">
                         {t("checkoutPage.quantity")}: {item.quantity} ·{" "}
-                        {formatPrice(item.price)} {t("checkoutPage.unitPrice")}
+                        {formatPriceARS(item.price)} {t("checkoutPage.unitPrice")}
                       </p>
                     </div>
                     <span className="shrink-0 font-semibold text-white">
-                      {formatPrice(item.price * item.quantity)}
+                      {formatPriceARS(item.price * item.quantity)}
                     </span>
                   </div>
                 ))}
@@ -728,7 +711,7 @@ export default function CheckoutPage() {
                   {t("checkoutPage.total")}
                 </span>
                 <span className="text-2xl font-semibold text-white">
-                  {formatPrice(subtotal)}
+                  {formatPriceARS(subtotal)}
                 </span>
               </div>
 

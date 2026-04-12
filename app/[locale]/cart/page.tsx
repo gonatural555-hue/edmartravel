@@ -14,6 +14,7 @@ import {
   BOOKING_SECTION_TITLE,
   bookingMotion,
 } from "@/lib/booking-ui";
+import { formatPriceARS } from "@/lib/format-price";
 
 export default function CartPage() {
   const {
@@ -28,15 +29,6 @@ export default function CartPage() {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations();
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   const handleCheckout = () => {
     router.push(`/${locale}/checkout`);
@@ -156,7 +148,7 @@ export default function CartPage() {
                             {item.title}
                           </h3>
                           <p className="mt-2 text-sm text-white/55">
-                            {formatPrice(item.price)}
+                            {formatPriceARS(item.price)}
                             {formatVariantSummary(item)
                               ? ` · ${formatVariantSummary(item)}`
                               : ""}
@@ -197,7 +189,7 @@ export default function CartPage() {
                             {t("cartPage.itemSubtotal")}
                           </p>
                           <p className="text-xl font-semibold text-white">
-                            {formatPrice(itemSubtotal)}
+                            {formatPriceARS(itemSubtotal)}
                           </p>
                         </div>
                       </div>
@@ -302,7 +294,7 @@ export default function CartPage() {
                       </span>
                     </span>
                     <span className="shrink-0 font-medium text-white">
-                      {formatPrice(item.price * item.quantity)}
+                      {formatPriceARS(item.price * item.quantity)}
                     </span>
                   </li>
                 ))}
@@ -313,7 +305,7 @@ export default function CartPage() {
                   {t("cartPage.summaryTotal")}
                 </span>
                 <span className="text-2xl font-semibold tracking-tight text-white">
-                  {formatPrice(subtotal)}
+                  {formatPriceARS(subtotal)}
                 </span>
               </div>
 

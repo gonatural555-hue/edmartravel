@@ -6,16 +6,10 @@
  */
 
 import type { Order } from "./orders";
+import { formatOrderMoney } from "@/lib/format-price";
 
-/**
- * Formatea el monto con la moneda
- */
 function formatAmount(amount: number, currency: string): string {
-  return new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: currency.toUpperCase(),
-    minimumFractionDigits: 2,
-  }).format(amount);
+  return formatOrderMoney(amount, currency);
 }
 
 /**

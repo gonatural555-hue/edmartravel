@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { formatPriceARS } from "@/lib/format-price";
 import { useMemo, useState } from "react";
 import type { Product } from "@/lib/products";
 import type { Locale } from "@/lib/i18n/config";
@@ -155,7 +156,7 @@ export default function FeaturedExperienceEditorialCard({
           {isActive && (
             <div className="pointer-events-auto mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
               <p className="text-2xl font-semibold tabular-nums text-accent-gold sm:text-3xl">
-                ${product.price.toFixed(2)}
+                {formatPriceARS(product.price)}
               </p>
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <Link

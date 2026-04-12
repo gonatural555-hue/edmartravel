@@ -15,6 +15,7 @@ import type {
   ProductVariants,
   VariantDefinition,
 } from "@/lib/product-variants";
+import { formatPriceARS } from "@/lib/format-price";
 
 type ProductSummary = {
   id: string;
@@ -293,7 +294,7 @@ export default function ProductDetailClient({
 
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-5">
               <p className="text-3xl font-bold tabular-nums text-accent-gold md:text-4xl">
-                ${resolvedPrice.toFixed(2)}
+                {formatPriceARS(resolvedPrice)}
               </p>
               {product.freeShipping && freeShippingLabel ? (
                 <span className="text-xs uppercase tracking-[0.12em] text-text-muted/80">
@@ -341,7 +342,7 @@ export default function ProductDetailClient({
           {/* Precio siempre visible en sticky */}
           <div className="mb-2 text-center">
             <p className="text-2xl font-bold text-text-primary">
-              ${resolvedPrice.toFixed(2)}
+              {formatPriceARS(resolvedPrice)}
             </p>
           </div>
           

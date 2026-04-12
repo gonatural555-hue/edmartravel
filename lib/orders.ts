@@ -57,7 +57,7 @@ export async function createOrder(data: {
     email: data.email,
     items: [...data.items], // Copia para inmutabilidad
     totalAmount: data.totalAmount,
-    currency: data.currency || "USD",
+    currency: data.currency || "ARS",
     paymentMethod: data.paymentMethod,
     status: "created",
     createdAt: new Date(),

@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       quantity: number;
     }) => ({
       price_data: {
-        currency: "usd",
+        currency: "ars",
         product_data: {
           name: item.title,
           metadata: {

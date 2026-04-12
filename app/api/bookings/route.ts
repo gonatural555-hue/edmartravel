@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { formatPriceARS } from "@/lib/format-price";
 
 type CartItemInput = {
   id: string;
@@ -53,7 +54,7 @@ function buildNotes(
 ): string {
   const lines = items.map(
     (i) =>
-      `${i.quantity}× ${i.title} (${i.id}) — ${i.price * i.quantity} USD`
+      `${i.quantity}× ${i.title} (${i.id}) — ${formatPriceARS(i.price * i.quantity)}`
   );
   const resLines: string[] = [];
   if (reservation) {
@@ -242,7 +243,7 @@ export async function POST(request: NextRequest) {
       .insert({
         user_id: user.id,
         status,
-        currency: "USD",
+        currency: "ARS",
         total_amount: subtotal,
         notes,
         country: nullIfEmpty(trimmed.country),
