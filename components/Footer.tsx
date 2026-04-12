@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
+import { SITE_CONFIG } from "@/lib/config";
 
 export default function Footer() {
   const locale = useLocale();
@@ -67,15 +68,22 @@ export default function Footer() {
     <footer className="bg-dark-base text-text-muted mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
-          {/* Branding Section */}
-          <div className="lg:col-span-1">
+          {/* Branding Section — logo y tagline alineados al mismo eje vertical */}
+          <div className="flex flex-col items-center text-center lg:col-span-1">
             <Link
               href={`/${locale}`}
-              className="inline-block mb-4 text-2xl font-semibold text-text-primary hover:text-accent-gold transition-colors duration-200"
+              className="group mb-4 flex shrink-0 justify-center"
+              aria-label={SITE_CONFIG.name}
             >
-              Go Natural
+              <img
+                src="/assets/images/logo/logo.png"
+                alt={SITE_CONFIG.name}
+                className="h-14 w-auto max-w-[min(12rem,48vw)] sm:h-16 md:h-20 md:max-w-[14rem] opacity-90 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+                loading="lazy"
+                decoding="async"
+              />
             </Link>
-            <p className="text-sm text-text-muted leading-relaxed max-w-xs">
+            <p className="max-w-xs text-balance text-sm leading-relaxed text-text-muted">
               {t("footer.brandBlurb")}
             </p>
           </div>
@@ -219,7 +227,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-text-muted">
             <p>
-              © {currentYear} Go Natural. {t("footer.rights")}
+              © {currentYear} {SITE_CONFIG.name}. {t("footer.rights")}
             </p>
           </div>
         </div>

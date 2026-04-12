@@ -1,0 +1,18 @@
+{
+  "id": "private-winery-transfers-mendoza",
+  "images": {
+    "featured": ["/assets/images/products/trasladobodegas/traslado-bodegas-1.webp"],
+    "gallery": [
+      "/assets/images/products/trasladobodegas/traslado-bodegas.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-1.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-2.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-4.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-6.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-8.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-10.webp",
+      "/assets/images/products/trasladobodegas/traslado-bodegas-11.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

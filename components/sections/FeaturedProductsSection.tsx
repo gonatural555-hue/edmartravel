@@ -46,17 +46,18 @@ export default function FeaturedProductsSection({
   }, []);
 
   const featuredIds = [
-    "gn-ski-snow-001",
-    "gn-cycling-011",
-    "gn-cycling-eq-001",
-    "gn-cycling-jacket-003",
-    "gn-water-007",
-    "gn-outdoor-009",
+    "cabalgata-picada-potrerillos",
+    "mono-city-tour-mendoza",
+    "private-winery-transfers-mendoza",
   ];
 
   const featured = featuredIds
     .map((id) => products.find((product) => product.id === id))
     .filter((product): product is Product => Boolean(product));
+
+  if (products.length === 0 || featured.length === 0) {
+    return null;
+  }
 
   return (
     <section className="bg-dark-base py-24 md:py-32">

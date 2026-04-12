@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, FormEvent } from "react";
 import { useTranslations } from "@/components/i18n/LocaleProvider";
+import { SITE_CONFIG } from "@/lib/config";
 
 export default function ContactPage() {
   const t = useTranslations();
@@ -11,18 +12,38 @@ export default function ContactPage() {
     email: "",
     message: "",
   });
+  const [pending, setPending] = useState(false);
+  const [notice, setNotice] = useState<"success" | "error" | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Formulario enviado:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setNotice(null);
+    setPending(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+      if (!res.ok) throw new Error("contact_failed");
+      setNotice("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch {
+      setNotice("error");
+    } finally {
+      setPending(false);
+    }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    setNotice((prev) => (prev === "error" ? null : prev));
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -31,14 +52,14 @@ export default function ContactPage() {
       <div className="absolute inset-0">
         <Image
           src="/assets/images/hero/contact.webp"
-          alt="Fondo de contacto"
+          alt={t("contactPage.backgroundAlt")}
           fill
           className="object-cover object-center"
           priority
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 md:pt-32 md:pb-20">
+      <main className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-16 pt-28 pb-12 md:pt-32 md:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-20">
         {/* Columna izquierda - Información de contacto */}
         <div>
@@ -53,10 +74,10 @@ export default function ContactPage() {
                 {t("contactPage.emailTitle")}
               </h2>
               <a
-                href="mailto:go.natural.555@gmail.com"
-                className="text-white hover:text-white/80 transition-colors duration-200 underline"
+                href={`mailto:${SITE_CONFIG.contact.email}`}
+                className="text-white underline transition-colors duration-200 hover:text-white/80"
               >
-                go.natural.555@gmail.com
+                {SITE_CONFIG.contact.email}
               </a>
             </div>
 
@@ -87,6 +108,22 @@ export default function ContactPage() {
         {/* Columna derecha - Formulario */}
         <div>
           <form onSubmit={handleSubmit} className="space-y-6">
+            {notice === "success" && (
+              <p
+                role="status"
+                className="rounded-lg border border-emerald-400/35 bg-emerald-500/15 px-4 py-3 text-sm text-emerald-50"
+              >
+                {t("contactPage.form.success")}
+              </p>
+            )}
+            {notice === "error" && (
+              <p
+                role="alert"
+                className="rounded-lg border border-red-400/35 bg-red-500/15 px-4 py-3 text-sm text-red-50"
+              >
+                {t("contactPage.form.error")}
+              </p>
+            )}
             <div>
               <label
                 htmlFor="name"
@@ -101,7 +138,9 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200"
+                disabled={pending}
+                autoComplete="name"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 disabled:opacity-60"
                 placeholder={t("contactPage.form.namePlaceholder")}
               />
             </div>
@@ -120,7 +159,9 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200"
+                disabled={pending}
+                autoComplete="email"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 disabled:opacity-60"
                 placeholder={t("contactPage.form.emailPlaceholder")}
               />
             </div>
@@ -138,17 +179,19 @@ export default function ContactPage() {
                 value={formData.message}
                 onChange={handleChange}
                 required
+                disabled={pending}
                 rows={6}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 resize-none"
+                className="w-full resize-none px-4 py-3 border border-gray-300 rounded-md bg-dark-surface text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-200 disabled:opacity-60"
                 placeholder={t("contactPage.form.messagePlaceholder")}
               />
             </div>
 
             <button
               type="submit"
-              className="w-full px-8 py-3 bg-white text-black font-medium rounded-md hover:bg-gray-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+              disabled={pending}
+              className="w-full rounded-md bg-white px-8 py-3 font-medium text-black transition-colors duration-200 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {t("contactPage.form.submit")}
+              {pending ? t("contactPage.form.sending") : t("contactPage.form.submit")}
             </button>
           </form>
         </div>

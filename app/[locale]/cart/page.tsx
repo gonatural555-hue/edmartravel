@@ -3,11 +3,28 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
+import {
+  BOOKING_GLASS,
+  BOOKING_INPUT_CLASS,
+  BOOKING_LABEL_CLASS,
+  BOOKING_SECTION_HINT,
+  BOOKING_SECTION_TITLE,
+  bookingMotion,
+} from "@/lib/booking-ui";
 
 export default function CartPage() {
-  const { items, subtotal, increaseQty, decreaseQty, removeItem } = useCart();
+  const {
+    items,
+    subtotal,
+    reservation,
+    updateReservation,
+    increaseQty,
+    decreaseQty,
+    removeItem,
+  } = useCart();
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations();
@@ -45,175 +62,280 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <main data-route="cart" className="relative w-full overflow-hidden pt-28 pb-12 md:pt-32 md:pb-20">
-        <div className="absolute inset-0">
-          <Image
-            src="/assets/images/hero/emptycart.webp"
-            alt="Carrito vacío"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white-900 mb-4">
-            {t("cartPage.emptyTitle")}
-          </h1>
-          <p className="text-white-600 mb-8">{t("cartPage.emptyText")}</p>
-          <Link
-            href={`/${locale}/products`}
-            className="inline-flex justify-center rounded-md bg-white px-8 py-4 text-base font-medium text-black hover:bg-gray-900 transition-colors duration-200"
+      <main
+        data-route="cart"
+        className={`${BOOKING_GLASS.pageWrap} flex flex-col`}
+      >
+        <div className={BOOKING_GLASS.pageBackdrop} aria-hidden />
+        <div className="relative z-10 flex min-h-[70dvh] flex-col items-center justify-center px-4 pb-16 pt-28 md:pt-32">
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src="/assets/images/hero/emptycart.webp"
+              alt={t("cartPage.emptyImageAlt")}
+              fill
+              className="object-cover object-center opacity-40"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-[#0a0908]/85 to-[#0a0908]" />
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-lg text-center"
           >
-            {t("cartPage.emptyCta")}
-          </Link>
+            <h1 className="mb-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+              {t("cartPage.emptyTitle")}
+            </h1>
+            <p className="mb-10 text-base leading-relaxed text-white/65">
+              {t("cartPage.emptyText")}
+            </p>
+            <Link
+              href={`/${locale}/products`}
+              className={BOOKING_GLASS.primaryCta}
+            >
+              {t("cartPage.emptyCta")}
+            </Link>
+          </motion.div>
         </div>
       </main>
     );
   }
 
   return (
-    <main data-route="cart" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-8 md:pt-32 md:pb-12">
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-8">
-        {t("cartPage.title")}
-      </h1>
+    <main data-route="cart" className={BOOKING_GLASS.pageWrap}>
+      <div className={BOOKING_GLASS.pageBackdrop} aria-hidden />
+      <div className={`${BOOKING_GLASS.container} pb-16 pt-28 md:pt-32`}>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="mb-10 md:mb-12"
+        >
+          <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-accent-gold/90">
+            {t("cartPage.kicker")}
+          </p>
+          <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            {t("cartPage.title")}
+          </h1>
+          <p className="mt-3 max-w-xl text-sm text-white/55 md:text-base">
+            {t("cartPage.intro")}
+          </p>
+        </motion.div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Lista de productos */}
-        <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            <div className="divide-y divide-gray-200">
-              {items.map((item) => {
-                const itemSubtotal = item.price * item.quantity;
-                return (
-                  <div
-                    key={item.id}
-                    className="p-4 sm:p-6 hover:bg-gray-50 transition-colors duration-150"
-                  >
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                  {item.image ? (
-                    <div className="relative w-24 h-24 sm:w-28 sm:h-28 shrink-0 overflow-hidden rounded-md border border-gray-200 bg-white">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover object-center"
-                      />
-                    </div>
-                  ) : (
-                    <div className="w-24 h-24 sm:w-28 sm:h-28 shrink-0 rounded-md border border-gray-200 bg-gray-50" />
-                  )}
-                      {/* Información del producto */}
-                      <div className="flex-1 min-w-0">
-                        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
-                          {item.title}
-                        </h2>
-                        <p className="text-base text-accent-gold mb-4">
-                          {t("cartPage.unitPrice")}: {formatPrice(item.price)}
-                          {formatVariantSummary(item)
-                            ? ` · ${formatVariantSummary(item)}`
-                            : ""}
-                        </p>
-
-                        {/* Controles de cantidad y acciones */}
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                          {/* Controles de cantidad */}
-                          <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
+          <motion.div
+            className="space-y-6 lg:col-span-3"
+            variants={bookingMotion.container}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.section variants={bookingMotion.item} className={BOOKING_GLASS.panel}>
+              <h2 className={BOOKING_SECTION_TITLE}>{t("cartPage.experienceSection")}</h2>
+              <p className={BOOKING_SECTION_HINT}>{t("cartPage.experienceHint")}</p>
+              <div className="mt-8 space-y-6">
+                {items.map((item) => {
+                  const itemSubtotal = item.price * item.quantity;
+                  return (
+                    <div key={item.id} className={BOOKING_GLASS.experienceCard}>
+                      <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
+                        {item.image ? (
+                          <div className="relative mx-auto h-40 w-full shrink-0 overflow-hidden rounded-xl border border-white/10 sm:mx-0 sm:h-32 sm:w-40">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-cover object-center"
+                            />
+                          </div>
+                        ) : (
+                          <div className="mx-auto h-40 w-full shrink-0 rounded-xl border border-white/10 bg-white/[0.04] sm:mx-0 sm:h-32 sm:w-40" />
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-lg font-semibold text-white">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 text-sm text-white/55">
+                            {formatPrice(item.price)}
+                            {formatVariantSummary(item)
+                              ? ` · ${formatVariantSummary(item)}`
+                              : ""}
+                          </p>
+                          <div className="mt-5 flex flex-wrap items-center gap-4">
+                            <div className="inline-flex items-center overflow-hidden rounded-lg border border-white/15 bg-white/[0.06]">
+                              <button
+                                type="button"
+                                onClick={() => decreaseQty(item.id)}
+                                className="px-4 py-2 text-lg text-white/80 transition hover:bg-white/10"
+                                aria-label={t("cartPage.decreaseQty")}
+                              >
+                                −
+                              </button>
+                              <span className="min-w-[3rem] border-x border-white/15 px-4 py-2 text-center text-sm font-semibold text-white">
+                                {item.quantity}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => increaseQty(item.id)}
+                                className="px-4 py-2 text-lg text-white/80 transition hover:bg-white/10"
+                                aria-label={t("cartPage.increaseQty")}
+                              >
+                                +
+                              </button>
+                            </div>
                             <button
-                              onClick={() => decreaseQty(item.id)}
-                              className="px-3 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition-colors duration-150 font-medium text-lg"
-                              aria-label={t("cartPage.decreaseQty")}
+                              type="button"
+                              onClick={() => removeItem(item.id)}
+                              className="text-sm font-medium text-rose-300/90 underline-offset-4 transition hover:text-rose-200"
                             >
-                              −
-                            </button>
-                            <span className="px-4 sm:px-6 py-2 text-gray-900 font-semibold min-w-[3.5rem] text-center border-x border-gray-300 bg-white">
-                              {item.quantity}
-                            </span>
-                            <button
-                              onClick={() => increaseQty(item.id)}
-                              className="px-3 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-gray-200 transition-colors duration-150 font-medium text-lg"
-                              aria-label={t("cartPage.increaseQty")}
-                            >
-                              +
+                              {t("cartPage.remove")}
                             </button>
                           </div>
-
-                          {/* Botón eliminar */}
-                          <button
-                            onClick={() => removeItem(item.id)}
-                            className="text-sm text-red-600 hover:text-red-700 font-medium underline transition-colors duration-150"
-                            aria-label={t("cartPage.remove")}
-                          >
-                            {t("cartPage.remove")}
-                          </button>
                         </div>
-                      </div>
-
-                      {/* Subtotal del item */}
-                      <div className="flex sm:flex-col justify-between sm:justify-start items-end sm:items-end gap-2 sm:gap-1">
-                        <div className="text-right sm:text-right">
-                          <p className="text-sm text-accent-gold sm:mb-1">
+                        <div className="text-right sm:pt-1">
+                          <p className="text-xs uppercase tracking-wider text-white/40">
                             {t("cartPage.itemSubtotal")}
                           </p>
-                          <p className="text-lg sm:text-xl font-bold text-gray-900">
+                          <p className="text-xl font-semibold text-white">
                             {formatPrice(itemSubtotal)}
                           </p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Resumen lateral */}
-        <div className="lg:col-span-1">
-          <div className="bg-gray-50 rounded-lg border border-gray-200 p-6 sticky top-4">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">
-              {t("cartPage.summaryTitle")}
-            </h2>
-
-            <div className="space-y-4 mb-6">
-              <div className="flex justify-between items-center">
-                <span className="text-base text-accent-gold">{t("cartPage.summarySubtotal")}</span>
-                <span className="font-semibold text-gray-900">
-                  {formatPrice(subtotal)}
-                </span>
+                  );
+                })}
               </div>
+            </motion.section>
 
-              <div className="pt-4 border-t border-gray-300">
-                <p className="text-sm text-accent-gold mb-2">
-                  {t("cartPage.summaryNote")}
-                </p>
+            <motion.section variants={bookingMotion.item} className={BOOKING_GLASS.panel}>
+              <h2 className={BOOKING_SECTION_TITLE}>{t("cartPage.detailsSection")}</h2>
+              <p className={BOOKING_SECTION_HINT}>{t("cartPage.detailsHint")}</p>
+              <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                <div className="sm:col-span-1">
+                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-date">
+                    {t("cartPage.fieldDate")}
+                  </label>
+                  <input
+                    id="res-date"
+                    type="date"
+                    value={reservation.preferredDate}
+                    onChange={(e) =>
+                      updateReservation({ preferredDate: e.target.value })
+                    }
+                    className={BOOKING_INPUT_CLASS}
+                  />
+                </div>
+                <div className="sm:col-span-1">
+                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-time">
+                    {t("cartPage.fieldTime")}
+                  </label>
+                  <input
+                    id="res-time"
+                    type="time"
+                    value={reservation.preferredTime}
+                    onChange={(e) =>
+                      updateReservation({ preferredTime: e.target.value })
+                    }
+                    className={BOOKING_INPUT_CLASS}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-party">
+                    {t("cartPage.fieldParty")}
+                  </label>
+                  <input
+                    id="res-party"
+                    type="number"
+                    min={1}
+                    max={99}
+                    value={reservation.partySize}
+                    onChange={(e) =>
+                      updateReservation({
+                        partySize: Math.max(1, Number(e.target.value) || 1),
+                      })
+                    }
+                    className={BOOKING_INPUT_CLASS}
+                  />
+                </div>
+                <div className="sm:col-span-2">
+                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-notes">
+                    {t("cartPage.fieldNotes")}
+                  </label>
+                  <textarea
+                    id="res-notes"
+                    rows={4}
+                    value={reservation.notes}
+                    onChange={(e) =>
+                      updateReservation({ notes: e.target.value })
+                    }
+                    placeholder={t("cartPage.fieldNotesPlaceholder")}
+                    className={`${BOOKING_INPUT_CLASS} min-h-[6rem] resize-y`}
+                  />
+                </div>
               </div>
-            </div>
+            </motion.section>
+          </motion.div>
 
-            <div className="pt-6 border-t border-gray-300">
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-lg font-semibold text-gray-900">
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={BOOKING_GLASS.sticky}
+            >
+              <h2 className="text-lg font-semibold text-white">
+                {t("cartPage.summaryTitle")}
+              </h2>
+              <p className="mt-1 text-sm text-white/50">{t("cartPage.summaryLead")}</p>
+
+              <ul className="mt-8 space-y-4 border-b border-white/10 pb-8">
+                {items.map((item) => (
+                  <li
+                    key={`sum-${item.id}`}
+                    className="flex justify-between gap-3 text-sm"
+                  >
+                    <span className="text-white/75">
+                      {item.title}
+                      <span className="text-white/40">
+                        {" "}
+                        ×{item.quantity}
+                      </span>
+                    </span>
+                    <span className="shrink-0 font-medium text-white">
+                      {formatPrice(item.price * item.quantity)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex items-end justify-between gap-4">
+                <span className="text-sm font-medium uppercase tracking-wider text-white/45">
                   {t("cartPage.summaryTotal")}
                 </span>
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-2xl font-semibold tracking-tight text-white">
                   {formatPrice(subtotal)}
                 </span>
               </div>
 
+              <p className="mt-6 text-xs leading-relaxed text-white/45">
+                {t("cartPage.summaryNote")}
+              </p>
+
               <button
+                type="button"
                 onClick={handleCheckout}
-                className="w-full rounded-md bg-black px-6 py-4 text-base font-medium text-white hover:bg-gray-900 active:bg-gray-800 transition-colors duration-200 shadow-sm hover:shadow-md"
+                className={`${BOOKING_GLASS.primaryCta} mt-8`}
               >
-                {t("cartPage.checkout")}
+                {t("cartPage.confirmCta")}
               </button>
 
               <Link
                 href={`/${locale}/products`}
-                className="block mt-4 text-center text-sm text-accent-gold hover:text-accent-gold/80 font-medium transition-colors duration-150"
+                className={`${BOOKING_GLASS.subtleLink} mt-6 block text-center`}
               >
                 {t("cartPage.continueShopping")}
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

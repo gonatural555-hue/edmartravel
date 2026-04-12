@@ -1,0 +1,14 @@
+{
+  "id": "villavicencio-nature-reserve-tour",
+  "images": {
+    "featured": ["/assets/images/products/Villavicencio/villavicencio.webp"],
+    "gallery": [
+      "/assets/images/products/Villavicencio/villavicencio.webp",
+      "/assets/images/products/Villavicencio/villavicencio-1.webp",
+      "/assets/images/products/Villavicencio/villavicencio-2.webp",
+      "/assets/images/products/Villavicencio/villavicencio-4.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

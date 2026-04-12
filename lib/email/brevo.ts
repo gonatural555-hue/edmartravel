@@ -4,6 +4,7 @@
  * Servicio para envío de emails transaccionales usando Brevo API REST.
  * NO rompe el flujo de compra si el email falla.
  */
+import { SITE_CONFIG } from "@/lib/config";
 
 type OrderItem = {
   id: string;
@@ -181,14 +182,14 @@ export async function sendOrderCreatedEmail(
       body: JSON.stringify({
         sender: {
           email: "orders@gonatural.com",
-          name: "Go Natural",
+          name: SITE_CONFIG.name,
         },
         to: [
           {
             email: params.email,
           },
         ],
-        subject: "Pedido recibido – Go Natural",
+        subject: `Pedido recibido – ${SITE_CONFIG.name}`,
         htmlContent: htmlContent,
       }),
     });

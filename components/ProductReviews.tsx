@@ -40,7 +40,7 @@ export default function ProductReviews({
   const averageLabel = average.toFixed(1);
 
   return (
-    <section className="py-16 md:py-20">
+    <section className="border-t border-white/10 py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
           Customer reviews

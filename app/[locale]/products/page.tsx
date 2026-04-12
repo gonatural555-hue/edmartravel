@@ -1,12 +1,11 @@
-import Link from "next/link";
-import { getProducts } from "@/lib/products";
 import ProductGridSimple from "@/components/ProductGridSimple";
-import { getCategoryBySlug } from "@/lib/categories";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import { getMessages } from "@/lib/i18n/messages";
 import { createTranslator } from "@/lib/i18n/translate";
 import type { Locale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo";
+import { getProducts } from "@/lib/products";
+import { EXPERIENCE_CATEGORY_ORDER } from "@/lib/experience-categories";
+import { PRODUCTS_LISTING_NOISE_BG } from "@/lib/constants/products-listing-surface";
 
 export const dynamic = "force-dynamic";
 
@@ -29,101 +28,98 @@ export async function generateMetadata({
       fr: "/fr/products",
       it: "/it/products",
     },
-    ogImage: "/assets/images/hero/productsbanner.webp",
   });
 }
 
-const MAIN_CATEGORIES = [
-  "fishing",
-  "water-sports",
-  "mountain-snow",
-  "outdoor-adventure",
-  "active-sports",
-];
-
 export default async function ProductsPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: Locale }>;
-  searchParams?: { q?: string };
 }) {
   const { locale } = await params;
   const messages = await getMessages(locale);
   const t = createTranslator(messages);
   const products = getProducts();
-  const rawQuery = typeof searchParams?.q === "string" ? searchParams.q : "";
-  const normalizeText = (value: string) =>
-    value
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-  const query = normalizeText(rawQuery.trim());
-  const filteredProducts = query
-    ? products.filter((product) => {
-        const localized = product.translations?.[locale];
-        const title = localized?.title || product.title;
-        return normalizeText(title).includes(query);
-      })
-    : products;
-  const categories = MAIN_CATEGORIES.map((slug) => getCategoryBySlug(slug)).filter(
-    (cat): cat is NonNullable<typeof cat> => cat !== undefined
-  );
 
   return (
-    <main className="bg-black-50">
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="/assets/images/hero/productsbanner.webp"
-            alt="Productos Go Natural"
-            className="h-full w-full object-cover object-center"
+    <main className="relative isolate min-h-[60vh] overflow-hidden bg-wine-burgundy">
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_88%_58%_at_50%_-8%,rgba(255,255,255,0.09),transparent_58%)]" />
+        <div className="absolute -left-[18%] top-[10%] h-[min(44vw,24rem)] w-[min(44vw,24rem)] rounded-full bg-[#6D3A3A]/35 blur-3xl" />
+        <div className="absolute -right-[14%] bottom-[-12%] h-[min(52vw,28rem)] w-[min(52vw,28rem)] rounded-full bg-[#452020]/50 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_48%,transparent_38%,rgba(0,0,0,0.22)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/20 to-transparent" />
+        <div
+          className="absolute inset-0 opacity-[0.14] mix-blend-overlay"
+          style={{ backgroundImage: PRODUCTS_LISTING_NOISE_BG }}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-12 pt-24 sm:px-10 md:pb-16 md:pt-28 lg:px-16 lg:pt-32">
+        <div aria-labelledby="products-page-heading" className="text-center">
+          <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75 md:mb-7 md:text-xs">
+            {t("productsPage.eyebrow")}
+          </p>
+          <div
+            className="mx-auto mb-9 h-px max-w-md bg-gradient-to-r from-transparent via-white/20 to-transparent md:mb-11"
+            aria-hidden
           />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-base/75 via-dark-base/50 to-dark-base/85" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 md:py-20">
-          <Breadcrumbs
-            items={[
-              { label: t("header.nav.home"), href: `/${locale}` },
-              { label: t("header.nav.products") },
-            ]}
-          />
-          <header className="mt-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+
+          <header className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-black/15 px-6 py-9 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm md:px-10 md:py-11">
+            <h1
+              id="products-page-heading"
+              className="text-balance text-3xl font-semibold leading-[1.12] tracking-tight text-white md:text-4xl lg:text-[2.65rem] lg:leading-[1.1]"
+            >
               {t("productsPage.title")}
             </h1>
-            <p className="text-white max-w-2xl">
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/88 md:mt-6 md:text-lg">
               {t("productsPage.subtitle")}
             </p>
           </header>
         </div>
-      </section>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-12 md:py-16">
-        {/* Filtros de categorías */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-3 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/${locale}/category/${category.slug}`}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-text-primary border border-white/10 rounded-full hover:border-accent-gold/60 hover:text-accent-gold transition-colors duration-200 whitespace-nowrap"
+        <div className="mt-10 space-y-14 md:mt-12 md:space-y-16">
+          {EXPERIENCE_CATEGORY_ORDER.map((catSlug) => {
+            const inCategory = products.filter((p) => p.category === catSlug);
+            if (inCategory.length === 0) return null;
+            return (
+              <section
+                key={catSlug}
+                aria-labelledby={`products-cat-${catSlug}`}
               >
-                {t(`categories.names.${category.slug}`, category.name)}
-              </Link>
-            ))}
-          </div>
-        </div>
+                <h2
+                  id={`products-cat-${catSlug}`}
+                  className="mb-8 text-2xl font-semibold tracking-tight text-white md:mb-10 md:text-3xl"
+                >
+                  {t(`categories.names.${catSlug}`)}
+                </h2>
+                <ProductGridSimple
+                  products={inCategory}
+                  locale={locale}
+                  elevatedCards
+                  twoColumnLayout
+                  listingLayout
+                  labels={{
+                    viewProduct: t("common.viewProduct"),
+                    addToCart: t("common.addToCart"),
+                    noImage: t("common.noImage"),
+                  }}
+                />
+              </section>
+            );
+          })}
 
-        <ProductGridSimple
-          products={filteredProducts}
-          locale={locale}
-          labels={{
-            viewProduct: t("common.viewProduct"),
-            addToCart: t("common.addToCart"),
-            noImage: t("common.noImage"),
-          }}
-        />
+          {products.length === 0 && (
+            <div className="rounded-2xl border border-white/10 bg-dark-surface/40 px-6 py-12 text-center md:py-16">
+              <p className="text-lg font-medium text-text-primary">
+                {t("categoriesPage.emptyTitle")}
+              </p>
+              <p className="mx-auto mt-3 max-w-md text-sm text-text-muted">
+                {t("categoriesPage.emptyText")}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );

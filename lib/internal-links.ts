@@ -16,15 +16,32 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
   trekking: ["trekking", "trail", "hike", "sendero"],
   cycling: ["cycling", "bike", "cicl", "bici", "bikepacking"],
   fishing: ["fishing", "pesca"],
+  wine: ["wine", "vino", "winery", "bodega", "viñedo", "maipú", "maipu", "uco"],
+  adventure: [
+    "adventure",
+    "aventura",
+    "montaña",
+    "mountain",
+    "cabalg",
+    "andes",
+    "atuel",
+    "villavicencio",
+    "trek",
+    "cordillera",
+    "potrerillos",
+  ],
+  city: ["city", "ciudad", "urban", "mono", "scooter", "plaza", "centro "],
 };
 
 const CATEGORY_TO_BLOG_SLUGS: Record<string, string[]> = {
-  "water-sports": ["edge-of-water", "snorkel-diving-familia-europa"],
-  fishing: ["pesca-recreativa-apps-equipo", "salir-sin-complicarse"],
-  "mountain-snow": ["winter-lines", "ski-snowboard-centros-sin-limite"],
-  "outdoor-adventure": ["quiet-morning-at-camp", "salir-sin-complicarse"],
-  cycling: ["calm-motion", "quiet-journeys"],
-  "active-sports": ["calm-motion", "quiet-journeys"],
+  wine: ["quiet-journeys", "calm-motion", "edge-of-water"],
+  adventure: [
+    "winter-lines",
+    "quiet-morning-at-camp",
+    "ski-snowboard-centros-sin-limite",
+    "quiet-journeys",
+  ],
+  city: ["salir-sin-complicarse", "calm-motion", "quiet-journeys"],
 };
 
 function normalizeText(text: string) {

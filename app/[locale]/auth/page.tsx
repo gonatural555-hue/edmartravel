@@ -15,6 +15,8 @@ function AuthPageContent() {
   const [mounted, setMounted] = useState(false);
   
   const tab = (searchParams.get("tab") as "login" | "register" | null) || "login";
+  const nextParam = searchParams.get("next");
+  const errorParam = searchParams.get("error");
 
   useEffect(() => {
     setMounted(true);
@@ -65,7 +67,12 @@ function AuthPageContent() {
 
         {/* Auth Form Container */}
         <div className="bg-dark-surface/40 border border-white/10 rounded-2xl p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
-          <AuthForm initialTab={tab} isPage={true} />
+          <AuthForm
+            initialTab={tab}
+            isPage
+            redirectNext={nextParam}
+            callbackError={errorParam}
+          />
         </div>
       </div>
     </main>

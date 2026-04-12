@@ -1,0 +1,16 @@
+{
+  "id": "city-tour-mendoza",
+  "images": {
+    "featured": ["/assets/images/products/CityTour/city-tour.webp"],
+    "gallery": [
+      "/assets/images/products/CityTour/city-tour.webp",
+      "/assets/images/products/CityTour/city-tour-1.webp",
+      "/assets/images/products/CityTour/city-tour-2.webp",
+      "/assets/images/products/CityTour/city-tour-3.webp", 
+      "/assets/images/products/CityTour/city-tour-4.webp",
+      "/assets/images/products/CityTour/city-tour-5.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

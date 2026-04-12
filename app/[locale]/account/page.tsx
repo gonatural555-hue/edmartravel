@@ -1,175 +1,56 @@
-"use client";
+import { redirect, notFound } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+import AccountPageClient from "@/components/AccountPageClient";
+import { locales, type Locale } from "@/lib/i18n/config";
+import type { ProfileRow } from "@/lib/auth/profile";
 
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
-import AuthModal from "@/components/AuthModal";
-import { useUser } from "@/context/UserContext";
-import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
-import AccountAddresses from "@/components/AccountAddresses";
+/**
+ * Server Component: verifica sesión con cookies y lee `profiles` antes de hidratar el cliente.
+ * Segunda capa respecto al middleware (`lib/supabase/middleware.ts`).
+ */
+export default async function AccountPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (!locales.includes(locale as Locale)) {
+    notFound();
+  }
 
-type Order = {
-  id: string;
-  date: string;
-  total: string;
-  status: "Procesando" | "Enviado" | "Completado";
-};
-
-type SectionKey = "account" | "orders" | "addresses";
-
-export default function AccountPage() {
-  const { isLoggedIn, user, logout, orders } = useUser();
-  const router = useRouter();
-  const locale = useLocale();
-  const t = useTranslations();
-  const [activeSection, setActiveSection] = useState<SectionKey>("account");
-  const [authOpen, setAuthOpen] = useState(false);
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(locale === "es" ? "es-AR" : locale === "fr" ? "fr-FR" : locale === "it" ? "it-IT" : "en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
-
-  const userOrders = orders;
-
-  const content = useMemo(() => {
-    if (activeSection === "orders") {
-      if (userOrders.length === 0) {
-        return (
-          <div className="rounded-2xl border border-white/10 bg-dark-surface/30 p-6">
-            <p className="text-sm text-text-muted">
-              {t("accountPage.noOrders")}
-            </p>
-          </div>
-        );
-      }
-      return (
-        <div className="space-y-3">
-          {userOrders.map((order) => (
-            <div
-              key={order.id}
-              className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-dark-surface/30 p-5 md:flex-row md:items-center md:justify-between"
-            >
-              <div>
-                <p className="text-sm font-semibold text-text-primary">
-                  {t("accountPage.orderLabel")} #{order.id}
-                </p>
-                <p className="text-xs text-text-muted">{order.date}</p>
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-text-primary">
-                  {formatPrice(order.subtotal)}
-                </span>
-                <span className="text-xs uppercase tracking-[0.12em] text-text-muted">
-                  {order.status}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    if (activeSection === "addresses") {
-      return <AccountAddresses />;
-    }
-
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) {
     return (
-      <div className="rounded-2xl border border-white/10 bg-dark-surface/30 p-6">
-        <p className="text-sm text-text-muted">
-          {t("accountPage.welcomeText")}
-        </p>
-        <div className="mt-4 space-y-2">
-          <p className="text-sm text-text-primary">
-            {user?.name || t("accountPage.userLabel")}
-          </p>
-          <p className="text-sm text-text-muted">{user?.email}</p>
-        </div>
-      </div>
-    );
-  }, [activeSection, userOrders, user, t]);
-
-  if (!isLoggedIn) {
-    return (
-      <main className="min-h-[100dvh] bg-dark-base px-6 pb-16 pt-24 sm:px-10 lg:px-16">
-        <div className="mx-auto max-w-xl">
-          <div className="rounded-3xl border border-white/10 bg-dark-surface/40 p-8 text-center">
-            <h1 className="text-2xl font-semibold text-text-primary">
-              {t("accountPage.title")}
-            </h1>
-            <p className="mt-3 text-sm text-text-muted">
-              {t("accountPage.loginRequired")}
-            </p>
-            <button
-              type="button"
-              onClick={() => setAuthOpen(true)}
-              className="mt-6 w-full rounded-xl bg-text-primary px-4 py-3 text-sm font-semibold text-dark-base transition-colors duration-200 ease-out hover:bg-white"
-            >
-              {t("accountPage.loginButton")}
-            </button>
-          </div>
-        </div>
-        <AuthModal open={authOpen} onClose={() => setAuthOpen(false)} />
-      </main>
+      <AccountPageClient
+        locale={locale}
+        initialProfile={null}
+        supabaseMissing
+      />
     );
   }
 
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect(
+      `/${locale}/auth?tab=login&next=${encodeURIComponent(`/${locale}/account`)}`
+    );
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("id,email,first_name,last_name,phone")
+    .eq("id", user.id)
+    .maybeSingle();
+
   return (
-      <main className="min-h-[100dvh] bg-dark-base px-6 pb-16 pt-24 sm:px-10 lg:px-16">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-semibold text-text-primary">
-            {t("accountPage.title")}
-          </h1>
-          <p className="mt-2 text-sm text-text-muted">
-            {t("accountPage.subtitle")}
-          </p>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
-          <aside className="space-y-3">
-            {[
-              { key: "account", label: t("accountPage.sections.account") },
-              { key: "orders", label: t("accountPage.sections.orders") },
-              { key: "addresses", label: t("accountPage.sections.addresses") },
-            ].map((item) => {
-              const isActive = activeSection === item.key;
-              return (
-                <button
-                  key={item.key}
-                  type="button"
-                  onClick={() => setActiveSection(item.key as SectionKey)}
-                  className={[
-                    "w-full rounded-xl border px-4 py-3 text-left text-sm font-semibold transition-colors duration-200 ease-out",
-                    isActive
-                      ? "border-accent-gold bg-dark-surface/60 text-text-primary"
-                      : "border-white/10 bg-dark-surface/30 text-text-muted hover:text-text-primary",
-                  ].join(" ")}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-
-            <button
-              type="button"
-              onClick={() => {
-                logout();
-                router.push(`/${locale}`);
-              }}
-              className="w-full rounded-xl border border-white/10 px-4 py-3 text-left text-sm font-semibold text-text-muted transition-colors duration-200 ease-out hover:text-text-primary"
-            >
-              {t("accountPage.logout")}
-            </button>
-          </aside>
-
-          <section className="min-w-0">{content}</section>
-        </div>
-      </div>
-    </main>
+    <AccountPageClient
+      locale={locale}
+      initialProfile={profile as ProfileRow | null}
+    />
   );
 }
-

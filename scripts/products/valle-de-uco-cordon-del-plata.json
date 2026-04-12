@@ -1,0 +1,16 @@
+{
+  "id": "valle-de-uco-cordon-del-plata",
+  "images": {
+    "featured": ["/assets/images/products/ValleDeUco/valle-uco-2.webp"],
+    "gallery": [
+      "/assets/images/products/ValleDeUco/valle-uco.webp",
+      "/assets/images/products/ValleDeUco/valle-uco-2.webp",
+      "/assets/images/products/ValleDeUco/valle-uco-3.webp",
+      "/assets/images/products/ValleDeUco/cordon-del-plata.webp",
+      "/assets/images/products/ValleDeUco/cordon-del-plata-1.webp",
+      "/assets/images/products/ValleDeUco/cordon-del-plata-2.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

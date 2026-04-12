@@ -3,48 +3,60 @@
     "nav": {
       "home": "Home",
       "products": "Prodotti",
+      "tours": "Tours",
       "blog": "Blog",
-      "cart": "Carrello",
+      "cart": "Prenotazioni",
       "about": "About",
       "contact": "Contatti"
     },
     "greeting": "Ciao",
-    "account": "Account"
+    "account": "Account",
+    "toursMenu": {
+      "cabalgataPotrerillos": "Passeggiata a cavallo + Picada a Potrerillos",
+      "andesSunset": "Andes Experience + Passeggiata a cavallo + Sunset Picnic",
+      "luxuryWine": "Luxury Wine Experience",
+      "monoCity": "Mono City Tour",
+      "traslados": "Trasferimenti privati"
+    }
   },
   "common": {
     "viewProduct": "Vedi prodotto",
+    "viewExperience": "Vedi esperienza",
+    "bookExperience": "Prenota",
     "addToCart": "Aggiungi al carrello",
     "searchPlaceholder": "Cerca prodotti",
     "searchLabel": "Cerca prodotti",
     "readArticle": "Leggi articolo",
     "noImage": "Nessuna immagine",
     "exploreAll": "Esplora le collezioni",
-    "backToJournal": "Torna al journal"
+    "backToJournal": "Torna al journal",
+    "loading": "Caricamento…",
+    "redirecting": "Reindirizzamento…"
   },
   "seo": {
     "home": {
-      "title": "Equipaggiamento outdoor premium per l’esplorazione lenta",
-      "description": "Prodotti pensati con intenzione per camping, acqua e viaggi outdoor."
+      "title": "Esperienze a Mendoza | Vino, montagna e citt?",
+      "description": "Prenota tour ed esperienze a Mendoza: cantine, avventure in montagna e passeggiate in citt? con guide locali."
     },
     "products": {
-      "title": "Prodotti Go Natural",
-      "description": "Equipaggiamento outdoor funzionale, curato per un movimento calmo e affidabile."
+      "title": "Tour ed esperienze a Mendoza | Edmar Travel",
+      "description": "Prenota wine tour, escursioni in montagna, esperienze in citt? e transfer privati. Operatore locale a Mendoza con approccio boutique."
     },
     "categories": {
-      "title": "Collezioni | Go Natural",
-      "description": "Collezioni curate per montagna, acqua, outdoor e ciclismo."
+      "title": "Categorie di esperienze | Edmar Travel",
+      "description": "Vino, avventura e citt? a Mendoza."
     },
     "blog": {
-      "title": "Journal | Go Natural",
-      "description": "Storie di esplorazione, gear e viaggi silenziosi."
+      "title": "Journal | Edmar Travel",
+      "description": "Storie e guide su Mendoza, vino e avventura."
     },
     "category": {
-      "titleTemplate": "{category} | Go Natural",
-      "descriptionTemplate": "Equipaggiamento {category} curato per un’esplorazione calma e capace."
+      "titleTemplate": "{category} | Edmar Travel",
+      "descriptionTemplate": "Esperienze {category} a Mendoza con Edmar Travel."
     },
     "product": {
-      "titleTemplate": "{title} | Go Natural",
-      "descriptionTemplate": "Dettagli e specifiche di {title}, pensato per uso outdoor reale."
+      "titleTemplate": "{title} | Edmar Travel",
+      "descriptionTemplate": "Dettagli dell?esperienza {title} a Mendoza."
     },
     "blogPost": {
       "titleTemplate": "{title} | Journal",
@@ -52,10 +64,11 @@
     }
   },
   "hero": {
-    "titleLine1": "Esplorare non è fuggire.",
-    "titleLine2": "È tornare all’essenziale.",
-    "subtitle": "Gear pensato per chi viaggia con intenzione.",
-    "cta": "Esplora la collezione"
+    "mainTitle": "Scopri Mendoza come mai prima",
+    "subheading": "Vini, montagna e avventura in esperienze uniche",
+    "ctaPrimary": "Vedi le esperienze",
+    "ctaSecondary": "Contattaci",
+    "imageAlt": "Paesaggio di Mendoza con montagne e vigneti"
   },
   "categoriesSection": {
     "items": {
@@ -66,25 +79,102 @@
     }
   },
   "story": {
-    "title": "L’esplorazione non è distanza.",
+    "title": "L'esplorazione non ? distanza.",
     "lines": [
-      "È intenzione.",
+      "? intenzione.",
       "Scegliere il silenzio al rumore.",
       "Muoversi con rispetto."
     ]
   },
   "homeJournal": {
     "title": "Dal diario",
-    "intro": "Racconti e riflessioni nati dalla vita all’aria aperta.",
+    "intro": "Racconti e riflessioni nati dalla vita all'aria aperta.",
     "cta": "Leggi il diario"
   },
-  "featured": {
-    "title": "Selezione essenziale",
-    "subtitle": "Una curatela silenziosa per un movimento calmo e affidabile."
+  "featuredExperiences": {
+    "title": "Esperienze in evidenza",
+    "badge": "Selezione Edmar",
+    "headline": "Esperienze che definiscono Mendoza",
+    "subheadline": "Curate per farti vivere il meglio del vino, della montagna e dell'avventura",
+    "carouselAria": "Carosello di esperienze selezionate"
+  },
+  "experienceCategories": {
+    "title": "Esplora per categoria",
+    "wine": "Vino",
+    "adventure": "Avventura",
+    "city": "Citt?",
+    "altWine": "Vigneti ed esperienze enologiche a Mendoza",
+    "altAdventure": "Paesaggio di montagna e avventura outdoor",
+    "altCity": "Citt? di Mendoza e spazi urbani"
+  },
+  "experiencePage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbExperiences": "Esperienze",
+    "fromPrice": "Da",
+    "perPerson": "a persona",
+    "ctaReserve": "Prenota ora",
+    "ctaWhatsApp": "Scrivi su WhatsApp",
+    "ctaWhatsAppShort": "WhatsApp",
+    "quickFactsTitle": "In sintesi",
+    "labelDuration": "Durata",
+    "labelLocation": "Luogo",
+    "labelLanguage": "Lingua",
+    "labelDifficulty": "Livello",
+    "labelGroup": "Gruppo",
+    "labelSeason": "Stagione",
+    "labelPickup": "Incontro / pickup",
+    "labelCancellation": "Cancellazione",
+    "whyLoveTitle": "Perch? ti piacer?",
+    "editorialTitle": "L'esperienza",
+    "itineraryTitle": "Itinerario",
+    "placesTitle": "Cosa vivrai",
+    "includedTitle": "Include",
+    "excludedTitle": "Non include",
+    "practicalTitle": "Informazioni pratiche",
+    "whatToBring": "Cosa portare",
+    "restrictions": "Restrizioni",
+    "weather": "Meteo",
+    "pickupDetails": "Punto d'incontro",
+    "faqTitle": "FAQ",
+    "socialTitle": "Fiducia dei viaggiatori",
+    "finalCtaTitle": "Pronto a vivere Mendoza?",
+    "finalCtaSubtitle": "Prenota il tuo posto o scrivici su WhatsApp: rispondiamo al pi? presto.",
+    "finalCtaPrimary": "Prenota",
+    "finalCtaSecondary": "WhatsApp",
+    "relatedTitle": "Altre esperienze per te",
+    "stickyTrust": "Prenotazione con supporto locale",
+    "difficultyEasy": "Leggero",
+    "difficultyMedium": "Moderato",
+    "difficultyHard": "Impegnativo",
+    "variantTitle": "Opzioni",
+    "galleryTitle": "Altre foto",
+    "comingSoonBanner": "Disponibile a breve",
+    "comingSoonHint": "La prenotazione online non ? ancora attiva. Scrivici su WhatsApp per la lista d'attesa.",
+    "ctaAvailableSoon": "Disponibile a breve",
+    "finalCtaSubtitleComingSoon": "Questa esperienza non ? ancora in vendita ? scrivici su WhatsApp per la lista d'attesa.",
+    "notFound": "Esperienza non trovata"
+  },
+  "testimonials": {
+    "title": "Cosa dicono su Google chi ha vissuto Mendoza con noi",
+    "googleCta": "Vedi le recensioni su Google",
+    "googleCtaAria": "Apri le recensioni Edmar Travel su Google Maps (si apre in una nuova scheda)",
+    "item1": {
+      "name": "Francisco Inza",
+      "text": "Esperienza fantastica, paesaggio bellissimo e servizio dell’agenzia eccellente! La rifarei senza dubbi."
+    },
+    "item2": {
+      "name": "Gianella Velasco",
+      "text": "Tutto bellissimo!! La boat party è stata la migliore 💛"
+    },
+    "item3": {
+      "name": "Dana Gutiérrez",
+      "text": "Me la sono goduta tantissimo!! L’asado sulla boat party e la birra alla spina, tutto perfetto! Super consigliato 😊😊"
+    }
   },
   "finalCta": {
-    "title": "Il tuo viaggio non finisce qui.",
-    "cta": "Esplora le collezioni"
+    "title": "Vivi Mendoza in modo diverso",
+    "cta": "Esplora le esperienze",
+    "whatsapp": "Contattaci su WhatsApp"
   },
   "home": {
     "benefits": [
@@ -94,19 +184,19 @@
       },
       {
         "title": "Prodotti testati",
-        "text": "Vendiamo solo ciò che useremmo noi."
+        "text": "Vendiamo solo ci? che useremmo noi."
       },
       {
         "title": "Prezzi onesti",
-        "text": "Niente sconti finti. Prezzo giusto per qualità reale."
+        "text": "Niente sconti finti. Prezzo giusto per qualit? reale."
       },
       {
         "title": "Nessuna complicazione",
         "text": "Acquisto semplice, resi facili, supporto umano."
       }
     ],
-    "aboutTitle": "Cos’è Go Natural?",
-    "aboutText1": "Equipaggiamento outdoor funzionale, senza eccessi. Prodotti per l’uso reale, a un prezzo giusto, senza promesse di marketing.",
+    "aboutTitle": "Cos'? Go Natural?",
+    "aboutText1": "Equipaggiamento outdoor funzionale, senza eccessi. Prodotti per l'uso reale, a un prezzo giusto, senza promesse di marketing.",
     "aboutText2": "Se non lo useremmo, non lo vendiamo. Catalogo piccolo, onesto e testato.",
     "trust": [
       {
@@ -119,13 +209,14 @@
       },
       {
         "title": "Supporto umano",
-        "text": "Rispondiamo entro 24–48 ore. Persone reali."
+        "text": "Rispondiamo entro 24?48 ore. Persone reali."
       }
     ]
   },
   "productsPage": {
-    "title": "Prodotti Go Natural",
-    "subtitle": "Equipaggiamento outdoor funzionale per viaggiare leggeri e muoversi liberi."
+    "eyebrow": "Edmar Travel ? Mendoza",
+    "title": "Tour e momenti tra vigneti, montagna e citt?",
+    "subtitle": "Partenze organizzate, guide locali e transfer per chi vuole Mendoza con autenticit? e un servizio boutique. Scegli la tua prossima esperienza e prenota con serenit?."
   },
   "categoriesPage": {
     "ctaTitle": "Continua a esplorare la collezione.",
@@ -150,251 +241,262 @@
   },
   "legal": {
     "privacy": {
-      "metaTitle": "Informativa sulla privacy | Go Natural",
-      "metaDescription": "Come trattiamo i dati personali e proteggiamo la tua privacy sul sito.",
+      "metaTitle": "Informativa sulla privacy | Edmar Travel",
+      "metaDescription": "Come Edmar Travel tratta i dati personali quando navighi o prenoti esperienze a Mendoza.",
       "title": "Informativa sulla privacy",
-      "intro": "La privacy conta quanto l’esperienza. Questa informativa spiega cosa raccogliamo, perché e come lo proteggiamo.",
-      "updatedAt": "Ultimo aggiornamento: gennaio 2026",
+      "intro": "In Edmar Travel (marchio commerciale) trattiamo i tuoi dati con attenzione. Questa informativa spiega cosa raccogliamo, perch? e come puoi esercitare i tuoi diritti. Titolare del trattamento ? EDGAR DAVID NU?EZ ZAVALLA (CUIT 20-43925089-6), con sede in Salta 1393, piano 2, interno 8, Ciudad de Mendoza, Argentina.",
+      "updatedAt": "Ultimo aggiornamento: aprile 2026",
       "sections": [
         {
           "title": "Cosa raccogliamo",
           "paragraphs": [
-            "Informazioni fornite da te, come nome, email, dati di spedizione e ordini.",
-            "Messaggi che ci invii, inclusa l’assistenza.",
-            "Dati tecnici di base come dispositivo, browser e pagine visitate per mantenere il sito stabile."
+            "Dati che ci fornisci quando chiedi informazioni o prenoti esperienze turistiche: nome, email, telefono o altri elementi necessari alla prenotazione o alla comunicazione, se del caso.",
+            "Messaggi che ci invii (richieste, WhatsApp ove utilizzato, assistenza).",
+            "Dati tecnici di base come dispositivo, browser e pagine visitate per mantenere il sito stabile e sicuro."
           ]
         },
         {
           "title": "Come usiamo le informazioni",
           "paragraphs": [
-            "Per gestire ordini, consegne e supporto.",
-            "Per migliorare l’esperienza e la sicurezza del sito.",
-            "Per rispettare obblighi legali e contabili quando richiesto."
+            "Per gestire richieste, prenotazioni, pagamenti collegati all'esperienza prenotata e comunicazione prima o dopo il servizio.",
+            "Per migliorare l'esperienza del sito e la sicurezza.",
+            "Per adempiere obblighi legali e contabili quando richiesto."
           ]
         },
         {
           "title": "Basi giuridiche",
           "paragraphs": [
-            "Trattiamo i dati sulla base del consenso, della necessità contrattuale, di interessi legittimi o di obblighi legali.",
-            "Puoi revocare il consenso quando applicabile."
+            "Trattiamo i dati in base a consenso, esecuzione di misure precontrattuali o contratto, interessi legittimi (ad esempio sicurezza del sito) o obblighi di legge, secondo la normativa applicabile.",
+            "Puoi revocare il consenso ove il trattamento vi si fondi, senza pregiudicare la liceit? del trattamento precedente."
           ]
         },
         {
-          "title": "Condivisione con partner affidabili",
+          "title": "Responsabili e fornitori",
           "paragraphs": [
-            "Condividiamo solo ciò che è necessario con fornitori di pagamento, logistica e servizi.",
+            "Condividiamo solo il necessario con fornitori che ci aiutano a operare, inclusi i pagamenti. I pagamenti con carta o altri mezzi possono essere gestiti tramite PayPal o altri fornitori, che trattano i dati secondo le proprie informative.",
+            "Quando l'esperienza ? prestata da terzi (cantine, guide, trasporti, ecc.), possiamo condividere dati minimi necessari al coordinamento, secondo l'esperienza prenotata.",
             "Non vendiamo dati personali."
           ]
         },
         {
           "title": "Trasferimenti internazionali",
           "paragraphs": [
-            "Se i dati vengono trattati fuori dal tuo Paese, adottiamo misure di tutela adeguate."
+            "Se un fornitore (ad esempio PayPal) tratta dati al di fuori dell'Argentina, si applicano le garanzie e le condizioni previste dalla normativa applicabile e dalla policy di quel fornitore."
           ]
         },
         {
           "title": "Conservazione e sicurezza",
           "paragraphs": [
-            "Conserviamo i dati solo per il tempo necessario o previsto dalla legge.",
-            "Applichiamo misure ragionevoli per proteggerli da accessi non autorizzati."
+            "Conserviamo le informazioni per il tempo necessario alle finalit? indicate o per il periodo richiesto dalla legge.",
+            "Applichiamo misure ragionevoli per ridurre il rischio di accessi non autorizzati o usi impropri."
           ]
         },
         {
           "title": "I tuoi diritti",
           "paragraphs": [
-            "Puoi richiedere accesso, correzione, cancellazione, portabilità o limitazione dei tuoi dati.",
-            "Puoi anche opporti a determinati usi o revocare il consenso."
+            "Puoi richiedere accesso, rettifica, cancellazione, limitazione, opposizione ad alcuni trattamenti o altri diritti previsti dalla normativa applicabile.",
+            "Per esercitarli o per domande su questa informativa: edmartravelsas@gmail.com o +54 9 261 757-3651."
           ]
         },
         {
           "title": "Contatto",
           "paragraphs": [
-            "Per domande sulla privacy, scrivici a [la-tua-email-di-contatto]."
+            "EDGAR DAVID NU?EZ ZAVALLA ? Edmar Travel. Email: edmartravelsas@gmail.com. Telefono: +54 9 261 757-3651. Indirizzo: Salta 1393, piano 2, interno 8, Ciudad de Mendoza, Argentina."
           ]
         }
       ],
-      "closing": "Rivediamo questa informativa per mantenerla chiara e aggiornata."
+      "closing": "Rivediamo periodicamente questa informativa per allinearla ai nostri servizi e alla normativa applicabile."
     },
     "cookies": {
-      "metaTitle": "Informativa sui cookie | Go Natural",
-      "metaDescription": "Come usiamo i cookie per far funzionare il sito e migliorare l’esperienza.",
+      "metaTitle": "Informativa sui cookie | Edmar Travel",
+      "metaDescription": "Uso dei cookie sul sito Edmar Travel per funzionamento, preferenze e miglioramento del servizio.",
       "title": "Informativa sui cookie",
-      "intro": "I cookie aiutano il sito a funzionare bene e a ricordare preferenze semplici. Li usiamo con misura.",
-      "updatedAt": "Ultimo aggiornamento: gennaio 2026",
+      "intro": "I cookie aiutano il sito Edmar Travel a funzionare in modo fluido e a ricordare preferenze semplici (ad esempio la lingua). Li usiamo con criterio.",
+      "updatedAt": "Ultimo aggiornamento: aprile 2026",
       "sections": [
         {
           "title": "Cosa sono i cookie",
           "paragraphs": [
-            "Sono piccoli file di testo salvati sul tuo dispositivo per aiutare i siti a funzionare e ricordare impostazioni."
+            "Piccoli file di testo che il browser pu? salvare sul dispositivo affinch? il sito funzioni o ricordi alcune impostazioni."
           ]
         },
         {
           "title": "Come li utilizziamo",
           "paragraphs": [
-            "Per mantenere sicurezza e stabilità del sito.",
-            "Per ricordare impostazioni come la lingua.",
-            "Per capire quali pagine sono più utili e migliorarle."
+            "Per mantenere sicurezza e stabilit? del sito.",
+            "Per ricordare impostazioni di base come la lingua.",
+            "Per capire in forma aggregata quali pagine sono pi? utili e migliorare l'esperienza."
           ]
         },
         {
           "title": "Tipi di cookie",
           "paragraphs": [
-            "Cookie essenziali per funzionalità e sicurezza.",
-            "Cookie di preferenza per ricordare impostazioni come la lingua.",
-            "Cookie analitici per comprendere le prestazioni in modo aggregato."
+            "Cookie essenziali per funzionalit? e sicurezza.",
+            "Cookie di preferenza (ad esempio lingua).",
+            "Cookie analitici aggregati, ove utilizzati."
           ]
         },
         {
           "title": "Gestione dei cookie",
           "paragraphs": [
-            "Puoi gestire i cookie dalle impostazioni del browser, incluso bloccarli o eliminarli.",
-            "Disattivare i cookie può limitare alcune funzioni del sito."
+            "Puoi gestire o eliminare i cookie dalle impostazioni del browser.",
+            "Disattivarli pu? limitare alcune funzioni del sito."
           ]
         },
         {
           "title": "Aggiornamenti",
           "paragraphs": [
-            "Potremmo aggiornare questa informativa se i servizi cambiano."
+            "Possiamo aggiornare questa informativa se cambiano i servizi o l'uso dei cookie."
           ]
         },
         {
           "title": "Contatto",
           "paragraphs": [
-            "Per domande sui cookie, scrivici a [la-tua-email-di-contatto]."
+            "Domande sui cookie: edmartravelsas@gmail.com o +54 9 261 757-3651."
           ]
         }
       ],
-      "closing": "Trasparenza e semplicità guidano il nostro uso dei cookie."
+      "closing": "Puntiamo alla trasparenza nell'uso dei cookie."
     },
     "terms": {
-      "metaTitle": "Termini e condizioni | Go Natural",
-      "metaDescription": "Condizioni di utilizzo del sito e di acquisto da Go Natural.",
+      "metaTitle": "Termini e condizioni | Edmar Travel",
+      "metaDescription": "Condizioni d'uso del sito e di prenotazione di esperienze turistiche con Edmar Travel a Mendoza.",
       "title": "Termini e condizioni",
-      "intro": "Questi termini spiegano come funziona il sito e cosa aspettarsi durante l’acquisto. Li scriviamo per essere chiari e corretti.",
-      "updatedAt": "Ultimo aggiornamento: gennaio 2026",
+      "intro": "I presenti termini regolano l'uso del sito Edmar Travel e le condizioni generali di prenotazione di esperienze turistiche e servizi connessi sotto tale marchio, offerti da o tramite EDGAR DAVID NU?EZ ZAVALLA (CUIT 20-43925089-6), con sede in Salta 1393, piano 2, interno 8, Ciudad de Mendoza, Argentina.",
+      "updatedAt": "Ultimo aggiornamento: aprile 2026",
       "sections": [
         {
           "title": "Uso del sito",
           "paragraphs": [
-            "Usando il sito, accetti di farlo in modo rispettoso e legale.",
-            "Possiamo aggiornare il sito o sospendere funzioni per garantire qualità e sicurezza."
+            "Utilizzando il sito accetti di farlo in modo lecito e rispettoso.",
+            "Possiamo modificare il sito o sospendere funzioni per mantenere sicurezza e qualit?."
           ]
         },
         {
-          "title": "Ordini e disponibilità",
+          "title": "Natura del servizio",
           "paragraphs": [
-            "Un ordine è una richiesta di acquisto; viene confermato quando è elaborato.",
-            "La disponibilità può cambiare e potremmo limitare le quantità."
+            "Edmar Travel organizza e intermedia esperienze turistiche a Mendoza e dintorni (vino, avventura, citt?), come pubblicato sul sito.",
+            "Parte della prestazione pu? essere svolta da terzi indipendenti (fornitori locali, guide, cantine, trasporti, ecc.). Le condizioni specifiche dell'esperienza prenotata e la normativa applicabile prevalgono ove pertinente."
           ]
         },
         {
-          "title": "Prezzi e pagamenti",
+          "title": "Prenotazioni e disponibilit?",
           "paragraphs": [
-            "I prezzi sono indicati chiaramente e possono variare prima della conferma.",
-            "I pagamenti sono gestiti da fornitori affidabili."
+            "Le richieste tramite il sito non costituiscono conferma finch? la prenotazione non ? espressamente concordata e, ove previsto, il pagamento o la caparra effettuati come indicato per ciascuna esperienza.",
+            "Disponibilit?, orari, posti e lingua possono variare; ti informeremo secondo l'esperienza scelta."
           ]
         },
         {
-          "title": "Spedizioni e resi",
+          "title": "Prezzi e mezzi di pagamento",
           "paragraphs": [
-            "I tempi di consegna sono stimati e possono variare.",
-            "Se un prodotto arriva danneggiato o errato, contattaci per risolvere."
+            "I prezzi pubblicati sono presentati con la massima chiarezza possibile; possono essere aggiornati prima della conferma definitiva della prenotazione.",
+            "Possiamo offrire pagamento tramite PayPal, bonifico bancario e, se concordato, contanti, secondo il servizio.",
+            "I pagamenti tramite PayPal o altri fornitori sono soggetti anche alle loro condizioni."
           ]
         },
         {
-          "title": "Uso dei prodotti",
+          "title": "Cancellazioni, modifiche e rimborsi",
           "paragraphs": [
-            "Usa i prodotti secondo le istruzioni e la cura indicata.",
-            "Le attività outdoor hanno rischi intrinseci; scegli un equipaggiamento adeguato."
+            "Regole di cancellazione, riprogrammazione e rimborso dipendono dall'esperienza prenotata, dal calendario del fornitore e dalla normativa applicabile. Comunicheremo scadenze e regole specifiche alla conferma o nella scheda dell'esperienza ove disponibile.",
+            "In genere, cancellazioni con maggior preavviso consentono pi? opzioni di riprogrammazione o rimborso parziale, secondo la policy del fornitore e i costi gi? sostenuti; cancellazioni vicine alla data del servizio o mancata presentazione possono comportare addebiti parziali o totali non rimborsabili.",
+            "Se la prestazione ? impossibile per causa di forza maggiore, condizioni meteorologiche estreme o decisioni operative di terzi, cercheremo di riprogrammare o offrire alternative ragionevoli; eventuale rimborso, ove dovuto, sar? trattato secondo la normativa applicabile e le condizioni della prenotazione.",
+            "Commissioni bancarie, del gateway di pagamento (incluso PayPal ove applicabile) o spese amministrative gi? sostenute possono non essere rimborsabili anche se il resto dell'importo lo ?.",
+            "Reclami o domande: edmartravelsas@gmail.com o +54 9 261 757-3651."
           ]
         },
         {
-          "title": "Proprietà intellettuale",
+          "title": "Partecipazione alle esperienze",
           "paragraphs": [
-            "I contenuti del sito appartengono a Go Natural o ai suoi partner e non possono essere riutilizzati senza permesso."
+            "Attivit? all'aperto, in cantina, in veicolo o in citt? comportano rischi variabili. Chi partecipa deve valutare il proprio stato di salute, le condizioni del giorno e seguire le indicazioni di guide o fornitori.",
+            "? necessario seguire le istruzioni di sicurezza e rispettare le regole dei luoghi e dei terzi prestatori."
           ]
         },
         {
-          "title": "Limitazione di responsabilità",
+          "title": "Propriet? intellettuale",
           "paragraphs": [
-            "Non siamo responsabili per danni indiretti legati all’uso del sito o dei prodotti.",
-            "Nulla qui limita diritti che la legge non consente di escludere."
+            "Testi, immagini, marchi e design del sito appartengono a Edmar Travel o a terzi che ne hanno autorizzato l'uso; non ? consentita la copia o il riuso senza permesso."
+          ]
+        },
+        {
+          "title": "Limitazione di responsabilit?",
+          "paragraphs": [
+            "Nella misura consentita dalla legge applicabile non siamo responsabili per danni indiretti o consequenziali derivanti dall'uso del sito o dalla prenotazione, senza pregiudizio per diritti non rinunciabili.",
+            "La responsabilit? per l'esecuzione dell'esperienza pu? in parte spettare a terzi prestatori secondo i casi."
           ]
         },
         {
           "title": "Aggiornamenti e contatto",
           "paragraphs": [
-            "Possiamo aggiornare questi termini; la versione più recente sarà sempre qui.",
-            "Domande: [la-tua-email-di-contatto]."
+            "Possiamo aggiornare questi termini; la versione sul sito ? quella vigente.",
+            "Contatto: edmartravelsas@gmail.com ? Tel.: +54 9 261 757-3651 ? EDGAR DAVID NU?EZ ZAVALLA, Edmar Travel, Salta 1393, piano 2, interno 8, Mendoza, Argentina."
           ]
         }
       ],
-      "closing": "Vogliamo un’esperienza chiara e tranquilla, dalla visita alla consegna."
+      "closing": "Il nostro obiettivo ? prenotare e vivere Mendoza con informazioni chiare e rapporto diretto."
     },
     "disclaimer": {
-      "metaTitle": "Esclusione di responsabilità | Go Natural",
-      "metaDescription": "Informazioni importanti su attività outdoor, uso dei prodotti e limiti di responsabilità.",
-      "title": "Esclusione di responsabilità",
-      "intro": "Offriamo contenuti e prodotti per un’esplorazione consapevole. Questa sezione chiarisce i limiti della nostra responsabilità.",
-      "updatedAt": "Ultimo aggiornamento: gennaio 2026",
+      "metaTitle": "Esclusione di responsabilit? | Edmar Travel",
+      "metaDescription": "Ambito informativo del sito, rischi delle attivit? turistiche e limiti di responsabilit? di Edmar Travel.",
+      "title": "Esclusione di responsabilit?",
+      "intro": "Edmar Travel offre informazioni e un canale di contatto per esperienze turistiche. Questa sezione chiarisce limiti di responsabilit? e informazioni generali.",
+      "updatedAt": "Ultimo aggiornamento: aprile 2026",
       "sections": [
         {
           "title": "Informazioni generali",
           "paragraphs": [
-            "I contenuti del sito sono informativi e non sostituiscono consigli professionali.",
-            "Cerchiamo accuratezza, ma non garantiamo che tutto sia sempre completo o aggiornato."
+            "I contenuti del sito sono orientativi e non sostituiscono consulenza legale, medica o tecnica specializzata.",
+            "Miriamo all'accuratezza, ma servizi, prezzi o condizioni possono cambiare senza aggiornamento immediato sul web."
           ]
         },
         {
-          "title": "Rischio nelle attività outdoor",
+          "title": "Attivit? turistiche e rischi",
           "paragraphs": [
-            "Le attività all’aperto comportano rischi legati a meteo, terreno e sforzo fisico.",
-            "Sei responsabile di valutare condizioni e livello personale."
+            "Escursioni, degustazioni, trasferimenti, attivit? in montagna o in citt? comportano rischi variabili (traffico, meteo, terreno, alimentazione, alcol nelle degustazioni, ecc.).",
+            "Chi partecipa ? responsabile di valutare se l'attivit? ? adatta alle proprie condizioni e di seguire le indicazioni del personale autorizzato."
           ]
         },
         {
-          "title": "Uso dei prodotti",
+          "title": "Fornitori terzi",
           "paragraphs": [
-            "I prodotti vanno usati secondo il loro scopo e mantenuti correttamente.",
-            "Uso improprio o modifiche possono causare danni o infortuni."
+            "Molte esperienze sono erogate o co-organizzate da terzi. Edmar Travel non controlla tutti gli aspetti operativi di tali terzi.",
+            "Reclami legati alla prestazione in loco possono richiedere coordinamento con il fornitore competente, senza pregiudizio della normativa applicabile e delle condizioni della prenotazione."
           ]
         },
         {
           "title": "Link esterni",
           "paragraphs": [
-            "Possiamo collegare siti di terze parti. Non ne controlliamo contenuti né pratiche."
+            "Link a siti di terzi sono offerti per comodit?; non siamo responsabili del loro contenuto o delle loro policy."
           ]
         },
         {
-          "title": "Limitazione di responsabilità",
+          "title": "Limitazione di responsabilit?",
           "paragraphs": [
-            "Nei limiti consentiti dalla legge, Go Natural non è responsabile per perdite derivanti dall’uso del sito, dei contenuti o dei prodotti.",
+            "Nei limiti consentiti dalla legge applicabile, EDGAR DAVID NU?EZ ZAVALLA e Edmar Travel non sono responsabili per perdite derivanti dall'uso del sito o dai suoi contenuti, senza pregiudizio per diritti non rinunciabili.",
             "Nulla qui limita diritti che la legge non consente di escludere."
           ]
         },
         {
           "title": "Regole locali",
           "paragraphs": [
-            "Alcune attività richiedono permessi o misure specifiche in base al luogo.",
-            "Sei responsabile del rispetto delle regole locali."
+            "Possono applicarsi regole locali sul luogo dell'attivit? (et? minima, consumo di alcol, accessi, ecc.). ? tua responsabilit? informarti e rispettarle."
           ]
         },
         {
           "title": "Contatto",
           "paragraphs": [
-            "Per domande su questa esclusione, scrivici a [la-tua-email-di-contatto]."
+            "Domande su questa esclusione: edmartravelsas@gmail.com o +54 9 261 757-3651."
           ]
         }
       ],
-      "closing": "Rispetta l’ambiente, muoviti con cura e scegli in modo responsabile."
+      "closing": "Goditi Mendoza nel rispetto dell'ambiente, delle persone e delle regole locali."
     }
   },
   "footer": {
     "navigationTitle": "Navigazione",
     "companyTitle": "Azienda",
     "legalTitle": "Legale",
-    "trustTitle": "Affidabilità",
-    "brandBlurb": "Equipaggiamento outdoor discreto per chi si muove con intenzione.",
+    "trustTitle": "Affidabilit?",
+    "brandBlurb": "Il modo migliore per conoscere Mendoza ? con noi.",
     "links": {
       "home": "Home",
       "products": "Prodotti",
@@ -405,13 +507,13 @@
       "privacy": "Informativa sulla privacy",
       "cookies": "Informativa sui cookie",
       "terms": "Termini e condizioni",
-      "disclaimer": "Esclusione di responsabilità"
+      "disclaimer": "Esclusione di responsabilit?"
     },
     "trustItems": [
-      "Pagamenti sicuri",
-      "Spedizioni affidabili",
-      "Supporto umano",
-      "Acquisto sereno"
+      "Pagamenti: PayPal, bonifico o contanti",
+      "Guide e operatori locali",
+      "Assistenza via email e WhatsApp",
+      "Prenotazioni con informazioni chiare"
     ],
     "rights": "Tutti i diritti riservati."
   },
@@ -421,37 +523,50 @@
     "decline": "Rifiuta"
   },
   "registrationCTA": {
-    "title": "Spedizione gratuita per 1 anno",
-    "subtitle": "Crea il tuo account e goditi un checkout più veloce",
+    "title": "Sconto per i nuovi utenti",
+    "subtitle": "Crea il tuo account e goditi un checkout pi? veloce",
     "secondaryText": "Solo per nuovi utenti",
     "cta": "Crea account",
     "minimize": "Riduci",
     "expand": "Espandi"
   },
   "cartPage": {
-    "emptyTitle": "Il tuo carrello è vuoto",
-    "emptyText": "Aggiungi prodotti per iniziare il tuo acquisto.",
-    "emptyCta": "Vedi prodotti",
-    "title": "Carrello",
-    "unitPrice": "Prezzo unitario",
+    "emptyImageAlt": "Nessuna prenotazione",
+    "emptyTitle": "Non hai ancora scelto un’esperienza",
+    "emptyText": "Scopri le nostre uscite a Mendoza e crea la tua prenotazione con calma.",
+    "emptyCta": "Vedi esperienze",
+    "kicker": "Il tuo viaggio",
+    "title": "Prenotazioni",
+    "intro": "Controlla ciò che hai scelto e indicaci quando vorresti viverla. Definiamo i dettagli insieme.",
+    "experienceSection": "La tua esperienza",
+    "experienceHint": "Regola il numero di persone se viaggi in gruppo.",
+    "detailsSection": "Dettagli dell’uscita",
+    "detailsHint": "Data, ora e note ci aiutano a preparare tutto in anticipo.",
+    "fieldDate": "Data preferita",
+    "fieldTime": "Ora preferita",
+    "fieldParty": "Persone",
+    "fieldNotes": "Note o richieste speciali",
+    "fieldNotesPlaceholder": "Esigenze alimentari, ricorrenze, ritmo dell’uscita…",
+    "unitPrice": "Prezzo a persona",
     "decreaseQty": "Riduci quantità",
     "increaseQty": "Aumenta quantità",
     "remove": "Rimuovi",
     "itemSubtotal": "Subtotale",
-    "summaryTitle": "Riepilogo ordine",
+    "summaryTitle": "Riepilogo",
+    "summaryLead": "Totale stimato per la tua esperienza.",
     "summarySubtotal": "Subtotale",
-    "summaryNote": "Spedizione e tasse saranno calcolate al checkout",
-    "summaryTotal": "Totale stimato",
-    "checkout": "Procedi al checkout",
-    "continueShopping": "← Continua a comprare",
+    "summaryNote": "L’importo conferma l’esperienza scelta; pagamento e coordinamento si chiudono al passo successivo.",
+    "summaryTotal": "Totale",
+    "confirmCta": "Conferma prenotazione",
+    "continueShopping": "← Continua a esplorare",
     "variantLabels": {
       "size": "Taglia",
       "color": "Colore",
       "model": "Modello",
-      "series": "Capacità del mulinello",
+      "series": "Capacit? del mulinello",
       "rod_type": "Tipo",
       "rod_spec": "Lunghezza e tipo",
-      "capacity": "Capacità"
+      "capacity": "Capacit?"
     },
     "variantOptions": {
       "color": {
@@ -486,14 +601,15 @@
   },
   "contactPage": {
     "title": "Contatto",
-    "intro": "Hai una domanda sui nostri prodotti, un ordine o hai bisogno di aiuto? Siamo qui per aiutarti. Il nostro team di supporto legge ogni messaggio e risponde il prima possibile.",
+    "backgroundAlt": "Paesaggio montano, sfondo della pagina contatti Edmar Travel",
+    "intro": "Domande sui nostri tour, su una prenotazione o altro? In Edmar Travel leggiamo ogni messaggio e rispondiamo il prima possibile — siamo un team locale a Mendoza.",
     "emailTitle": "Email",
     "hoursTitle": "Orari di assistenza",
-    "hoursLine1": "Lunedì a Venerdì: 9:00 - 18:00",
+    "hoursLine1": "Lunedì a venerdì: 9:00 - 18:00",
     "hoursLine2": "Sabato: 10:00 - 14:00",
-    "hoursLine3": "Domenica: Chiuso",
+    "hoursLine3": "Domenica: chiuso",
     "quickTitle": "Risposta rapida:",
-    "quickText": "Di solito rispondiamo entro 24–48 ore. Se la tua richiesta è urgente, segnalalo e faremo il possibile per rispondere prima.",
+    "quickText": "Di solito rispondiamo entro 24–48 ore. Se è urgente, scrivi «urgente» nell’oggetto o all’inizio del messaggio e faremo il possibile per rispondere prima.",
     "form": {
       "nameLabel": "Nome",
       "namePlaceholder": "Il tuo nome",
@@ -501,78 +617,94 @@
       "emailPlaceholder": "tu@email.com",
       "messageLabel": "Messaggio",
       "messagePlaceholder": "Dicci come possiamo aiutarti...",
-      "submit": "Invia messaggio"
+      "submit": "Invia messaggio",
+      "sending": "Invio in corso…",
+      "success": "Grazie — abbiamo ricevuto il messaggio e risponderemo presto.",
+      "error": "Non siamo riusciti a inviare il messaggio. Riprova tra qualche minuto."
     }
   },
   "aboutPage": {
-    "metaTitle": "Chi è Go Natural | La nostra storia e i nostri valori",
-    "metaDescription": "Scopri la storia di Go Natural. Progettiamo prodotti funzionali per una vita più semplice, attiva e reale. Outdoor e lifestyle senza eccessi.",
-    "heroTitle": "Progettiamo prodotti per una vita più semplice, attiva e reale",
-    "heroText": "Go Natural nasce dal bisogno di prodotti funzionali, ben progettati e accessibili per chi vive in movimento. Senza complicazioni, senza eccessi, solo l’essenziale che funziona davvero.",
-    "storyTitle": "Perché esiste Go Natural",
-    "storyParagraphs": [
-      "Go Natural nasce dalla frustrazione di trovare prodotti outdoor che o costano troppo o non mantengono ciò che promettono. Ci siamo stancati di pagare marchi che vendono stile invece di funzionalità, e di prodotti economici che si rompono al primo utilizzo.",
-      "Crediamo che l’attrezzatura per l’avventura e la vita attiva debba essere accessibile, durevole e onesta. Non serve l’ultima tecnologia per una camminata del weekend, né pagare il doppio per un logo.",
-      "Selezioniamo ogni prodotto pensando all’uso reale: zaini che resistono all’usura, abiti che si lavano e si usano senza complicazioni, accessori che migliorano davvero la tua esperienza all’aperto. Se non lo useremmo noi stessi, non lo vendiamo."
+    "metaTitle": "Chi è Edmar Travel | Mendoza, esperienze e accoglienza locale",
+    "metaDescription": "Scopri Edmar Travel: team mendocino che progetta uscite con criterio — equitazione, vigneti, trekking ed esperienze su misura, con attenzione umana.",
+    "heroImageAlt": "Paesaggio di Mendoza, montagna e vigneti",
+    "heroTitle": "Mendoza, senza fretta e con voglia",
+    "heroSubtitle": "In Edmar Travel progettiamo uscite per chi cerca più di un circuito standard: paesaggio vero, buon vino e un accompagnamento dal primo messaggio all’ultimo chilometro.",
+    "whoTitle": "Chi siamo",
+    "whoParagraphs": [
+      "Siamo un team locale che lavora come agenzia di esperienze: pianifichiamo, coordiniamo e ci facciamo trovare quando serve. Il nostro obiettivo non è riempire pullman o ripetere lo stesso copione ogni giorno. Preferiamo gruppi gestibili, tempi umani e proposte che rispecchino ciò che Mendoza può offrire oggi: sentieri di montagna, tenute con storia, incontri con persone che amano il proprio lavoro.",
+      "Crediamo che un buon viaggio unisca un po’ di avventura, un asado o un calice versato bene, e la calma di sapere che dall’altra parte c’è qualcuno del posto. Questo mix — natura, cultura del vino e cura personale — è il cuore di Edmar Travel."
     ],
-    "philosophyTitle": "Cosa vendiamo (e cosa no)",
-    "philosophyYesTitle": "Cosa vendiamo",
-    "philosophyYesItems": [
-      "Prodotti testati nell’uso reale, non solo in laboratorio",
-      "Attrezzatura che privilegia la funzionalità rispetto all’estetica",
-      "Prezzi giusti senza margini eccessivi né sconti finti",
-      "Materiali che durano: non vendiamo fast fashion travestita da outdoor",
-      "Design pulito che non appare obsoleto dopo due stagioni"
+    "experiencesTitle": "Come vivi Mendoza con noi",
+    "experiencesIntro": "Ogni uscita ha il suo ritmo. Ecco le forme in cui di solito costruiamo il viaggio; in ciascuna caliamo i dettagli sul tuo tempo e su ciò che vuoi provare.",
+    "experienceCategories": [
+      {
+        "title": "Cavalli e sentieri",
+        "text": "Cavalcate e percorsi a cavallo per legarsi al paesaggio senza fretta: sentieri, silenzio, cielo ampio e la sensazione di stare davvero dentro il territorio."
+      },
+      {
+        "title": "Vigneti e cultura del vino",
+        "text": "Visite in cantina e mezze giornate tra i filari, con spazio per la conversazione, il buon vino e luoghi dove il tempo si allarga."
+      },
+      {
+        "title": "Trekking e avventura",
+        "text": "Uscite di trekking e proposte più attive per chi vuole muoversi e conquistare i belvedere: sforzo giusto, sicurezza e panorami che valgono la salita."
+      },
+      {
+        "title": "Esperienze su misura",
+        "text": "Quando il viaggio chiede un tono proprio: combiniamo attività, trasferimenti e momenti esclusivi perché la giornata sia tua, non presa da un catalogo."
+      }
     ],
-    "philosophyNoTitle": "Cosa non vendiamo",
-    "philosophyNoItems": [
-      "Prodotti con funzionalità inutili che aumentano il prezzo",
-      "Attrezzatura ultra‑specializzata che usi solo una volta all’anno",
-      "Promesse di “tecnologia rivoluzionaria” che non cambia nulla",
-      "Prodotti che richiedono manutenzione complessa o cure speciali"
+    "whyTitle": "Perché viaggiare con Edmar Travel",
+    "whyParagraphs": [
+      "Perché siamo di qui e lavoriamo con criterio: conosciamo fornitori, percorsi e stagioni, e si vede in ogni coordinamento. Trattiamo viaggiatori internazionali e chi muove i primi passi nel mondo con la stessa chiarezza: risposte rapide, informazioni utili e zero sorprese inutili.",
+      "Non competiamo per essere i più grandi. Competiamo per essere chiari, caldi e coerenti: esperienze scelte con cura, gruppi che si possono seguire bene, e uno stile di viaggio più simile a un bel piano tra amici che a un circuito freddo."
     ],
-    "philosophyClosing": "Il nostro criterio è semplice: se non migliora davvero la tua esperienza, qui non trova spazio. Preferiamo un catalogo piccolo e curato piuttosto che centinaia di prodotti che non mantengono le promesse.",
-    "valuesTitle": "I nostri valori",
+    "valuesTitle": "Cosa ci guida",
     "values": [
       {
-        "title": "Funzionalità reale",
-        "text": "Ogni prodotto deve risolvere un problema concreto. Non aggiungiamo funzionalità per marketing, solo ciò che serve davvero."
+        "title": "Autenticità",
+        "text": "Diamo priorità al reale del luogo rispetto alla scenografia turistica."
       },
       {
-        "title": "Design senza eccessi",
-        "text": "Estetica pulita che non passa di moda. Preferiamo un design senza tempo che funzioni bene in montagna e in città."
+        "title": "Calore",
+        "text": "L’accoglienza umana non è un extra: fa parte del servizio."
       },
       {
-        "title": "Qualità onesta",
-        "text": "Non promettiamo durabilità infinita, ma prodotti che reggono l’uso reale. Se qualcosa non funziona, lo riconosciamo e lo miglioriamo."
+        "title": "Legame locale",
+        "text": "Lavoriamo con chi vive e si prende cura di Mendoza."
       },
       {
-        "title": "Uso quotidiano",
-        "text": "Progettiamo per persone in movimento, non per vetrine. I nostri prodotti stanno bene quando sono usati perché sono fatti per esserlo."
+        "title": "Qualità dell’esperienza",
+        "text": "Meno cose, fatte meglio."
+      },
+      {
+        "title": "Fiducia",
+        "text": "Informazioni chiare, tempi onesti, supporto prima e durante il viaggio."
+      },
+      {
+        "title": "Flessibilità",
+        "text": "Ascoltiamo e adattiamo quando il viaggio lo chiede."
       }
     ],
-    "trustTitle": "Fiducia e trasparenza",
-    "trust": [
+    "testimonialsTitle": "Voci di viaggiatori",
+    "testimonials": [
       {
-        "title": "Spedizioni",
-        "text": "Lavoriamo con servizi di spedizione affidabili. I tempi di consegna dipendono dalla tua posizione e dal servizio postale. Non promettiamo consegne express che non possiamo mantenere, ma siamo trasparenti su quando riceverai l’ordine."
+        "name": "Lucía, Spagna",
+        "text": "La comunicazione è stata chiara dal primo messaggio. La giornata in cantina non è stata affrettata: abbiamo avuto tempo per parlare e capire il luogo. Si nota che scelgono bene i partner."
       },
       {
-        "title": "Assistenza clienti",
-        "text": "Rispondiamo alle email entro 48 ore. Non abbiamo un call center 24/7, ma persone reali che conoscono i nostri prodotti e possono aiutarti a scegliere ciò che serve."
+        "name": "Martín, Buenos Aires",
+        "text": "Volevamo montagna senza complicarci la vita. Hanno spiegato bene il livello di sforzo e la giornata è stata come ce l’aspettavamo: impegnativa e bellissima."
       },
       {
-        "title": "Resi",
-        "text": "Se un prodotto non soddisfa le tue aspettative, puoi restituirlo in buone condizioni entro i primi 30 giorni. Niente domande scomode, vogliamo solo che tu sia soddisfatto."
-      },
-      {
-        "title": "Processo di acquisto",
-        "text": "Comprare su Go Natural è semplice: scegli il prodotto, paghi in modo sicuro e ricevi il tuo ordine. Nessun abbonamento nascosto, nessun costo extra a sorpresa, nessuna complicazione."
+        "name": "Camille, Francia",
+        "text": "Abbiamo viaggiato in inglese senza problemi. Il team ha risposto in fretta e il giorno del tour era ben organizzato, con spazio per godere senza correre."
       }
     ],
-    "ctaTitle": "Esplora i nostri prodotti",
-    "ctaText": "Scopri attrezzatura funzionale pensata per l’uso reale, senza eccessi né complicazioni.",
-    "ctaButton": "Vedi il negozio"
+    "ctaTitle": "La tua prossima uscita inizia da una conversazione",
+    "ctaParagraph": "Se Mendoza ti chiama ma non vuoi il solito circuito stretto, guarda le nostre esperienze e scegli il ritmo che ti convince. Se preferisci parlarne prima di prenotare, scrivici: rispondiamo con la stessa calma con cui costruiamo ogni uscita.",
+    "ctaPrimary": "Vedi le esperienze",
+    "ctaSecondary": "Scrivici"
   },
   "blog": {
     "title": "Journal",
@@ -587,13 +719,13 @@
         "title": "Viaggi silenziosi, orizzonti chiari",
         "excerpt": "Trovare ritmo nel silenzio e nella distanza, un sentiero alla volta.",
         "subtitle": "Su distanza, silenzio e il valore di un movimento senza fretta.",
-        "intro": "L’esplorazione inizia molto prima del sentiero. Inizia con l’intenzione, con una decisione calma di muoversi nel mondo a un ritmo più lento e consapevole.",
+        "intro": "L'esplorazione inizia molto prima del sentiero. Inizia con l'intenzione, con una decisione calma di muoversi nel mondo a un ritmo pi? lento e consapevole.",
         "sections": [
           {
             "heading": "Il suono del meno",
             "paragraphs": [
-              "Quando il rumore si attenua, l’attenzione si affina. Le texture più piccole del paesaggio diventano chiare: la forma della luce, il peso del vento, il ritmo dei passi.",
-              "In quello spazio, l’attrezzatura dovrebbe risultare invisibile. Niente duro. Niente rumoroso. Solo l’essenziale per andare avanti."
+              "Quando il rumore si attenua, l'attenzione si affina. Le texture pi? piccole del paesaggio diventano chiare: la forma della luce, il peso del vento, il ritmo dei passi.",
+              "In quello spazio, l'attrezzatura dovrebbe risultare invisibile. Niente duro. Niente rumoroso. Solo l'essenziale per andare avanti."
             ],
             "image": "/assets/images/products/gn-outdoor-009/gallery.webp"
           },
@@ -606,27 +738,27 @@
             "image": "/assets/images/products/gn-outdoor-002/featured01.webp"
           }
         ],
-        "closing": "Nel silenzio tra partenza e arrivo, scopri che il viaggio non è mai stato una questione di velocità. Era una questione di presenza."
+        "closing": "Nel silenzio tra partenza e arrivo, scopri che il viaggio non ? mai stato una questione di velocit?. Era una questione di presenza."
       },
       "edge-of-water": {
-        "title": "Al bordo dell’acqua",
-        "excerpt": "Ritmo, respiro e calma dell’acqua aperta.",
+        "title": "Al bordo dell'acqua",
+        "excerpt": "Ritmo, respiro e calma dell'acqua aperta.",
         "subtitle": "Una pratica lenta di respiro, equilibrio e orizzonti chiari.",
-        "intro": "L’acqua cambia il modo in cui ci muoviamo. Chiede decisioni calme, respiro stabile e un’attenzione più quieta al presente.",
+        "intro": "L'acqua cambia il modo in cui ci muoviamo. Chiede decisioni calme, respiro stabile e un'attenzione pi? quieta al presente.",
         "sections": [
           {
-            "heading": "Un ritmo più lento",
+            "heading": "Un ritmo pi? lento",
             "paragraphs": [
-              "La superficie non resta mai ferma. Ci ricorda di viaggiare leggeri, prendere solo ciò che conta e tornare con meno di quanto abbiamo portato.",
-              "Qui l’attrezzatura dovrebbe essere semplice: materiali silenziosi, dettagli sottili e una fiducia che si sente senza pensarci."
+              "La superficie non resta mai ferma. Ci ricorda di viaggiare leggeri, prendere solo ci? che conta e tornare con meno di quanto abbiamo portato.",
+              "Qui l'attrezzatura dovrebbe essere semplice: materiali silenziosi, dettagli sottili e una fiducia che si sente senza pensarci."
             ],
             "image": "/assets/images/products/gn-water-001/blue/featured.webp"
           },
           {
             "heading": "Dove il silenzio incontra il movimento",
             "paragraphs": [
-              "C’è una chiarezza che solo l’acqua porta. Affina i sensi e calma la mente.",
-              "In quello spazio, il movimento diventa una forma di ascolto, una conversazione silenziosa con l’orizzonte."
+              "C'? una chiarezza che solo l'acqua porta. Affina i sensi e calma la mente.",
+              "In quello spazio, il movimento diventa una forma di ascolto, una conversazione silenziosa con l'orizzonte."
             ],
             "image": "/assets/images/products/gn-outdoor-009/gallery1.webp"
           }
@@ -634,90 +766,90 @@
         "closing": "Alcuni viaggi si definiscono per la quiete. Altri per il modo in cui impari a muoverti dentro di essa."
       },
       "winter-lines": {
-        "title": "Linee nella luce d’inverno",
+        "title": "Linee nella luce d'inverno",
         "excerpt": "Strati morbidi e silhouette chiare per giorni freddi e tranquilli.",
-        "subtitle": "Strati morbidi, silhouette forti e la calma dell’aria fredda.",
-        "intro": "L’inverno riduce il paesaggio all’essenziale. La luce è più netta, l’aria più silenziosa e il movimento diventa deliberato.",
+        "subtitle": "Strati morbidi, silhouette forti e la calma dell'aria fredda.",
+        "intro": "L'inverno riduce il paesaggio all'essenziale. La luce ? pi? netta, l'aria pi? silenziosa e il movimento diventa deliberato.",
         "sections": [
           {
             "heading": "Chiarezza nel freddo",
             "paragraphs": [
               "La stagione richiede preparazione, ma non eccesso. Ogni strato dovrebbe essere intenzionale, ogni pezzo scelto per funzione e calma.",
-              "Quando il meteo è sincero, serve un equipaggiamento altrettanto sincero, protettivo senza rumore."
+              "Quando il meteo ? sincero, serve un equipaggiamento altrettanto sincero, protettivo senza rumore."
             ],
             "image": "/assets/images/products/gn-ski-snow-002/negro/featured.webp"
           },
           {
-            "heading": "La quiete dell’altitudine",
+            "heading": "La quiete dell'altitudine",
             "paragraphs": [
-              "La neve assorbe il suono. Il mondo si ferma e il viaggio diventa più interno.",
-              "In quelle condizioni, la semplicità non è uno stile. È una necessità."
+              "La neve assorbe il suono. Il mondo si ferma e il viaggio diventa pi? interno.",
+              "In quelle condizioni, la semplicit? non ? uno stile. ? una necessit?."
             ],
             "image": "/assets/images/products/gn-ski-snow-001/model-1/featured.webp"
           }
         ],
-        "closing": "In inverno, la linea tra comfort e chiarezza è sottile. Scegli il percorso che sembra pulito e calmo."
+        "closing": "In inverno, la linea tra comfort e chiarezza ? sottile. Scegli il percorso che sembra pulito e calmo."
       },
       "calm-motion": {
         "title": "Movimento calmo, lunghe distanze",
-        "excerpt": "Perché il ritmo conta più della velocità su strada.",
-        "subtitle": "Perché l’andatura costante dura più di un avvio rapido.",
-        "intro": "Il ciclismo è ritmo. Una cadenza stabile ti porta più lontano dell’intensità.",
+        "excerpt": "Perch? il ritmo conta pi? della velocit? su strada.",
+        "subtitle": "Perch? l'andatura costante dura pi? di un avvio rapido.",
+        "intro": "Il ciclismo ? ritmo. Una cadenza stabile ti porta pi? lontano dell'intensit?.",
         "sections": [
           {
-            "heading": "Cadenza prima della velocità",
+            "heading": "Cadenza prima della velocit?",
             "paragraphs": [
-              "C’è grazia nella costanza. La strada premia chi sa mantenere il ritmo anche quando cambia il terreno.",
-              "L’attrezzatura dovrebbe sostenere quel ritmo: leggera, affidabile e facile da dimenticare."
+              "C'? grazia nella costanza. La strada premia chi sa mantenere il ritmo anche quando cambia il terreno.",
+              "L'attrezzatura dovrebbe sostenere quel ritmo: leggera, affidabile e facile da dimenticare."
             ],
             "image": "/assets/images/products/gn-cycling-016/featured03.webp"
           },
           {
-            "heading": "L’orizzonte lungo",
+            "heading": "L'orizzonte lungo",
             "paragraphs": [
-              "Ogni chilometro aggiunge qualcosa alla storia. Più silenziosa è la pedalata, più rimane nella memoria.",
+              "Ogni chilometro aggiunge qualcosa alla storia. Pi? silenziosa ? la pedalata, pi? rimane nella memoria.",
               "I percorsi migliori sono quelli che puoi ripetere, ancora e ancora, senza sforzo."
             ],
             "image": "/assets/images/products/gn-outdoor-002/featured04.webp"
           }
         ],
-        "closing": "Muoviti con un ritmo calmo. Lascia che l’orizzonte venga verso di te."
+        "closing": "Muoviti con un ritmo calmo. Lascia che l'orizzonte venga verso di te."
       },
       "quiet-morning-at-camp": {
         "title": "Un mattino quieto al campo",
         "excerpt": "La finestra silenziosa prima che il giorno inizi, quando il campo resta sospeso.",
         "subtitle": "Il momento prima che la giornata inizi",
-        "intro": "C’è un breve istante al campo in cui tutto si ferma. Nessun vento ancora. Nessun passo. Solo il suono morbido del tessuto che si muove mentre la tenda respira con l’aria del mattino. In quel silenzio, il giorno comincia senza chiedere nulla.",
+        "intro": "C'? un breve istante al campo in cui tutto si ferma. Nessun vento ancora. Nessun passo. Solo il suono morbido del tessuto che si muove mentre la tenda respira con l'aria del mattino. In quel silenzio, il giorno comincia senza chiedere nulla.",
         "sections": [
           {
             "heading": "La pausa prima del movimento",
             "paragraphs": [
-              "Prima che la luce superi il crinale, il campo sembra sospeso. Il terreno è fresco e leggermente umido, ancora segnato dalla notte. Si sente lo scorrere di una zip, l’assestarsi di un materassino, il fruscio di una giacca che si indossa. Sono suoni piccoli, ma viaggiano lontano nell’aria del mattino, come se il paesaggio avesse abbassato il volume per lasciarli passare.",
-              "In questa quiete il corpo si allinea senza sforzo. Si percepisce la differenza di temperatura tra l’ombra e il primo sole. Si vede la luce posarsi sulla terra e muoversi lentamente. Non c’è urgenza. La giornata non è ancora iniziata e, per qualche minuto, nemmeno tu."
+              "Prima che la luce superi il crinale, il campo sembra sospeso. Il terreno ? fresco e leggermente umido, ancora segnato dalla notte. Si sente lo scorrere di una zip, l'assestarsi di un materassino, il fruscio di una giacca che si indossa. Sono suoni piccoli, ma viaggiano lontano nell'aria del mattino, come se il paesaggio avesse abbassato il volume per lasciarli passare.",
+              "In questa quiete il corpo si allinea senza sforzo. Si percepisce la differenza di temperatura tra l'ombra e il primo sole. Si vede la luce posarsi sulla terra e muoversi lentamente. Non c'? urgenza. La giornata non ? ancora iniziata e, per qualche minuto, nemmeno tu."
             ],
             "image": "/assets/images/hero/storysection.webp"
           },
           {
-            "heading": "Meno rumore, più chiarezza",
+            "heading": "Meno rumore, pi? chiarezza",
             "paragraphs": [
-              "Senza notifiche né orari, l’attenzione si sposta da sola. Si nota la trama della tenda, il velo di rugiada su una roccia, il fumo del primo fuoco che sale in un cielo ancora pallido. Sono dettagli che non chiedono azione. Chiedono presenza, e basta.",
-              "La chiarezza che arriva non è quella di una lista completata. È una chiarezza morbida, quella che nasce quando si lascia che il mattino accada. La mente si quieta perché non ha nulla da difendere o inseguire. Non si tratta di controllare la giornata, ma solo di incontrarla."
+              "Senza notifiche n? orari, l'attenzione si sposta da sola. Si nota la trama della tenda, il velo di rugiada su una roccia, il fumo del primo fuoco che sale in un cielo ancora pallido. Sono dettagli che non chiedono azione. Chiedono presenza, e basta.",
+              "La chiarezza che arriva non ? quella di una lista completata. ? una chiarezza morbida, quella che nasce quando si lascia che il mattino accada. La mente si quieta perch? non ha nulla da difendere o inseguire. Non si tratta di controllare la giornata, ma solo di incontrarla."
             ],
             "image": "/assets/images/products/gn-outdoor-009/gallery.webp"
           },
           {
-            "heading": "Perché le mattine all’aperto sono diverse",
+            "heading": "Perch? le mattine all'aperto sono diverse",
             "paragraphs": [
-              "Al campo, le mattine non corrono. Non c’è pressione nel renderle efficienti. Il caffè ha un ritmo più lento. I pensieri arrivano senza sforzo. Il passo diventa naturale perché lo guidano la luce e la temperatura, non l’orologio. Seguire questi segnali fa sentire meno frammentati.",
-              "Per questo le prime ore all’aperto hanno un peso diverso. Non parlano di produttività. Parlano di allineamento. Sei dove sei, fai solo ciò che il momento richiede. I gesti semplici bastano. La giornata non deve essere riempita. Deve solo iniziare."
+              "Al campo, le mattine non corrono. Non c'? pressione nel renderle efficienti. Il caff? ha un ritmo pi? lento. I pensieri arrivano senza sforzo. Il passo diventa naturale perch? lo guidano la luce e la temperatura, non l'orologio. Seguire questi segnali fa sentire meno frammentati.",
+              "Per questo le prime ore all'aperto hanno un peso diverso. Non parlano di produttivit?. Parlano di allineamento. Sei dove sei, fai solo ci? che il momento richiede. I gesti semplici bastano. La giornata non deve essere riempita. Deve solo iniziare."
             ],
             "image": "/assets/images/products/gn-outdoor-002/featured01.webp"
           },
           {
-            "heading": "Ciò che rimane",
+            "heading": "Ci? che rimane",
             "paragraphs": [
-              "Più tardi potresti non ricordare la lista dell’attrezzatura. Potresti dimenticare la marca della tazza o il colore della tenda. Ma ricordi la calma. Ricordi quel silenzio prima del movimento, quel breve tratto in cui tutto era in equilibrio.",
-              "Quella calma diventa il motivo per tornare. Non si tratta di cercare una vista più grande o un sentiero più lungo. Si tratta di tornare a un ritmo che sembra onesto. Il mattino diventa un piccolo rito, un modo per ricordare che il silenzio non è vuoto, è pieno di ciò che conta."
+              "Pi? tardi potresti non ricordare la lista dell'attrezzatura. Potresti dimenticare la marca della tazza o il colore della tenda. Ma ricordi la calma. Ricordi quel silenzio prima del movimento, quel breve tratto in cui tutto era in equilibrio.",
+              "Quella calma diventa il motivo per tornare. Non si tratta di cercare una vista pi? grande o un sentiero pi? lungo. Si tratta di tornare a un ritmo che sembra onesto. Il mattino diventa un piccolo rito, un modo per ricordare che il silenzio non ? vuoto, ? pieno di ci? che conta."
             ],
             "image": "/assets/images/products/gn-outdoor-002/featured02.webp"
           },
@@ -725,24 +857,24 @@
             "heading": "Attrezzatura usata",
             "paragraphs": [
               "Un sistema di riposo compatto che mantiene il calore senza appesantire. Accompagna la notte e lascia una transizione lenta verso il mattino, senza spezzare la quiete.",
-              "Un fornello minimale per una sola tazza di caffè. Lavora in silenzio e trasforma pochi minuti in un rituale, non in una routine."
+              "Un fornello minimale per una sola tazza di caff?. Lavora in silenzio e trasforma pochi minuti in un rituale, non in una routine."
             ]
           }
         ],
-        "closing": "I momenti che restano non sono quasi mai i più rumorosi. Sono le pause quiete, gli intervalli in cui non è richiesto nulla e tutto è presente. Un mattino al campo non è una performance. È un ritorno a un tempo più lento, un modo di muoversi che somiglia meno al fare e più all’essere."
+        "closing": "I momenti che restano non sono quasi mai i pi? rumorosi. Sono le pause quiete, gli intervalli in cui non ? richiesto nulla e tutto ? presente. Un mattino al campo non ? una performance. ? un ritorno a un tempo pi? lento, un modo di muoversi che somiglia meno al fare e pi? all'essere."
       },
       "salir-sin-complicarse": {
         "title": "Salir a la naturaleza no tiene que ser complicado",
         "excerpt": "Actividades simples, salidas reales y un ritmo que se adapta a la vida.",
         "subtitle": "Salir sin complicarse",
-        "intro": "Hay una idea bastante instalada de que para salir a la naturaleza hay que saber mucho, tener buen estado físico o contar con equipo específico. Y la verdad es que no siempre es así. Muchas salidas empiezan con algo mucho más simple: ganas de estar afuera y un poco de tiempo.",
+        "intro": "Hay una idea bastante instalada de que para salir a la naturaleza hay que saber mucho, tener buen estado f?sico o contar con equipo espec?fico. Y la verdad es que no siempre es as?. Muchas salidas empiezan con algo mucho m?s simple: ganas de estar afuera y un poco de tiempo.",
         "sections": [
           {
-            "heading": "No hace falta planear una expedición",
+            "heading": "No hace falta planear una expedici?n",
             "paragraphs": [
-              "No hace falta planear una expedición ni irse lejos. A veces alcanza con un sendero corto, una noche de camping o una mañana cerca del agua.",
+              "No hace falta planear una expedici?n ni irse lejos. A veces alcanza con un sendero corto, una noche de camping o una ma?ana cerca del agua.",
               "No todas las salidas tienen que ser una aventura. No todo el mundo busca superarse cada vez que sale.",
-              "Hay días en los que solo querés caminar sin pensar demasiado, armar una carpa sin apuro o sentarte a pescar aunque no piquen. Eso también es salir a la naturaleza.",
+              "Hay d?as en los que solo quer?s caminar sin pensar demasiado, armar una carpa sin apuro o sentarte a pescar aunque no piquen. Eso tambi?n es salir a la naturaleza.",
               "Caminar por un sendero marcado, snorkelear cerca de la costa o pasar una noche en un camping equipado no te hace menos outdoor. Te hace realista."
             ],
             "image": "/assets/images/hero/storysection.webp"
@@ -750,65 +882,65 @@
           {
             "heading": "Actividades simples, disfrute real",
             "paragraphs": [
-              "Las actividades más simples suelen ser las que más se repiten, justamente porque no exigen demasiado.",
-              "Caminatas cortas en montaña o bosque.",
+              "Las actividades m?s simples suelen ser las que m?s se repiten, justamente porque no exigen demasiado.",
+              "Caminatas cortas en monta?a o bosque.",
               "Camping de fin de semana.",
-              "Pesca recreativa en ríos, lagos o costa.",
+              "Pesca recreativa en r?os, lagos o costa.",
               "Snorkel en playas tranquilas.",
               "Paseos en kayak o paddle en aguas calmas.",
-              "No requieren entrenamiento especial ni grandes decisiones. Se adaptan a la vida normal, no al revés."
+              "No requieren entrenamiento especial ni grandes decisiones. Se adaptan a la vida normal, no al rev?s."
             ],
             "image": "/assets/images/products/gn-outdoor-009/gallery.webp"
           },
           {
-            "heading": "Menos presión, más constancia",
+            "heading": "Menos presi?n, m?s constancia",
             "paragraphs": [
-              "Cuando salir no se siente pesado, salís más seguido. Y cuando salís más seguido, aprendés sin darte cuenta.",
-              "Aprendés a leer el clima, a elegir mejor qué llevar, a organizarte con menos cosas. Todo eso llega solo, sin forzarlo.",
-              "La naturaleza no pide que seas experto. Solo que estés presente."
+              "Cuando salir no se siente pesado, sal?s m?s seguido. Y cuando sal?s m?s seguido, aprend?s sin darte cuenta.",
+              "Aprend?s a leer el clima, a elegir mejor qu? llevar, a organizarte con menos cosas. Todo eso llega solo, sin forzarlo.",
+              "La naturaleza no pide que seas experto. Solo que est?s presente."
             ],
             "image": "/assets/images/products/gn-outdoor-002/featured01.webp"
           },
           {
-            "heading": "Empezar simple también es empezar bien",
+            "heading": "Empezar simple tambi?n es empezar bien",
             "paragraphs": [
-              "Salir sin complicarse no es una etapa menor ni algo que haya que superar. Para mucha gente, es la forma más honesta de disfrutar el aire libre.",
-              "Y está bien que así sea."
+              "Salir sin complicarse no es una etapa menor ni algo que haya que superar. Para mucha gente, es la forma m?s honesta de disfrutar el aire libre.",
+              "Y est? bien que as? sea."
             ],
             "image": "/assets/images/products/gn-outdoor-002/featured02.webp"
           },
           {
             "heading": "Equipo usado",
             "paragraphs": [
-              "Una carpa simple de armado rápido, pensada para una noche tranquila.",
-              "Un equipo básico de snorkel para playas calmas y salidas cortas."
+              "Una carpa simple de armado r?pido, pensada para una noche tranquila.",
+              "Un equipo b?sico de snorkel para playas calmas y salidas cortas."
             ]
           }
         ],
-        "closing": "Salir a la naturaleza no tiene que ser complicado para sentirse verdadero. A veces lo más simple es lo que permite volver, una y otra vez, sin presión y con ganas."
+        "closing": "Salir a la naturaleza no tiene que ser complicado para sentirse verdadero. A veces lo m?s simple es lo que permite volver, una y otra vez, sin presi?n y con ganas."
       },
       "trekking-facil-espana": {
-        "title": "La Spagna è uno dei paesi più facili per iniziare a camminare",
+        "title": "La Spagna ? uno dei paesi pi? facili per iniziare a camminare",
         "excerpt": "Sentieri accessibili, distanze ragionevoli e ritmo tranquillo per iniziare.",
         "subtitle": "Trekking facile",
-        "intro": "La Spagna è uno dei paesi più semplici per iniziare a camminare all’aperto. I sentieri sono ben segnalati, le distanze ragionevoli e le opzioni adatte a tutti i ritmi. Non serve andare in alta montagna né avere esperienza. Ecco alcuni percorsi accessibili per camminare con calma e godersi il paesaggio.",
+        "intro": "La Spagna ? uno dei paesi pi? semplici per iniziare a camminare all'aperto. I sentieri sono ben segnalati, le distanze ragionevoli e le opzioni adatte a tutti i ritmi. Non serve andare in alta montagna n? avere esperienza. Ecco alcuni percorsi accessibili per camminare con calma e godersi il paesaggio.",
         "sections": [
           {
             "heading": "Trekking facile",
             "paragraphs": [
-              "Caminito del Rey (Málaga). Oggi è perfettamente attrezzato. Colpisce per i panorami, non per la difficoltà.",
+              "Caminito del Rey (M?laga). Oggi ? perfettamente attrezzato. Colpisce per i panorami, non per la difficolt?.",
               "Ruta de los Cahorros (Granada). Breve, piacevole e molto ben segnalata. Ideale per una giornata senza fretta.",
               "Camino de Ronda (Costa Brava). Tratti costieri semplici, con pause naturali per riposare o entrare in acqua.",
-              "Bosque de Irati – sentieri principali (Navarra). Camminate morbide, terreno stabile e segnaletica chiara."
+              "Bosque de Irati ? sentieri principali (Navarra). Camminate morbide, terreno stabile e segnaletica chiara."
             ],
             "image": "/assets/images/blog/easytrailspain/image.webp"
           },
           {
             "heading": "Opzioni per camminare senza sforzo",
             "paragraphs": [
-              "Ruta del Río Borosa (Jaén). Lunga ma facile. Si può fare a tratti.",
+              "Ruta del R?o Borosa (Ja?n). Lunga ma facile. Si pu? fare a tratti.",
               "Parque Natural de la Albufera (Valencia). Pianeggianti, accessibili e perfetti per camminare senza sforzo fisico.",
-              "Valle del Jerte – percorsi brevi. Consigliati soprattutto fuori stagione.",
+              "Valle del Jerte ? percorsi brevi. Consigliati soprattutto fuori stagione.",
               "Parque Natural del Delta del Ebro. Sentieri pianeggianti, ideali per camminare con calma."
             ],
             "image": "/assets/images/blog/easytrailspain/image1.webp"
@@ -816,17 +948,17 @@
           {
             "heading": "Camminare con calma",
             "paragraphs": [
-              "Montserrat – percorsi bassi. Evitare i tracciati tecnici e restare sui sentieri principali.",
-              "Parco Nazionale di Ordesa – accessi iniziali. I primi tratti sono ampi e ben mantenuti.",
-              "Perché funzionano. Perché non richiedono ritmo, tecnica o pianificazione complessa. Cammini, guardi intorno e prosegui."
+              "Montserrat ? percorsi bassi. Evitare i tracciati tecnici e restare sui sentieri principali.",
+              "Parco Nazionale di Ordesa ? accessi iniziali. I primi tratti sono ampi e ben mantenuti.",
+              "Perch? funzionano. Perch? non richiedono ritmo, tecnica o pianificazione complessa. Cammini, guardi intorno e prosegui."
             ],
             "image": "/assets/images/blog/easytrailspain/image2.webp"
           }
         ],
-        "closing": "Iniziare con percorsi semplici non è scegliere meno. È scegliere bene. Il movimento diventa naturale e la giornata si sente leggera. È questo che ti fa venire voglia di uscire di nuovo."
+        "closing": "Iniziare con percorsi semplici non ? scegliere meno. ? scegliere bene. Il movimento diventa naturale e la giornata si sente leggera. ? questo che ti fa venire voglia di uscire di nuovo."
       },
       "trekking-facil-francia": {
-        "title": "La Francia è uno dei paesi più semplici per iniziare a camminare",
+        "title": "La Francia ? uno dei paesi pi? semplici per iniziare a camminare",
         "excerpt": "Sentieri curati e distanze tranquille per una giornata leggera.",
         "subtitle": "Trekking facile",
         "intro": "La Francia ha una rete di sentieri enorme e ben curata. Molti sono pensati per camminatori comuni, non per alpinisti. Qui non serve andare veloce o lontano per stare bene.",
@@ -845,9 +977,9 @@
             "heading": "Percorsi senza pressione",
             "paragraphs": [
               "Cammino di Stevenson, primi tratti. Storia, natura e distanze ragionevoli.",
-              "Camargue, sentieri naturali. Terreno piatto e accessibile tutto l’anno.",
-              "Sentieri del Mont Saint‑Michel, zone asciutte. Ideale per camminare senza richiesta fisica.",
-              "Parc National des Calanques, percorsi principali. Scegliere gli accessi più corti e segnati."
+              "Camargue, sentieri naturali. Terreno piatto e accessibile tutto l'anno.",
+              "Sentieri del Mont Saint?Michel, zone asciutte. Ideale per camminare senza richiesta fisica.",
+              "Parc National des Calanques, percorsi principali. Scegliere gli accessi pi? corti e segnati."
             ],
             "image": "/assets/images/blog/easytrailfrance/image1.webp"
           },
@@ -861,13 +993,13 @@
             "image": "/assets/images/blog/easytrailfrance/image2.webp"
           }
         ],
-        "closing": "La semplicità rende la giornata più leggera. Cammini, guardi intorno e continui. Basta questo."
+        "closing": "La semplicit? rende la giornata pi? leggera. Cammini, guardi intorno e continui. Basta questo."
       },
       "trekking-facil-italia": {
         "title": "I sentieri degli antichi romani",
         "excerpt": "Paesaggi e percorsi semplici pensati per camminare senza sforzo.",
         "subtitle": "Trekking facile",
-        "intro": "L’Italia unisce paesaggi straordinari a percorsi pensati per camminare senza complicazioni. Molti sentieri collegano borghi, laghi e coste, rendendoli ideali per chi è alle prime armi.",
+        "intro": "L'Italia unisce paesaggi straordinari a percorsi pensati per camminare senza complicazioni. Molti sentieri collegano borghi, laghi e coste, rendendoli ideali per chi ? alle prime armi.",
         "sections": [
           {
             "heading": "Trekking facile",
@@ -882,8 +1014,8 @@
           {
             "heading": "Percorsi con paesaggio e calma",
             "paragraphs": [
-              "Dolomiti, sentieri di valle. Evitare l’altitudine e restare sulle rotte basse.",
-              "Sentiero degli Dei (Amalfi, tratti brevi). Colpisce più per le viste che per la difficoltà.",
+              "Dolomiti, sentieri di valle. Evitare l'altitudine e restare sulle rotte basse.",
+              "Sentiero degli Dei (Amalfi, tratti brevi). Colpisce pi? per le viste che per la difficolt?.",
               "Lago di Garda, sentieri segnalati. Molti percorsi sono pianeggianti o con lieve dislivello.",
               "Toscana rurale, strade tra borghi. Camminate senza richiesta fisica."
             ],
@@ -892,68 +1024,68 @@
           {
             "heading": "Camminare senza pressione",
             "paragraphs": [
-              "Parco Nazionale d’Abruzzo, percorsi familiari. Pensati per camminatori comuni.",
+              "Parco Nazionale d'Abruzzo, percorsi familiari. Pensati per camminatori comuni.",
               "Sentieri costieri della Sardegna. Accessibili e ben segnalati.",
-              "Perché l’Italia funziona così bene. Perché camminare fa parte della cultura. I sentieri accompagnano, non sfidano."
+              "Perch? l'Italia funziona cos? bene. Perch? camminare fa parte della cultura. I sentieri accompagnano, non sfidano."
             ],
             "image": "/assets/images/blog/easytrailitaly/image2.webp"
           }
         ],
-        "closing": "Il trekking facile non è un passaggio verso altro. Per molti è esattamente ciò che cercano: camminare, guardare e tornare senza essere stanchi. Anche questo è natura."
+        "closing": "Il trekking facile non ? un passaggio verso altro. Per molti ? esattamente ci? che cercano: camminare, guardare e tornare senza essere stanchi. Anche questo ? natura."
       },
       "atreverse-un-poco-mas": {
-        "title": "Per chi osa fare un po’ di più",
-        "excerpt": "Il trekking di più giorni sembra complesso, ma diventa semplice con ritmo e ordine.",
-        "subtitle": "Trekking di più giorni",
-        "intro": "Il trekking di più giorni spesso sembra più complicato di quanto sia. In realtà, molti percorsi sono pensati per persone normali: persone che camminano, si stancano, si riposano e continuano.",
+        "title": "Per chi osa fare un po' di pi?",
+        "excerpt": "Il trekking di pi? giorni sembra complesso, ma diventa semplice con ritmo e ordine.",
+        "subtitle": "Trekking di pi? giorni",
+        "intro": "Il trekking di pi? giorni spesso sembra pi? complicato di quanto sia. In realt?, molti percorsi sono pensati per persone normali: persone che camminano, si stancano, si riposano e continuano.",
         "sections": [
           {
-            "heading": "Non è camminare più forte, è camminare più ordinato",
+            "heading": "Non ? camminare pi? forte, ? camminare pi? ordinato",
             "paragraphs": [
               "Non serve correre, arrivare per primi o dimostrare qualcosa.",
-              "L’obiettivo è mantenere un ritmo che puoi ripetere ogni giorno, senza bruciare tutto il primo giorno."
+              "L'obiettivo ? mantenere un ritmo che puoi ripetere ogni giorno, senza bruciare tutto il primo giorno."
             ],
             "image": "/assets/images/blog/trekking/image5.webp"
           },
           {
-            "heading": "La differenza è nella testa",
+            "heading": "La differenza ? nella testa",
             "paragraphs": [
-              "La differenza principale rispetto a una camminata di un giorno non è nelle gambe, ma nella testa.",
-              "Ritmo più lento.",
-              "Soste più frequenti.",
-              "Giornate più regolari.",
-              "L’errore comune è partire il primo giorno come se fosse corto. È lì che arriva la stanchezza presto."
+              "La differenza principale rispetto a una camminata di un giorno non ? nelle gambe, ma nella testa.",
+              "Ritmo pi? lento.",
+              "Soste pi? frequenti.",
+              "Giornate pi? regolari.",
+              "L'errore comune ? partire il primo giorno come se fosse corto. ? l? che arriva la stanchezza presto."
             ],
             "image": "/assets/images/blog/trekking/image6.webp"
           },
           {
-            "heading": "Scegliere percorsi pensati per più giorni",
+            "heading": "Scegliere percorsi pensati per pi? giorni",
             "paragraphs": [
               "Per iniziare, conviene cercare:",
               "Sentieri ben segnalati.",
               "Tappe chiare.",
               "Accessi facili.",
               "Opzioni per accorciare se serve.",
-              "Non tutto il trekking lungo è tecnico. Molti sono fatti per avanzare senza fretta e dormire bene."
+              "Non tutto il trekking lungo ? tecnico. Molti sono fatti per avanzare senza fretta e dormire bene."
             ],
             "image": "/assets/images/blog/trekking/image10.webp"
           },
           {
             "heading": "Cosa portare (senza sovraccaricare)",
             "paragraphs": [
-              "Nel trekking di più giorni, ogni cosa si sente.",
-              "Conviene dare priorità a:",
+              "Nel trekking di pi? giorni, ogni cosa si sente.",
+              "Conviene dare priorit? a:",
               "Abiti che si possono ripetere.",
-              "Calore vero, non di più.",
+              "Calore vero, non di pi?.",
               "Cibo semplice.",
               "Acqua calcolata bene.",
               "Quello che non usi il primo giorno, probabilmente non lo userai dopo."
             ]
           },
           {
-            "heading": "Dormire bene è parte del piano",
+            "heading": "Dormire bene ? parte del piano",
             "paragraphs": [
-              "Camminare stanchi si può. Dormire male, molto meno.",
+              "Camminare stanchi si pu?. Dormire male, molto meno.",
               "Assicurare:",
               "Tappetino isolante decente.",
               "Sacco adatto al clima.",
@@ -962,21 +1094,21 @@
             ]
           }
         ],
-        "closing": "L’obiettivo non è finire in fretta. Il trekking di più giorni funziona quando si accetta una cosa semplice: ogni giorno è un giorno. Non si anticipa, non si compensa. Si cammina, si arriva, si riposa. Ed è giusto così."
+        "closing": "L'obiettivo non ? finire in fretta. Il trekking di pi? giorni funziona quando si accetta una cosa semplice: ogni giorno ? un giorno. Non si anticipa, non si compensa. Si cammina, si arriva, si riposa. Ed ? giusto cos?."
       },
       "camping-varios-dias-errores": {
-        "title": "Camping di più giorni: errori comuni e come evitarli",
-        "excerpt": "Più notti chiedono ordine, non più attrezzatura.",
-        "subtitle": "Trekking di più giorni",
-        "intro": "Dormire una notte in camping è facile. Dormire più notti di fila richiede un po’ più di ordine. Non più attrezzatura, ma decisioni migliori.",
+        "title": "Camping di pi? giorni: errori comuni e come evitarli",
+        "excerpt": "Pi? notti chiedono ordine, non pi? attrezzatura.",
+        "subtitle": "Trekking di pi? giorni",
+        "intro": "Dormire una notte in camping ? facile. Dormire pi? notti di fila richiede un po' pi? di ordine. Non pi? attrezzatura, ma decisioni migliori.",
         "sections": [
           {
-            "heading": "Errore 1: portare troppo “per sicurezza”",
+            "heading": "Errore 1: portare troppo ?per sicurezza?",
             "paragraphs": [
               "Il classico. Vestiti extra, utensili che non si usano, cose che occupano spazio.",
               "Come evitarlo:",
               "Pensare per giorni.",
-              "Scegliere capi che servano a più di una cosa.",
+              "Scegliere capi che servano a pi? di una cosa.",
               "Accettare di ripetere.",
               "Meno peso, meno stanchezza."
             ],
@@ -988,15 +1120,15 @@
               "Improvvisare funziona una notte. Poi diventa scomodo.",
               "Come evitarlo:",
               "Separare i pasti per giornata.",
-              "Dare priorità a cibi semplici.",
+              "Dare priorit? a cibi semplici.",
               "Non pianificare piatti elaborati.",
-              "Mangiare bene non è mangiare complicato.",
+              "Mangiare bene non ? mangiare complicato.",
               "",
-              "Quando tutto è mescolato, tutto pesa di più.",
+              "Quando tutto ? mescolato, tutto pesa di pi?.",
               "Come evitarlo:",
               "Usare sacche separate.",
               "Tenere sempre lo stesso posto per ogni cosa.",
-              "Riordinare un po’ ogni mattina.",
+              "Riordinare un po' ogni mattina.",
               "Cinque minuti di ordine ne fanno risparmiare molti dopo."
             ],
             "image": "/assets/images/blog/trekking/image3.webp"
@@ -1009,34 +1141,34 @@
               "Fermarsi prima di essere esausti.",
               "Dormire il necessario.",
               "Mangiare anche se non hai fame.",
-              "Ascoltare il corpo non è mollare, è durare.",
+              "Ascoltare il corpo non ? mollare, ? durare.",
               "",
-              "Troppe attività finiscono per pesare.",
+              "Troppe attivit? finiscono per pesare.",
               "Come evitarlo:",
               "Lasciare spazi liberi.",
               "Accettare giornate tranquille.",
               "Non riempire ogni ora.",
-              "Nel camping di più giorni, anche il riposo conta."
+              "Nel camping di pi? giorni, anche il riposo conta."
             ],
             "image": "/assets/images/blog/trekking/image11.webp"
           }
         ],
-        "closing": "Più giorni non significano più fatica. Nel trekking lungo e nel camping di più giorni, la chiave è la stessa: sostenere il ritmo. Non si tratta di renderlo più difficile. Si tratta di renderlo possibile. E quando ci si riesce, il piacere arriva da solo."
+        "closing": "Pi? giorni non significano pi? fatica. Nel trekking lungo e nel camping di pi? giorni, la chiave ? la stessa: sostenere il ritmo. Non si tratta di renderlo pi? difficile. Si tratta di renderlo possibile. E quando ci si riesce, il piacere arriva da solo."
       },
       "ski-snowboard-centros-sin-limite": {
         "title": "Sci e snowboard in comprensorio: goderseli senza spingersi al limite",
-        "excerpt": "Il comprensorio ordina l’esperienza e permette di divertirsi senza cercare l’estremo.",
+        "excerpt": "Il comprensorio ordina l'esperienza e permette di divertirsi senza cercare l'estremo.",
         "subtitle": "Sci e snowboard in comprensorio",
-        "intro": "Per molte persone, sci e snowboard iniziano e finiscono in un comprensorio. E non c’è nulla di male. Piste tracciate, impianti, rifugi e servizi: tutto è pensato perché la giornata scorra senza imprevisti. Non serve cercare l’estremo per stare bene.",
+        "intro": "Per molte persone, sci e snowboard iniziano e finiscono in un comprensorio. E non c'? nulla di male. Piste tracciate, impianti, rifugi e servizi: tutto ? pensato perch? la giornata scorra senza imprevisti. Non serve cercare l'estremo per stare bene.",
         "sections": [
           {
-            "heading": "Il comprensorio ordina l’esperienza",
+            "heading": "Il comprensorio ordina l'esperienza",
             "paragraphs": [
               "Un comprensorio toglie molte variabili:",
               "Sai dove sei.",
               "Sai da dove scendere.",
               "Sai dove fermarti.",
-              "Questo permette di concentrarti su ciò che conta: scivolare, riposare e ripartire.",
+              "Questo permette di concentrarti su ci? che conta: scivolare, riposare e ripartire.",
               "Per chi non cerca il rischio, questa struttura aiuta molto."
             ],
             "image": "/assets/images/blog/ski&snowboard/image1.webp"
@@ -1046,67 +1178,67 @@
             "paragraphs": [
               "Non tutte le piste sono adatte a tutti i giorni.",
               "Piste verdi e blu per scaldarsi.",
-              "Rosse solo se c’è energia.",
-              "Evitare di scendere stanchi solo “per provare”.",
+              "Rosse solo se c'? energia.",
+              "Evitare di scendere stanchi solo ?per provare?.",
               "Scegliere bene fa parte del piacere.",
               "",
               "La stanchezza arriva prima di quanto sembri. Freddo, quota e sforzo costante si fanno sentire.",
               "Fermarsi prima di essere esausti.",
               "Mangiare qualcosa anche se non hai fame.",
               "Bere acqua, anche con il freddo.",
-              "Una giornata lunga non è una giornata eterna."
+              "Una giornata lunga non ? una giornata eterna."
             ],
             "image": "/assets/images/blog/ski&snowboard/image3.webp"
           },
           {
             "heading": "Comfort e ritmo personale",
             "paragraphs": [
-              "In comprensorio, il comfort è fondamentale.",
+              "In comprensorio, il comfort ? fondamentale.",
               "Scarponi ben regolati, non stretti.",
               "Strati che scaldano senza esagerare.",
               "Maschere che non danno fastidio.",
-              "Se qualcosa è scomodo, con le ore si sente ancora di più.",
+              "Se qualcosa ? scomodo, con le ore si sente ancora di pi?.",
               "",
               "Snowboard e sci non sono una competizione.",
-              "Non serve saltare più in alto, andare più veloce o provare piste che non ti va.",
-              "Ogni discesa conta uguale. Fare dieci volte una pista semplice può essere meglio che soffrire una difficile una sola volta.",
+              "Non serve saltare pi? in alto, andare pi? veloce o provare piste che non ti va.",
+              "Ogni discesa conta uguale. Fare dieci volte una pista semplice pu? essere meglio che soffrire una difficile una sola volta.",
               "",
-              "Sapere quando fermarsi è parte del piano: quando le gambe non rispondono, quando la concentrazione cala, quando il freddo inizia a dare fastidio.",
-              "Andare un po’ oltre, non più lontano. Giorno dopo giorno, discesa dopo discesa.",
+              "Sapere quando fermarsi ? parte del piano: quando le gambe non rispondono, quando la concentrazione cala, quando il freddo inizia a dare fastidio.",
+              "Andare un po' oltre, non pi? lontano. Giorno dopo giorno, discesa dopo discesa.",
               "Senza dimostrare niente. Senza andare al limite.",
-              "Ed è proprio questo che molti cercano."
+              "Ed ? proprio questo che molti cercano."
             ],
             "image": "/assets/images/blog/ski&snowboard/image11.webp"
           }
         ],
-        "closing": "Le esperienze sono personali. L’importante è che la giornata si senta tua, non imposta."
+        "closing": "Le esperienze sono personali. L'importante ? che la giornata si senta tua, non imposta."
       },
       "primeros-centros-ski-europa": {
         "title": "Primi comprensori sciistici consigliati in Europa (per iniziare con calma).",
         "excerpt": "Comprensori con piste facili, buona segnaletica e ritmo calmo per iniziare senza pressione.",
         "subtitle": "Sci e snowboard in comprensorio",
-        "intro": "Scegliere bene il primo comprensorio sciistico fa una grande differenza. Non tutti sono pensati per chi inizia o per chi vuole sciare senza forzarsi. Un buon primo comprensorio non è il più grande o il più famoso. È quello che organizza la giornata, offre piste facili e non ti spinge ad andare più veloce di quanto vuoi.",
+        "intro": "Scegliere bene il primo comprensorio sciistico fa una grande differenza. Non tutti sono pensati per chi inizia o per chi vuole sciare senza forzarsi. Un buon primo comprensorio non ? il pi? grande o il pi? famoso. ? quello che organizza la giornata, offre piste facili e non ti spinge ad andare pi? veloce di quanto vuoi.",
         "sections": [
           {
             "heading": "Spagna: iniziare senza fretta",
             "paragraphs": [
-              "Baqueira Beret — Sito ufficiale: https://www.baqueira.es",
-              "Ampio, ben segnalato e con molte piste progressive. Puoi iniziare piano e restare lì tutto il giorno senza annoiarti.",
-              "Formigal — Sito ufficiale: https://www.formigal-panticosa.com",
+              "Baqueira Beret ? Sito ufficiale: https://www.baqueira.es",
+              "Ampio, ben segnalato e con molte piste progressive. Puoi iniziare piano e restare l? tutto il giorno senza annoiarti.",
+              "Formigal ? Sito ufficiale: https://www.formigal-panticosa.com",
               "Ottimo equilibrio tra piste facili e servizi. Ideale per sciare senza fretta e fare buone pause tra le discese.",
-              "Sierra Nevada — Sito ufficiale: https://sierranevada.es",
+              "Sierra Nevada ? Sito ufficiale: https://sierranevada.es",
               "Accessibile, soleggiato e con piste lunghe ma gentili. Buona opzione per combinare sci e riposo."
             ],
-            "image": "/assets/images/blog/ski&snowboard/resort-europa/españa.webp"
+            "image": "/assets/images/blog/ski&snowboard/resort-europa/espa?a.webp"
           },
           {
             "heading": "Francia: stazioni tranquille e ben collegate",
             "paragraphs": [
-              "Les Gets — Sito ufficiale: https://www.lesgets.com",
-              "Centro tranquillo, familiare e molto pensato per principianti. Tutto è vicino e ben collegato.",
-              "La Plagne — Sito ufficiale: https://www.la-plagne.com",
+              "Les Gets ? Sito ufficiale: https://www.lesgets.com",
+              "Centro tranquillo, familiare e molto pensato per principianti. Tutto ? vicino e ben collegato.",
+              "La Plagne ? Sito ufficiale: https://www.la-plagne.com",
               "Molte piste larghe e lunghe, ideali per acquisire fiducia senza pressione.",
-              "Les Arcs — Sito ufficiale: https://www.lesarcs.com",
+              "Les Arcs ? Sito ufficiale: https://www.lesarcs.com",
               "Scegliere le zone basse permette di sciare comodamente senza entrare in aree impegnative."
             ],
             "image": "/assets/images/blog/ski&snowboard/resort-europa/francia.webp"
@@ -1114,35 +1246,35 @@
           {
             "heading": "Italia: ritmo rilassato e piste progressive",
             "paragraphs": [
-              "Val di Fassa — Sito ufficiale: https://www.fassa.com",
+              "Val di Fassa ? Sito ufficiale: https://www.fassa.com",
               "Ambiente tranquillo, piste progressive e ritmo rilassato. Ottima per imparare senza stress.",
-              "Livigno — Sito ufficiale: https://www.livigno.eu",
+              "Livigno ? Sito ufficiale: https://www.livigno.eu",
               "Quota costante, piste lunghe e facili. Tutto invita a sciare senza fretta.",
-              "Cortina d'Ampezzo — Sito ufficiale: https://www.cortina.dolomiti.org",
-              "Scegliendo bene la zona, è accessibile anche per chi inizia."
+              "Cortina d'Ampezzo ? Sito ufficiale: https://www.cortina.dolomiti.org",
+              "Scegliendo bene la zona, ? accessibile anche per chi inizia."
             ],
             "image": "/assets/images/blog/ski&snowboard/resort-europa/italia.webp"
           },
           {
             "heading": "Austria: ordine e segnaletica chiara",
             "paragraphs": [
-              "Saalbach — Sito ufficiale: https://www.saalbach.com",
+              "Saalbach ? Sito ufficiale: https://www.saalbach.com",
               "Molto ordinato, segnaletica chiara e piste ben mantenute.",
-              "Zell am See — Sito ufficiale: https://www.zellamsee-kaprun.com",
+              "Zell am See ? Sito ufficiale: https://www.zellamsee-kaprun.com",
               "Perfetto per combinare sci leggero e riposo. Ideale per giornate lunghe senza pressione.",
-              "Mayrhofen — Sito ufficiale: https://www.mayrhofen.at",
+              "Mayrhofen ? Sito ufficiale: https://www.mayrhofen.at",
               "Scegliendo le piste iniziali, permette di progredire con calma."
             ],
             "image": "/assets/images/blog/ski&snowboard/resort-europa/austria.webp"
           }
         ],
-        "closing": "Cosa guardare per scegliere il primo comprensorio: numero di piste verdi e blu, buona segnaletica, servizi vicini e accessi semplici. Conta più della fama del posto. Iniziare bene significa voler tornare. Un buon primo comprensorio non ti lascia stanco o frustrato: ti lascia con voglia di un altro giorno. E quando succede, sci e snowboard smettono di essere una sfida e diventano parte del piano."
+        "closing": "Cosa guardare per scegliere il primo comprensorio: numero di piste verdi e blu, buona segnaletica, servizi vicini e accessi semplici. Conta pi? della fama del posto. Iniziare bene significa voler tornare. Un buon primo comprensorio non ti lascia stanco o frustrato: ti lascia con voglia di un altro giorno. E quando succede, sci e snowboard smettono di essere una sfida e diventano parte del piano."
       },
       "camping-fin-de-semana-basico": {
         "title": "Non dirmi che hai dimenticato il...",
-        "excerpt": "L’essenziale per un fine settimana comodo senza portare troppo.",
+        "excerpt": "L'essenziale per un fine settimana comodo senza portare troppo.",
         "subtitle": "Camping di fine settimana",
-        "intro": "Un camping di fine settimana non richiede una lista infinita. Anzi, più il piano è breve, più ha senso portare solo il necessario. L’idea non è traslocare per due giorni, ma stare comodi senza complicarsi.",
+        "intro": "Un camping di fine settimana non richiede una lista infinita. Anzi, pi? il piano ? breve, pi? ha senso portare solo il necessario. L'idea non ? traslocare per due giorni, ma stare comodi senza complicarsi.",
         "sections": [
           {
             "heading": "Le basi per dormire bene",
@@ -1151,16 +1283,16 @@
               "<a href=\"/{{locale}}/products/gn-outdoor-008\">Materassino o tappetino isolante</a>",
               "<a href=\"/{{locale}}/products/gn-outdoor-007\">Sacco a pelo adatto al clima</a>",
               "<a href=\"/{{locale}}/products/gn-outdoor-003\">Torcia o frontale</a>",
-              "Non serve l’ultimo modello. Serve che funzioni."
+              "Non serve l'ultimo modello. Serve che funzioni."
             ],
             "image": "/assets/images/blog/banner01.webp"
           },
           {
-            "heading": "Abbigliamento scelto, non in più",
+            "heading": "Abbigliamento scelto, non in pi?",
             "paragraphs": [
-              "Per due giorni, la chiave è scegliere bene, non portare tanto.",
+              "Per due giorni, la chiave ? scegliere bene, non portare tanto.",
               "Un cambio extra.",
-              "Una giacca anche d’estate.",
+              "Una giacca anche d'estate.",
               "Scarpe comode.",
               "Qualcosa per la pioggia.",
               "I capi che non usi finiscono per occupare spazio."
@@ -1170,18 +1302,18 @@
           {
             "heading": "Cibo semplice e facile da gestire",
             "paragraphs": [
-              "Un fine settimana non è fatto per cucinare troppo.",
+              "Un fine settimana non ? fatto per cucinare troppo.",
               "Pasti veloci da preparare.",
               "Snack.",
               "Acqua sufficiente.",
               "Qualcosa di caldo al mattino.",
-              "Meno cucina, più tempo fuori."
+              "Meno cucina, pi? tempo fuori."
             ]
           },
           {
             "heading": "Dettagli che aiutano",
             "paragraphs": [
-              "Non sono indispensabili, ma rendono l’esperienza più comoda.",
+              "Non sono indispensabili, ma rendono l'esperienza pi? comoda.",
               "Crema solare.",
               "Repellente.",
               "Sacchetti per i rifiuti.",
@@ -1196,36 +1328,36 @@
             ]
           }
         ],
-        "closing": "Un buon fine settimana non ha bisogno di altro. L’essenziale basta quando funziona, ed è questo che rende l’uscita più leggera."
+        "closing": "Un buon fine settimana non ha bisogno di altro. L'essenziale basta quando funziona, ed ? questo che rende l'uscita pi? leggera."
       },
       "camping-fin-de-semana-relax": {
-        "title": "Time to relax, that’s it.",
+        "title": "Time to relax, that?s it.",
         "excerpt": "Un fine settimana breve funziona meglio senza agenda.",
         "subtitle": "Camping di fine settimana",
-        "intro": "Un camping di fine settimana non ha bisogno di un’agenda. Funziona proprio perché non ci sono orari rigidi. Eppure, alla fine spuntano sempre cose da fare.",
+        "intro": "Un camping di fine settimana non ha bisogno di un'agenda. Funziona proprio perch? non ci sono orari rigidi. Eppure, alla fine spuntano sempre cose da fare.",
         "sections": [
           {
             "heading": "Camminare senza meta",
             "paragraphs": [
               "La maggior parte dei campeggi ha sentieri attorno.",
-              "Non serve fare chilometri. A volte venti minuti cambiano già l’aria."
+              "Non serve fare chilometri. A volte venti minuti cambiano gi? l'aria."
             ]
           },
           {
             "heading": "Leggere, guardare, non fare nulla",
             "paragraphs": [
-              "Può sembrare poco ambizioso, ma non lo è.",
-              "Leggere un po’, sedersi a guardare il paesaggio o restare fermi è spesso ciò che manca dopo."
+              "Pu? sembrare poco ambizioso, ma non lo ?.",
+              "Leggere un po', sedersi a guardare il paesaggio o restare fermi ? spesso ci? che manca dopo."
             ]
           },
           {
-            "heading": "Attività semplici",
+            "heading": "Attivit? semplici",
             "paragraphs": [
               "Pescare anche se non abboccano.",
-              "Mettere i piedi nell’acqua.",
+              "Mettere i piedi nell'acqua.",
               "Giocare a carte.",
               "Cucinare senza fretta.",
-              "Non è riempire il tempo. È usarlo in modo diverso."
+              "Non ? riempire il tempo. ? usarlo in modo diverso."
             ]
           },
           {
@@ -1245,18 +1377,18 @@
             ]
           }
         ],
-        "closing": "La cosa migliore del camping corto è che non c’è pressione a « sfruttarlo ». Tutto conta."
+        "closing": "La cosa migliore del camping corto ? che non c'? pressione a ? sfruttarlo ?. Tutto conta."
       },
       "no-mires-para-arriba": {
         "title": "Non guardare in alto",
         "excerpt": "Una pausa notturna che richiede solo il cielo.",
         "subtitle": "Camping di fine settimana",
-        "intro": "Una delle cose migliori del campeggio è qualcosa che non si pianifica: guardare il cielo di notte. Non serve conoscere l’astronomia né avere un telescopio.",
+        "intro": "Una delle cose migliori del campeggio ? qualcosa che non si pianifica: guardare il cielo di notte. Non serve conoscere l'astronomia n? avere un telescopio.",
         "sections": [
           {
-            "heading": "Perché si vedono più stelle",
+            "heading": "Perch? si vedono pi? stelle",
             "paragraphs": [
-              "Lontano dalle città c’è meno luce artificiale. Così compaiono stelle che di solito non vediamo.",
+              "Lontano dalle citt? c'? meno luce artificiale. Cos? compaiono stelle che di solito non vediamo.",
               "Dopo alcuni minuti, gli occhi si abituano e il cielo cambia."
             ],
             "image": "/assets/images/blog/dontlookup/dontlookup1.webp"
@@ -1264,8 +1396,8 @@
           {
             "heading": "La Via Lattea",
             "paragraphs": [
-              "Se il cielo è limpido, spesso si vede come una fascia chiara che attraversa il cielo.",
-              "Non è una nuvola. È la nostra galassia vista dall’interno."
+              "Se il cielo ? limpido, spesso si vede come una fascia chiara che attraversa il cielo.",
+              "Non ? una nuvola. ? la nostra galassia vista dall'interno."
             ],
             "image": "/assets/images/blog/dontlookup/dontlookup2.webp"
           },
@@ -1280,7 +1412,7 @@
           {
             "heading": "Costellazioni facili da riconoscere",
             "paragraphs": [
-              "L’Orsa Maggiore.",
+              "L'Orsa Maggiore.",
               "Orione, in inverno.",
               "La Croce del Sud, a seconda della posizione.",
               "Non serve riconoscerle tutte. Basta una."
@@ -1289,36 +1421,36 @@
           {
             "heading": "Un dato semplice ma reale",
             "paragraphs": [
-              "La luce che vedi è partita da quelle stelle centinaia o migliaia di anni fa.",
+              "La luce che vedi ? partita da quelle stelle centinaia o migliaia di anni fa.",
               "Pensarci non cambia nulla, ma accompagna."
             ]
           },
           {
             "heading": "Guardare basta",
             "paragraphs": [
-              "Guardare il cielo in campeggio non è imparare.",
-              "È fermarsi un po’ e guardare in alto."
+              "Guardare il cielo in campeggio non ? imparare.",
+              "? fermarsi un po' e guardare in alto."
             ]
           }
         ],
-        "closing": "Il cielo non chiede nulla. Solo un po’ di silenzio e uno sguardo verso l’alto."
+        "closing": "Il cielo non chiede nulla. Solo un po' di silenzio e uno sguardo verso l'alto."
       },
       "apps-camping-fin-de-semana": {
         "title": "App utili per il campeggio (quelle che servono davvero)",
-        "excerpt": "Il telefono può aiutare, se resta al suo posto.",
+        "excerpt": "Il telefono pu? aiutare, se resta al suo posto.",
         "subtitle": "Camping di fine settimana",
-        "intro": "Andare in campeggio non significa vivere nel passato. Il telefono può essere uno strumento utile se usato con criterio: lo tiri fuori quando serve e poi torna in tasca. Queste sono alcune app che aiutano davvero in un fine settimana.",
+        "intro": "Andare in campeggio non significa vivere nel passato. Il telefono pu? essere uno strumento utile se usato con criterio: lo tiri fuori quando serve e poi torna in tasca. Queste sono alcune app che aiutano davvero in un fine settimana.",
         "sections": [
           {
             "heading": "Per vedere stelle e costellazioni",
             "paragraphs": [
               "Star Walk 2",
               "https://starwalk.space/",
-              "È tra le più semplici da usare. Puntando il telefono al cielo ti mostra stelle, pianeti o costellazioni.",
-              "Non serve sapere nulla di astronomia. Funziona bene anche senza segnale, purché il GPS sia attivo.",
+              "? tra le pi? semplici da usare. Puntando il telefono al cielo ti mostra stelle, pianeti o costellazioni.",
+              "Non serve sapere nulla di astronomia. Funziona bene anche senza segnale, purch? il GPS sia attivo.",
               "Utile per:",
               "Non indovinare quello che stai vedendo.",
-              "Capire un po’ il cielo senza complicarti.",
+              "Capire un po' il cielo senza complicarti.",
               "Condividere il momento con gli altri."
             ],
             "image": "/assets/images/blog/appcamping/starwalk2.webp"
@@ -1332,22 +1464,22 @@
               "Utile per:",
               "Trovare sentieri vicini.",
               "Tornare al campeggio senza perdersi.",
-              "Muoversi con tranquillità senza dipendere dal segnale.",
+              "Muoversi con tranquillit? senza dipendere dal segnale.",
               "Non serve per improvvisare avventure, ma per non preoccuparsi."
             ],
             "image": "/assets/images/blog/appcamping/maps.webp"
           },
           {
-            "heading": "Meteo a colpo d’occhio",
+            "heading": "Meteo a colpo d'occhio",
             "paragraphs": [
               "Windy",
               "https://www.windy.com/",
-              "È pensata per usi più tecnici, ma se la tieni semplice è molto utile.",
-              "Con un’occhiata sai:",
+              "? pensata per usi pi? tecnici, ma se la tieni semplice ? molto utile.",
+              "Con un'occhiata sai:",
               "Se arriva il vento.",
               "Se la notte si raffredda.",
               "Se ci sono piogge vicine.",
-              "Controllare prima di montare la tenda può evitare problemi."
+              "Controllare prima di montare la tenda pu? evitare problemi."
             ],
             "image": "/assets/images/blog/appcamping/windy.webp"
           },
@@ -1357,7 +1489,7 @@
               "Torch (torcia con luce rossa)",
               "https://play.google.com/store/apps/details?id=com.devuni.flashlight",
               "Esistono versioni simili su iOS.",
-              "La luce rossa è fondamentale in campeggio. Non abbaglia, non disturba e non rovina la visione notturna.",
+              "La luce rossa ? fondamentale in campeggio. Non abbaglia, non disturba e non rovina la visione notturna.",
               "Utile per:",
               "Andare in bagno.",
               "Cercare qualcosa senza svegliare gli altri.",
@@ -1370,7 +1502,7 @@
             "paragraphs": [
               "Seek by iNaturalist",
               "https://www.inaturalist.org/pages/seek_app",
-              "Punti la camera su una pianta, un fiore o un albero e l’app dice cos’è. Non sostituisce la conoscenza reale, ma accende la curiosità.",
+              "Punti la camera su una pianta, un fiore o un albero e l'app dice cos'?. Non sostituisce la conoscenza reale, ma accende la curiosit?.",
               "Funziona bene per:",
               "Passeggiate tranquille.",
               "Campeggio con bambini.",
@@ -1383,26 +1515,26 @@
             "paragraphs": [
               "Queste app non sono fatte per passare ore davanti allo schermo. Si usano un momento e poi il telefono si ripone.",
               "Guardi una costellazione. Controlli il meteo. Trovi un sentiero.",
-              "Poi torni a ciò che conta: esserci."
+              "Poi torni a ci? che conta: esserci."
             ]
           }
         ],
-        "closing": "Usato con criterio, il telefono non allontana dall’esperienza. Aiuta a mantenerla semplice."
+        "closing": "Usato con criterio, il telefono non allontana dall'esperienza. Aiuta a mantenerla semplice."
       },
       "pesca-recreativa-apps-equipo": {
         "title": "Pesca ricreativa: app utili e attrezzatura semplice per iniziare",
-        "excerpt": "Più tempo sull’acqua, meno pressione.",
+        "excerpt": "Pi? tempo sull'acqua, meno pressione.",
         "subtitle": "Pesca ricreativa",
-        "intro": "La pesca ricreativa non è una competizione né una scienza esatta. Spesso si tratta di stare vicino all’acqua, lanciare la lenza e vedere cosa succede. Se abbocca, meglio. Se no, sei comunque stato fuori. Con poca attrezzatura e qualche strumento semplice basta.",
+        "intro": "La pesca ricreativa non ? una competizione n? una scienza esatta. Spesso si tratta di stare vicino all'acqua, lanciare la lenza e vedere cosa succede. Se abbocca, meglio. Se no, sei comunque stato fuori. Con poca attrezzatura e qualche strumento semplice basta.",
         "sections": [
           {
             "heading": "App che aiutano davvero",
             "paragraphs": [
-              "Non sostituiscono l’esperienza, ma aiutano a orientarsi e capire meglio l’ambiente.",
+              "Non sostituiscono l'esperienza, ma aiutano a orientarsi e capire meglio l'ambiente.",
               "Per vedere zone di pesca ed esperienze reali.",
               "Fishbrain.",
               "https://fishbrain.com/",
-              "È un’app in cui altri pescatori condividono catture, luoghi e momenti. Non garantisce nulla, ma dà un’idea di:",
+              "? un'app in cui altri pescatori condividono catture, luoghi e momenti. Non garantisce nulla, ma d? un'idea di:",
               "Quali specie ci sono nella zona.",
               "In quali periodi si muove la gente.",
               "Dove si pesca da riva o in fiume.",
@@ -1415,10 +1547,10 @@
             "paragraphs": [
               "Windy.",
               "https://www.windy.com/",
-              "Nella pesca il vento conta più di quanto sembri. Con Windy puoi capire se conviene andare al mattino, aspettare o cambiare piano.",
-              "Basta un’occhiata:",
+              "Nella pesca il vento conta pi? di quanto sembri. Con Windy puoi capire se conviene andare al mattino, aspettare o cambiare piano.",
+              "Basta un'occhiata:",
               "Direzione del vento.",
-              "Intensità.",
+              "Intensit?.",
               "Cambi durante il giorno."
             ]
           },
@@ -1428,7 +1560,7 @@
               "Maps.me.",
               "https://maps.me/",
               "Molti buoni luoghi di pesca non sono segnalati. Con mappe offline puoi:",
-              "Trovare accessi all’acqua.",
+              "Trovare accessi all'acqua.",
               "Tornare senza perderti.",
               "Individuare strade rurali.",
               "Funziona bene anche senza segnale."
@@ -1437,7 +1569,7 @@
           {
             "heading": "Attrezzatura semplice per la pesca ricreativa",
             "paragraphs": [
-              "Non serve investire molto né conoscere i marchi. Per iniziare, e per molti per sempre, basta questo.",
+              "Non serve investire molto n? conoscere i marchi. Per iniziare, e per molti per sempre, basta questo.",
               "Le basi vere:",
               "Una canna semplice, telescopica o in un pezzo.",
               "Un mulinello base.",
@@ -1456,7 +1588,7 @@
               "Acqua.",
               "Qualcosa su cui sedersi.",
               "Sacchetto per i rifiuti.",
-              "Pescare comodi cambia molto l’esperienza."
+              "Pescare comodi cambia molto l'esperienza."
             ]
           },
           {
@@ -1466,14 +1598,14 @@
               "Laghi.",
               "Invasi.",
               "Costa in zone calme.",
-              "Non serve andare lontano o cercare posti estremi. Più è accessibile, più viene voglia di tornare."
+              "Non serve andare lontano o cercare posti estremi. Pi? ? accessibile, pi? viene voglia di tornare."
             ]
           },
           {
             "heading": "La pesca come scusa",
             "paragraphs": [
-              "Nella pesca ricreativa il risultato non è sempre ciò che conta. Conta il tempo fuori, il silenzio, l’attesa.",
-              "Lanciare la lenza è solo la scusa. Se abbocca, benissimo. Se no, ne è valsa la pena."
+              "Nella pesca ricreativa il risultato non ? sempre ci? che conta. Conta il tempo fuori, il silenzio, l'attesa.",
+              "Lanciare la lenza ? solo la scusa. Se abbocca, benissimo. Se no, ne ? valsa la pena."
             ]
           },
           {
@@ -1485,31 +1617,31 @@
             ]
           }
         ],
-        "closing": "La pesca ricreativa non richiede di più. Un posto tranquillo, attrezzatura semplice e tempo fuori bastano."
+        "closing": "La pesca ricreativa non richiede di pi?. Un posto tranquillo, attrezzatura semplice e tempo fuori bastano."
       },
       "snorkel-diving-familia-europa": {
         "title": "Snorkeling e diving in famiglia: luoghi tranquilli per iniziare in Europa",
         "excerpt": "Acqua chiara, accessi facili e ritmo rilassato per le famiglie.",
         "subtitle": "Snorkeling e diving in famiglia",
-        "intro": "Lo snorkeling è una di quelle attività che non richiedono molto. Un po’ d’acqua chiara, attrezzatura base e la voglia di galleggiare guardando verso il basso. Non serve esperienza né allenamento. Per questo funziona così bene in famiglia. Ognuno va al suo ritmo, senza pressione.",
+        "intro": "Lo snorkeling ? una di quelle attivit? che non richiedono molto. Un po? d'acqua chiara, attrezzatura base e la voglia di galleggiare guardando verso il basso. Non serve esperienza n? allenamento. Per questo funziona cos? bene in famiglia. Ognuno va al suo ritmo, senza pressione.",
         "sections": [
           {
             "heading": "Spagna",
             "paragraphs": [
               "La Spagna ha coste molto diverse, ma diverse zone sono ideali per uno snorkeling tranquillo.",
-              "Costa Brava, Catalogna. Piccole calette, acqua chiara e fondali rocciosi. Si entra a piedi dalla spiaggia e c’è già molto da vedere.",
-              "Minorca. Probabilmente uno dei migliori luoghi per lo snorkeling in famiglia. Spiagge riparate, poca onda e visibilità costante.",
+              "Costa Brava, Catalogna. Piccole calette, acqua chiara e fondali rocciosi. Si entra a piedi dalla spiaggia e c'? gi? molto da vedere.",
+              "Minorca. Probabilmente uno dei migliori luoghi per lo snorkeling in famiglia. Spiagge riparate, poca onda e visibilit? costante.",
               "Isole Canarie, zone protette. Su spiagge calme senza vento forte, la vita marina appare vicino alla riva.",
-              "Perché la Spagna funziona. Accessi facili, servizi vicini e molte spiagge pensate per le famiglie."
+              "Perch? la Spagna funziona. Accessi facili, servizi vicini e molte spiagge pensate per le famiglie."
             ],
             "image": "/assets/images/blog/snorkeling/image.webp"
           },
           {
             "heading": "Francia",
             "paragraphs": [
-              "La Francia non è la prima scelta che viene in mente per lo snorkeling, ma ha zone molto curate.",
+              "La Francia non ? la prima scelta che viene in mente per lo snorkeling, ma ha zone molto curate.",
               "Costa Azzurra. Acqua chiara e calette protette, ideale fuori stagione.",
-              "Calanques, Marsiglia. Ingressi dalla costa, fondali rocciosi e buona visibilità nei giorni calmi.",
+              "Calanques, Marsiglia. Ingressi dalla costa, fondali rocciosi e buona visibilit? nei giorni calmi.",
               "Corsica. Spiagge ampie e acqua trasparente. Ottima opzione con bambini.",
               "Il meglio della Francia. Zone protette, meno affollamento in certi momenti e ambienti naturali ben conservati."
             ],
@@ -1518,23 +1650,23 @@
           {
             "heading": "Italia",
             "paragraphs": [
-              "L’Italia unisce un elemento chiave per lo snorkeling in famiglia: accesso facile, acqua chiara e cultura di spiaggia rilassata.",
+              "L'Italia unisce un elemento chiave per lo snorkeling in famiglia: accesso facile, acqua chiara e cultura di spiaggia rilassata.",
               "Sardegna. Una delle migliori opzioni del Mediterraneo. Spiagge poco profonde e fondali visibili dalla riva.",
-              "Sicilia, zone meno urbane. Ottimo snorkeling in calette tranquille, soprattutto lontano dalle grandi città.",
+              "Sicilia, zone meno urbane. Ottimo snorkeling in calette tranquille, soprattutto lontano dalle grandi citt?.",
               "Cinque Terre, zone specifiche. Tratti brevi e protetti dove si entra dalla costa.",
-              "Perché l’Italia funziona così bene. Il ritmo è rilassato e nessuno si aspetta che tu faccia più di quanto vuoi."
+              "Perch? l'Italia funziona cos? bene. Il ritmo ? rilassato e nessuno si aspetta che tu faccia pi? di quanto vuoi."
             ],
             "image": "/assets/images/blog/snorkeling/image2.webp"
           },
           {
             "heading": "Attrezzatura di base per lo snorkeling in famiglia",
             "paragraphs": [
-              "Non serve molto, ma serve l’essenziale.",
+              "Non serve molto, ma serve l'essenziale.",
               "Maschera che aderisca bene.",
               "Boccaglio semplice.",
               "Pinne corte, opzionali.",
               "Crema solare.",
-              "Maglietta UV se il sole è forte.",
+              "Maglietta UV se il sole ? forte.",
               "Niente tecnico, niente complicato."
             ],
             "image": "/assets/images/blog/snorkeling/image3.webp"
@@ -1546,37 +1678,37 @@
               "Evitare zone con correnti.",
               "Non toccare fauna o fondale.",
               "Entrare e uscire sempre da zone chiare.",
-              "L’obiettivo non è esplorare di più, ma sentirsi a proprio agio."
+              "L'obiettivo non ? esplorare di pi?, ma sentirsi a proprio agio."
             ],
             "image": "/assets/images/blog/snorkeling/image4.webp"
           },
           {
             "heading": "Lo snorkeling come piano",
             "paragraphs": [
-              "In famiglia, lo snorkeling non è un’attività per « riuscire ». È una scusa per stare in acqua, galleggiare e condividere il momento.",
+              "In famiglia, lo snorkeling non ? un'attivit? per ? riuscire ?. ? una scusa per stare in acqua, galleggiare e condividere il momento.",
               "Dieci minuti bastano. Poi si torna in spiaggia.",
               "E anche questo conta."
             ],
             "image": "/assets/images/blog/snorkeling/image5.webp"
           }
         ],
-        "closing": "Lo snorkeling in famiglia chiede poco: acqua calma e tempo condiviso. È abbastanza."
+        "closing": "Lo snorkeling in famiglia chiede poco: acqua calma e tempo condiviso. ? abbastanza."
       },
       "snorkel-familia-equipo-errores": {
         "title": "Snorkeling in famiglia: attrezzatura semplice ed errori comuni",
-        "excerpt": "Con attrezzatura base e scelte chiare, l’esperienza cambia.",
+        "excerpt": "Con attrezzatura base e scelte chiare, l'esperienza cambia.",
         "subtitle": "Snorkeling e diving in famiglia",
-        "intro": "Lo snorkeling è facile, ma questo non significa che sia indifferente come lo fai. Con attrezzatura base ben scelta ed evitando alcuni errori comuni, l’esperienza cambia molto. Non si tratta di farlo perfetto. Si tratta di farlo comodo.",
+        "intro": "Lo snorkeling ? facile, ma questo non significa che sia indifferente come lo fai. Con attrezzatura base ben scelta ed evitando alcuni errori comuni, l'esperienza cambia molto. Non si tratta di farlo perfetto. Si tratta di farlo comodo.",
         "sections": [
           {
             "heading": "Attrezzatura semplice che basta",
             "paragraphs": [
-              "Non serve comprare kit costosi né attrezzatura tecnica. Per snorkeling tranquillo, questo basta.",
-              "Maschera. La cosa più importante. Deve aderire bene al viso. La marca non conta, conta che non entri acqua.",
+              "Non serve comprare kit costosi n? attrezzatura tecnica. Per snorkeling tranquillo, questo basta.",
+              "Maschera. La cosa pi? importante. Deve aderire bene al viso. La marca non conta, conta che non entri acqua.",
               "Un trucco semplice: provala senza la cinghia, appoggiata al viso. Se resta da sola, va bene.",
-              "Tubo semplice. Più è semplice, meglio è. I tubi con molte valvole spesso sono più scomodi per i principianti.",
+              "Tubo semplice. Pi? ? semplice, meglio ?. I tubi con molte valvole spesso sono pi? scomodi per i principianti.",
               "Un tubo dritto, classico, basta.",
-              "Pinne corte, opzionali. Aiutano a muoversi con meno sforzo, ma stancano se non si è abituati.",
+              "Pinne corte, opzionali. Aiutano a muoversi con meno sforzo, ma stancano se non si ? abituati.",
               "Per la famiglia, meglio corte e morbide.",
               "Maglietta UV o tee. Protegge dal sole e dallo sfregamento, soprattutto per i bambini o le sessioni lunghe."
             ],
@@ -1585,29 +1717,29 @@
           {
             "heading": "Errori comuni da evitare",
             "paragraphs": [
-              "Scegliere qualsiasi giorno perché c’è il sole. Il sole non è la cosa più importante. Vento e mareggio contano di più. Un giorno nuvoloso ma calmo è meglio di uno soleggiato con vento.",
-              "Allontanarsi troppo dalla costa. In snorkeling in famiglia, la regola è semplice: se non tocchi il fondo in piedi, non serve andare oltre. La maggior parte di ciò che è interessante è vicino.",
+              "Scegliere qualsiasi giorno perch? c'? il sole. Il sole non ? la cosa pi? importante. Vento e mareggio contano di pi?. Un giorno nuvoloso ma calmo ? meglio di uno soleggiato con vento.",
+              "Allontanarsi troppo dalla costa. In snorkeling in famiglia, la regola ? semplice: se non tocchi il fondo in piedi, non serve andare oltre. La maggior parte di ci? che ? interessante ? vicino.",
               "Voler vedere troppo. A volte si entra in acqua aspettando un documentario. Questo crea frustrazione.",
-              "Nel snorkeling tranquillo, guardare un po’ basta. Se c’è qualcosa, benissimo. Se no, va bene lo stesso.",
-              "Usare attrezzatura scomoda perché è già stata comprata. Se la maschera dà fastidio o entra acqua, non si gode. Meglio cambiarla o non usarla quel giorno.",
-              "Non fare pause. Galleggiare stanca più di quanto sembri. Uscire, sedersi, bere acqua e tornare rientra nel piano."
+              "Nel snorkeling tranquillo, guardare un po' basta. Se c'? qualcosa, benissimo. Se no, va bene lo stesso.",
+              "Usare attrezzatura scomoda perch? ? gi? stata comprata. Se la maschera d? fastidio o entra acqua, non si gode. Meglio cambiarla o non usarla quel giorno.",
+              "Non fare pause. Galleggiare stanca pi? di quanto sembri. Uscire, sedersi, bere acqua e tornare rientra nel piano."
             ],
             "image": "/assets/images/products/gn-water-007/gallery/gallery1.webp"
           },
           {
             "heading": "Un consiglio semplice che quasi nessuno dice",
             "paragraphs": [
-              "Lo snorkeling non è nuotare molto. È galleggiare con calma.",
+              "Lo snorkeling non ? nuotare molto. ? galleggiare con calma.",
               "Muoversi piano, respirare con calma e guardare senza fretta. Questo da solo cambia tutto.",
-              "Meno attrezzatura, meno problemi. Più è semplice, meno cose possono andare storte.",
-              "E quando qualcosa non esce perfetta, va bene così.",
-              "Lo snorkeling in famiglia non è un’attività da fare bene. È una scusa per stare in acqua insieme.",
+              "Meno attrezzatura, meno problemi. Pi? ? semplice, meno cose possono andare storte.",
+              "E quando qualcosa non esce perfetta, va bene cos?.",
+              "Lo snorkeling in famiglia non ? un'attivit? da fare bene. ? una scusa per stare in acqua insieme.",
               "E questo basta."
             ],
             "image": "/assets/images/products/gn-water-007/gallery/gallery2.webp"
           }
         ],
-        "closing": "Con attrezzatura semplice e scelte chiare, lo snorkeling diventa comodo. È questo che fa venire voglia di tornare in acqua."
+        "closing": "Con attrezzatura semplice e scelte chiare, lo snorkeling diventa comodo. ? questo che fa venire voglia di tornare in acqua."
       }
     }
   },
@@ -1619,17 +1751,17 @@
         "camping-fin-de-semana": "Camping di fine settimana",
         "pesca-recreativa": "Pesca ricreativa",
         "snorkel-diving-familia": "Snorkeling e diving in famiglia",
-        "actividades-tranquilas": "Attività tranquille"
+        "actividades-tranquilas": "Attivit? tranquille"
       }
     },
     "outdoor-intermedio": {
-      "title": "Un po’ più in là",
+      "title": "Un po? pi? in l?",
       "subtopics": {
         "ski-snowboard-centros": "Ski e snowboard in stazione",
-        "trekking-varios-dias": "Trekking di più giorni",
+        "trekking-varios-dias": "Trekking di pi? giorni",
         "camping-prolongado": "Camping prolungato",
         "ciclismo-bikepacking": "Ciclismo e bikepacking",
-        "actividades-intermedias": "Attività intermedie"
+        "actividades-intermedias": "Attivit? intermedie"
       }
     },
     "outdoor-extremo": {
@@ -1639,7 +1771,7 @@
         "escalada-climbing": "Arrampicata",
         "buceo-avanzado": "Diving avanzato",
         "expediciones": "Spedizioni",
-        "actividades-extremas": "Attività estreme"
+        "actividades-extremas": "Attivit? estreme"
       }
     },
     "equipo-outdoor": {
@@ -1647,7 +1779,7 @@
       "subtopics": {
         "gafas-deportivas": "Occhiali sportivi",
         "gafas-ski-snow": "Occhiali ski & snow",
-        "precio-vs-calidad": "Prezzo vs qualità",
+        "precio-vs-calidad": "Prezzo vs qualit?",
         "que-mirar-antes-de-comprar": "Cosa guardare prima di comprare"
       }
     }
@@ -1661,39 +1793,39 @@
         "Uscire nella natura non dovrebbe sembrare una prova.",
         "Non tutti vogliono mettersi alla prova ogni volta che escono.",
         "",
-        "A volte basta camminare un po’, montare una tenda semplice o lanciare una lenza.",
-        "Non serve esperienza, né attrezzatura costosa, né sapere tutto.",
+        "A volte basta camminare un po', montare una tenda semplice o lanciare una lenza.",
+        "Non serve esperienza, n? attrezzatura costosa, n? sapere tutto.",
         "",
-        "Questa sezione è per questo:",
-        "uscite tranquille, piani semplici e attività che si adattano alla vita reale.",
+        "Questa sezione ? per questo:",
+        "uscite tranquille, piani semplici e attivit? che si adattano alla vita reale.",
         "",
-        "Perché stare fuori può anche essere facile."
+        "Perch? stare fuori pu? anche essere facile."
       ]
     },
     "outdoor-intermedio": {
-      "title": "Un po’ più in là",
-      "seoTitle": "Attività outdoor intermedie: sci, snowboard, trekking e camping",
-      "description": "Attività outdoor per chi vuole andare un po’ più in là: sci in stazione, trekking lungo, camping e sport intermedi.",
+      "title": "Un po? pi? in l?",
+      "seoTitle": "Attivit? outdoor intermedie: sci, snowboard, trekking e camping",
+      "description": "Attivit? outdoor per chi vuole andare un po' pi? in l?: sci in stazione, trekking lungo, camping e sport intermedi.",
       "manifesto": [
-        "Quando sei già uscito diverse volte, cambiano le domande.",
+        "Quando sei gi? uscito diverse volte, cambiano le domande.",
         "Quanti giorni. Che meteo. Cosa portare.",
         "",
         "Qui non parliamo di estremi, ma di pianificazione.",
-        "Attività che richiedono un po’ più di tempo, energia e attenzione.",
+        "Attivit? che richiedono un po' pi? di tempo, energia e attenzione.",
         "",
-        "Sci, trekking lungo, camping di più giorni.",
+        "Sci, trekking lungo, camping di pi? giorni.",
         "Niente di impossibile, ma neanche improvvisato.",
         "",
-        "Questa sezione è per chi vuole fare un passo in più, senza arrivare al limite."
+        "Questa sezione ? per chi vuole fare un passo in pi?, senza arrivare al limite."
       ]
     },
     "outdoor-extremo": {
       "title": "Fare sul serio",
       "seoTitle": "Sport outdoor estremi: fuori pista, arrampicata e diving avanzato",
-      "description": "Contenuti su attività outdoor estreme: fuori pista, arrampicata, diving avanzato ed expeditioni, con un approccio realistico e responsabile.",
+      "description": "Contenuti su attivit? outdoor estreme: fuori pista, arrampicata, diving avanzato ed expeditioni, con un approccio realistico e responsabile.",
       "manifesto": [
-        "Ci sono attività in cui l’errore pesa.",
-        "Dove l’esperienza conta e il rispetto per l’ambiente è fondamentale.",
+        "Ci sono attivit? in cui l'errore pesa.",
+        "Dove l'esperienza conta e il rispetto per l'ambiente ? fondamentale.",
         "",
         "Fuori pista, arrampicata, diving avanzato.",
         "Non sono giochi, e non dovrebbero essere presentati come tali.",
@@ -1701,29 +1833,15 @@
         "Questa sezione non glorifica il rischio.",
         "Parla di preparazione, decisioni e limiti.",
         "",
-        "Perché fare sul serio significa anche sapere quando non andare."
+        "Perch? fare sul serio significa anche sapere quando non andare."
       ]
     }
   },
   "categories": {
     "names": {
-      "fishing": "Pesca",
-      "mountain-snow": "Montagna & Neve",
-      "water-sports": "Sport Acquatici",
-      "outdoor-adventure": "Outdoor & Avventura",
-      "active-sports": "Sport Attivi",
-      "fishing-equipment": "Attrezzatura da pesca",
-      "fishing-gadgets": "Accessori da pesca",
-      "ski": "Ski",
-      "snowboard": "Snowboard",
-      "surfing": "Surf",
-      "diving-swimming-equipment": "Immersione & Nuoto",
-      "trekking": "Trekking",
-      "camping-survival-gear": "Camping & Survival",
-      "outdoor-lighting": "Illuminazione outdoor",
-      "sleeping-systems": "Sistemi di riposo",
-      "cycling": "Ciclismo",
-      "running": "Running"
+      "wine": "Wine Tours e Bodegas",
+      "adventure": "Avventura a Mendoza",
+      "city": "Scopri la città di Mendoza"
     }
   },
   "accountPage": {
@@ -1738,6 +1856,15 @@
     },
     "logout": "Esci",
     "welcomeText": "Da qui puoi visualizzare i tuoi ordini e gestire i tuoi dati",
+    "profileSectionTitle": "Profilo",
+    "profileEmail": "Email",
+    "profileEmailHint": "L'email è legata all'accesso. Contattaci per modificarla.",
+    "profileFirstName": "Nome",
+    "profileLastName": "Cognome",
+    "profilePhone": "Telefono",
+    "profileSave": "Salva modifiche",
+    "profileSaving": "Salvataggio…",
+    "profileSaved": "Modifiche salvate.",
     "noOrders": "Non hai ancora effettuato ordini",
     "orderLabel": "Ordine",
     "userLabel": "Utente"
@@ -1759,8 +1886,8 @@
       "addressPlaceholder": "Via e numero",
       "addressLine2": "Complemento",
       "addressLine2Placeholder": "Appartamento, piano, ecc. (opzionale)",
-      "city": "Città",
-      "cityPlaceholder": "Città",
+      "city": "Citt?",
+      "cityPlaceholder": "Citt?",
       "postalCode": "Codice postale",
       "postalCodePlaceholder": "CAP",
       "country": "Paese",
@@ -1771,22 +1898,40 @@
     }
   },
   "checkoutPage": {
-    "emptyTitle": "Il tuo carrello è vuoto",
-    "emptyText": "Aggiungi prodotti per continuare con l'acquisto.",
-    "emptyCta": "Vedi prodotti",
-    "backToCart": "← Torna al carrello",
-    "title": "Checkout",
-    "shippingAddress": "Indirizzo di spedizione",
-    "addAddress": "Aggiungi un indirizzo per continuare",
-    "manageAddresses": "Gestisci nel mio account",
-    "saveAddress": "Salva indirizzo",
+    "emptyTitle": "Nessuna esperienza nella prenotazione",
+    "emptyText": "Scegli un’uscita per continuare con dati e pagamento.",
+    "emptyCta": "Vedi esperienze",
+    "backToCart": "← Torna alle prenotazioni",
+    "kicker": "Quasi fatto",
+    "title": "Dati e pagamento",
+    "intro": "Completa i recapiti e scegli come coordinare il pagamento. Il riepilogo resta a destra.",
+    "sectionPersonal": "Dati personali",
+    "sectionPersonalHint": "Li usiamo per la conferma e il contatto prima dell’esperienza.",
+    "sectionExtra": "Informazioni aggiuntive",
+    "sectionExtraHint": "Documento, alloggio e note ci aiutano a organizzare incontri e logistica.",
+    "travelerTitle": "I tuoi dati",
+    "travelerHint": "Ci servono per confermare la prenotazione. Non chiediamo un indirizzo di spedizione.",
+    "manageAccountLink": "Gestisci il mio account",
+    "paypalNeedTraveler": "Compila nome, cognome, documento o passaporto, email, telefono e paese per pagare con PayPal.",
+    "summaryNote": "Il prezzo corrisponde all'esperienza scelta; pagamento e coordinamento dipendono dal metodo selezionato.",
+    "summaryLead": "Ciò che prenoti e quando vorresti partire.",
+    "trustMessage": "Cancellazione gratuita in caso di maltempo (salvo diversa indicazione per l’esperienza).",
+    "slotDate": "Data preferita",
+    "slotTime": "Ora preferita",
+    "slotParty": "Persone",
+    "paymentHint": "Scegli come procedere; puoi sempre scriverci su WhatsApp.",
     "form": {
-      "fullName": "Nome completo",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "fullName": "Nome e cognome",
+      "idDocument": "Documento o passaporto",
+      "email": "Email",
       "phone": "Telefono",
-      "address": "Indirizzo",
-      "city": "Città",
-      "postalCode": "Codice postale",
-      "country": "Paese"
+      "country": "Paese",
+      "accommodation": "Alloggio",
+      "accommodationPlaceholder": "Hotel, quartiere o indirizzo indicativo a Mendoza",
+      "checkoutNotes": "Note aggiuntive",
+      "checkoutNotesPlaceholder": "Orari flessibili, esigenze di accessibilità…"
     },
     "paymentMethod": "Metodo di pagamento",
     "paymentOptions": {
@@ -1810,14 +1955,95 @@
     "orderSummary": "Riepilogo ordine",
     "summary": "Riepilogo",
     "subtotal": "Subtotale",
-    "shipping": "Spedizione",
-    "shippingCalculated": "Calcolato al checkout",
     "total": "Totale",
-    "quantity": "Quantità",
+    "quantity": "Quantit?",
     "unitPrice": "cad.",
-    "confirmOrder": "Conferma ordine",
+    "confirmOrder": "Conferma prenotazione",
     "confirming": "Conferma in corso...",
+    "authLoading": "Caricamento sessione…",
+    "loginRequiredTitle": "Accedi per completare la prenotazione",
+    "loginRequiredBody": "Le prenotazioni sono collegate al tuo account. Accedi per continuare.",
+    "loginCta": "Accedi",
+    "bookingErrorGeneric": "Non abbiamo potuto salvare la prenotazione. Riprova.",
+    "bookingErrorSubtotal": "Il totale non corrisponde più agli articoli. Aggiorna la pagina e riprova.",
+    "bookingPayPalDbError": "Pagamento ricevuto, ma non abbiamo salvato la prenotazione. Contattaci con la ricevuta PayPal.",
     "terms": "Confermando il tuo ordine, accetti i nostri termini e condizioni"
+  },
+  "orderSuccessPage": {
+    "kicker": "Tutto confermato",
+    "title": "Prenotazione confermata",
+    "subtitle": "Grazie per aver scelto Edmar Travel. Abbiamo ricevuto la tua richiesta; contattaci su WhatsApp per definire gli ultimi dettagli.",
+    "whatsappMessage": "Ciao! Vorrei coordinare la prenotazione {id} — totale {amount}.",
+    "whatsappHeroLead": "Per coordinare il pagamento e gli ultimi dettagli, scrivici su WhatsApp.",
+    "whatsappCtaPayment": "Coordina il pagamento su WhatsApp",
+    "whatsappCtaChat": "Apri chat con Edmar Travel",
+    "orderNumberLabel": "Riferimento:",
+    "noOrder": "Non abbiamo trovato un ordine recente.",
+    "noOrderHint": "Se hai appena confermato, potrebbero servire alcuni secondi.",
+    "summaryTitle": "Riepilogo ordine",
+    "pendingWhatsappTitle": "Pagamento in sospeso",
+    "pendingWhatsappBody": "Ti scriveremo su WhatsApp per coordinare il pagamento e i dettagli dell'uscita.",
+    "pendingManualTitle": "Prossimi passi",
+    "pendingManualBody": "Ti contatteremo per il pagamento e per confermare l'esperienza.",
+    "paidPaypalTitle": "Pagamento confermato",
+    "paidPaypalBody": "Il pagamento ? stato elaborato correttamente.",
+    "contactTitle": "I tuoi recapiti",
+    "shippingTitle": "Indirizzo di spedizione",
+    "totalLabel": "Totale",
+    "orderedOn": "Ordine effettuato il",
+    "nextTitle": "Cosa succede adesso?",
+    "continueShopping": "Continua a esplorare",
+    "viewAccount": "Vai al mio account",
+    "whatsappCta": "Scrivici su WhatsApp",
+    "recommendationsTitle": "Continua a esplorare Mendoza",
+    "recommendationsSubtitle": "Altre esperienze che si abbinano bene al tuo viaggio.",
+    "reservationBlockTitle": "La tua uscita",
+    "resDate": "Data",
+    "resTime": "Ora",
+    "resParty": "Persone",
+    "steps": {
+      "whatsapp": {
+        "1": {
+          "title": "Coordinamento WhatsApp",
+          "desc": "Ti scriviamo entro poche ore per il pagamento e le domande."
+        },
+        "2": {
+          "title": "Confermiamo l'uscita",
+          "desc": "Ti inviamo punto d'incontro, orario e informazioni pratiche."
+        },
+        "3": {
+          "title": "Pronto per Mendoza",
+          "desc": "Ricevi conferma via email quando ? tutto definito."
+        }
+      },
+      "paypalPaid": {
+        "1": {
+          "title": "Pagamento registrato",
+          "desc": "Il pagamento PayPal ? confermato."
+        },
+        "2": {
+          "title": "Prepariamo l'esperienza",
+          "desc": "Coordiniamo guide e fornitori per la tua prenotazione."
+        },
+        "3": {
+          "title": "Ti teniamo aggiornato",
+          "desc": "Gli ultimi dettagli arrivano via email o WhatsApp."
+        }
+      },
+      "default": {
+        "1": {
+          "title": "Controlla la email",
+          "desc": "Ti abbiamo inviato un riepilogo con il numero d'ordine."
+        },
+        "2": {
+          "title": "Restiamo in contatto",
+          "desc": "Ti contattiamo per pagamento e logistica."
+        },
+        "3": {
+          "title": "Prima della partenza",
+          "desc": "Orari, punto d'incontro e consigli pratici."
+        }
+      }
+    }
   }
 }
-

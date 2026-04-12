@@ -11,6 +11,7 @@ import { buildMetadata, formatTemplate } from "@/lib/seo";
 import { getProducts } from "@/lib/products";
 import { getProductImages } from "@/lib/product-images";
 import { pickProductsForPost } from "@/lib/internal-links";
+import { SITE_CONFIG } from "@/lib/config";
 
 export async function generateStaticParams() {
   const messages = await getMessages("en");
@@ -31,7 +32,7 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: "Post no encontrado | Go Natural",
+      title: `Post no encontrado | ${SITE_CONFIG.name}`,
     };
   }
 

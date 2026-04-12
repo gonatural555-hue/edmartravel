@@ -1,0 +1,13 @@
+{
+  "id": "epic-andes-adventure-trekking-hot-springs",
+  "images": {
+    "featured": ["/assets/images/hero/altamontaña.webp"],
+    "gallery": [
+      "/assets/images/products/AndesTreckingHot/trekkingmendoza.webp",
+      "/assets/images/products/AndesTreckingHot/trekkingmendoza1.webp",
+      "/assets/images/products/AndesTreckingHot/trekkingmendoza2.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

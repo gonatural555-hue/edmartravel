@@ -4,8 +4,12 @@
 
 :root {
   /* Cinematic Dark Outdoor - Design Tokens */
-  --color-dark-base: #0B0F0E;
-  --color-dark-surface: #121917;
+  --color-dark-base: #0c1411;
+  --color-dark-surface: #151f1c;
+  /* Editorial (fondo global) */
+  --editorial-void: #060a08;
+  --editorial-charcoal: #0f1613;
+  --editorial-forest: #1a332d;
   --color-text-primary: #E6ECE9;
   --color-text-muted: #9BA6A1;
   --color-accent-gold: #C89B3C;
@@ -13,6 +17,17 @@
 
   /* Global background color */
   --bg-primary: #122220;
+
+  /* Brand tokens */
+  --primary-color: #0B5FFF;
+  --background-color: var(--bg-primary);
+  --accent-color: var(--color-accent-gold);
+
+  /* Natural tourism (Mendoza): verde naturaleza, tierra, vino */
+  --color-primary: #1f4d3a;
+  --color-secondary: #e8ddc7;
+  --color-accent: #7a1e2c;
+  --color-bg: #152620;
 
   /* Variables semánticas para uso en componentes */
   --background: var(--color-dark-base);
@@ -66,7 +81,7 @@ html {
 body {
   position: relative;
   min-height: 100%;
-  background: var(--bg-primary);
+  background-color: var(--color-bg);
   color: var(--foreground);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Ensure content is above background */
@@ -78,7 +93,7 @@ body {
   scroll-padding-top: 0;
 }
 
-/* Cinematic Dark Outdoor - Fondo sutil */
+/* Fondo editorial: gradientes orgánicos + profundidad */
 body::before {
   content: '';
   position: fixed;
@@ -86,16 +101,39 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(ellipse 118% 72% at 12% -8%, rgba(26, 51, 45, 0.42), transparent 58%),
+    radial-gradient(ellipse 90% 56% at 92% 32%, rgba(15, 22, 19, 0.55), transparent 52%),
+    radial-gradient(ellipse 80% 48% at 48% 100%, rgba(6, 10, 8, 0.85), transparent 55%),
+    var(--color-dark-base);
+
+  box-shadow:
+    inset 0 0 220px rgba(18, 25, 23, 0.5),
+    inset 0 0 480px rgba(6, 10, 8, 0.75);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  
-  /* Fondo base con profundidad oscura */
-  background: var(--color-dark-base);
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
 
-  /* Sombra sutil para profundidad */
-  box-shadow:
-    inset 0 0 220px rgba(18, 25, 23, 0.65),
-    inset 0 0 480px rgba(11, 15, 14, 0.85);
+@layer components {
+  .surface-editorial {
+    @apply rounded-2xl border border-white/10 bg-dark-surface/65 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm;
+  }
+
+  .surface-editorial-subtle {
+    @apply rounded-2xl border border-white/[0.06] bg-dark-surface/35;
+  }
 }
 
 @keyframes hero-fade-up {
@@ -124,6 +162,40 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   .hero-fade-up {
     animation: none;
+  }
+}
+
+/* Featured experiences — encabezado editorial (home) */
+@keyframes featured-editorial-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.featured-editorial-rise {
+  animation: featured-editorial-rise 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.featured-editorial-rise-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.featured-editorial-rise-delay-2 {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-editorial-rise,
+  .featured-editorial-rise-delay-1,
+  .featured-editorial-rise-delay-2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 

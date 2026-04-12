@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllCategories } from "@/lib/categories";
+import { EXPERIENCE_CATEGORY_ORDER } from "@/lib/experience-categories";
 import { getMessages } from "@/lib/i18n/messages";
 import { createTranslator } from "@/lib/i18n/translate";
 import type { Locale } from "@/lib/i18n/config";
@@ -35,7 +36,13 @@ export default async function CategoriesPage({
   const { locale } = await params;
   const messages = await getMessages(locale);
   const t = createTranslator(messages);
-  const categories = getAllCategories();
+  const orderRank: Map<string, number> = new Map<string, number>(
+    EXPERIENCE_CATEGORY_ORDER.map((slug, index) => [slug as string, index])
+  );
+  const categories = [...getAllCategories()].sort(
+    (a, b) =>
+      (orderRank.get(a.slug) ?? 99) - (orderRank.get(b.slug) ?? 99)
+  );
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-16">

@@ -5,16 +5,16 @@ import {
   getCategorySlugs,
   getProductsByCategorySlug,
 } from "@/lib/categories";
-import ProductCardSimple from "@/components/ProductCardSimple";
+import ProductGridSimple from "@/components/ProductGridSimple";
 import { getMessages } from "@/lib/i18n/messages";
 import { createTranslator } from "@/lib/i18n/translate";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { buildMetadata, formatTemplate } from "@/lib/seo";
 import EditorialPostCards from "@/components/editorial/EditorialPostCards";
-import {
-  pickPostsForCategory,
-  pickPrimaryPostForCategory,
-} from "@/lib/internal-links";
+import { pickPostsForCategory } from "@/lib/internal-links";
+import { SITE_CONFIG } from "@/lib/config";
+import { PRODUCTS_LISTING_NOISE_BG } from "@/lib/constants/products-listing-surface";
+import type { ExperienceCategory } from "@/lib/product-types";
 
 type Props = {
   params: Promise<{
@@ -23,137 +23,27 @@ type Props = {
   }>;
 };
 
-const CATEGORY_HERO_IMAGES: Record<string, string> = {
-  "mountain-snow": "/assets/images/categories/mountain-snow.webp",
-  "water-sports": "/assets/images/categories/water-sports.webp",
-  "outdoor-adventure": "/assets/images/hero/storysection.webp",
-  cycling: "/assets/images/categories/cycling.webp",
-  fishing: "/assets/images/hero/fishin-hero.webp",
-  "active-sports": "/assets/images/products/gn-cycling-016/featured02.webp",
-  trekking: "/assets/images/products/gn-outdoor-002/featured02.webp",
-  "camping-survival-gear": "/assets/images/products/gn-outdoor-002/featured03.webp",
-  "outdoor-lighting": "/assets/images/products/gn-outdoor-003/featured01.webp",
-  "sleeping-systems": "/assets/images/products/gn-outdoor-005/featured-white.webp",
-  ski: "/assets/images/products/gn-ski-snow-001/model-1/featured.webp",
-  snowboard: "/assets/images/products/gn-ski-snow-001/model-2/featured.webp",
-  running: "/assets/images/products/gn-cycling-015/featured03.webp",
+const CATEGORY_HERO_IMAGES: Record<ExperienceCategory, string> = {
+  wine: "/assets/images/products/HalfDayWine/tour-bodega-medio-dia-1.webp",
+  adventure:
+    "/assets/images/products/HighMountainTour/tour-alta-montaña.webp",
+  city: "/assets/images/products/CityTour/city-tour-1.webp",
 };
 
+/** Anillo adventure → wine → city (en wine: izq. adventure, der. city) */
+const CATEGORY_RING: ExperienceCategory[] = ["adventure", "wine", "city"];
 
-// Helper para generar contenido SEO según categoría
-function getCategorySEOContent(slug: string, categoryName: string) {
-  const slugLower = slug.toLowerCase();
-  const nameLower = categoryName.toLowerCase();
-
-  let introText = "";
-  let seoContent = "";
-  let relatedCategories: string[] = [];
-
-  if (
-    slugLower.includes("fishing") ||
-    nameLower.includes("fishing") ||
-    nameLower.includes("pesca")
-  ) {
-    introText =
-      "Equipamiento de pesca probado en uso real. Cañas, reeles, señuelos y accesorios seleccionados para pescadores que buscan calidad sin exageraciones. Productos que funcionan cuando importa.";
-    seoContent =
-      "La pesca deportiva requiere equipamiento que aguante condiciones reales: agua salada, cambios de temperatura, uso constante. En esta categoría encontrarás productos probados por pescadores, no solo por marketing. Desde cañas de acción media hasta reeles de calidad, cada producto está seleccionado por su funcionalidad real. Si estás empezando, busca equipamiento versátil que funcione en diferentes condiciones. Si ya tenés experiencia, encontrarás opciones especializadas que mejoran tu técnica. La clave está en elegir según tu tipo de pesca: de costa, embarcado, o fly fishing. Cada modalidad tiene necesidades específicas, y nuestros productos están pensados para eso.";
-    relatedCategories = ["water-sports", "outdoor-adventure"];
-  } else if (
-    slugLower.includes("water") ||
-    nameLower.includes("water") ||
-    nameLower.includes("acuático")
-  ) {
-    introText =
-      "Deportes acuáticos y actividades en el agua requieren equipamiento específico. Desde natación hasta kayak, productos que protegen y mejoran tu experiencia en el agua.";
-    seoContent =
-      "Los deportes acuáticos tienen necesidades únicas: resistencia al agua, flotabilidad, protección UV, y durabilidad en condiciones húmedas. Esta categoría agrupa equipamiento para diferentes actividades acuáticas, desde natación recreativa hasta deportes de aventura. Si practicás natación, buscá productos que reduzcan resistencia y mejoren comodidad. Para kayak o paddle, priorizá flotabilidad y resistencia. En todos los casos, la calidad del material marca la diferencia entre un producto que dura una temporada y uno que te acompaña años. Elegí según tu nivel de actividad: uso ocasional permite opciones más económicas, mientras que uso intensivo requiere inversión en calidad.";
-    relatedCategories = ["surfing", "diving-swimming-equipment", "outdoor-adventure"];
-  } else if (
-    slugLower.includes("mountain") ||
-    slugLower.includes("snow") ||
-    nameLower.includes("montaña") ||
-    nameLower.includes("nieve")
-  ) {
-    introText =
-      "Equipamiento para montaña y actividades en la nieve. Productos que aguantan frío, altitud y condiciones extremas. Probados en terreno real, no en laboratorio.";
-    seoContent =
-      "La montaña y la nieve exigen equipamiento que funcione cuando las condiciones se complican. Esta categoría incluye productos para esquí, snowboard, alpinismo y actividades de alta montaña. La diferencia entre un producto genérico y uno específico para montaña está en detalles: resistencia al frío extremo, protección contra viento, y durabilidad en condiciones adversas. Si practicás esquí o snowboard, buscá productos que mantengan temperatura y permitan movimiento. Para alpinismo, priorizá ligereza sin sacrificar protección. En todos los casos, la calidad del material y la construcción determinan si un producto te protege cuando realmente lo necesitás. Elegí según tu nivel: principiante puede empezar con opciones versátiles, mientras que avanzado requiere especialización.";
-    relatedCategories = ["ski-snowboard", "trekking", "outdoor-adventure"];
-  } else if (
-    slugLower.includes("outdoor") ||
-    slugLower.includes("adventure") ||
-    nameLower.includes("outdoor") ||
-    nameLower.includes("aventura")
-  ) {
-    introText =
-      "Equipamiento para aventuras al aire libre. Productos versátiles que funcionan en diferentes situaciones, desde escapadas de un día hasta expediciones de varios días.";
-    seoContent =
-      "Las aventuras outdoor requieren equipamiento versátil y confiable. Esta categoría agrupa productos que funcionan en diferentes situaciones: trekking, camping, exploración urbana, y viajes de aventura. La clave está en elegir productos que se adapten a múltiples contextos sin sacrificar calidad. Si planeás escapadas cortas, buscá equipamiento ligero y compacto. Para expediciones largas, priorizá durabilidad y capacidad. En todos los casos, la versatilidad es importante: un producto que funciona en diferentes condiciones te ahorra espacio y dinero. La diferencia entre equipamiento genérico y específico para outdoor está en detalles: resistencia a elementos, facilidad de uso, y durabilidad real. Elegí según tu tipo de aventura: urbana requiere ligereza, mientras que remota exige robustez.";
-    relatedCategories = ["trekking", "camping-survival-gear", "active-sports"];
-  } else if (
-    slugLower.includes("active") ||
-    slugLower.includes("sports") ||
-    nameLower.includes("deporte") ||
-    nameLower.includes("activo")
-  ) {
-    introText =
-      "Deportes activos y fitness requieren equipamiento que mejore rendimiento sin complicaciones. Productos probados en uso real, sin marketing exagerado.";
-    seoContent =
-      "Los deportes activos y el fitness tienen necesidades específicas: comodidad durante movimiento, resistencia al sudor, y durabilidad en uso constante. Esta categoría incluye equipamiento para diferentes actividades: running, ciclismo, entrenamiento funcional, y deportes de equipo. La diferencia entre equipamiento genérico y específico para deportes activos está en cómo se comporta durante el uso real. Si practicás running, buscá productos que reduzcan impacto y mejoren comodidad. Para ciclismo, priorizá aerodinámica y protección. En entrenamiento funcional, la versatilidad es clave. En todos los casos, la calidad del material determina si un producto mejora tu rendimiento o te limita. Elegí según tu nivel de actividad: principiante puede empezar con opciones básicas, mientras que avanzado requiere especialización y calidad superior.";
-    relatedCategories = ["cycling", "running", "outdoor-adventure"];
-  } else if (
-    slugLower.includes("trekking") ||
-    nameLower.includes("trekking") ||
-    nameLower.includes("senderismo")
-  ) {
-    introText =
-      "Equipamiento esencial para trekking y senderismo. Productos que aguantan caminatas largas, cambios de terreno y condiciones variables. Probados en uso real.";
-    seoContent =
-      "El trekking y senderismo requieren equipamiento que funcione durante horas de caminata, en diferentes terrenos y condiciones climáticas. Esta categoría incluye productos específicos para caminantes: calzado, mochilas, bastones, y accesorios de navegación. La diferencia entre equipamiento genérico y específico para trekking está en cómo se comporta durante caminatas largas. Si hacés senderismo ocasional, buscá productos versátiles y cómodos. Para trekking intensivo, priorizá durabilidad y soporte. En todos los casos, la comodidad es crucial: un producto incómodo puede arruinar una caminata. La calidad del material y la construcción determinan si un producto te acompaña kilómetros o se rompe a mitad de camino. Elegí según tu tipo de actividad: senderos marcados permiten opciones más ligeras, mientras que terreno difícil exige robustez.";
-    relatedCategories = ["camping-survival-gear", "outdoor-adventure", "mountain-snow"];
-  } else if (
-    slugLower.includes("camping") ||
-    slugLower.includes("survival") ||
-    nameLower.includes("camping") ||
-    nameLower.includes("supervivencia")
-  ) {
-    introText =
-      "Equipamiento de camping y supervivencia. Productos que funcionan cuando importa: refugio, fuego, agua y seguridad. Sin exageraciones, solo funcionalidad real.";
-    seoContent =
-      "El camping y la supervivencia requieren equipamiento que funcione cuando las condiciones se complican. Esta categoría incluye productos esenciales: carpas, sacos de dormir, sistemas de agua, herramientas, y equipamiento de emergencia. La diferencia entre equipamiento genérico y específico para camping está en cómo se comporta en condiciones reales: lluvia, viento, frío, y uso constante. Si acampás en campings establecidos, buscá productos cómodos y fáciles de armar. Para camping salvaje, priorizá ligereza y resistencia. En supervivencia, la confiabilidad es crítica: un producto que falla puede ser peligroso. La calidad del material y la construcción determinan si un producto te protege o te deja expuesto. Elegí según tu tipo de actividad: camping recreativo permite opciones más cómodas, mientras que supervivencia exige confiabilidad absoluta.";
-    relatedCategories = ["trekking", "outdoor-adventure", "mountain-snow"];
-  } else if (
-    slugLower.includes("cycling") ||
-    slugLower.includes("bike") ||
-    nameLower.includes("ciclismo") ||
-    nameLower.includes("bicicleta")
-  ) {
-    introText =
-      "Equipamiento para ciclistas. Productos que mejoran rendimiento, comodidad y seguridad. Probados en uso real, desde paseos urbanos hasta rutas de montaña.";
-    seoContent =
-      "El ciclismo requiere equipamiento específico que mejore rendimiento sin sacrificar comodidad. Esta categoría incluye productos para diferentes tipos de ciclismo: urbano, de montaña, de ruta, y recreativo. La diferencia entre equipamiento genérico y específico para ciclismo está en cómo se comporta durante pedaleo prolongado. Si practicás ciclismo urbano, buscá productos que mejoren visibilidad y comodidad. Para montaña, priorizá protección y resistencia. En ruta, la aerodinámica es clave. En todos los casos, la calidad del material determina si un producto mejora tu experiencia o te limita. La comodidad durante horas de pedaleo es crucial: un producto incómodo puede arruinar un paseo. Elegí según tu tipo de ciclismo: recreativo permite opciones más económicas, mientras que competitivo exige especialización.";
-    relatedCategories = ["active-sports", "running", "outdoor-adventure"];
-  } else if (
-    slugLower.includes("running") ||
-    nameLower.includes("running") ||
-    nameLower.includes("correr")
-  ) {
-    introText =
-      "Equipamiento para runners. Productos que mejoran rendimiento, reducen impacto y aumentan comodidad. Probados en kilómetros reales, no en laboratorio.";
-    seoContent =
-      "El running requiere equipamiento que funcione durante kilómetros de carrera, reduciendo impacto y mejorando comodidad. Esta categoría incluye productos específicos para corredores: calzado, ropa técnica, accesorios de hidratación, y equipamiento de entrenamiento. La diferencia entre equipamiento genérico y específico para running está en cómo se comporta durante carrera prolongada. Si corrés ocasionalmente, buscá productos versátiles y cómodos. Para entrenamiento intensivo, priorizá soporte y amortiguación. En todos los casos, la comodidad es crucial: un producto incómodo puede causar lesiones. La calidad del material y la construcción determinan si un producto mejora tu rendimiento o te limita. La amortiguación y el soporte son especialmente importantes para reducir impacto en articulaciones. Elegí según tu tipo de running: recreativo permite opciones más económicas, mientras que competitivo exige especialización y calidad superior.";
-    relatedCategories = ["active-sports", "cycling", "outdoor-adventure"];
-  } else {
-    // Fallback genérico
-    introText =
-      "Equipamiento outdoor funcional, probado en uso real. Productos que aguantan cuando importa, sin marketing exagerado.";
-    seoContent =
-      "Esta categoría agrupa equipamiento outdoor seleccionado por su funcionalidad real. Cada producto está pensado para uso en condiciones reales, no solo para marketing. La diferencia entre equipamiento genérico y específico para outdoor está en cómo se comporta cuando realmente lo necesitás. Elegí según tu nivel de actividad y tipo de uso: principiante puede empezar con opciones versátiles, mientras que avanzado requiere especialización. La calidad del material y la construcción determinan si un producto te acompaña años o se rompe rápido. Priorizá funcionalidad sobre características innecesarias.";
-    relatedCategories = ["outdoor-adventure", "active-sports"];
-  }
-
-  return { introText, seoContent, relatedCategories };
+function categoryNeighbors(slug: string): {
+  prev: ExperienceCategory;
+  next: ExperienceCategory;
+} {
+  const idx = CATEGORY_RING.indexOf(slug as ExperienceCategory);
+  const i = idx >= 0 ? idx : 0;
+  const len = CATEGORY_RING.length;
+  return {
+    prev: CATEGORY_RING[(i - 1 + len) % len],
+    next: CATEGORY_RING[(i + 1) % len],
+  };
 }
 
 export async function generateStaticParams() {
@@ -172,7 +62,7 @@ export async function generateMetadata({ params }: Props) {
 
   if (!category) {
     return {
-      title: "Categoría no encontrada | Go Natural",
+      title: `Categoría no encontrada | ${SITE_CONFIG.name}`,
     };
   }
 
@@ -181,16 +71,17 @@ export async function generateMetadata({ params }: Props) {
   const seo = messages.seo?.category;
   const categoryLabel = t(`categories.names.${category.slug}`, category.name);
   const title = formatTemplate(
-    seo?.titleTemplate || "{category} | Go Natural",
+    seo?.titleTemplate || `{category} | ${SITE_CONFIG.name}`,
     { category: categoryLabel }
   );
   const description = formatTemplate(
     seo?.descriptionTemplate ||
-      "Equipamiento de {category} curado para exploración tranquila y capaz.",
+      "Experiencias de {category} en Mendoza con guías locales.",
     { category: categoryLabel }
   );
   const heroImage =
-    CATEGORY_HERO_IMAGES[slug] || "/assets/images/products/gn-outdoor-002/featured01.webp";
+    CATEGORY_HERO_IMAGES[slug as ExperienceCategory] ||
+    CATEGORY_HERO_IMAGES.wine;
   const pathByLocale = locales.reduce(
     (acc, localeKey) => ({
       ...acc,
@@ -208,6 +99,177 @@ export async function generateMetadata({ params }: Props) {
   });
 }
 
+function CategoryProductListing({
+  slug,
+  products,
+  locale,
+  t,
+}: {
+  slug: string;
+  products: ReturnType<typeof getProductsByCategorySlug>;
+  locale: Locale;
+  t: (key: string, fallback?: string) => string;
+}) {
+  const labels = {
+    viewProduct: t("common.viewProduct"),
+    addToCart: t("common.addToCart"),
+    noImage: t("common.noImage"),
+  };
+
+  if (slug === "wine") {
+    return (
+      <section
+        className="relative isolate overflow-hidden bg-wine-burgundy py-12 md:py-16 lg:py-20"
+        aria-labelledby="category-listing-heading"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_88%_58%_at_50%_-8%,rgba(255,255,255,0.09),transparent_58%)]" />
+          <div className="absolute -left-[18%] top-[10%] h-[min(44vw,24rem)] w-[min(44vw,24rem)] rounded-full bg-[#6D3A3A]/35 blur-3xl" />
+          <div className="absolute -right-[14%] bottom-[-12%] h-[min(52vw,28rem)] w-[min(52vw,28rem)] rounded-full bg-[#452020]/50 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_48%,transparent_38%,rgba(0,0,0,0.22)_100%)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/20 to-transparent" />
+          <div
+            className="absolute inset-0 opacity-[0.14] mix-blend-overlay"
+            style={{ backgroundImage: PRODUCTS_LISTING_NOISE_BG }}
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+          <h2
+            id="category-listing-heading"
+            className="sr-only"
+          >
+            {t(`categories.names.${slug}`, slug)}
+          </h2>
+          {products.length === 0 ? (
+            <div className="rounded-2xl border border-white/10 bg-dark-surface/40 px-6 py-12 text-center md:py-16">
+              <p className="text-lg font-medium text-white">
+                {t("categoriesPage.emptyTitle")}
+              </p>
+              <p className="mx-auto mt-3 max-w-md text-sm text-white/75">
+                {t("categoriesPage.emptyText")}
+              </p>
+              <Link
+                href={`/${locale}/products`}
+                className="mt-8 inline-flex items-center justify-center rounded-md bg-accent-gold px-6 py-3 text-sm font-medium text-dark-base"
+              >
+                {t("categoriesPage.ctaButton")}
+              </Link>
+            </div>
+          ) : (
+            <ProductGridSimple
+              products={products}
+              locale={locale}
+              elevatedCards
+              twoColumnLayout
+              listingLayout
+              labels={labels}
+            />
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  if (slug === "adventure") {
+    return (
+      <section
+        className="relative isolate overflow-hidden bg-[#fcd992] py-12 md:py-16 lg:py-20"
+        aria-labelledby="category-listing-heading"
+      >
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_-10%,rgba(255,255,255,0.85),transparent_55%)]" />
+          <div className="absolute -left-[16%] top-[12%] h-[min(42vw,22rem)] w-[min(42vw,22rem)] rounded-full bg-[#fff8e8]/90 blur-3xl" />
+          <div className="absolute -right-[12%] bottom-[-10%] h-[min(48vw,26rem)] w-[min(48vw,26rem)] rounded-full bg-[#ffe4b5]/70 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_50%,transparent_40%,rgba(120,90,40,0.08)_100%)]" />
+          <div
+            className="absolute inset-0 opacity-[0.09] mix-blend-multiply"
+            style={{ backgroundImage: PRODUCTS_LISTING_NOISE_BG }}
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+          <h2 id="category-listing-heading" className="sr-only">
+            {t(`categories.names.${slug}`, slug)}
+          </h2>
+          {products.length === 0 ? (
+            <div className="rounded-2xl border border-stone-800/15 bg-white/55 px-6 py-12 text-center shadow-sm backdrop-blur-sm md:py-16">
+              <p className="text-lg font-medium text-stone-900">
+                {t("categoriesPage.emptyTitle")}
+              </p>
+              <p className="mx-auto mt-3 max-w-md text-sm text-stone-700">
+                {t("categoriesPage.emptyText")}
+              </p>
+              <Link
+                href={`/${locale}/products`}
+                className="mt-8 inline-flex items-center justify-center rounded-md bg-emerald-800 px-6 py-3 text-sm font-medium text-white hover:bg-emerald-900"
+              >
+                {t("categoriesPage.ctaButton")}
+              </Link>
+            </div>
+          ) : (
+            <ProductGridSimple
+              products={products}
+              locale={locale}
+              elevatedCards
+              twoColumnLayout
+              listingLayout
+              labels={labels}
+            />
+          )}
+        </div>
+      </section>
+    );
+  }
+
+  /* city */
+  return (
+    <section
+      className="relative isolate overflow-hidden bg-[#0a1512] py-12 md:py-16 lg:py-20"
+      aria-labelledby="category-listing-heading"
+    >
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_88%_56%_at_50%_-12%,rgba(255,255,255,0.06),transparent_58%)]" />
+        <div className="absolute -left-[18%] top-[10%] h-[min(44vw,24rem)] w-[min(44vw,24rem)] rounded-full bg-[#1a332d]/45 blur-3xl" />
+        <div className="absolute -right-[14%] bottom-[-12%] h-[min(52vw,28rem)] w-[min(52vw,28rem)] rounded-full bg-[#020807]/55 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_100%_100%_at_50%_48%,transparent_36%,rgba(0,0,0,0.35)_100%)]" />
+        <div
+          className="absolute inset-0 opacity-[0.12] mix-blend-overlay"
+          style={{ backgroundImage: PRODUCTS_LISTING_NOISE_BG }}
+        />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-16">
+        <h2 id="category-listing-heading" className="sr-only">
+          {t(`categories.names.${slug}`, slug)}
+        </h2>
+        {products.length === 0 ? (
+          <div className="rounded-2xl border border-white/10 bg-dark-surface/40 px-6 py-12 text-center md:py-16">
+            <p className="text-lg font-medium text-text-primary">
+              {t("categoriesPage.emptyTitle")}
+            </p>
+            <p className="mx-auto mt-3 max-w-md text-sm text-text-muted">
+              {t("categoriesPage.emptyText")}
+            </p>
+            <Link
+              href={`/${locale}/products`}
+              className="mt-8 inline-flex items-center justify-center rounded-md bg-accent-gold px-6 py-3 text-sm font-medium text-dark-base"
+            >
+              {t("categoriesPage.ctaButton")}
+            </Link>
+          </div>
+        ) : (
+          <ProductGridSimple
+            products={products}
+            locale={locale}
+            elevatedCards
+            twoColumnLayout
+            listingLayout
+            labels={labels}
+          />
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default async function CategoryPage({ params }: Props) {
   const { locale, slug } = await params;
   const category = getCategoryBySlug(slug);
@@ -220,21 +282,12 @@ export default async function CategoryPage({ params }: Props) {
   const messages = await getMessages(locale);
   const t = createTranslator(messages);
   const heroImage =
-    CATEGORY_HERO_IMAGES[slug] || "/assets/images/products/gn-outdoor-002/featured01.webp";
+    CATEGORY_HERO_IMAGES[slug as ExperienceCategory] ||
+    CATEGORY_HERO_IMAGES.wine;
   const editorialIntro = category.description;
 
   const categoryLabel = t(`categories.names.${category.slug}`, category.name);
-  // H1 optimizado para SEO
-  const seoH1 =
-    categoryLabel.includes("para") || categoryLabel.includes("de")
-      ? categoryLabel
-      : `${categoryLabel}`;
-
-  const primaryStory = pickPrimaryPostForCategory(slug, messages.blog.posts);
-  const primaryStoryHref = primaryStory
-    ? `/${locale}/blog/${primaryStory.slug}`
-    : "";
-  const primaryStoryTitle = primaryStory?.post?.title || "";
+  const seoH1 = categoryLabel;
 
   const fieldStories = pickPostsForCategory(slug, messages.blog.posts, 3)
     .map(([postSlug, post]) => ({
@@ -250,95 +303,96 @@ export default async function CategoryPage({ params }: Props) {
         Boolean(post.title)
     );
 
+  const introIsLight = slug === "adventure";
+  const { prev: prevSlug, next: nextSlug } = categoryNeighbors(slug);
+  const prevCat = getCategoryBySlug(prevSlug);
+  const nextCat = getCategoryBySlug(nextSlug);
+  const prevLabel = t(
+    `categories.names.${prevSlug}`,
+    prevCat?.name ?? prevSlug
+  );
+  const nextLabel = t(
+    `categories.names.${nextSlug}`,
+    nextCat?.name ?? nextSlug
+  );
+
+  const neighborLinkClass = introIsLight
+    ? "text-sm font-medium text-stone-800/90 underline-offset-4 transition-colors hover:text-emerald-900 hover:underline"
+    : "text-sm font-medium text-text-muted underline-offset-4 transition-colors hover:text-accent-gold hover:underline";
+
   return (
-    <main className="bg-dark-base">
-      {/* Category Hero */}
-      <section className="relative min-h-[50vh] md:min-h-[60vh] flex items-end">
+    <main className="relative isolate bg-transparent">
+      <section className="relative flex min-h-[50vh] items-end md:min-h-[60vh]">
         <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt={`${category.name} hero`}
+            alt={`${categoryLabel} — hero`}
             className="h-full w-full object-cover object-center"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-dark-base/60 via-dark-base/40 to-dark-base/90" />
         <div className="relative z-10 w-full">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-16 md:pb-20">
-            <h1 className="text-4xl md:text-5xl font-semibold text-text-primary">
+          <div className="mx-auto max-w-7xl px-6 pb-16 text-center sm:px-10 md:pb-20 lg:px-16">
+            <h1 className="text-balance text-4xl font-semibold text-text-primary md:text-5xl">
               {seoH1}
             </h1>
           </div>
         </div>
       </section>
 
-      {/* Editorial intro */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
-          <p className="text-lg md:text-xl text-text-muted leading-relaxed max-w-3xl">
-            {editorialIntro}
-          </p>
-          {primaryStoryTitle && (
-            <p className="mt-6 text-sm text-text-muted max-w-2xl">
-              {t("categoriesPage.editorialIntro")}{" "}
+      <section
+        className={
+          introIsLight
+            ? "border-t border-stone-800/10 bg-[#fcd992]/85 py-12 md:py-16"
+            : "border-t border-white/5 py-12 md:py-16"
+        }
+      >
+        <div className="mx-auto max-w-6xl px-6 text-center sm:px-10 lg:px-16">
+          <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-between md:gap-6 lg:gap-10">
+            <div className="flex w-full justify-center md:w-[min(26%,11rem)] md:shrink-0 md:justify-start">
               <Link
-                href={primaryStoryHref}
-                className="text-text-primary hover:text-accent-gold transition-colors duration-200"
+                href={`/${locale}/category/${prevSlug}`}
+                className={neighborLinkClass}
               >
-                {primaryStoryTitle}
+                {prevLabel}
               </Link>
+            </div>
+            <p
+              className={
+                introIsLight
+                  ? "mx-auto max-w-3xl flex-1 text-balance text-lg leading-relaxed text-stone-900 md:text-xl"
+                  : "mx-auto max-w-3xl flex-1 text-balance text-lg leading-relaxed text-text-muted md:text-xl"
+              }
+            >
+              {editorialIntro}
             </p>
-          )}
+            <div className="flex w-full justify-center md:w-[min(26%,11rem)] md:shrink-0 md:justify-end">
+              <Link
+                href={`/${locale}/category/${nextSlug}`}
+                className={neighborLinkClass}
+              >
+                {nextLabel}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Product grid */}
-      {products.length > 0 ? (
-        <section className="pb-16 md:pb-24">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-            <div className="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-3">
-              {products.map((product) => (
-                <ProductCardSimple
-                  key={product.id}
-                  product={product}
-                  locale={locale}
-                  labels={{
-                    viewProduct: t("common.viewProduct"),
-                    addToCart: t("common.addToCart"),
-                    noImage: t("common.noImage"),
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : (
-        <section className="pb-16 md:pb-24">
-          <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-            <p className="text-lg text-text-primary mb-3">
-              {t("categoriesPage.emptyTitle")}
-            </p>
-            <p className="text-sm text-text-muted mb-8">
-              {t("categoriesPage.emptyText")}
-            </p>
-            <Link
-              href={`/${locale}/products`}
-              className="inline-flex items-center justify-center rounded-md bg-accent-gold px-6 py-3 text-sm font-medium text-dark-base"
-            >
-              {t("categoriesPage.ctaButton")}
-            </Link>
-          </div>
-        </section>
-      )}
+      <CategoryProductListing
+        slug={slug}
+        products={products}
+        locale={locale}
+        t={t}
+      />
 
       <EditorialPostCards
         title={t("categoriesPage.fieldStoriesTitle")}
         posts={fieldStories}
       />
 
-      {/* Final soft CTA */}
-      <section className="py-16 md:py-20">
-        <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
+      <section className="border-t border-white/10 py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-6 text-center sm:px-10 lg:px-16">
+          <h2 className="text-2xl font-semibold text-text-primary md:text-3xl">
             {t("categoriesPage.ctaTitle")}
           </h2>
           <div className="mt-6">
@@ -354,4 +408,3 @@ export default async function CategoryPage({ params }: Props) {
     </main>
   );
 }
-

@@ -1,8 +1,13 @@
-import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/messages";
+import { buildMetadata } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/config";
+import AboutPageContent from "@/components/about/AboutPageContent";
+
+const secondaryCtaClassName =
+  "inline-flex justify-center rounded-lg border-2 border-white/25 bg-transparent px-8 py-3.5 text-sm font-semibold text-white transition hover:border-accent-gold/60 hover:text-accent-gold focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-[#0f0a0a]";
 
 export async function generateMetadata({
   params,
@@ -11,13 +16,44 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const messages = await getMessages(locale);
-  const about = messages.aboutPage;
+  const a = messages.aboutPage;
 
-  return {
-    title: about.metaTitle,
-    description: about.metaDescription,
-  };
+  return buildMetadata({
+    locale,
+    title: a.metaTitle,
+    description: a.metaDescription,
+    pathByLocale: {
+      en: "/en/about",
+      es: "/es/about",
+      fr: "/fr/about",
+      it: "/it/about",
+    },
+    ogImage: "/assets/images/hero/home-image.webp",
+  });
 }
+
+type AboutCopy = {
+  metaTitle: string;
+  metaDescription: string;
+  heroImageAlt: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  whoTitle: string;
+  whoParagraphs: string[];
+  experiencesTitle: string;
+  experiencesIntro: string;
+  experienceCategories: { title: string; text: string }[];
+  whyTitle: string;
+  whyParagraphs: string[];
+  valuesTitle: string;
+  values: { title: string; text: string }[];
+  testimonialsTitle: string;
+  testimonials: { name: string; text: string }[];
+  ctaTitle: string;
+  ctaParagraph: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+};
 
 export default async function AboutPage({
   params,
@@ -26,133 +62,52 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const messages = await getMessages(locale);
-  const about = messages.aboutPage;
+  const a = messages.aboutPage as AboutCopy;
+  const waDigits = SITE_CONFIG.contact.whatsappPhone;
+  const whatsappHref =
+    waDigits.length > 0 ? `https://wa.me/${waDigits}` : null;
+
+  const copy = {
+    heroTitle: a.heroTitle,
+    heroSubtitle: a.heroSubtitle,
+    whoTitle: a.whoTitle,
+    whoParagraphs: a.whoParagraphs,
+    experiencesTitle: a.experiencesTitle,
+    experiencesIntro: a.experiencesIntro,
+    experienceCategories: a.experienceCategories,
+    whyTitle: a.whyTitle,
+    whyParagraphs: a.whyParagraphs,
+    valuesTitle: a.valuesTitle,
+    values: a.values,
+    testimonialsTitle: a.testimonialsTitle,
+    testimonials: a.testimonials,
+    ctaTitle: a.ctaTitle,
+    ctaParagraph: a.ctaParagraph,
+    ctaPrimary: a.ctaPrimary,
+    ctaSecondary: a.ctaSecondary,
+  };
 
   return (
-    <div className="relative min-h-[100dvh] bg-black">
+    <div className="relative min-h-[100dvh] bg-[#0f0a0a]">
       <div className="absolute inset-0">
         <Image
           src="/assets/images/hero/home-image.webp"
-          alt="Fondo About"
+          alt={a.heroImageAlt}
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
+          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/82 to-[#0f0a0a]" />
       </div>
 
-      <main className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-12 md:pt-32 md:pb-20">
-        <div className="relative z-10 space-y-10">
-          {/* 1️⃣ HERO DE MARCA */}
-          <section className="mb-16 md:mb-24">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              {about.heroTitle}
-            </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed max-w-2xl">
-              {about.heroText}
-            </p>
-          </section>
-
-        {/* 2️⃣ HISTORIA REAL DE GO NATURAL */}
-        <section className="mb-16 md:mb-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            {about.storyTitle}
-          </h2>
-          <div className="space-y-4 text-white leading-relaxed">
-            {about.storyParagraphs.map((paragraph: string, index: number) => (
-              <p key={`about-story-${index}`}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
-
-        {/* 3️⃣ FILOSOFÍA DE PRODUCTO */}
-        <section className="mb-16 md:mb-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            {about.philosophyTitle}
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">
-                {about.philosophyYesTitle}
-              </h3>
-              <ul className="space-y-2 text-white list-disc list-inside">
-                {about.philosophyYesItems.map(
-                  (item: string, index: number) => (
-                    <li key={`about-yes-${index}`}>{item}</li>
-                  )
-                )}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-white mb-3">
-                {about.philosophyNoTitle}
-              </h3>
-              <ul className="space-y-2 text-white list-disc list-inside">
-                {about.philosophyNoItems.map((item: string, index: number) => (
-                  <li key={`about-no-${index}`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <p className="text-white leading-relaxed pt-4">
-              {about.philosophyClosing}
-            </p>
-          </div>
-        </section>
-
-        {/* 4️⃣ VALORES DE MARCA */}
-        <section className="mb-16 md:mb-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-            {about.valuesTitle}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {about.values.map(
-              (value: { title: string; text: string }, index: number) => (
-                <div key={`about-value-${index}`}>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {value.title}
-                  </h3>
-                  <p className="text-white leading-relaxed">{value.text}</p>
-                </div>
-              )
-            )}
-          </div>
-        </section>
-
-        {/* 5️⃣ CONFIANZA Y TRANSPARENCIA */}
-        <section className="mb-16 md:mb-24">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            {about.trustTitle}
-          </h2>
-          <div className="space-y-6 text-white leading-relaxed">
-            {about.trust.map(
-              (item: { title: string; text: string }, index: number) => (
-                <div key={`about-trust-${index}`}>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {item.title}
-                  </h3>
-                  <p>{item.text}</p>
-                </div>
-              )
-            )}
-          </div>
-        </section>
-
-          {/* 6️⃣ CTA FINAL */}
-          <section className="text-center py-12 md:py-16 border-t border-gray-200">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {about.ctaTitle}
-            </h2>
-            <p className="text-white mb-8 max-w-xl mx-auto">{about.ctaText}</p>
-        <Link
-          href={`/${locale}/products`}
-          className="inline-block px-8 py-3 bg-white text-black font-medium rounded-md hover:bg-gray-900 transition-colors duration-200"
-        >
-              {about.ctaButton}
-            </Link>
-          </section>
-        </div>
-      </main>
+      <AboutPageContent
+        copy={copy}
+        whatsappHref={whatsappHref}
+        productsHref={`/${locale}/products`}
+        contactHref={`/${locale}/contact`}
+        secondaryCtaClassName={secondaryCtaClassName}
+      />
     </div>
   );
 }
-

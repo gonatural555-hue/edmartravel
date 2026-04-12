@@ -22,9 +22,50 @@ type ProductSummary = {
   price: number;
   category: string;
   description: string;
+  shortDescription?: string;
   images: string[];
   freeShipping?: boolean;
+  location?: string;
+  duration?: string;
+  schedule?: string[];
+  difficulty?: "easy" | "medium" | "hard";
 };
+
+const DIFFICULTY_LABEL_ES: Record<string, string> = {
+  easy: "Fácil",
+  medium: "Intermedio",
+  hard: "Exigente",
+};
+
+/** Dificultad + itinerario (ubicación y duración van en la columna principal). */
+function ExperienceItineraryBlock({ product }: { product: ProductSummary }) {
+  const hasExtra =
+    Boolean(product.difficulty) || (product.schedule && product.schedule.length > 0);
+  if (!hasExtra) return null;
+
+  return (
+    <div className="rounded-xl border border-white/10 bg-dark-surface/30 px-4 py-3 text-sm text-text-muted space-y-2">
+      {product.difficulty && (
+        <p>
+          <span className="font-medium text-text-primary/90">Nivel: </span>
+          {DIFFICULTY_LABEL_ES[product.difficulty] ?? product.difficulty}
+        </p>
+      )}
+      {product.schedule && product.schedule.length > 0 && (
+        <div>
+          <p className="font-medium text-text-primary/90 mb-1.5">Itinerario</p>
+          <ul className="list-disc list-inside space-y-1 pl-0.5">
+            {product.schedule.map((line, idx) => (
+              <li key={`${idx}-${line}`} className="text-xs text-text-muted/95">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
 
 type Props = {
   product: ProductSummary;
@@ -196,124 +237,90 @@ export default function ProductDetailClient({
   }, [productVariants, selections]);
 
   const cartImage = activeImages.featured || product.images[0];
+  const shortLead =
+    (product.shortDescription && product.shortDescription.trim()) ||
+    product.description;
 
   return (
     <>
-      {/* Mobile Layout (<1024px) - Mantener exactamente igual */}
-      <section className="lg:hidden grid gap-6 md:gap-8 items-start max-w-full pb-20">
-        {/* Galería Mobile */}
-        <div className="relative z-0 bg-dark-surface/40 rounded-2xl p-3 md:p-6 max-w-full overflow-x-hidden">
-          <ProductImageGallery
-            featured={activeImages.featured}
-            gallery={activeImages.gallery}
-            title={product.title}
-            noImageLabel={noImageLabel}
-            featuredContainerClassName={
-              showFullImage ? "aspect-auto overflow-visible" : undefined
-            }
-            featuredImageClassName={
-              showFullImage ? "object-contain h-auto mx-auto p-2 md:p-3" : undefined
-            }
-          />
+      {/* Galería (izq. desktop) + ficha de experiencia (der. desktop); una columna en mobile */}
+      <section className="grid max-w-full grid-cols-1 gap-8 pb-20 md:gap-10 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-12">
+        {/* LEFT: galería */}
+        <div className="relative z-0 min-w-0 lg:col-start-1 lg:row-start-1">
+          <div className="relative overflow-x-hidden rounded-2xl bg-dark-surface/40 p-3 md:p-6 lg:hidden">
+            <ProductImageGallery
+              featured={activeImages.featured}
+              gallery={activeImages.gallery}
+              title={product.title}
+              noImageLabel={noImageLabel}
+              featuredContainerClassName={
+                showFullImage ? "aspect-auto overflow-visible" : undefined
+              }
+              featuredImageClassName={
+                showFullImage ? "object-contain h-auto mx-auto p-2 md:p-3" : undefined
+              }
+            />
+          </div>
+          <div className="relative hidden lg:block">
+            <ProductImageGridDesktop
+              featured={activeImages.featured}
+              gallery={activeImages.gallery}
+              title={product.title}
+              noImageLabel={noImageLabel}
+            />
+          </div>
         </div>
 
-        {/* Info principal Mobile */}
-        <div className="relative z-10 flex flex-col gap-4 md:gap-7 min-w-0">
-          {/* Mobile: Precio primero (más grande que título) */}
-          <div className="order-1">
-            <div className="flex items-baseline gap-2">
-              <p className="text-4xl font-bold text-text-primary">
-                ${resolvedPrice.toFixed(2)}
-              </p>
-              {product.freeShipping && freeShippingLabel && (
-                <span className="text-xs uppercase tracking-[0.12em] text-text-muted/80">
-                  {freeShippingLabel}
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Título - más pequeño en mobile */}
-          <div className="order-2">
-            <h1 className="text-xl font-semibold text-text-primary break-words">
+        {/* RIGHT: información de la experiencia */}
+        <div className="relative z-10 min-w-0 lg:col-start-2 lg:row-start-1">
+          <div className="flex min-w-0 flex-col gap-5 md:gap-6 lg:sticky lg:top-24">
+            <h1 className="text-balance text-3xl font-bold tracking-tight text-text-primary md:text-4xl lg:text-4xl xl:text-5xl">
               {seoH1}
             </h1>
-          </div>
 
-          {/* Variantes */}
-          {productVariants && (
-            <div className="order-3 pt-1">
-              <VariantSelector
-                variants={productVariants}
-                onChange={setSelections}
-                value={selections}
-              />
-            </div>
-          )}
+            {product.location ? (
+              <p className="text-sm leading-relaxed text-text-muted/85 md:text-base">
+                {product.location}
+              </p>
+            ) : null}
 
-          {/* Descripción - visible arriba en mobile */}
-          <div className="order-4 min-w-0">
-            <p className="text-sm text-text-muted break-words line-clamp-3">
-              {product.description}
-            </p>
-          </div>
-        </div>
-      </section>
+            {product.duration ? (
+              <p className="text-sm text-text-muted md:text-base">
+                <span className="font-medium text-text-primary/80">Duración: </span>
+                {product.duration}
+              </p>
+            ) : null}
 
-      {/* Desktop Layout (>=1024px) - Layout tipo Patagonia */}
-      <section className="hidden lg:grid lg:grid-cols-[1.65fr_1fr] lg:gap-12 items-start max-w-full">
-        {/* Columna izquierda: Grid de imágenes (60-65%) */}
-        <div className="relative z-0">
-          <ProductImageGridDesktop
-            featured={activeImages.featured}
-            gallery={activeImages.gallery}
-            title={product.title}
-            noImageLabel={noImageLabel}
-          />
-        </div>
-
-        {/* Columna derecha: Info sticky (35-40%) */}
-        <div className="relative z-10">
-          <div className="sticky top-24 flex flex-col gap-6 min-w-0">
-            {/* Título */}
-            <div>
-              <h1 className="text-4xl font-semibold text-text-primary break-words">
-                {seoH1}
-              </h1>
-            </div>
-
-            {/* Precio */}
-            <div className="flex items-center gap-3 pb-1.5">
-              <p className="text-2xl font-bold text-text-primary">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-5">
+              <p className="text-3xl font-bold tabular-nums text-accent-gold md:text-4xl">
                 ${resolvedPrice.toFixed(2)}
               </p>
-              {product.freeShipping && freeShippingLabel && (
+              {product.freeShipping && freeShippingLabel ? (
                 <span className="text-xs uppercase tracking-[0.12em] text-text-muted/80">
                   {freeShippingLabel}
                 </span>
-              )}
+              ) : null}
             </div>
 
-            {/* Descripción corta */}
             <div className="min-w-0">
-              <p className="text-lg text-text-muted break-words">
-                {product.description}
+              <p className="text-base leading-relaxed text-text-muted md:text-lg">
+                {shortLead}
               </p>
             </div>
 
-            {/* Variantes */}
-            {productVariants && (
-              <div className="pt-1">
+            <ExperienceItineraryBlock product={product} />
+
+            {productVariants ? (
+              <div className="pt-0">
                 <VariantSelector
                   variants={productVariants}
                   onChange={setSelections}
                   value={selections}
                 />
               </div>
-            )}
+            ) : null}
 
-            {/* CTA */}
-            <div className="pt-1">
+            <div className="hidden pt-1 lg:block">
               <AddToCartButton
                 id={product.id}
                 title={product.title}
@@ -349,13 +356,10 @@ export default function ProductDetailClient({
             className="w-full mt-0 py-3.5 text-base"
           />
 
-          {/* Microcopy de confianza */}
-          <div className="mt-2.5 flex items-center justify-center gap-3 text-[10px] text-text-muted/70 leading-tight">
-            <span>Envíos internacionales</span>
-            <span>•</span>
-            <span>Devolución sin costo</span>
-            <span>•</span>
-            <span>Compra segura</span>
+          <div className="mt-2.5 flex items-center justify-center gap-2 text-[10px] text-text-muted/70 leading-tight">
+            <span>Reserva segura</span>
+            <span aria-hidden>·</span>
+            <span>Guías locales</span>
           </div>
         </div>
       </div>

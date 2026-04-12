@@ -5,12 +5,15 @@ import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { useAuth } from "@/context/AuthContext";
 import AuthModal from "@/components/AuthModal";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { getAllCategories } from "@/lib/categories";
+import { useEffect, useRef, useState } from "react";
 import { blogSections } from "@/lib/blog-sections";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { SITE_CONFIG } from "@/lib/config";
+import { PRODUCTS_DATA } from "@/lib/products-data";
+import { EXPERIENCE_CATEGORY_ORDER } from "@/lib/experience-categories";
+import { tourTitleForLocale } from "@/lib/tour-title-locale";
 
 export default function Header() {
   const { totalItems } = useCart();
@@ -23,12 +26,11 @@ export default function Header() {
   const [blogOpen, setBlogOpen] = useState(false);
   const blogCloseTimeout = useRef<NodeJS.Timeout | null>(null);
   const [mobileBlogOpen, setMobileBlogOpen] = useState(false);
+  const [mobileToursOpen, setMobileToursOpen] = useState(false);
   const locale = useLocale();
   const t = useTranslations();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,11 +42,6 @@ export default function Header() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    const currentQuery = searchParams.get("q") || "";
-    setSearchQuery(currentQuery);
-  }, [searchParams]);
 
   const openProductsMenu = () => {
     if (productsCloseTimeout.current) {
@@ -82,26 +79,12 @@ export default function Header() {
 
   const navLinks = [
     { href: `/${locale}`, label: t("header.nav.home") },
-    { href: `/${locale}/products`, label: t("header.nav.products") },
+    { href: `/${locale}/products`, label: t("header.nav.tours") },
     { href: `/${locale}/blog`, label: t("header.nav.blog") },
     { href: `/${locale}/cart`, label: t("header.nav.cart") },
     { href: `/${locale}/about`, label: t("header.nav.about") },
     { href: `/${locale}/contact`, label: t("header.nav.contact") },
   ];
-
-  const { mainCategories, subCategoriesByParent } = useMemo(() => {
-    const all = getAllCategories();
-    const mains = all.filter((cat) => !cat.parentSlug);
-    const subsByParent: Record<string, typeof all> = {};
-    all.filter((cat) => cat.parentSlug).forEach((sub) => {
-      const key = sub.parentSlug || "";
-      if (!subsByParent[key]) {
-        subsByParent[key] = [];
-      }
-      subsByParent[key].push(sub);
-    });
-    return { mainCategories: mains, subCategoriesByParent: subsByParent };
-  }, []);
 
   const buildLocaleHref = (nextLocale: Locale) => {
     const segments = pathname.split("/").filter(Boolean);
@@ -125,214 +108,222 @@ export default function Header() {
       ].join(" ")}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo / Brand */}
-          <Link 
-            href={`/${locale}`}
-            className="group flex items-center"
-            aria-label="Go Natural"
-          >
-            <img
-              src="/assets/images/logo/logo.webp"
-              alt="Go Natural"
-              className="h-16 md:h-22 w-auto opacity-90 transition-transform duration-300 ease-out group-hover:scale-[1.06]"
-              loading="lazy"
-              decoding="async"
-            />
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              if (link.href === `/${locale}/products`) {
-                return (
-                  <div
-                    key={link.href}
-                    className="relative"
-                    onMouseEnter={openProductsMenu}
-                    onMouseLeave={closeProductsMenu}
-                  >
-                    <Link
-                      href={link.href}
-                      className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
-                      onFocus={openProductsMenu}
-                      onBlur={closeProductsMenu}
-                      aria-haspopup="true"
-                      aria-expanded={productsOpen}
-                    >
-                      Products
-                    </Link>
-                    <div
-                      className={[
-                        "absolute left-0 top-full mt-4 w-[900px] max-w-[92vw] rounded-2xl border border-white/10 bg-dark-base/95 backdrop-blur-md shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-200 ease-out",
-                        productsOpen
-                          ? "opacity-100 translate-y-0 pointer-events-auto"
-                          : "opacity-0 translate-y-2 pointer-events-none",
-                      ].join(" ")}
-                    >
-                      <div className="p-10 columns-2 gap-16">
-                        {mainCategories.map((category) => (
-                          <div
-                            key={category.slug}
-                            className="mb-10 break-inside-avoid"
-                          >
-                            <Link
-                              href={`/${locale}/category/${category.slug}`}
-                              className="text-sm font-semibold tracking-[0.02em] text-text-primary hover:text-accent-gold transition-colors duration-200"
-                              onClick={() => setProductsOpen(false)}
-                            >
-                              {t(
-                                `categories.names.${category.slug}`,
-                                category.name
-                              )}
-                            </Link>
-                            <div className="mt-3 columns-2 gap-10">
-                              {(subCategoriesByParent[category.slug] || []).map(
-                                (sub) => (
-                                  <Link
-                                    key={sub.slug}
-                                    href={`/${locale}/category/${sub.slug}`}
-                                    className="mb-2 block break-inside-avoid text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
-                                    onClick={() => setProductsOpen(false)}
-                                  >
-                                    {t(`categories.names.${sub.slug}`, sub.name)}
-                                  </Link>
-                                )
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
-              if (link.href === `/${locale}/blog`) {
-                return (
-                  <div
-                    key={link.href}
-                    className="relative"
-                    onMouseEnter={openBlogMenu}
-                    onMouseLeave={closeBlogMenu}
-                  >
-                    <Link
-                      href={link.href}
-                      className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
-                      onFocus={openBlogMenu}
-                      onBlur={closeBlogMenu}
-                      aria-haspopup="true"
-                      aria-expanded={blogOpen}
-                    >
-                      {link.label}
-                    </Link>
-                    <div
-                      className={[
-                        "absolute left-0 top-full mt-4 w-[760px] max-w-[92vw] rounded-2xl border border-white/10 bg-dark-base/95 backdrop-blur-md shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-200 ease-out",
-                        blogOpen
-                          ? "opacity-100 translate-y-0 pointer-events-auto"
-                          : "opacity-0 translate-y-2 pointer-events-none",
-                      ].join(" ")}
-                    >
-                      <div className="p-10 columns-2 gap-16">
-                        {blogSections.map((section) => (
-                          <div
-                            key={section.slug}
-                            className="mb-10 break-inside-avoid"
-                          >
-                            <Link
-                              href={`/${locale}/blog/${section.slug}`}
-                              className="text-sm font-semibold tracking-[0.02em] text-text-primary hover:text-accent-gold transition-colors duration-200"
-                              onClick={() => setBlogOpen(false)}
-                            >
-                              {t(
-                                `blogSections.${section.slug}.title`,
-                                section.title
-                              )}
-                            </Link>
-                            <div className="mt-3 columns-2 gap-10">
-                              {section.subtopics.map((subtopic) => (
-                                <Link
-                                  key={subtopic.slug}
-                                  href={`/${locale}/blog/${section.slug}#${subtopic.slug}`}
-                                  className="mb-2 block break-inside-avoid text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
-                                  onClick={() => setBlogOpen(false)}
-                                >
-                                  {t(
-                                    `blogSections.${section.slug}.subtopics.${subtopic.slug}`,
-                                    subtopic.label
-                                  )}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Desktop Search */}
-          <form
-            className="hidden lg:flex items-center flex-1 max-w-xs mx-6"
-            onSubmit={(event) => {
-              event.preventDefault();
-              const trimmed = searchQuery.trim();
-              router.push(
-                trimmed
-                  ? `/${locale}/products?q=${encodeURIComponent(trimmed)}`
-                  : `/${locale}/products`
-              );
-            }}
-            role="search"
-          >
-            <label htmlFor="header-search" className="sr-only">
-              {t("common.searchLabel")}
-            </label>
-            <div className="relative w-full">
-              <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">
+        <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-4 py-2 md:py-2.5">
+          <div className="flex items-center gap-2">
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              className="md:hidden flex items-center justify-center w-10 h-10 text-text-muted hover:text-text-primary transition-colors duration-200"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="h-4 w-4"
-                  aria-hidden="true"
+                  className="w-6 h-6"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 6.65 6.65a7.5 7.5 0 0 0 10.6 10.6Z"
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </span>
-              <input
-                id="header-search"
-                type="search"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder={t("common.searchPlaceholder")}
-                className="w-full rounded-full border border-white/10 bg-dark-base/70 py-2.5 pl-9 pr-4 text-sm text-text-primary placeholder:text-text-muted/70 transition-colors duration-200 ease-out focus:border-accent-gold/60 focus:outline-none"
-              />
-            </div>
-          </form>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
+            </button>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => {
+                if (link.href === `/${locale}/products`) {
+                  return (
+                    <div
+                      key={link.href}
+                      className="relative"
+                      onMouseEnter={openProductsMenu}
+                      onMouseLeave={closeProductsMenu}
+                    >
+                      <Link
+                        href={link.href}
+                        className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
+                        onFocus={openProductsMenu}
+                        onBlur={closeProductsMenu}
+                        aria-haspopup="true"
+                        aria-expanded={productsOpen}
+                      >
+                        {t("header.nav.tours")}
+                      </Link>
+                      <div
+                        className={[
+                          "absolute left-0 top-full mt-4 w-[min(100vw-2rem,34rem)] rounded-2xl border border-white/10 bg-dark-base/95 backdrop-blur-md shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-200 ease-out",
+                          productsOpen
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 translate-y-2 pointer-events-none",
+                        ].join(" ")}
+                      >
+                        <div className="relative max-h-[min(70vh,32rem)] overflow-y-auto p-2">
+                          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/35 to-transparent pointer-events-none" />
+                          <div className="py-2">
+                            {EXPERIENCE_CATEGORY_ORDER.map((cat) => {
+                              const items = PRODUCTS_DATA.filter(
+                                (p) => p.category === cat
+                              );
+                              if (items.length === 0) return null;
+                              return (
+                                <div
+                                  key={cat}
+                                  className="border-b border-white/5 pb-2 last:border-b-0 last:pb-0"
+                                >
+                                  <p className="px-4 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-text-muted">
+                                    {t(`categories.names.${cat}`)}
+                                  </p>
+                                  <ul className="divide-y divide-white/5">
+                                    {items.map((product) => (
+                                      <li key={product.id}>
+                                        <Link
+                                          href={`/${locale}/products/${product.id}`}
+                                          className="block px-4 py-3 text-[13px] font-medium leading-snug tracking-[0.02em] text-text-primary/95 transition-colors duration-200 hover:bg-white/[0.04] hover:text-accent-gold rounded-xl"
+                                          onClick={() => setProductsOpen(false)}
+                                        >
+                                          {tourTitleForLocale(product, locale)}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              );
+                            })}
+                            <div className="mt-2 border-t border-white/10 pt-2">
+                              <Link
+                                href={`/${locale}/products`}
+                                className="block px-4 py-3 text-[13px] font-semibold tracking-[0.02em] text-accent-gold/95 transition-colors hover:text-accent-gold"
+                                onClick={() => setProductsOpen(false)}
+                              >
+                                {t("common.exploreAll")}
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                if (link.href === `/${locale}/blog`) {
+                  return (
+                    <div
+                      key={link.href}
+                      className="relative"
+                      onMouseEnter={openBlogMenu}
+                      onMouseLeave={closeBlogMenu}
+                    >
+                      <Link
+                        href={link.href}
+                        className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
+                        onFocus={openBlogMenu}
+                        onBlur={closeBlogMenu}
+                        aria-haspopup="true"
+                        aria-expanded={blogOpen}
+                      >
+                        {link.label}
+                      </Link>
+                      <div
+                        className={[
+                          "absolute left-0 top-full mt-4 w-[min(100vw-2rem,28rem)] max-w-[92vw] rounded-2xl border border-white/10 bg-dark-base/95 backdrop-blur-md shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-200 ease-out",
+                          "max-h-[70vh] overflow-y-auto",
+                          blogOpen
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 translate-y-2 pointer-events-none",
+                        ].join(" ")}
+                      >
+                        <div className="relative p-2">
+                          <div className="absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-accent-gold/35 to-transparent pointer-events-none" />
+                          <ul className="py-2 divide-y divide-white/5">
+                            {blogSections.map((section) => (
+                              <li key={section.slug}>
+                                <Link
+                                  href={`/${locale}/blog/${section.slug}`}
+                                  className="block px-4 py-3.5 text-[13px] leading-snug font-medium tracking-[0.02em] text-text-primary/95 hover:text-accent-gold hover:bg-white/[0.04] transition-colors duration-200 rounded-xl"
+                                  onClick={() => setBlogOpen(false)}
+                                >
+                                  {t(
+                                    `blogSections.${section.slug}.title`,
+                                    section.title
+                                  )}
+                                </Link>
+                                <div className="flex flex-col gap-2 py-2">
+                                  {section.subtopics.map((subtopic) => (
+                                    <Link
+                                      key={subtopic.slug}
+                                      href={`/${locale}/blog/${section.slug}#${subtopic.slug}`}
+                                      className="block pl-8 pr-4 py-2 text-[13px] leading-snug font-medium tracking-[0.02em] text-text-muted/95 hover:text-accent-gold hover:bg-white/[0.04] transition-colors duration-200 rounded-xl"
+                                      onClick={() => setBlogOpen(false)}
+                                    >
+                                      {t(
+                                        `blogSections.${section.slug}.subtopics.${subtopic.slug}`,
+                                        subtopic.label
+                                      )}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Logo / Brand */}
+          <Link 
+            href={`/${locale}`}
+            className="group flex shrink-0 items-center justify-self-center"
+            aria-label={SITE_CONFIG.name}
+          >
+            <img
+              src="/assets/images/logo/logo.png"
+              alt={SITE_CONFIG.name}
+              className="h-14 w-auto max-w-[min(12rem,48vw)] sm:h-16 md:h-20 md:max-w-[14rem] opacity-90 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+              loading="lazy"
+              decoding="async"
+            />
+          </Link>
 
           {/* Cart Icon + Mobile Menu Button */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 justify-self-end">
             <div className="hidden md:flex items-center gap-3">
               {locales.map((lang) => (
                 <Link
@@ -400,47 +391,6 @@ export default function Header() {
                 </span>
               )}
             </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              type="button"
-              className="md:hidden flex items-center justify-center w-10 h-10 text-text-muted hover:text-text-primary transition-colors duration-200"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
-              )}
-            </button>
             {!isLoggedIn && (
               <Link
                 href={`/${locale}/auth?tab=login`}
@@ -471,7 +421,70 @@ export default function Header() {
           <nav className="md:hidden pb-4 mt-2 pt-4 bg-dark-base/95 backdrop-blur-md rounded-b-2xl">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) =>
-                link.href === `/${locale}/blog` ? (
+                link.href === `/${locale}/products` ? (
+                  <div key={link.href} className="flex flex-col gap-2">
+                    <button
+                      type="button"
+                      className="flex items-center justify-between rounded-md px-2 py-2 text-base font-medium text-text-primary transition-colors duration-200 hover:text-accent-gold"
+                      onClick={() => setMobileToursOpen((open) => !open)}
+                      aria-expanded={mobileToursOpen}
+                      aria-controls="mobile-tours-menu"
+                    >
+                      <span>{link.label}</span>
+                      <span className="text-sm text-text-muted">
+                        {mobileToursOpen ? "−" : "+"}
+                      </span>
+                    </button>
+                    {mobileToursOpen && (
+                      <div
+                        id="mobile-tours-menu"
+                        className="px-2 pb-2 pt-1"
+                      >
+                        <Link
+                          href={`/${locale}/products`}
+                          className="block rounded-xl px-3 py-2.5 text-[13px] font-semibold tracking-[0.02em] text-accent-gold hover:bg-white/[0.04]"
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileToursOpen(false);
+                          }}
+                        >
+                          {t("common.exploreAll")}
+                        </Link>
+                        <ul className="mt-2 divide-y divide-white/5">
+                          {EXPERIENCE_CATEGORY_ORDER.map((cat) => {
+                            const items = PRODUCTS_DATA.filter(
+                              (p) => p.category === cat
+                            );
+                            if (items.length === 0) return null;
+                            return (
+                              <li key={cat} className="py-2">
+                                <p className="px-3 pb-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-text-muted">
+                                  {t(`categories.names.${cat}`)}
+                                </p>
+                                <ul className="flex flex-col gap-0.5">
+                                  {items.map((product) => (
+                                    <li key={product.id}>
+                                      <Link
+                                        href={`/${locale}/products/${product.id}`}
+                                        className="block rounded-xl px-3 py-2 text-[13px] font-medium leading-snug text-text-primary/95 hover:bg-white/[0.04] hover:text-accent-gold"
+                                        onClick={() => {
+                                          setMobileMenuOpen(false);
+                                          setMobileToursOpen(false);
+                                        }}
+                                      >
+                                        {tourTitleForLocale(product, locale)}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                ) : link.href === `/${locale}/blog` ? (
                   <div key={link.href} className="flex flex-col gap-2">
                     <button
                       type="button"
@@ -488,37 +501,39 @@ export default function Header() {
                     {mobileBlogOpen && (
                       <div
                         id="mobile-blog-menu"
-                        className="pl-3 border-l border-white/10 space-y-3"
+                        className="px-2 pt-1 pb-2"
                       >
-                        {blogSections.map((section) => (
-                          <div key={section.slug} className="space-y-2">
-                            <Link
-                              href={`/${locale}/blog/${section.slug}`}
-                              className="text-sm font-semibold text-text-primary hover:text-accent-gold transition-colors duration-200"
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {t(
-                                `blogSections.${section.slug}.title`,
-                                section.title
-                              )}
-                            </Link>
-                            <div className="flex flex-col gap-1">
-                              {section.subtopics.map((subtopic) => (
-                                <Link
-                                  key={subtopic.slug}
-                                  href={`/${locale}/blog/${section.slug}#${subtopic.slug}`}
-                                  className="text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
-                                  onClick={() => setMobileMenuOpen(false)}
-                                >
-                                  {t(
-                                    `blogSections.${section.slug}.subtopics.${subtopic.slug}`,
-                                    subtopic.label
-                                  )}
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
+                        <ul className="divide-y divide-white/5">
+                          {blogSections.map((section) => (
+                            <li key={section.slug} className="py-1">
+                              <Link
+                                href={`/${locale}/blog/${section.slug}`}
+                                className="block px-3 py-2 text-[13px] leading-snug font-medium tracking-[0.02em] text-text-primary/95 hover:text-accent-gold hover:bg-white/[0.04] transition-colors duration-200 rounded-xl"
+                                onClick={() => setMobileMenuOpen(false)}
+                              >
+                                {t(
+                                  `blogSections.${section.slug}.title`,
+                                  section.title
+                                )}
+                              </Link>
+                              <div className="flex flex-col gap-1 pt-1 pl-3">
+                                {section.subtopics.map((subtopic) => (
+                                  <Link
+                                    key={subtopic.slug}
+                                    href={`/${locale}/blog/${section.slug}#${subtopic.slug}`}
+                                    className="block px-3 py-1.5 text-[13px] leading-snug font-medium tracking-[0.02em] text-text-muted/95 hover:text-accent-gold hover:bg-white/[0.04] transition-colors duration-200 rounded-xl"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                  >
+                                    {t(
+                                      `blogSections.${section.slug}.subtopics.${subtopic.slug}`,
+                                      subtopic.label
+                                    )}
+                                  </Link>
+                                ))}
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     )}
                   </div>

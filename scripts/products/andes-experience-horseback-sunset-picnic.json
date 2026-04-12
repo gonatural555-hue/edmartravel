@@ -1,0 +1,26 @@
+{
+  "id": "andes-experience-horseback-sunset-picnic",
+  "images": {
+    "featured": ["/assets/images/products/AndesExperience/alta-montaña-2.webp"
+
+    ],
+    "gallery": [
+      "/assets/images/products/AndesExperience/alta-montaña-1.webp",
+      "/assets/images/products/CabalgataPicada/cabalgatapicada.webp",
+      "/assets/images/products/CabalgataPicada/cabalgatapicada1.webp",
+      "/assets/images/products/CabalgataPicada/cabalgatapicada2.webp",
+      "/assets/images/products/CabalgataPicada/cabalgatapicada3.webp",
+      "/assets/images/products/CabalgataPicada/cabalgatapicada4.webp",
+      "/assets/images/products/AndesTreckingHot/trekkingmendoza.webp",
+      "/assets/images/products/AndesTreckingHot/trekkingmendoza1.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  },
+  "media": {
+    "cardVideo": {
+      "src": "/assets/videos/experiences/alta-montaña.mp4",
+      "poster": "/assets/images/hero/storysection.webp"
+    }
+  }
+}

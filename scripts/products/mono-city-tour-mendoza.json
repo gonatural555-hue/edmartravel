@@ -1,0 +1,12 @@
+{
+  "id": "mono-city-tour-mendoza",
+  "images": {
+    "featured": ["/assets/images/products/MonoCityTour/monocitytour2.webp"],
+    "gallery": [
+      "/assets/images/products/MonoCityTour/monocitytour.webp",
+      "/assets/images/products/MonoCityTour/featuredmonocitytour.webp"
+    ],
+    "lifestyle": [],
+    "extras": []
+  }
+}

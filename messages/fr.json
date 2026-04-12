@@ -3,48 +3,60 @@
     "nav": {
       "home": "Accueil",
       "products": "Produits",
+      "tours": "Tours",
       "blog": "Blog",
-      "cart": "Panier",
+      "cart": "Réservations",
       "about": "À propos",
       "contact": "Contact"
     },
     "greeting": "Bonjour",
-    "account": "Compte"
+    "account": "Compte",
+    "toursMenu": {
+      "cabalgataPotrerillos": "Promenade à cheval + Picada à Potrerillos",
+      "andesSunset": "Andes Experience + Promenade à cheval + Pique-nique au coucher du soleil",
+      "luxuryWine": "Expérience vin haut de gamme",
+      "monoCity": "Mono City Tour",
+      "traslados": "Transferts privés"
+    }
   },
   "common": {
     "viewProduct": "Voir le produit",
+    "viewExperience": "Voir l’expérience",
+    "bookExperience": "Réserver",
     "addToCart": "Ajouter au panier",
     "searchPlaceholder": "Rechercher des produits",
     "searchLabel": "Rechercher des produits",
     "readArticle": "Lire l’article",
     "noImage": "Sans image",
     "exploreAll": "Explorer les collections",
-    "backToJournal": "Retour au journal"
+    "backToJournal": "Retour au journal",
+    "loading": "Chargement…",
+    "redirecting": "Redirection…"
   },
   "seo": {
     "home": {
-      "title": "Équipement outdoor premium pour l’exploration lente",
-      "description": "Du matériel conçu avec intention pour le camping, l’eau et les voyages outdoor."
+      "title": "Expériences à Mendoza | Vin, montagne et ville",
+      "description": "Réservez des visites et expériences à Mendoza : domaines viticoles, aventures en montagne et circuits urbains avec guides locaux."
     },
     "products": {
-      "title": "Produits Go Natural",
-      "description": "Équipement outdoor fonctionnel, sélectionné pour un mouvement calme et fiable."
+      "title": "Circuits et expériences à Mendoza | Edmar Travel",
+      "description": "Réservez des visites de domaines, excursions en montagne, circuits urbains et transferts privés. Opérateur local à Mendoza, approche boutique."
     },
     "categories": {
-      "title": "Collections | Go Natural",
-      "description": "Collections sélectionnées pour la montagne, l’eau, l’outdoor et le vélo."
+      "title": "Catégories d’expériences | Edmar Travel",
+      "description": "Vin, aventure et ville à Mendoza."
     },
     "blog": {
-      "title": "Journal | Go Natural",
-      "description": "Histoires d’exploration, d’équipement et de voyages silencieux."
+      "title": "Journal | Edmar Travel",
+      "description": "Récits et guides sur Mendoza, le vin et l’aventure."
     },
     "category": {
-      "titleTemplate": "{category} | Go Natural",
-      "descriptionTemplate": "Équipement {category} sélectionné pour une exploration calme et capable."
+      "titleTemplate": "{category} | Edmar Travel",
+      "descriptionTemplate": "Expériences {category} à Mendoza avec Edmar Travel."
     },
     "product": {
-      "titleTemplate": "{title} | Go Natural",
-      "descriptionTemplate": "Détails et spécifications de {title}, pensé pour un usage outdoor réel."
+      "titleTemplate": "{title} | Edmar Travel",
+      "descriptionTemplate": "Détails de l’expérience {title} à Mendoza."
     },
     "blogPost": {
       "titleTemplate": "{title} | Journal",
@@ -52,10 +64,11 @@
     }
   },
   "hero": {
-    "titleLine1": "Explorer n’est pas fuir.",
-    "titleLine2": "C’est revenir à l’essentiel.",
-    "subtitle": "Équipement pensé pour ceux qui voyagent avec intention.",
-    "cta": "Explorer la collection"
+    "mainTitle": "Découvrez Mendoza comme jamais auparavant",
+    "subheading": "Vins, montagne et aventure en expériences uniques",
+    "ctaPrimary": "Voir les expériences",
+    "ctaSecondary": "Contact",
+    "imageAlt": "Paysage de Mendoza avec montagnes et vignobles"
   },
   "categoriesSection": {
     "items": {
@@ -78,13 +91,90 @@
     "intro": "Récits et réflexions inspirés par la vie en plein air.",
     "cta": "Lire le journal"
   },
-  "featured": {
-    "title": "Sélection essentielle",
-    "subtitle": "Une curation silencieuse pour un mouvement calme et fiable."
+  "featuredExperiences": {
+    "title": "Expériences en vedette",
+    "badge": "Sélection Edmar",
+    "headline": "Des expériences qui définissent Mendoza",
+    "subheadline": "Sélectionnées pour vous offrir le meilleur du vin, de la montagne et de l’aventure",
+    "carouselAria": "Carrousel d’expériences sélectionnées"
+  },
+  "experienceCategories": {
+    "title": "Explorer par catégorie",
+    "wine": "Vin",
+    "adventure": "Aventure",
+    "city": "Ville",
+    "altWine": "Vignobles et expériences viticoles à Mendoza",
+    "altAdventure": "Paysage de montagne et aventure en plein air",
+    "altCity": "Ville de Mendoza et centre-ville"
+  },
+  "experiencePage": {
+    "breadcrumbHome": "Accueil",
+    "breadcrumbExperiences": "Expériences",
+    "fromPrice": "À partir de",
+    "perPerson": "par personne",
+    "ctaReserve": "Réserver",
+    "ctaWhatsApp": "Écrire sur WhatsApp",
+    "ctaWhatsAppShort": "WhatsApp",
+    "quickFactsTitle": "En bref",
+    "labelDuration": "Durée",
+    "labelLocation": "Lieu",
+    "labelLanguage": "Langue",
+    "labelDifficulty": "Niveau",
+    "labelGroup": "Taille du groupe",
+    "labelSeason": "Saison",
+    "labelPickup": "Rendez-vous / prise en charge",
+    "labelCancellation": "Annulation",
+    "whyLoveTitle": "Pourquoi vous allez adorer",
+    "editorialTitle": "L’expérience",
+    "itineraryTitle": "Itinéraire",
+    "placesTitle": "Ce que vous allez vivre",
+    "includedTitle": "Inclus",
+    "excludedTitle": "Non inclus",
+    "practicalTitle": "Infos pratiques",
+    "whatToBring": "Quoi apporter",
+    "restrictions": "Restrictions",
+    "weather": "Météo",
+    "pickupDetails": "Point de rendez-vous",
+    "faqTitle": "FAQ",
+    "socialTitle": "Confiance des voyageurs",
+    "finalCtaTitle": "Prêt à vivre Mendoza ?",
+    "finalCtaSubtitle": "Réservez votre place ou écrivez-nous sur WhatsApp — nous répondons rapidement.",
+    "finalCtaPrimary": "Réserver",
+    "finalCtaSecondary": "WhatsApp",
+    "relatedTitle": "Autres expériences",
+    "stickyTrust": "Réservation avec conseiller local",
+    "difficultyEasy": "Léger",
+    "difficultyMedium": "Modéré",
+    "difficultyHard": "Exigeant",
+    "variantTitle": "Options",
+    "galleryTitle": "Plus de photos",
+    "comingSoonBanner": "Bientôt disponible",
+    "comingSoonHint": "La réservation en ligne n’est pas encore ouverte. Écrivez-nous sur WhatsApp pour la liste d’attente.",
+    "ctaAvailableSoon": "Bientôt disponible",
+    "finalCtaSubtitleComingSoon": "Cette expérience n’est pas encore en vente — contactez-nous sur WhatsApp pour la liste d’attente.",
+    "notFound": "Expérience introuvable"
+  },
+  "testimonials": {
+    "title": "Ce que disent sur Google les voyageurs après Mendoza",
+    "googleCta": "Voir les avis sur Google",
+    "googleCtaAria": "Ouvrir les avis Edmar Travel sur Google Maps (nouvel onglet)",
+    "item1": {
+      "name": "Francisco Inza",
+      "text": "Super expérience, paysage magnifique et service d’agence au top ! Sans hésiter je referais."
+    },
+    "item2": {
+      "name": "Gianella Velasco",
+      "text": "Tout était génial !! La soirée boat party était la meilleure 💛"
+    },
+    "item3": {
+      "name": "Dana Gutiérrez",
+      "text": "J’ai adoré !! L’asado sur le boat party et la bière pression, tout était excellent ! Je recommande à fond 😊😊"
+    }
   },
   "finalCta": {
-    "title": "Votre voyage ne s’arrête pas ici.",
-    "cta": "Explorer les collections"
+    "title": "Vivez Mendoza autrement",
+    "cta": "Découvrir les expériences",
+    "whatsapp": "Nous contacter sur WhatsApp"
   },
   "home": {
     "benefits": [
@@ -124,8 +214,9 @@
     ]
   },
   "productsPage": {
-    "title": "Produits Go Natural",
-    "subtitle": "Équipement outdoor fonctionnel pour voyager léger et avancer librement."
+    "eyebrow": "Edmar Travel · Mendoza",
+    "title": "Circuits et moments forts entre vignobles, montagne et ville",
+    "subtitle": "Sorties organisées, guides locaux et transferts pour découvrir Mendoza avec authenticité et un service sur mesure. Choisissez votre prochaine expérience et réservez en toute sérénité."
   },
   "categoriesPage": {
     "ctaTitle": "Continuer l’exploration.",
@@ -150,243 +241,254 @@
   },
   "legal": {
     "privacy": {
-      "metaTitle": "Politique de confidentialité | Go Natural",
-      "metaDescription": "Comment nous traitons les données personnelles et protégeons votre vie privée.",
+      "metaTitle": "Politique de confidentialité | Edmar Travel",
+      "metaDescription": "Comment Edmar Travel traite les données personnelles lorsque vous consultez ou réservez des expériences à Mendoza.",
       "title": "Politique de confidentialité",
-      "intro": "Nous prenons la confidentialité au sérieux. Cette politique explique ce que nous collectons, pourquoi, et comment nous protégeons vos données.",
-      "updatedAt": "Dernière mise à jour : janvier 2026",
+      "intro": "Chez Edmar Travel (nom commercial), nous traitons vos données avec soin. Cette politique explique ce que nous collectons, dans quel but et comment exercer vos droits. Le responsable du traitement est EDGAR DAVID NUÑEZ ZAVALLA (CUIT 20-43925089-6), domicilié au Salta 1393, 2e étage, appartement 8, Ciudad de Mendoza, Argentine.",
+      "updatedAt": "Dernière mise à jour : avril 2026",
       "sections": [
         {
           "title": "Ce que nous collectons",
           "paragraphs": [
-            "Les informations que vous fournissez, comme le nom, l’email, l’adresse de livraison et les détails de commande.",
-            "Les messages que vous nous envoyez, y compris les demandes d’assistance.",
-            "Des données techniques de base telles que l’appareil, le navigateur et les pages visitées pour maintenir le site fiable."
+            "Les informations que vous fournissez lors d’une demande ou d’une réservation d’expérience touristique : nom, e-mail, téléphone ou autres données nécessaires à la réservation ou à la communication, selon le cas.",
+            "Les messages que vous nous envoyez (demandes, WhatsApp le cas échéant, assistance).",
+            "Des données techniques de base (appareil, navigateur, pages visitées) pour maintenir le site stable et sécurisé."
           ]
         },
         {
           "title": "Comment nous utilisons les informations",
           "paragraphs": [
-            "Pour traiter les commandes, livrer les produits et fournir l’assistance.",
-            "Pour améliorer l’expérience et assurer la sécurité.",
-            "Pour répondre aux obligations légales et comptables si nécessaire."
+            "Pour gérer les demandes, les réservations, les paiements liés à l’expérience réservée et la communication avant ou après le service.",
+            "Pour améliorer l’expérience du site et assurer la sécurité.",
+            "Pour respecter les obligations légales et comptables le cas échéant."
           ]
         },
         {
           "title": "Bases légales",
           "paragraphs": [
-            "Nous traitons les données sur la base du consentement, de la nécessité contractuelle, des intérêts légitimes ou des obligations légales.",
-            "Vous pouvez retirer votre consentement lorsqu’il est requis."
+            "Nous traitons les données sur la base du consentement, de l’exécution de mesures précontractuelles ou du contrat, d’intérêts légitimes (par exemple la sécurité du site) ou d’obligations légales, conformément au droit applicable.",
+            "Vous pouvez retirer votre consentement lorsque le traitement y est fondé, sans affecter la licéité du traitement antérieur."
           ]
         },
         {
-          "title": "Partage avec des partenaires de confiance",
+          "title": "Sous-traitants et prestataires",
           "paragraphs": [
-            "Nous partageons uniquement ce qui est nécessaire avec les prestataires de paiement, de logistique et de services.",
+            "Nous ne partageons que le nécessaire avec les prestataires qui nous aident à opérer, notamment pour les paiements. Les paiements par carte ou autres moyens peuvent transiter par PayPal ou d’autres prestataires, qui traitent les données selon leurs propres politiques.",
+            "Lorsque des tiers (domaines viticoles, guides, transport, etc.) assurent l’expérience, nous pouvons partager les données minimales nécessaires à la coordination, selon l’expérience réservée.",
             "Nous ne vendons pas de données personnelles."
           ]
         },
         {
           "title": "Transferts internationaux",
           "paragraphs": [
-            "Si des données sont traitées hors de votre pays, nous appliquons des garanties adaptées."
+            "Si un prestataire (par ex. PayPal) traite des données hors d’Argentine, les garanties et conditions prévues par le droit applicable et par la politique de ce prestataire s’appliquent."
           ]
         },
         {
           "title": "Conservation et sécurité",
           "paragraphs": [
-            "Nous conservons les données seulement le temps nécessaire ou requis par la loi.",
-            "Nous appliquons des mesures raisonnables pour protéger vos informations."
+            "Nous conservons les informations le temps nécessaire aux finalités indiquées ou la durée exigée par la loi.",
+            "Nous appliquons des mesures raisonnables pour limiter les accès non autorisés ou les usages abusifs."
           ]
         },
         {
           "title": "Vos droits",
           "paragraphs": [
-            "Vous pouvez demander l’accès, la correction, la suppression, la portabilité ou la limitation de vos données.",
-            "Vous pouvez également vous opposer à certains usages ou retirer votre consentement."
+            "Selon le droit applicable, vous pouvez demander l’accès, la rectification, la suppression, la limitation, vous opposer à certains traitements ou exercer d’autres droits prévus.",
+            "Pour les exercer ou poser des questions : edmartravelsas@gmail.com ou +54 9 261 757-3651."
           ]
         },
         {
           "title": "Contact",
           "paragraphs": [
-            "Pour toute question sur cette politique, contactez‑nous à [votre-email-de-contact]."
+            "EDGAR DAVID NUÑEZ ZAVALLA — Edmar Travel. E-mail : edmartravelsas@gmail.com. Téléphone : +54 9 261 757-3651. Adresse : Salta 1393, 2e étage, appartement 8, Ciudad de Mendoza, Argentine."
           ]
         }
       ],
-      "closing": "Nous révisons cette politique pour rester clairs et respectueux de votre vie privée."
+      "closing": "Nous révisons cette politique régulièrement pour l’aligner sur nos services et la réglementation applicable."
     },
     "cookies": {
-      "metaTitle": "Politique de cookies | Go Natural",
-      "metaDescription": "Comment nous utilisons les cookies pour faire fonctionner le site et améliorer l’expérience.",
+      "metaTitle": "Politique de cookies | Edmar Travel",
+      "metaDescription": "Utilisation des cookies sur le site Edmar Travel pour le fonctionnement, les préférences et l’amélioration du service.",
       "title": "Politique de cookies",
-      "intro": "Les cookies permettent au site de fonctionner correctement et de mémoriser des préférences simples. Nous les utilisons avec sobriété.",
-      "updatedAt": "Dernière mise à jour : janvier 2026",
+      "intro": "Les cookies aident le site Edmar Travel à fonctionner correctement et à mémoriser des préférences simples (par ex. la langue). Nous les utilisons avec mesure.",
+      "updatedAt": "Dernière mise à jour : avril 2026",
       "sections": [
         {
           "title": "Que sont les cookies",
           "paragraphs": [
-            "Ce sont de petits fichiers stockés sur votre appareil pour aider les sites à fonctionner et à mémoriser des réglages."
+            "De petits fichiers texte que le navigateur peut enregistrer sur votre appareil pour que le site fonctionne ou se souvienne de certains réglages."
           ]
         },
         {
           "title": "Comment nous les utilisons",
           "paragraphs": [
             "Pour maintenir la sécurité et la stabilité du site.",
-            "Pour mémoriser des réglages comme la langue.",
-            "Pour comprendre quelles pages sont les plus utiles et les améliorer."
+            "Pour mémoriser des réglages de base comme la langue.",
+            "Pour comprendre de manière agrégée quelles pages sont les plus utiles et améliorer l’expérience."
           ]
         },
         {
-          "title": "Types de cookies utilisés",
+          "title": "Types de cookies",
           "paragraphs": [
-            "Cookies essentiels pour le fonctionnement et la sécurité.",
-            "Cookies de préférence pour mémoriser des réglages comme la langue.",
-            "Cookies d’analyse pour comprendre les performances de manière agrégée."
+            "Cookies essentiels au fonctionnement et à la sécurité.",
+            "Cookies de préférence (par ex. langue).",
+            "Cookies d’analyse agrégée, le cas échéant."
           ]
         },
         {
           "title": "Gérer les cookies",
           "paragraphs": [
-            "Vous pouvez gérer les cookies dans votre navigateur, y compris les bloquer ou les supprimer.",
-            "Désactiver les cookies peut limiter certaines fonctionnalités du site."
+            "Vous pouvez gérer ou supprimer les cookies dans les paramètres de votre navigateur.",
+            "Les désactiver peut limiter certaines fonctionnalités du site."
           ]
         },
         {
           "title": "Mises à jour",
           "paragraphs": [
-            "Nous pouvons mettre à jour cette politique si nos services évoluent."
+            "Nous pouvons mettre à jour cette politique si nos services ou l’usage des cookies évoluent."
           ]
         },
         {
           "title": "Contact",
           "paragraphs": [
-            "Pour toute question sur les cookies, écrivez‑nous à [votre-email-de-contact]."
+            "Questions sur les cookies : edmartravelsas@gmail.com ou +54 9 261 757-3651."
           ]
         }
       ],
-      "closing": "Nous privilégions la transparence et la simplicité dans l’usage des cookies."
+      "closing": "Nous visons la transparence dans l’usage des cookies."
     },
     "terms": {
-      "metaTitle": "Conditions générales | Go Natural",
-      "metaDescription": "Conditions d’utilisation du site et d’achat chez Go Natural.",
+      "metaTitle": "Conditions générales | Edmar Travel",
+      "metaDescription": "Conditions d’utilisation du site et de réservation d’expériences touristiques avec Edmar Travel à Mendoza.",
       "title": "Conditions générales",
-      "intro": "Ces conditions expliquent le fonctionnement du site et ce que vous pouvez attendre lors d’un achat. Elles sont rédigées pour rester claires et justes.",
-      "updatedAt": "Dernière mise à jour : janvier 2026",
+      "intro": "Les présentes conditions régissent l’utilisation du site Edmar Travel et les conditions générales de réservation d’expériences touristiques et de services connexes sous cette enseigne, proposés par ou via EDGAR DAVID NUÑEZ ZAVALLA (CUIT 20-43925089-6), domicilié au Salta 1393, 2e étage, appartement 8, Ciudad de Mendoza, Argentine.",
+      "updatedAt": "Dernière mise à jour : avril 2026",
       "sections": [
         {
           "title": "Utilisation du site",
           "paragraphs": [
-            "En utilisant ce site, vous acceptez de le faire de manière respectueuse et légale.",
-            "Nous pouvons mettre à jour le site ou suspendre certaines fonctions pour préserver la qualité."
+            "En utilisant ce site, vous acceptez de le faire de manière licite et respectueuse.",
+            "Nous pouvons modifier le site ou suspendre des fonctionnalités pour préserver la sécurité et la qualité."
           ]
         },
         {
-          "title": "Commandes et disponibilité",
+          "title": "Nature du service",
           "paragraphs": [
-            "Une commande est une demande d’achat ; elle est confirmée lorsqu’elle est traitée.",
-            "La disponibilité peut évoluer et des limites de quantité peuvent s’appliquer."
+            "Edmar Travel organise et intermédie des expériences touristiques à Mendoza et aux alentours (vin, aventure, ville), telles que publiées sur le site.",
+            "Une partie de la prestation peut être assurée par des tiers indépendants (prestataires locaux, guides, domaines, transport, etc.). Les conditions spécifiques de l’expérience réservée et le droit applicable prévalent le cas échéant."
           ]
         },
         {
-          "title": "Prix et paiement",
+          "title": "Réservations et disponibilité",
           "paragraphs": [
-            "Les prix sont indiqués clairement et peuvent varier avant confirmation.",
-            "Les paiements sont traités via des prestataires fiables."
+            "Les demandes via le site ne valent pas confirmation tant que la réservation n’est pas expressément convenue et, le cas échéant, le paiement ou l’acompte effectué comme indiqué pour chaque expérience.",
+            "Disponibilité, horaires, taille du groupe et langue peuvent varier ; nous vous informerons selon l’expérience choisie."
           ]
         },
         {
-          "title": "Livraison et retours",
+          "title": "Prix et moyens de paiement",
           "paragraphs": [
-            "Les délais de livraison sont estimatifs et peuvent varier.",
-            "Si un produit arrive endommagé ou incorrect, contactez‑nous pour résoudre la situation."
+            "Les prix affichés sont présentés avec le plus de clarté possible ; ils peuvent être mis à jour avant confirmation définitive de la réservation.",
+            "Nous pouvons proposer le paiement par PayPal, virement bancaire et, si convenu, en espèces, selon le service.",
+            "Les paiements via PayPal ou d’autres prestataires sont aussi soumis à leurs conditions."
           ]
         },
         {
-          "title": "Utilisation des produits",
+          "title": "Annulations, modifications et remboursements",
           "paragraphs": [
-            "Utilisez les produits conformément à leur usage et aux instructions d’entretien.",
-            "Les activités outdoor comportent des risques ; choisissez un équipement adapté."
+            "Les règles d’annulation, de report et de remboursement dépendent de l’expérience réservée, du calendrier du prestataire et du droit applicable. Nous communiquerons délais et règles précis lors de la confirmation ou sur la fiche de l’expérience lorsque disponible.",
+            "En règle générale, une annulation avec plus de préavis permet davantage d’options de report ou de remboursement partiel, selon la politique du prestataire et les frais déjà engagés ; une annulation tardive ou une absence peut entraîner des frais partiels ou totaux non remboursables.",
+            "Si la prestation est impossible en raison de force majeure, conditions météo extrêmes ou décisions opérationnelles de tiers, nous chercherons à reporter ou à proposer des alternatives raisonnables ; tout remboursement, le cas échéant, sera traité conformément au droit applicable et aux conditions de votre réservation.",
+            "Les frais bancaires, d’opérateur de paiement (y compris PayPal le cas échéant) ou administratifs déjà engagés peuvent ne pas être remboursables même si le reste du montant l’est.",
+            "Réclamations ou questions : edmartravelsas@gmail.com ou +54 9 261 757-3651."
+          ]
+        },
+        {
+          "title": "Participation aux expériences",
+          "paragraphs": [
+            "Les activités en plein air, dans les domaines, en véhicule ou en ville comportent des risques variables. Les participants doivent évaluer leur état de santé, les conditions du jour et suivre les consignes des guides ou prestataires.",
+            "Vous devez respecter les consignes de sécurité et les règles des lieux et des opérateurs tiers."
           ]
         },
         {
           "title": "Propriété intellectuelle",
           "paragraphs": [
-            "Le contenu du site appartient à Go Natural ou à ses partenaires et ne peut être réutilisé sans autorisation."
+            "Textes, images, marques et design du site appartiennent à Edmar Travel ou à des tiers ayant autorisé leur usage ; toute reproduction sans autorisation est interdite."
           ]
         },
         {
           "title": "Limitation de responsabilité",
           "paragraphs": [
-            "Nous ne sommes pas responsables des dommages indirects liés à l’usage du site ou des produits.",
-            "Rien dans ces conditions ne limite les droits qui ne peuvent pas être exclus par la loi."
+            "Dans la mesure permise par le droit applicable, nous déclinons toute responsabilité pour les dommages indirects ou consécutifs liés à l’usage du site ou à la réservation, sans préjudice des droits non renonçables.",
+            "La responsabilité liée à l’exécution de l’expérience peut incomber en partie à des prestataires tiers selon les cas."
           ]
         },
         {
           "title": "Mises à jour et contact",
           "paragraphs": [
-            "Nous pouvons mettre à jour ces conditions ; la version en vigueur sera toujours disponible ici.",
-            "Questions : [votre-email-de-contact]."
+            "Nous pouvons mettre à jour ces conditions ; la version publiée sur le site fait foi.",
+            "Contact : edmartravelsas@gmail.com — Tél. : +54 9 261 757-3651 — EDGAR DAVID NUÑEZ ZAVALLA, Edmar Travel, Salta 1393, 2e étage, appartement 8, Mendoza, Argentine."
           ]
         }
       ],
-      "closing": "Notre objectif est une expérience calme et claire, de la visite à la livraison."
+      "closing": "Notre objectif : réserver et découvrir Mendoza avec des informations claires et un échange direct."
     },
     "disclaimer": {
-      "metaTitle": "Avis de non‑responsabilité | Go Natural",
-      "metaDescription": "Informations importantes sur l’usage du site, les activités outdoor et les limites de responsabilité.",
-      "title": "Avis de non‑responsabilité",
-      "intro": "Nous proposons du contenu et des produits pour une exploration réfléchie. Cet avis clarifie les limites de notre responsabilité.",
-      "updatedAt": "Dernière mise à jour : janvier 2026",
+      "metaTitle": "Avis de non-responsabilité | Edmar Travel",
+      "metaDescription": "Portée informative du site, risques des activités touristiques et limites de responsabilité d’Edmar Travel.",
+      "title": "Avis de non-responsabilité",
+      "intro": "Edmar Travel fournit des informations et un canal de contact pour des expériences touristiques. Le présent avis précise les limites de responsabilité et des informations générales.",
+      "updatedAt": "Dernière mise à jour : avril 2026",
       "sections": [
         {
           "title": "Informations générales",
           "paragraphs": [
-            "Le contenu du site est fourni à titre informatif et ne remplace pas un avis professionnel.",
-            "Nous cherchons l’exactitude sans garantir que tout soit complet ou à jour en permanence."
+            "Le contenu du site est indicatif et ne remplace pas un conseil juridique, médical ou technique spécialisé.",
+            "Nous visons l’exactitude, mais services, prix ou conditions peuvent changer sans mise à jour immédiate du site."
           ]
         },
         {
-          "title": "Risque en activités outdoor",
+          "title": "Activités touristiques et risques",
           "paragraphs": [
-            "Les activités de plein air comportent des risques liés au climat, au terrain et à l’effort.",
-            "Vous êtes responsable d’évaluer les conditions et votre niveau."
+            "Excursions, dégustations, transferts, activités montagne ou ville impliquent des risques variables (circulation, météo, terrain, alimentation, alcool lors de dégustations, etc.).",
+            "Chaque participant est responsable d’évaluer si l’activité lui convient et de suivre les consignes du personnel autorisé."
           ]
         },
         {
-          "title": "Utilisation des produits",
+          "title": "Prestataires tiers",
           "paragraphs": [
-            "Les produits doivent être utilisés conformément à leur usage prévu et entretenus correctement.",
-            "Un usage inapproprié ou des modifications peuvent entraîner des blessures ou des dommages."
+            "De nombreuses expériences sont assurées ou co-organisées par des tiers. Edmar Travel ne contrôle pas tous les aspects opérationnels de ces tiers.",
+            "Les réclamations liées à la prestation sur place peuvent nécessiter une coordination avec le prestataire concerné, sans préjudice du droit applicable et des conditions de votre réservation."
           ]
         },
         {
           "title": "Liens externes",
           "paragraphs": [
-            "Nous pouvons renvoyer vers des sites tiers. Nous n’en contrôlons ni le contenu ni les pratiques."
+            "Les liens vers des sites tiers sont fournis pour convenance ; nous ne sommes pas responsables de leur contenu ni de leurs politiques."
           ]
         },
         {
           "title": "Limitation de responsabilité",
           "paragraphs": [
-            "Dans la mesure permise par la loi, Go Natural n’est pas responsable des pertes liées à l’usage du site, de son contenu ou de ses produits.",
+            "Dans la mesure permise par le droit applicable, EDGAR DAVID NUÑEZ ZAVALLA et Edmar Travel ne sont pas responsables des pertes résultant de l’usage du site ou de son contenu, sans préjudice des droits non renonçables.",
             "Rien ici ne limite les droits que la loi ne permet pas d’exclure."
           ]
         },
         {
           "title": "Règles locales",
           "paragraphs": [
-            "Certaines activités nécessitent des autorisations ou des mesures spécifiques selon votre localisation.",
-            "Vous êtes responsable du respect des règles locales."
+            "Des règles locales peuvent s’appliquer sur le lieu de l’activité (âge minimum, consommation d’alcool, accès, etc.). Il vous appartient de vous informer et de vous y conformer."
           ]
         },
         {
           "title": "Contact",
           "paragraphs": [
-            "Pour toute question, contactez‑nous à [votre-email-de-contact]."
+            "Questions sur cet avis : edmartravelsas@gmail.com ou +54 9 261 757-3651."
           ]
         }
       ],
-      "closing": "Respectez l’environnement, avancez avec soin, et faites des choix responsables."
+      "closing": "Profitez de Mendoza dans le respect de l’environnement, des personnes et des règles locales."
     }
   },
   "footer": {
@@ -394,7 +496,7 @@
     "companyTitle": "Entreprise",
     "legalTitle": "Légal",
     "trustTitle": "Confiance",
-    "brandBlurb": "Équipement outdoor discret pour ceux qui avancent avec intention.",
+    "brandBlurb": "La meilleure façon de découvrir Mendoza, c’est avec nous.",
     "links": {
       "home": "Accueil",
       "products": "Produits",
@@ -408,10 +510,10 @@
       "disclaimer": "Avis de non‑responsabilité"
     },
     "trustItems": [
-      "Paiements sécurisés",
-      "Livraison fiable",
-      "Support humain",
-      "Achat en toute confiance"
+      "Paiements : PayPal, virement ou espèces",
+      "Guides et opérateurs locaux",
+      "Assistance par e-mail et WhatsApp",
+      "Réservations avec informations claires"
     ],
     "rights": "Tous droits réservés."
   },
@@ -421,7 +523,7 @@
     "decline": "Refuser"
   },
   "registrationCTA": {
-    "title": "Livraison gratuite pendant 1 an",
+    "title": "Réduction pour les nouveaux utilisateurs",
     "subtitle": "Créez votre compte et profitez d'un paiement plus rapide",
     "secondaryText": "Uniquement pour les nouveaux utilisateurs",
     "cta": "Créer un compte",
@@ -429,21 +531,34 @@
     "expand": "Développer"
   },
   "cartPage": {
-    "emptyTitle": "Votre panier est vide",
-    "emptyText": "Ajoutez des produits pour commencer votre achat.",
-    "emptyCta": "Voir les produits",
-    "title": "Panier",
-    "unitPrice": "Prix unitaire",
+    "emptyImageAlt": "Aucune réservation",
+    "emptyTitle": "Vous n’avez pas encore choisi d’expérience",
+    "emptyText": "Parcourez nos sorties à Mendoza et composez votre réservation tranquillement.",
+    "emptyCta": "Voir les expériences",
+    "kicker": "Votre voyage",
+    "title": "Réservations",
+    "intro": "Vérifiez votre choix et indiquez-nous quand vous souhaitez vivre l’expérience. Nous affinons les détails avec vous.",
+    "experienceSection": "Votre expérience",
+    "experienceHint": "Ajustez le nombre de personnes si vous voyagez à plusieurs.",
+    "detailsSection": "Détails de la sortie",
+    "detailsHint": "Date, heure et notes nous aident à tout préparer à l’avance.",
+    "fieldDate": "Date souhaitée",
+    "fieldTime": "Heure souhaitée",
+    "fieldParty": "Personnes",
+    "fieldNotes": "Notes ou demandes particulières",
+    "fieldNotesPlaceholder": "Régimes alimentaires, célébrations, rythme de la sortie…",
+    "unitPrice": "Prix par personne",
     "decreaseQty": "Diminuer la quantité",
     "increaseQty": "Augmenter la quantité",
-    "remove": "Supprimer",
+    "remove": "Retirer",
     "itemSubtotal": "Sous-total",
-    "summaryTitle": "Résumé de la commande",
+    "summaryTitle": "Résumé",
+    "summaryLead": "Total estimé pour votre expérience.",
     "summarySubtotal": "Sous-total",
-    "summaryNote": "Les frais de livraison et taxes seront calculés à la caisse",
-    "summaryTotal": "Total estimé",
-    "checkout": "Passer à la caisse",
-    "continueShopping": "← Continuer les achats",
+    "summaryNote": "Le montant correspond à l’expérience choisie ; le paiement et la coordination se finalisent à l’étape suivante.",
+    "summaryTotal": "Total",
+    "confirmCta": "Confirmer la réservation",
+    "continueShopping": "← Continuer à explorer",
     "variantLabels": {
       "size": "Taille",
       "color": "Couleur",
@@ -486,14 +601,15 @@
   },
   "contactPage": {
     "title": "Contact",
-    "intro": "Vous avez une question sur nos produits, une commande ou besoin d’aide ? Nous sommes là pour vous aider. Notre équipe support lit chaque message et répond dès que possible.",
+    "backgroundAlt": "Paysage de montagne, arrière-plan de la page contact Edmar Travel",
+    "intro": "Une question sur nos circuits, une réservation ou besoin d’aide ? Chez Edmar Travel nous lisons chaque message et répondons dès que possible — une équipe locale à Mendoza.",
     "emailTitle": "Email",
     "hoursTitle": "Horaires",
     "hoursLine1": "Lundi au vendredi : 9:00 - 18:00",
     "hoursLine2": "Samedi : 10:00 - 14:00",
-    "hoursLine3": "Dimanche : Fermé",
+    "hoursLine3": "Dimanche : fermé",
     "quickTitle": "Réponse rapide :",
-    "quickText": "Nous répondons généralement sous 24–48 heures. Si votre demande est urgente, indiquez-le et nous ferons de notre mieux pour répondre plus vite.",
+    "quickText": "Nous répondons en général sous 24–48 heures. Si c’est urgent, indiquez « urgent » dans l’objet ou en début de message et nous ferons de notre mieux pour répondre plus vite.",
     "form": {
       "nameLabel": "Nom",
       "namePlaceholder": "Votre nom",
@@ -501,78 +617,94 @@
       "emailPlaceholder": "vous@email.com",
       "messageLabel": "Message",
       "messagePlaceholder": "Dites-nous comment nous pouvons aider...",
-      "submit": "Envoyer le message"
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours…",
+      "success": "Merci — nous avons bien reçu votre message et vous répondrons bientôt.",
+      "error": "Impossible d’envoyer le message. Réessayez dans quelques minutes."
     }
   },
   "aboutPage": {
-    "metaTitle": "À propos de Go Natural | Notre histoire et nos valeurs",
-    "metaDescription": "Découvrez l’histoire de Go Natural. Nous concevons des produits fonctionnels pour une vie plus simple, active et réelle. Outdoor et lifestyle sans excès.",
-    "heroTitle": "Nous concevons des produits pour une vie plus simple, active et réelle",
-    "heroText": "Go Natural est né du besoin de produits fonctionnels, bien conçus et accessibles pour ceux qui vivent en mouvement. Sans complications, sans excès, seulement l’essentiel qui fonctionne vraiment.",
-    "storyTitle": "Pourquoi Go Natural existe",
-    "storyParagraphs": [
-      "Go Natural est né de la frustration de trouver des produits outdoor soit trop chers, soit qui ne tiennent pas leurs promesses. Nous en avions assez de payer des marques qui vendent du style plutôt que de la fonctionnalité, et des produits bon marché qui cassent dès la première utilisation.",
-      "Nous pensons que l’équipement pour l’aventure et la vie active devrait être accessible, durable et honnête. Pas besoin de la dernière technologie pour une randonnée du week-end, ni de payer le double pour un logo.",
-      "Nous sélectionnons chaque produit en pensant à l’usage réel : des sacs qui résistent à l’usure, des vêtements qui se lavent et se portent sans complications, des accessoires qui améliorent vraiment votre expérience dehors. Si nous ne l’utiliserions pas nous-mêmes, nous ne le vendons pas."
+    "metaTitle": "À propos d’Edmar Travel | Mendoza, expériences et accueil local",
+    "metaDescription": "Découvrez Edmar Travel : une équipe mendocine qui conçoit des sorties avec exigence — équitation, vignobles, trekking et expériences sur mesure, avec une attention humaine.",
+    "heroImageAlt": "Paysage de Mendoza, montagne et vignes",
+    "heroTitle": "Mendoza, sans foule et avec envie",
+    "heroSubtitle": "Chez Edmar Travel, nous concevons des sorties pour celles et ceux qui cherchent plus qu’un circuit standard : paysage vrai, bon vin et un accompagnement du premier au dernier jour.",
+    "whoTitle": "Qui sommes-nous",
+    "whoParagraphs": [
+      "Nous sommes une équipe locale qui travaille comme une agence d’expériences : nous planifions, coordonnons et restons présents quand il le faut. Notre priorité n’est pas de remplir des cars ou de répéter le même script chaque jour. Nous préférons des groupes raisonnables, des rythmes humains et des propositions qui reflètent ce que Mendoza peut offrir aujourd’hui : chemins de montagne, domaines avec une histoire, rencontres avec des personnes qui aiment leur métier.",
+      "Nous croyons qu’un bon voyage mêle un peu d’aventure, un asado ou un verre bien servi, et la tranquillité de savoir que quelqu’un du coin répond de l’autre côté du message. Ce mélange — nature, culture du vin et attention personnelle — est au cœur d’Edmar Travel."
     ],
-    "philosophyTitle": "Ce que nous vendons (et ce que nous ne vendons pas)",
-    "philosophyYesTitle": "Ce que nous vendons",
-    "philosophyYesItems": [
-      "Des produits testés en usage réel, pas seulement en laboratoire",
-      "Un équipement qui privilégie la fonctionnalité sur l’esthétique",
-      "Des prix justes sans marges excessives ni faux rabais",
-      "Des matériaux durables : nous ne vendons pas de fast-fashion déguisée en outdoor",
-      "Un design propre qui ne semble pas dépassé après deux saisons"
+    "experiencesTitle": "Comment vivre Mendoza avec nous",
+    "experiencesIntro": "Chaque sortie a son propre rythme. Voici les formes que nous donnons le plus souvent au voyage ; dans chacune, nous ajustons les détails à votre temps et à ce que vous voulez ressentir.",
+    "experienceCategories": [
+      {
+        "title": "Chevaux et sentiers",
+        "text": "Balades et randonnées à cheval pour lier le paysage sans se presser : chemins, silence, ciel large et la sensation d’être vraiment dans le territoire."
+      },
+      {
+        "title": "Vignobles et culture du vin",
+        "text": "Visites de domaines et demi-journées entre les vignes, avec de la place pour la conversation, le bon vin et des lieux où le temps s’étire."
+      },
+      {
+        "title": "Trekking et aventure",
+        "text": "Sorties de randonnée et propositions plus actives pour bouger et gagner les belvédères : effort juste, sécurité et paysages qui valent l’effort."
+      },
+      {
+        "title": "Expériences sur mesure",
+        "text": "Quand le voyage demande son propre ton : nous combinons activités, transferts et moments exclusifs pour que la journée vous ressemble, et non à un catalogue importé."
+      }
     ],
-    "philosophyNoTitle": "Ce que nous ne vendons pas",
-    "philosophyNoItems": [
-      "Des produits avec des fonctionnalités inutiles qui augmentent le prix",
-      "Un équipement ultra-spécialisé que vous n’utilisez qu’une fois par an",
-      "Des promesses de « technologie révolutionnaire » qui ne change rien",
-      "Des produits qui exigent un entretien complexe ou des soins particuliers"
+    "whyTitle": "Pourquoi voyager avec Edmar Travel",
+    "whyParagraphs": [
+      "Parce que nous sommes d’ici et que nous travaillons avec discernement : nous connaissons prestataires, routes et saisons, et cela se voit dans chaque coordination. Nous accueillons les voyageurs internationaux et les débutants avec la même clarté : réponses rapides, informations utiles et pas de surprises inutiles.",
+      "Nous ne cherchons pas à être les plus grands. Nous cherchons à être clairs, chaleureux et constants : des expériences choisies, des groupes que l’on peut vraiment accompagner, et un style de voyage qui ressemble plus à un bon projet entre amis qu’à un circuit froid."
     ],
-    "philosophyClosing": "Notre critère est simple : si cela n’améliore pas votre expérience de façon tangible, cela n’a pas sa place ici. Nous préférons un petit catalogue sélectionné plutôt que des centaines de produits qui ne tiennent pas leurs promesses.",
-    "valuesTitle": "Nos valeurs",
+    "valuesTitle": "Ce qui nous guide",
     "values": [
       {
-        "title": "Fonctionnalité réelle",
-        "text": "Chaque produit doit résoudre un problème concret. Nous n’ajoutons pas de fonctionnalités pour le marketing, seulement ce dont vous avez réellement besoin."
+        "title": "Authenticité",
+        "text": "Nous privilégions le réel du lieu plutôt que le décor touristique."
       },
       {
-        "title": "Design sans excès",
-        "text": "Une esthétique propre qui ne se démode pas. Nous préférons un design intemporel qui fonctionne aussi bien en montagne qu’en ville."
+        "title": "Chaleur",
+        "text": "L’accueil humain n’est pas un bonus : il fait partie du service."
       },
       {
-        "title": "Qualité honnête",
-        "text": "Nous ne promettons pas une durabilité infinie, mais des produits qui supportent l’usage réel. Si quelque chose échoue, nous le reconnaissons et l’améliorons."
+        "title": "Lien local",
+        "text": "Nous travaillons avec celles et ceux qui vivent et soignent Mendoza."
       },
       {
-        "title": "Usage quotidien",
-        "text": "Nous concevons pour des personnes qui bougent, pas pour des vitrines. Nos produits sont beaux quand ils sont utilisés parce qu’ils sont faits pour l’être."
+        "title": "Qualité d’expérience",
+        "text": "Moins de choses, mieux faites."
+      },
+      {
+        "title": "Confiance",
+        "text": "Informations claires, délais honnêtes, soutien avant et pendant le voyage."
+      },
+      {
+        "title": "Flexibilité",
+        "text": "Nous écoutons et adaptons quand le voyage le demande."
       }
     ],
-    "trustTitle": "Confiance et transparence",
-    "trust": [
+    "testimonialsTitle": "Voix de voyageurs",
+    "testimonials": [
       {
-        "title": "Expéditions",
-        "text": "Nous travaillons avec des services d’expédition fiables. Les délais dépendent de votre localisation et du service postal. Nous ne promettons pas des livraisons express que nous ne pouvons pas tenir, mais nous sommes transparents sur la date de réception."
+        "name": "Lucía, Espagne",
+        "text": "La communication a été claire dès le premier message. La journée vignoble n’était pas bâclée : nous avons eu le temps d’échanger et de comprendre le lieu. On sent le choix des partenaires."
       },
       {
-        "title": "Service client",
-        "text": "Nous répondons par email en moins de 48 heures. Pas de centre d’appels 24/7, mais des personnes réelles qui connaissent nos produits et peuvent vous aider."
+        "name": "Martín, Buenos Aires",
+        "text": "Nous voulions la montagne sans nous compliquer la vie. Ils ont bien expliqué le niveau d’effort et la journée a correspondu à ce que nous attendions : exigeante et magnifique."
       },
       {
-        "title": "Retours",
-        "text": "Si un produit ne répond pas à vos attentes, vous pouvez le retourner en bon état dans les 30 premiers jours. Pas de questions gênantes, nous voulons simplement que vous soyez satisfait."
-      },
-      {
-        "title": "Processus d’achat",
-        "text": "Acheter chez Go Natural est simple : vous choisissez le produit, payez en toute sécurité et recevez votre commande. Pas d’abonnements cachés, pas de coûts surprises, pas de complications."
+        "name": "Camille, France",
+        "text": "Nous avons voyagé en anglais sans friction. L’équipe a répondu vite et la journée d’excursion était bien organisée, avec du temps pour profiter sans courir."
       }
     ],
-    "ctaTitle": "Explorez nos produits",
-    "ctaText": "Découvrez un équipement fonctionnel pensé pour l’usage réel, sans excès ni complications.",
-    "ctaButton": "Voir la boutique"
+    "ctaTitle": "Votre prochaine sortie commence par un échange",
+    "ctaParagraph": "Si Mendoza vous attire mais que vous voulez éviter le circuit serré et générique, parcourez nos expériences et choisissez le rythme qui vous convient. Si vous préférez en parler avant de réserver, écrivez-nous : nous répondons avec le même calme que nous mettons dans chaque sortie.",
+    "ctaPrimary": "Voir les expériences",
+    "ctaSecondary": "Nous écrire"
   },
   "blog": {
     "title": "Journal",
@@ -1707,23 +1839,9 @@
   },
   "categories": {
     "names": {
-      "fishing": "Pêche",
-      "mountain-snow": "Montagne & Neige",
-      "water-sports": "Sports Nautiques",
-      "outdoor-adventure": "Outdoor & Aventure",
-      "active-sports": "Sports Actifs",
-      "fishing-equipment": "Équipement de pêche",
-      "fishing-gadgets": "Accessoires de pêche",
-      "ski": "Ski",
-      "snowboard": "Snowboard",
-      "surfing": "Surf",
-      "diving-swimming-equipment": "Plongée & Natation",
-      "trekking": "Trekking",
-      "camping-survival-gear": "Camping & Survival",
-      "outdoor-lighting": "Éclairage Outdoor",
-      "sleeping-systems": "Systèmes de couchage",
-      "cycling": "Cyclisme",
-      "running": "Running"
+      "wine": "Wine Tours et Bodegas",
+      "adventure": "Aventure à Mendoza",
+      "city": "Découvrir la ville de Mendoza"
     }
   },
   "accountPage": {
@@ -1738,6 +1856,15 @@
     },
     "logout": "Se déconnecter",
     "welcomeText": "Depuis ici, vous pouvez consulter vos commandes et gérer vos données",
+    "profileSectionTitle": "Profil",
+    "profileEmail": "E-mail",
+    "profileEmailHint": "L'e-mail est lié à l'authentification. Contactez-nous pour le modifier.",
+    "profileFirstName": "Prénom",
+    "profileLastName": "Nom",
+    "profilePhone": "Téléphone",
+    "profileSave": "Enregistrer",
+    "profileSaving": "Enregistrement…",
+    "profileSaved": "Modifications enregistrées.",
     "noOrders": "Vous n'avez pas encore passé de commande",
     "orderLabel": "Commande",
     "userLabel": "Utilisateur"
@@ -1771,22 +1898,40 @@
     }
   },
   "checkoutPage": {
-    "emptyTitle": "Votre panier est vide",
-    "emptyText": "Ajoutez des produits pour continuer votre achat.",
-    "emptyCta": "Voir les produits",
-    "backToCart": "← Retour au panier",
-    "title": "Checkout",
-    "shippingAddress": "Adresse de livraison",
-    "addAddress": "Ajoutez une adresse pour continuer",
-    "manageAddresses": "Gérer dans mon compte",
-    "saveAddress": "Enregistrer l'adresse",
+    "emptyTitle": "Aucune expérience dans votre réservation",
+    "emptyText": "Choisissez une sortie pour continuer avec les informations et le paiement.",
+    "emptyCta": "Voir les expériences",
+    "backToCart": "← Retour aux réservations",
+    "kicker": "Presque fini",
+    "title": "Informations et paiement",
+    "intro": "Complétez vos coordonnées et choisissez comment coordonner le paiement. Le résumé reste à droite.",
+    "sectionPersonal": "Informations personnelles",
+    "sectionPersonalHint": "Nous les utilisons pour la confirmation et le contact avant votre expérience.",
+    "sectionExtra": "Informations complémentaires",
+    "sectionExtraHint": "Pièce d’identité, hébergement et notes nous aident à organiser les rendez-vous.",
+    "travelerTitle": "Vos informations",
+    "travelerHint": "Ces données nous permettent de confirmer votre réservation. Nous ne demandons pas d’adresse de livraison.",
+    "manageAccountLink": "Gérer mon compte",
+    "paypalNeedTraveler": "Renseignez prénom, nom, pièce d’identité ou passeport, e-mail, téléphone et pays pour payer avec PayPal.",
+    "summaryNote": "Le prix correspond à l’expérience choisie ; le paiement et la coordination suivent la méthode sélectionnée.",
+    "summaryLead": "Ce que vous réservez et quand vous souhaitez partir.",
+    "trustMessage": "Annulation sans frais en cas de mauvais temps (sauf mention contraire pour une expérience).",
+    "slotDate": "Date souhaitée",
+    "slotTime": "Heure souhaitée",
+    "slotParty": "Personnes",
+    "paymentHint": "Choisissez comment avancer ; vous pouvez toujours nous écrire sur WhatsApp.",
     "form": {
-      "fullName": "Nom complet",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "fullName": "Prénom et nom",
+      "idDocument": "CNI ou passeport",
+      "email": "E-mail",
       "phone": "Téléphone",
-      "address": "Adresse",
-      "city": "Ville",
-      "postalCode": "Code postal",
-      "country": "Pays"
+      "country": "Pays",
+      "accommodation": "Hébergement",
+      "accommodationPlaceholder": "Hôtel, quartier ou adresse approximative à Mendoza",
+      "checkoutNotes": "Notes supplémentaires",
+      "checkoutNotesPlaceholder": "Horaires flexibles, besoins d’accessibilité…"
     },
     "paymentMethod": "Méthode de paiement",
     "paymentOptions": {
@@ -1810,14 +1955,95 @@
     "orderSummary": "Résumé de la commande",
     "summary": "Résumé",
     "subtotal": "Sous-total",
-    "shipping": "Livraison",
-    "shippingCalculated": "Calculé à la finalisation",
     "total": "Total",
     "quantity": "Quantité",
     "unitPrice": "l'unité",
-    "confirmOrder": "Confirmer la commande",
+    "confirmOrder": "Confirmer la réservation",
     "confirming": "Confirmation...",
+    "authLoading": "Chargement de la session…",
+    "loginRequiredTitle": "Connectez-vous pour finaliser la réservation",
+    "loginRequiredBody": "Les réservations sont enregistrées sur votre compte. Connectez-vous pour continuer.",
+    "loginCta": "Se connecter",
+    "bookingErrorGeneric": "Impossible d’enregistrer votre réservation. Réessayez.",
+    "bookingErrorSubtotal": "Le total ne correspond plus aux articles. Actualisez la page et réessayez.",
+    "bookingPayPalDbError": "Paiement reçu, mais la réservation n’a pas été enregistrée. Contactez-nous avec votre reçu PayPal.",
     "terms": "En confirmant votre commande, vous acceptez nos conditions générales"
+  },
+  "orderSuccessPage": {
+    "kicker": "Tout est confirmé",
+    "title": "Réservation confirmée",
+    "subtitle": "Merci de votre confiance en Edmar Travel. Nous avons bien reçu votre demande ; contactez-nous sur WhatsApp pour ajuster les derniers détails.",
+    "whatsappMessage": "Bonjour ! Je souhaite coordonner ma réservation {id} — total {amount}.",
+    "whatsappHeroLead": "Pour coordonner le paiement et les derniers détails, écrivez-nous sur WhatsApp.",
+    "whatsappCtaPayment": "Coordonner le paiement sur WhatsApp",
+    "whatsappCtaChat": "Ouvrir le chat avec Edmar Travel",
+    "orderNumberLabel": "Référence :",
+    "noOrder": "Nous n’avons pas trouvé de commande récente.",
+    "noOrderHint": "Si vous venez de confirmer, cela peut prendre quelques secondes.",
+    "summaryTitle": "Résumé de la commande",
+    "pendingWhatsappTitle": "Paiement en attente",
+    "pendingWhatsappBody": "Nous vous écrirons sur WhatsApp pour coordonner le paiement et les détails de la sortie.",
+    "pendingManualTitle": "Prochaines étapes",
+    "pendingManualBody": "Nous vous contacterons pour le paiement et la confirmation de votre expérience.",
+    "paidPaypalTitle": "Paiement confirmé",
+    "paidPaypalBody": "Votre paiement a bien été traité.",
+    "contactTitle": "Vos coordonnées",
+    "shippingTitle": "Adresse de livraison",
+    "totalLabel": "Total",
+    "orderedOn": "Commande passée le",
+    "nextTitle": "Que se passe-t-il ensuite ?",
+    "continueShopping": "Continuer à explorer",
+    "viewAccount": "Voir mon compte",
+    "whatsappCta": "Écrire sur WhatsApp",
+    "recommendationsTitle": "Continuez à explorer Mendoza",
+    "recommendationsSubtitle": "D’autres expériences qui s’accordent bien avec votre voyage.",
+    "reservationBlockTitle": "Votre sortie",
+    "resDate": "Date",
+    "resTime": "Heure",
+    "resParty": "Personnes",
+    "steps": {
+      "whatsapp": {
+        "1": {
+          "title": "Coordination WhatsApp",
+          "desc": "Nous vous écrivons dans les prochaines heures pour le paiement et vos questions."
+        },
+        "2": {
+          "title": "Confirmation de la sortie",
+          "desc": "Nous envoyons le lieu de rendez-vous, l’horaire et les infos pratiques."
+        },
+        "3": {
+          "title": "Prêt pour Mendoza",
+          "desc": "Vous recevez une confirmation par e-mail une fois tout validé."
+        }
+      },
+      "paypalPaid": {
+        "1": {
+          "title": "Paiement enregistré",
+          "desc": "Votre paiement PayPal est confirmé."
+        },
+        "2": {
+          "title": "Nous préparons l’expérience",
+          "desc": "Nous coordonnons guides et prestataires pour votre réservation."
+        },
+        "3": {
+          "title": "On vous tient informé",
+          "desc": "Les derniers détails arrivent par e-mail ou WhatsApp."
+        }
+      },
+      "default": {
+        "1": {
+          "title": "Vérifiez votre e-mail",
+          "desc": "Nous avons envoyé un récapitulatif avec le numéro de commande."
+        },
+        "2": {
+          "title": "Nous restons en contact",
+          "desc": "Nous vous appelons ou écrivons pour le paiement et la logistique."
+        },
+        "3": {
+          "title": "Avant le départ",
+          "desc": "Horaires, point de rencontre et conseils pratiques."
+        }
+      }
+    }
   }
 }
-
