@@ -3,10 +3,7 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ExperienceNavigatorCard from "./ExperienceNavigatorCard";
-import {
-  USE_PLACEHOLDERS,
-  type ExperienceCategory,
-} from "./cinematicData";
+import type { ExperienceCategory } from "./types";
 
 type ExperienceNavigatorProps = {
   open: boolean;
@@ -38,7 +35,7 @@ const listVariants = {
 /**
  * Experience Navigator — panel lateral derecho con glassmorphism.
  * Componente global reutilizable por todos los capítulos (Fase 2: solo wine).
- * El oscurecido + blur del hero los gestiona HomeCinematicLanding.
+ * El oscurecido + blur del hero los gestiona CinematicHome.
  */
 export default function ExperienceNavigator({
   open,
@@ -161,7 +158,6 @@ export default function ExperienceNavigator({
                   key={card.id}
                   card={card}
                   href={`/${locale}/products/${card.productId}`}
-                  usePlaceholders={USE_PLACEHOLDERS}
                   onNavigate={onClose}
                 />
               ))}

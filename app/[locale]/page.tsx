@@ -1,4 +1,4 @@
-import HomeCinematicLanding from "@/components/cinematic/HomeCinematicLanding";
+import CinematicHome from "@/components/cinematic/CinematicHome";
 import { getMessages } from "@/lib/i18n/messages";
 import type { Locale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo";
@@ -27,9 +27,9 @@ export async function generateMetadata({
 }
 
 export default async function HomePage() {
-  // FASE 1 — Cinematic Storytelling Landing (Capítulo 01: Wine Tours & Bodegas).
+  // Cinematic Storytelling Home (Escena 01 refinada + placeholders 02/03).
   // La home tradicional anterior (Hero, carrusel, categorías, testimonios,
   // CTA final) queda preservada en el historial de git y en sus componentes
   // por si se necesita revertir.
-  return <HomeCinematicLanding />;
+  return <CinematicHome />;
 }

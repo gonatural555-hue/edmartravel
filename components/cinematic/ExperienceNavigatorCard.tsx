@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import type { ExperienceCard } from "./cinematicData";
+import type { ExperienceCard } from "./types";
 
 type ExperienceNavigatorCardProps = {
   card: ExperienceCard;
   href: string;
-  usePlaceholders: boolean;
   onNavigate?: () => void;
 };
 
@@ -20,15 +20,17 @@ const itemVariants = {
 
 /**
  * Tarjeta horizontal del Experience Navigator.
- * Solo muestra imagen cuadrada, título, descripción corta y flecha.
- * No expone precio, duración ni lenguaje de carrito.
+ * Solo imagen cuadrada, título, descripción corta y flecha.
+ * Sin precio, duración, SKU ni lenguaje de carrito.
+ * Si la imagen no existe aún, cae a un fallback con degradado (sin crash).
  */
 export default function ExperienceNavigatorCard({
   card,
   href,
-  usePlaceholders,
   onNavigate,
 }: ExperienceNavigatorCardProps) {
+  const [imageFailed, setImageFailed] = useState(false);
+
   return (
     <motion.li variants={itemVariants}>
       <Link
@@ -37,8 +39,7 @@ export default function ExperienceNavigatorCard({
         className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-3 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-[1.02] hover:border-white/20 hover:bg-white/[0.09] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
       >
         <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-white/10">
-          {usePlaceholders ? (
-            // TODO(assets): sustituir por la imagen real en /public/cinematic/cards/.
+          {imageFailed ? (
             <div
               className="h-full w-full"
               style={{
@@ -54,6 +55,7 @@ export default function ExperienceNavigatorCard({
               fill
               sizes="96px"
               className="object-cover"
+              onError={() => setImageFailed(true)}
             />
           )}
         </div>

@@ -1,41 +1,46 @@
+"use client";
+
 import Image from "next/image";
-import type { SceneLayerDef } from "./cinematicData";
+import { useState } from "react";
+import type { SceneId, SceneLayerDef } from "./types";
 
 type SceneLayerProps = {
+  sceneId: SceneId;
   layer: SceneLayerDef;
-  usePlaceholders: boolean;
-  /** Marca la capa de fondo crítica para priorizar su carga. */
-  priority?: boolean;
 };
 
 const OBJECT_FIT_BY_KIND: Record<SceneLayerDef["kind"], string> = {
   background: "object-cover object-center",
-  midground: "object-cover object-bottom",
+  foreground: "object-cover object-bottom",
   object: "object-contain object-bottom",
+  effect: "object-contain object-center",
   overlay: "object-cover object-center",
 };
 
 /**
- * Una capa individual de una escena cinematográfica.
- * FASE 1: render puro (sin scroll/animación). Con `usePlaceholders` dibuja un
- * bloque etiquetado que respeta posición y tamaño finales; con el flag en
- * `false` renderiza el asset real con next/image.
+ * Capa individual de una escena cinematográfica.
+ *
+ * - Expone `data-scene` y `data-layer` como anclas estables para la futura
+ *   coreografía de scroll (Fase 3).
+ * - Render puro (sin animación todavía).
+ * - Si el asset real no existe, NO rompe: cae a un fallback visual
+ *   (degradado/etiqueta) mediante onError.
  */
-export default function SceneLayer({
-  layer,
-  usePlaceholders,
-  priority = false,
-}: SceneLayerProps) {
-  const { className, zIndex, kind, placeholder } = layer;
+export default function SceneLayer({ sceneId, layer }: SceneLayerProps) {
+  const [failed, setFailed] = useState(false);
+  const { className, zIndex, kind, decorative, priority, placeholder } = layer;
+  const showFallback = failed || !layer.src;
+  const isObject = kind === "object";
 
-  if (usePlaceholders) {
-    const isObject = kind === "object";
-    return (
-      <div
-        className={`pointer-events-none absolute ${className}`}
-        style={{ zIndex }}
-        aria-hidden
-      >
+  return (
+    <div
+      data-scene={sceneId}
+      data-layer={layer.layerId}
+      className={`pointer-events-none absolute ${className}`}
+      style={{ zIndex }}
+      aria-hidden={decorative || showFallback ? true : undefined}
+    >
+      {showFallback ? (
         <div
           className={[
             "flex h-full w-full items-center justify-center overflow-hidden",
@@ -52,23 +57,18 @@ export default function SceneLayer({
             </span>
           ) : null}
         </div>
-      </div>
-    );
-  }
-
-  // TODO(assets): sustituir los placeholders dejando los PNG/WebP reales en
-  // /public/cinematic/wine/ y poniendo USE_PLACEHOLDERS = false en cinematicData.ts.
-  return (
-    <div className={`pointer-events-none absolute ${className}`} style={{ zIndex }}>
-      <Image
-        src={layer.src}
-        alt={layer.alt}
-        fill
-        sizes="100vw"
-        priority={priority}
-        className={OBJECT_FIT_BY_KIND[kind]}
-        draggable={false}
-      />
+      ) : (
+        <Image
+          src={layer.src}
+          alt={layer.alt}
+          fill
+          sizes="100vw"
+          priority={priority}
+          className={OBJECT_FIT_BY_KIND[kind]}
+          draggable={false}
+          onError={() => setFailed(true)}
+        />
+      )}
     </div>
   );
 }
