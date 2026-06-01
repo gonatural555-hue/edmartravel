@@ -23,36 +23,37 @@ export default function Scene01WineTours({ onExplore }: Scene01WineToursProps) {
         <SceneLayer key={layer.layerId} sceneId="wine" layer={layer} />
       ))}
 
-      {/* Degradado cálido inferior para profundidad y legibilidad del CTA */}
+      {/* Vignette atmosférica de altura completa: oscurece cielo y base,
+          deja limpio el centro (objetos) y da legibilidad/grounding al CTA. */}
       <div
         data-scene="wine"
-        data-layer="readability-gradient"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
+        data-layer="atmosphere"
+        className="pointer-events-none absolute inset-0"
         style={{
           zIndex: 45,
           background:
-            "linear-gradient(180deg, rgba(8,12,11,0) 0%, rgba(8,12,11,0.28) 50%, rgba(8,12,11,0.72) 100%)",
+            "linear-gradient(180deg, rgba(8,12,11,0.40) 0%, rgba(8,12,11,0) 26%, rgba(8,12,11,0) 46%, rgba(8,12,11,0.45) 72%, rgba(8,12,11,0.9) 100%)",
         }}
         aria-hidden
       />
 
-      {/* CTA — integrado en la composición, centro-inferior */}
+      {/* CTA — bloque compacto: título y botón próximos, integrados en la foto */}
       <div
         data-scene="wine"
         data-layer="cta"
-        className="absolute inset-x-0 bottom-0 flex flex-col items-center px-6 pb-[8vh] text-center"
+        className="absolute inset-x-0 bottom-0 flex flex-col items-center px-6 pb-[6vh] text-center"
         style={{ zIndex: 50 }}
       >
-        <p className="text-xs font-medium uppercase tracking-[0.32em] text-accent-gold/90">
+        <p className="text-[11px] font-medium uppercase tracking-[0.34em] text-accent-gold/90">
           Mendoza
         </p>
-        <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-6xl">
+        <h1 className="mt-2.5 max-w-3xl text-balance text-4xl font-semibold tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
           {wineScene.cta.title}
         </h1>
         <button
           type="button"
           onClick={onExplore}
-          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-accent-gold px-7 py-3.5 text-sm font-semibold text-dark-base shadow-[0_10px_40px_rgba(200,155,60,0.35)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-accent-gold/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
+          className="mt-5 inline-flex items-center justify-center gap-2 rounded-full bg-accent-gold px-7 py-3.5 text-sm font-semibold text-dark-base shadow-[0_10px_40px_rgba(200,155,60,0.35)] transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-accent-gold/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-gold"
         >
           {wineScene.cta.button}
           <span aria-hidden className="text-base leading-none">

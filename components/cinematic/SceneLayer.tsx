@@ -30,7 +30,6 @@ export default function SceneLayer({ sceneId, layer }: SceneLayerProps) {
   const [failed, setFailed] = useState(false);
   const { className, zIndex, kind, decorative, priority, placeholder } = layer;
   const showFallback = failed || !layer.src;
-  const isObject = kind === "object";
 
   return (
     <div
@@ -41,22 +40,15 @@ export default function SceneLayer({ sceneId, layer }: SceneLayerProps) {
       aria-hidden={decorative || showFallback ? true : undefined}
     >
       {showFallback ? (
-        <div
-          className={[
-            "flex h-full w-full items-center justify-center overflow-hidden",
-            isObject
-              ? "rounded-2xl border border-white/15 bg-white/[0.06] backdrop-blur-[2px]"
-              : "",
-            placeholder?.className ?? "",
-          ].join(" ")}
-          style={placeholder?.style}
-        >
-          {placeholder?.label ? (
-            <span className="select-none px-2 text-center text-[10px] font-medium uppercase tracking-[0.18em] text-white/55 sm:text-xs">
-              {placeholder.label}
-            </span>
-          ) : null}
-        </div>
+        // Solo dibujamos un fallback visible si la capa define un estilo
+        // (fondo/efecto). Los objetos que falten quedan invisibles para no
+        // romper la composición fotográfica.
+        placeholder?.style ? (
+          <div
+            className={`h-full w-full overflow-hidden ${placeholder.className ?? ""}`}
+            style={placeholder.style}
+          />
+        ) : null
       ) : (
         <Image
           src={layer.src}
@@ -64,7 +56,7 @@ export default function SceneLayer({ sceneId, layer }: SceneLayerProps) {
           fill
           sizes="100vw"
           priority={priority}
-          className={OBJECT_FIT_BY_KIND[kind]}
+          className={`${OBJECT_FIT_BY_KIND[kind]} ${layer.imageClassName ?? ""}`}
           draggable={false}
           onError={() => setFailed(true)}
         />

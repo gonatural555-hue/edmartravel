@@ -14,7 +14,7 @@ const wine = `${ASSETS_BASE}/wine-tours`;
 
 /** Escena 01 — Wine Tours & Bodegas. */
 export const WINE_ASSETS = {
-  background: `${wine}/backgrounds/wine-background-01.webp`,
+  background: `${wine}/backgrounds/wine-background-01.png`,
   table: `${wine}/foreground/wine-table-foreground-01.png`,
   bottle: `${wine}/props/wine-bottle-edmar-01.png`,
   glass: `${wine}/props/wine-glass-red-01.png`,

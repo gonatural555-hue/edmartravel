@@ -29,6 +29,8 @@ export type SceneLayerDef = {
   kind: SceneLayerKind;
   /** Clases de posicionamiento/tamaño del wrapper (data structure de posición). */
   className: string;
+  /** Clases aplicadas a la <img> real (blend modes, opacidad, object-position). */
+  imageClassName?: string;
   /** Capa decorativa → aria-hidden. */
   decorative?: boolean;
   /** Marca el fondo crítico para `priority` en next/image. */

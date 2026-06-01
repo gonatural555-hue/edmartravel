@@ -70,10 +70,10 @@ Sube los archivos finales con **estos nombres exactos**:
 
 ```txt
 public/assets/scenes/wine-tours/backgrounds/
-└── wine-background-01.webp
+└── wine-background-01.png        # (también admite .webp; actualiza cinematicAssets si cambias la extensión)
 
 public/assets/scenes/wine-tours/foreground/
-└── wine-table-foreground-01.png
+└── wine-table-foreground-01.png  # procesada con scripts/cinematic-prepare.mjs (venía sobre blanco)
 
 public/assets/scenes/wine-tours/props/
 ├── wine-bottle-edmar-01.png
@@ -96,8 +96,21 @@ public/assets/scenes/wine-tours/ui/        # imágenes cuadradas de las cards de
 └── wine-card-half-day-01.jpg
 ```
 
-Mientras un archivo no exista, **la app no se rompe**: cada capa muestra un fallback visual
-(degradado/etiqueta) hasta que subas el asset real.
+Mientras un archivo no exista, **la app no se rompe**: las capas de fondo/efecto muestran un
+degradado de fallback y los **objetos que falten quedan invisibles** (no se dibuja ninguna caja),
+para no romper la composición fotográfica.
+
+### Estado actual (Escena 01)
+
+- ✅ Cargados y en uso: `wine-background-01.png`, `wine-table-foreground-01.png` (procesada),
+  `wine-bottle-edmar-01.png`, `wine-glass-red-01.png`, `wine-cheese-board-01.png`,
+  `wine-dish-a-01.png`, `wine-napkin-knife-01.png`, `wine-warm-glow-01.png`,
+  `wine-contact-shadow-01.png`.
+- ⏳ Pendientes (la capa existe pero queda invisible hasta subir el PNG transparente):
+  - `wine-grapes-01.png` — el `wine-grapes-01.jpg` subido es un placeholder (trae el tablero de
+    transparencia y el texto "ASSET 7" quemados); reemplázalo por un recorte PNG real.
+  - `wine-dish-b-01.png` — solo se subió el plato A.
+  - `wine-atmospheric-particles-01.png` — el archivo subido también era un placeholder; eliminado.
 
 ---
 
