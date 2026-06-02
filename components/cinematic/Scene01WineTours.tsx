@@ -4,6 +4,12 @@ import SceneShell from "./SceneShell";
 import SceneLayer from "./SceneLayer";
 import { wineScene } from "./cinematicData";
 
+// ⚠️ DEBUG TEMPORAL — solo para alinear las capas con la foto de referencia.
+// Pon en `false` (o elimina el overlay) antes de producción.
+const SHOW_REFERENCE_OVERLAY = true;
+const REFERENCE_OVERLAY_SRC =
+  "/assets/scenes/wine-tours/backgrounds/reference/reference-composition.png";
+
 type Scene01WineToursProps = {
   /** Abre el Experience Navigator de la categoría wine. */
   onExplore: () => void;
@@ -61,6 +67,27 @@ export default function Scene01WineTours({ onExplore }: Scene01WineToursProps) {
           </span>
         </button>
       </div>
+
+      {/* DEBUG TEMPORAL: overlay de la foto de referencia para alinear capas.
+          Sin pointer-events; no interfiere con la escena. */}
+      {SHOW_REFERENCE_OVERLAY ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={REFERENCE_OVERLAY_SRC}
+          alt=""
+          aria-hidden
+          style={{
+            position: "fixed",
+            inset: 0,
+            width: "100vw",
+            height: "100vh",
+            objectFit: "cover",
+            opacity: 0.35,
+            pointerEvents: "none",
+            zIndex: 999,
+          }}
+        />
+      ) : null}
     </SceneShell>
   );
 }
