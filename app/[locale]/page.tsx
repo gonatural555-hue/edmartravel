@@ -27,9 +27,6 @@ export async function generateMetadata({
 }
 
 export default async function HomePage() {
-  // Cinematic Storytelling Home (Escena 01 refinada + placeholders 02/03).
-  // La home tradicional anterior (Hero, carrusel, categorías, testimonios,
-  // CTA final) queda preservada en el historial de git y en sus componentes
-  // por si se necesita revertir.
+  // Home inmersiva — selector espacial de experiencias (Wine / Aventura / Ciudad).
   return <CinematicHome />;
 }

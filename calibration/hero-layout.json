@@ -1,0 +1,58 @@
+{
+  "logo": {
+    "width": 199,
+    "height": 36,
+    "marginTop": 0,
+    "marginLeft": 0,
+    "offsetX": 0,
+    "offsetY": 0,
+    "scale": 2
+  },
+  "carouselWrap": {
+    "paddingTopRem": 0,
+    "paddingBottomRem": 0
+  },
+  "carouselStage": {
+    "perspectivePx": 2250,
+    "originX": 48,
+    "originY": 50
+  },
+  "panelSize": {
+    "widthVw": 71,
+    "heightVh": 68,
+    "maxWidthPx": 1080,
+    "maxHeightPx": 780
+  },
+  "slots": {
+    "center": {
+      "leftPct": 51,
+      "topPct": 48,
+      "scale": 1,
+      "opacity": 1,
+      "blurPx": 0,
+      "zIndex": 30,
+      "z": 68,
+      "rotateY": -1
+    },
+    "left": {
+      "leftPct": 24,
+      "topPct": 55,
+      "scale": 0.69,
+      "opacity": 0.56,
+      "blurPx": 0,
+      "zIndex": 10,
+      "z": -48,
+      "rotateY": 45
+    },
+    "right": {
+      "leftPct": 73.5,
+      "topPct": 55,
+      "scale": 0.75,
+      "opacity": 0.58,
+      "blurPx": 0,
+      "zIndex": 10,
+      "z": -48,
+      "rotateY": -45
+    }
+  }
+}

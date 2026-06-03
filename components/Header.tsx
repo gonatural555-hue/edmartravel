@@ -14,6 +14,11 @@ import { SITE_CONFIG } from "@/lib/config";
 import { PRODUCTS_DATA } from "@/lib/products-data";
 import { EXPERIENCE_CATEGORY_ORDER } from "@/lib/experience-categories";
 import { tourTitleForLocale } from "@/lib/tour-title-locale";
+import { useHeroLogoFromStorage } from "@/components/experience-hero/director/useHeroLogoFromStorage";
+
+function isHomePath(pathname: string) {
+  return locales.some((l) => pathname === `/${l}` || pathname === `/${l}/`);
+}
 
 export default function Header() {
   const { totalItems } = useCart();
@@ -97,6 +102,54 @@ export default function Header() {
     const query = searchParams.toString();
     return `/${segments.join("/")}${query ? `?${query}` : ""}`;
   };
+
+  const logoCalibrated = useHeroLogoFromStorage();
+  const isDirectorHome =
+    searchParams.get("director") === "true" && isHomePath(pathname);
+
+  if (isDirectorHome) {
+    return (
+      <>
+        <header className="fixed top-0 z-50 w-full border-b border-white/[0.08] bg-[#0a120f]/95 backdrop-blur-md">
+          <div
+            data-director-layer="logo"
+            className="flex h-[var(--experience-header-height,5.25rem)] w-full items-center justify-center"
+            style={{
+              marginTop: logoCalibrated.marginTop,
+              marginLeft: logoCalibrated.marginLeft,
+            }}
+          >
+            <Link
+              href={`/${locale}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`}
+              className="inline-flex items-center justify-center"
+              aria-label={SITE_CONFIG.name}
+              style={{
+                transform: `translate(${logoCalibrated.offsetX}px, ${logoCalibrated.offsetY}px) scale(${logoCalibrated.scale})`,
+              }}
+            >
+              <img
+                src="/assets/images/logo/logo.png"
+                alt={SITE_CONFIG.name}
+                width={logoCalibrated.width}
+                height={logoCalibrated.height}
+                style={{
+                  width: logoCalibrated.width,
+                  height: logoCalibrated.height,
+                }}
+                className="object-contain brightness-110"
+                decoding="async"
+              />
+            </Link>
+          </div>
+        </header>
+        <AuthModal
+          open={authOpen}
+          onClose={() => setAuthOpen(false)}
+          initialTab={initialTab}
+        />
+      </>
+    );
+  }
 
   return (
     <header

@@ -278,3 +278,33 @@ main[data-route="order-success"] .bg-white,
 main[data-route="order-success"] .bg-gray-50 {
   background-color: #CCD0CF !important;
 }
+
+/* Home — hero inmersivo a pantalla completa (sin header/footer) */
+html.experience-hero-takeover:not(.experience-hero-director-mode) header,
+html.experience-hero-takeover footer {
+  display: none !important;
+}
+
+/* Modo director: Header visible para logo centrado + calibración carrusel */
+html.experience-hero-director-mode {
+  --experience-header-height: 5.25rem;
+}
+
+html.experience-hero-director-mode header {
+  display: block !important;
+}
+
+html.experience-hero-takeover [role="dialog"][aria-live="polite"] {
+  display: none !important;
+}
+
+html.experience-hero-takeover .site-chrome-overlay {
+  display: none !important;
+}
+
+html.experience-hero-takeover,
+html.experience-hero-takeover body {
+  overflow: hidden;
+  height: 100%;
+  background-color: #0a120f;
+}

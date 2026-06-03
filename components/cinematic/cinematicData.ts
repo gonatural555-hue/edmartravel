@@ -27,55 +27,6 @@ export const wineScene: CinematicSceneDef = {
   },
   layers: [
     {
-      layerId: "background",
-      src: WINE_ASSETS.background,
-      alt: "Cordillera de los Andes nevada y viñedo de Mendoza en la hora dorada",
-      zIndex: 0,
-      kind: "background",
-      className: "inset-0",
-      priority: true,
-      placeholder: {
-        style: {
-          background:
-            "linear-gradient(180deg, #d9ab68 0%, #bd8851 24%, #98704f 44%, #5c5350 62%, #2c2e34 100%)",
-        },
-      },
-    },
-    {
-      layerId: "warm-glow",
-      // Luz ambiente cálida detrás de la botella. Sutil, sin halo marcado.
-      src: WINE_ASSETS.warmGlow,
-      alt: "",
-      zIndex: 2,
-      kind: "effect",
-      decorative: true,
-      imageClassName: "opacity-50 mix-blend-screen",
-      className:
-        "left-[45%] bottom-[30%] h-[40vh] w-[80vw] -translate-x-1/2 md:h-[50vh] md:w-[46vw]",
-      placeholder: {
-        style: {
-          background:
-            "radial-gradient(60% 60% at 50% 50%, rgba(255,200,130,0.12) 0%, rgba(255,200,130,0) 70%)",
-          mixBlendMode: "screen",
-        },
-      },
-    },
-    {
-      layerId: "table",
-      // Mesa dominante a todo el ancho; las patas se salen por abajo.
-      src: WINE_ASSETS.table,
-      alt: "Mesa premium de nogal oscuro",
-      zIndex: 10,
-      kind: "foreground",
-      className: "inset-x-0 bottom-[-8%] h-[80vw] md:bottom-[-16%] md:h-[58vw]",
-      placeholder: {
-        style: {
-          background:
-            "linear-gradient(180deg, #3a2418 0%, #271810 42%, #160d08 100%)",
-        },
-      },
-    },
-    {
       layerId: "contact-shadow",
       // Sombra de contacto bajo botella/copa para anclarlas a la mesa.
       src: WINE_ASSETS.contactShadow,
@@ -100,8 +51,7 @@ export const wineScene: CinematicSceneDef = {
       alt: "Tabla de quesos regionales",
       zIndex: 18,
       kind: "object",
-      className:
-        "hidden md:block left-[20%] bottom-[22%] h-[34vh] w-[34vw] -translate-x-1/2",
+      className: "hidden md:block",
       placeholder: { label: "Tabla de quesos" },
     },
     {
@@ -111,42 +61,8 @@ export const wineScene: CinematicSceneDef = {
       alt: "Racimo de uvas",
       zIndex: 19,
       kind: "object",
-      className:
-        "hidden md:block left-[31%] bottom-[22%] h-[22vh] w-[20vw] -translate-x-1/2",
+      className: "hidden md:block",
       placeholder: { label: "Uvas" },
-    },
-    {
-      layerId: "dish-b",
-      // Segundo plato detrás del plato A (asset pendiente → invisible).
-      src: WINE_ASSETS.dishB,
-      alt: "Plato gastronómico",
-      zIndex: 20,
-      kind: "object",
-      className:
-        "hidden lg:block left-[68%] bottom-[24%] h-[22vh] w-[22vw] -translate-x-1/2",
-      placeholder: { label: "Plato B" },
-    },
-    {
-      layerId: "dish-a",
-      // Plato gourmet principal a la derecha, sobre la superficie.
-      src: WINE_ASSETS.dishA,
-      alt: "Plato gastronómico",
-      zIndex: 22,
-      kind: "object",
-      className:
-        "hidden md:block left-[80%] bottom-[22%] h-[32vh] w-[32vw] -translate-x-1/2",
-      placeholder: { label: "Plato A" },
-    },
-    {
-      layerId: "napkin-knife",
-      // Servilleta + cuchillo en primer plano, delante del plato.
-      src: WINE_ASSETS.napkinKnife,
-      alt: "Servilleta y cuchillo",
-      zIndex: 26,
-      kind: "object",
-      className:
-        "hidden md:block left-[70%] bottom-[14%] h-[22vh] w-[30vw] -translate-x-1/2",
-      placeholder: { label: "Servilleta + cuchillo" },
     },
     {
       layerId: "glass",
@@ -155,8 +71,7 @@ export const wineScene: CinematicSceneDef = {
       alt: "Copa de vino tinto",
       zIndex: 28,
       kind: "object",
-      className:
-        "hidden md:block left-[60%] bottom-[25%] h-[42vh] w-[17vw] -translate-x-1/2",
+      className: "hidden md:block",
       placeholder: { label: "Copa de vino" },
     },
     {
@@ -166,8 +81,7 @@ export const wineScene: CinematicSceneDef = {
       alt: "Botella de vino Edmar",
       zIndex: 30,
       kind: "object",
-      className:
-        "left-1/2 bottom-[24%] h-[42vh] w-[70vw] -translate-x-1/2 md:left-[43%] md:bottom-[26%] md:h-[60vh] md:w-[28vw]",
+      className: "block",
       placeholder: { label: "Botella Edmar" },
     },
     // NOTA: la capa "particles" se reactivará cuando exista un PNG transparente

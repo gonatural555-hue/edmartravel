@@ -14,19 +14,18 @@ const wine = `${ASSETS_BASE}/wine-tours`;
 
 /** Escena 01 — Wine Tours & Bodegas. */
 export const WINE_ASSETS = {
-  background: `${wine}/backgrounds/wine-background-01.png`,
-  table: `${wine}/foreground/wine-table-foreground-01.png`,
-  bottle: `${wine}/props/wine-bottle-edmar-01.png`,
+  background: `${wine}/backgrounds/background-lapiz.png`,
+  /** Bump WINE_BOTTLE_ASSET_REV al cambiar el PNG (evita caché del navegador). */
+  bottle: `${wine}/props/wine-bottle-jejox.png`,
   glass: `${wine}/props/wine-glass-red-01.png`,
   cheeseBoard: `${wine}/props/wine-cheese-board-01.png`,
   grapes: `${wine}/props/wine-grapes-01.png`,
-  dishA: `${wine}/props/wine-dish-a-01.png`,
-  dishB: `${wine}/props/wine-dish-b-01.png`,
-  napkinKnife: `${wine}/props/wine-napkin-knife-01.png`,
   contactShadow: `${wine}/effects/wine-contact-shadow-01.png`,
-  warmGlow: `${wine}/effects/wine-warm-glow-01.png`,
   particles: `${wine}/effects/wine-atmospheric-particles-01.png`,
 } as const;
+
+/** Incrementar cuando se reemplace wine-bottle-jejox.png */
+export const WINE_BOTTLE_ASSET_REV = "12";
 
 /** Imágenes cuadradas de las cards del Experience Navigator (Escena 01). */
 export const WINE_CARD_IMAGES = {

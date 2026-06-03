@@ -184,7 +184,7 @@ export default function RegistrationCTA() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 z-[45] animate-fade-in pb-[max(0.5rem,env(safe-area-inset-bottom))] md:pb-0">
+      <div className="site-chrome-overlay fixed bottom-4 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 z-[45] animate-fade-in pb-[max(0.5rem,env(safe-area-inset-bottom))] md:pb-0">
         <button
           onClick={handleExpand}
           className="px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-dark-surface/95 backdrop-blur-sm border border-white/10 text-accent-gold text-[10px] md:text-xs font-medium hover:border-accent-gold/60 transition-all duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.3)] whitespace-nowrap"
@@ -197,7 +197,7 @@ export default function RegistrationCTA() {
   }
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 z-[45] w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] md:w-auto md:max-w-sm animate-fade-in pb-[max(0.5rem,env(safe-area-inset-bottom))] md:pb-0">
+    <div className="site-chrome-overlay fixed bottom-4 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0 z-[45] w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] md:w-auto md:max-w-sm animate-fade-in pb-[max(0.5rem,env(safe-area-inset-bottom))] md:pb-0">
       <div className="bg-dark-surface border border-white/10 rounded-2xl p-4 sm:p-5 shadow-[0_8px_24px_rgba(0,0,0,0.4)]">
         <div className="flex items-start justify-between gap-3 mb-4">
           <div className="flex-1">

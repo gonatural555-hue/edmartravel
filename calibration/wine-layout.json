@@ -1,0 +1,56 @@
+{
+  "ContactShadow": {
+    "left": 45,
+    "top": null,
+    "bottom": 24,
+    "width": 42,
+    "height": 9,
+    "scale": 1,
+    "zIndex": 14
+  },
+  "CheeseBoard": {
+    "left": 35,
+    "top": null,
+    "bottom": -25,
+    "width": 35,
+    "height": 34,
+    "scale": 2.86,
+    "zIndex": 18
+  },
+  "Grapes": {
+    "left": 58.5,
+    "top": null,
+    "bottom": -10,
+    "width": 19.5,
+    "height": 35,
+    "scale": 2.43,
+    "zIndex": 13
+  },
+  "Glass": {
+    "left": 57.5,
+    "top": null,
+    "bottom": 3.5,
+    "width": 16.5,
+    "height": 42,
+    "scale": 1.8,
+    "zIndex": 100
+  },
+  "Bottle": {
+    "left": 46.5,
+    "top": null,
+    "bottom": 0.5,
+    "width": 28,
+    "height": 60,
+    "scale": 1.63,
+    "zIndex": 99
+  },
+  "CTA": {
+    "left": 50.5,
+    "top": null,
+    "bottom": 0,
+    "width": 22,
+    "height": 46.5,
+    "scale": 1,
+    "zIndex": 100
+  }
+}

@@ -28,6 +28,11 @@ function nextWithLocale(request: NextRequest, locale: Locale): NextResponse {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  /** Rutas de laboratorio fuera de i18n (app/lab/...) */
+  if (pathname === "/lab" || pathname.startsWith("/lab/")) {
+    return NextResponse.next();
+  }
+
   if (!pathnameHasLocale(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname =
