@@ -23,7 +23,7 @@ export default function FeaturedExperiencesSectionHeader({
       </p>
       <h2
         id={headingId}
-        className="featured-editorial-rise featured-editorial-rise-delay-1 mx-auto mt-5 max-w-[min(100%,40rem)] text-balance font-semibold tracking-[-0.02em] text-mist-white/95 sm:mt-6 md:mt-7 text-3xl sm:text-4xl md:text-[2.65rem] md:leading-[1.12]"
+        className="featured-editorial-rise featured-editorial-rise-delay-1 mx-auto mt-5 max-w-[min(100%,40rem)] text-balance font-theater font-bold tracking-[-0.02em] text-mist-white/95 sm:mt-6 md:mt-7 text-3xl sm:text-4xl md:text-[2.65rem] md:leading-[1.12]"
       >
         {headline}
       </h2>

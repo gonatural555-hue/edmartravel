@@ -15,7 +15,7 @@ npm run hero-layout:sync
 
 O panel → Copiar JSON → `calibration/hero-layout.json` → `npm run hero-layout:sync`
 
-Persiste en `components/experience-hero/heroLayoutProduction.ts`.
+Persiste en `components/experience-hero/heroLayoutProduction.ts` (layout 3D + `HERO_PANEL_COPY` textos/posición editorial).
 
 ## Re-exportar wine (Escena 01)
 

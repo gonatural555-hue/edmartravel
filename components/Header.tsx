@@ -5,7 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { useAuth } from "@/context/AuthContext";
 import AuthModal from "@/components/AuthModal";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { blogSections } from "@/lib/blog-sections";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
@@ -14,7 +14,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import { PRODUCTS_DATA } from "@/lib/products-data";
 import { EXPERIENCE_CATEGORY_ORDER } from "@/lib/experience-categories";
 import { tourTitleForLocale } from "@/lib/tour-title-locale";
-import { useHeroLogoFromStorage } from "@/components/experience-hero/director/useHeroLogoFromStorage";
+import ImmersiveHomeHeader from "@/components/home/ImmersiveHomeHeader";
 
 function isHomePath(pathname: string) {
   return locales.some((l) => pathname === `/${l}` || pathname === `/${l}/`);
@@ -103,45 +103,14 @@ export default function Header() {
     return `/${segments.join("/")}${query ? `?${query}` : ""}`;
   };
 
-  const logoCalibrated = useHeroLogoFromStorage();
-  const isDirectorHome =
-    searchParams.get("director") === "true" && isHomePath(pathname);
+  const isImmersiveHome = isHomePath(pathname);
 
-  if (isDirectorHome) {
+  if (isImmersiveHome) {
     return (
       <>
-        <header className="fixed top-0 z-50 w-full border-b border-white/[0.08] bg-[#0a120f]/95 backdrop-blur-md">
-          <div
-            data-director-layer="logo"
-            className="flex h-[var(--experience-header-height,5.25rem)] w-full items-center justify-center"
-            style={{
-              marginTop: logoCalibrated.marginTop,
-              marginLeft: logoCalibrated.marginLeft,
-            }}
-          >
-            <Link
-              href={`/${locale}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`}
-              className="inline-flex items-center justify-center"
-              aria-label={SITE_CONFIG.name}
-              style={{
-                transform: `translate(${logoCalibrated.offsetX}px, ${logoCalibrated.offsetY}px) scale(${logoCalibrated.scale})`,
-              }}
-            >
-              <img
-                src="/assets/images/logo/logo.png"
-                alt={SITE_CONFIG.name}
-                width={logoCalibrated.width}
-                height={logoCalibrated.height}
-                style={{
-                  width: logoCalibrated.width,
-                  height: logoCalibrated.height,
-                }}
-                className="object-contain brightness-110"
-                decoding="async"
-              />
-            </Link>
-          </div>
-        </header>
+        <Suspense fallback={null}>
+          <ImmersiveHomeHeader />
+        </Suspense>
         <AuthModal
           open={authOpen}
           onClose={() => setAuthOpen(false)}

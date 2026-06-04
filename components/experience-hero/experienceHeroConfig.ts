@@ -1,17 +1,18 @@
-import { WINE_ASSETS } from "@/components/cinematic/cinematicAssets";
 import type { ExperienceWorldId } from "./types";
 
 export type ExperienceWorldConfig = {
   id: ExperienceWorldId;
+  /** @deprecated Usar titleLines — solo compat director */
   title: string;
   sidebarTitle: string;
   icon: "wine" | "mountain" | "city";
   heroImage: string;
   heroImageAlt: string;
-  ctaTitle: string;
-  ctaSubtitle: string;
-  ctaAction: string;
-  /** Radial spotlight tones */
+  titleLines: string[];
+  subtitle: string;
+  ctaLabel: string;
+  detailTags: string[];
+  imagePosition: string;
   spotlight: {
     core: string;
     mid: string;
@@ -24,14 +25,15 @@ export const EXPERIENCE_WORLDS: ExperienceWorldConfig[] = [
   {
     id: "wine",
     title: "WINE TOURS & BODEGAS",
-    sidebarTitle: "Wine Tours & Bodegas",
+    sidebarTitle: "Wine",
     icon: "wine",
-    heroImage: "",
-    heroImageAlt: "Wine Tours Mendoza",
-    ctaTitle: "WINE TOURS & BODEGAS",
-    ctaSubtitle:
-      "Descubrí las bodegas más emblemáticas de Mendoza.",
-    ctaAction: "Explorar experiencias →",
+    heroImage: "/assets/scenes/wine-tours/backgrounds/background-vino.png",
+    heroImageAlt: "Experiencia de vino y gastronomía en Mendoza",
+    titleLines: ["WINE TOURS", "& BODEGAS"],
+    subtitle: "Bodegas emblemáticas y gastronomía de altura en Mendoza.",
+    ctaLabel: "Explorar wine tours",
+    detailTags: ["Bodegas", "Gastronomía", "Paisajes"],
+    imagePosition: "55% 45%",
     spotlight: {
       core: "rgba(120, 28, 48, 0.42)",
       mid: "rgba(200, 155, 60, 0.14)",
@@ -42,14 +44,16 @@ export const EXPERIENCE_WORLDS: ExperienceWorldConfig[] = [
   {
     id: "adventure",
     title: "AVENTURA EN MENDOZA",
-    sidebarTitle: "Aventura Mendoza",
+    sidebarTitle: "Aventura",
     icon: "mountain",
     heroImage:
       "/assets/scenes/adventure-mendoza/backgrounds/hero-aventura.png",
     heroImageAlt: "Cabalgata en los Andes, Mendoza",
-    ctaTitle: "AVENTURA EN MENDOZA",
-    ctaSubtitle: "Cabalgatas, trekking y paisajes inolvidables.",
-    ctaAction: "Explorar aventuras →",
+    titleLines: ["AVENTURA", "MENDOZA"],
+    subtitle: "Cabalgatas, trekking y paisajes que no se olvidan.",
+    ctaLabel: "Explorar aventuras",
+    detailTags: ["Cabalgatas", "Trekking", "Montaña"],
+    imagePosition: "52% 40%",
     spotlight: {
       core: "rgba(58, 95, 74, 0.38)",
       mid: "rgba(210, 140, 55, 0.16)",
@@ -59,15 +63,18 @@ export const EXPERIENCE_WORLDS: ExperienceWorldConfig[] = [
   },
   {
     id: "city",
-    title: "CONOCER LA CIUDAD",
-    sidebarTitle: "Conocer la Ciudad",
+    title: "EXPLORA LA CIUDAD DE MENDOZA",
+    sidebarTitle: "Ciudad",
     icon: "city",
     heroImage:
-      "/assets/scenes/city-tours/backgrounds/hero-plaza-san-martin.webp",
-    heroImageAlt: "Plaza San Martín, Mendoza",
-    ctaTitle: "CONOCER LA CIUDAD",
-    ctaSubtitle: "Descubrí los rincones más emblemáticos de Mendoza.",
-    ctaAction: "Explorar la ciudad →",
+      "/assets/scenes/discover-mendoza/backgrounds/background-mendoza.png",
+    heroImageAlt: "Descubrí Mendoza en scooter, plaza y fuente al atardecer",
+    titleLines: ["explora", "la ciudad", "de mendoza"],
+    subtitle:
+      "Scooters, Parques Historicos y los\nlugares más emblematícos.",
+    ctaLabel: "Explorar la ciudad",
+    detailTags: ["Scooters", "Historia", "Cultura"],
+    imagePosition: "52% 42%",
     spotlight: {
       core: "rgba(168, 92, 58, 0.32)",
       mid: "rgba(212, 168, 90, 0.14)",
@@ -78,20 +85,6 @@ export const EXPERIENCE_WORLDS: ExperienceWorldConfig[] = [
 ];
 
 export const WORLD_ORDER: ExperienceWorldId[] = ["wine", "adventure", "city"];
-
-export const WINE_LAYER_ASSETS = {
-  contactShadow: WINE_ASSETS.contactShadow,
-  cheeseBoard: WINE_ASSETS.cheeseBoard,
-  grapes: WINE_ASSETS.grapes,
-  glass: WINE_ASSETS.glass,
-  bottle: WINE_ASSETS.bottle,
-};
-
-/** Preview ciudad — arco + scooter */
-export const CITY_PEEK_ASSETS = {
-  gate: "/assets/scenes/city-tours/backgrounds/hero-plaza-san-martin.webp",
-  scooter: "/assets/images/products/MonoCityTour/monocitytour.webp",
-};
 
 export const FOOTER_PILLS = [
   { icon: "nature" as const, label: "NATURALEZA EN ESTADO PURO" },

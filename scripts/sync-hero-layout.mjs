@@ -29,14 +29,17 @@ const slots = {
   right: slotFromPayload("right"),
 };
 
+const panelCopy = raw.panelCopy ?? null;
+
 const fileBody = `import type {
   CarouselStageDebugValues,
   CarouselWrapDebugValues,
   LogoDebugValues,
+  PanelCopyDebugValues,
   PanelSizeDebugValues,
   SlotDebugValues,
 } from "./director/experienceHeroDebugConfig";
-import type { SpatialSlot } from "./types";
+import type { ExperienceWorldId, SpatialSlot } from "./types";
 
 /**
  * Fuente de verdad del hero — sincronizada desde calibration/hero-layout.json
@@ -51,6 +54,8 @@ export const HERO_CAROUSEL_STAGE: CarouselStageDebugValues = ${JSON.stringify(ra
 export const HERO_PANEL_SIZE: PanelSizeDebugValues = ${JSON.stringify(raw.panelSize, null, 2)};
 
 export const HERO_SLOT_LAYOUT: Record<SpatialSlot, SlotDebugValues> = ${JSON.stringify(slots, null, 2)};
+
+export const HERO_PANEL_COPY: Record<ExperienceWorldId, PanelCopyDebugValues> = ${JSON.stringify(panelCopy, null, 2)};
 `;
 
 fs.writeFileSync(
@@ -58,3 +63,6 @@ fs.writeFileSync(
   fileBody
 );
 console.log("heroLayoutProduction.ts actualizado.");
+if (!panelCopy) {
+  console.warn("Aviso: el JSON no incluye panelCopy — HERO_PANEL_COPY quedará null.");
+}

@@ -6,11 +6,14 @@
       "tours": "Tours",
       "blog": "Blog",
       "cart": "Reservas",
-      "about": "About",
+      "about": "Sobre Nosotros",
       "contact": "Contacto"
     },
     "greeting": "Hola",
     "account": "Cuenta",
+    "login": "Ingresar",
+    "myAccount": "Mi Cuenta",
+    "reservations": "Mis Reservas",
     "toursMenu": {
       "cabalgataPotrerillos": "Cabalgata + Picada en Potrerillos",
       "andesSunset": "Andes Experience + Cabalgata + Sunset Picnic",
@@ -177,6 +180,41 @@
     "whatsapp": "Contactar por WhatsApp"
   },
   "home": {
+    "marquee": {
+      "row1": "DESCUBRÍ MENDOZA · VINO · MONTAÑAS · CIUDAD · CULTURA ·",
+      "row2": "RUTAS AUTÉNTICAS · GUÍAS LOCALES · EXPERIENCIAS PREMIUM ·"
+    },
+    "collage": {
+      "ariaLabel": "Galería de experiencias en Mendoza",
+      "eyebrow": "Experiencias",
+      "headline": "Elegí cómo querés descubrir Mendoza.",
+      "default": {
+        "title": "Experiencias diseñadas para descubrir Mendoza.",
+        "description": "Vino, montaña y ciudad unidos en recorridos reales, simples y memorables.",
+        "cta": "Explorar experiencias"
+      },
+      "wine": {
+        "category": "WINE TOURS & BODEGAS",
+        "title": "Bodegas, gastronomía y paisajes.",
+        "description": "Experiencias seleccionadas para descubrir Mendoza a través del vino.",
+        "details": "Desde $100.000 ARS · Traslados disponibles",
+        "cta": "Explorar wine tours"
+      },
+      "adventure": {
+        "category": "AVENTURA MENDOZA",
+        "title": "Cabalgatas, trekking y montaña.",
+        "description": "Paisajes reales, guías locales y experiencias al aire libre.",
+        "details": "Desde $100.000 ARS · Potrerillos",
+        "cta": "Explorar aventuras"
+      },
+      "city": {
+        "category": "CONOCER LA CIUDAD",
+        "title": "Scooters, historia y cultura.",
+        "description": "Recorridos urbanos por lugares emblemáticos de Mendoza.",
+        "details": "Desde $25.000 ARS · Monopatín eléctrico",
+        "cta": "Explorar la ciudad"
+      }
+    },
     "benefits": [
       {
         "title": "Despacho rápido",

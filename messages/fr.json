@@ -11,6 +11,9 @@
     },
     "greeting": "Bonjour",
     "account": "Compte",
+    "login": "Connexion",
+    "myAccount": "Mon compte",
+    "reservations": "Mes réservations",
     "toursMenu": {
       "cabalgataPotrerillos": "Promenade à cheval + Picada à Potrerillos",
       "andesSunset": "Andes Experience + Promenade à cheval + Pique-nique au coucher du soleil",
@@ -177,6 +180,41 @@
     "whatsapp": "Nous contacter sur WhatsApp"
   },
   "home": {
+    "marquee": {
+      "row1": "DÉCOUVREZ MENDOZA · VIN · MONTAGNES · VILLE · CULTURE ·",
+      "row2": "ITINÉRAIRES AUTHENTIQUES · GUIDES LOCAUX · EXPÉRIENCES PREMIUM ·"
+    },
+    "collage": {
+      "ariaLabel": "Galerie d'expériences à Mendoza",
+      "eyebrow": "Expériences",
+      "headline": "Choisissez comment découvrir Mendoza.",
+      "default": {
+        "title": "Des expériences conçues pour découvrir Mendoza.",
+        "description": "Vin, montagne et ville réunis dans des parcours réels, simples et mémorables.",
+        "cta": "Explorer les expériences"
+      },
+      "wine": {
+        "category": "WINE TOURS & DOMAINES",
+        "title": "Domaines, gastronomie et paysages.",
+        "description": "Expériences sélectionnées pour découvrir Mendoza à travers le vin.",
+        "details": "À partir de 100 000 ARS · Transferts disponibles",
+        "cta": "Explorer les wine tours"
+      },
+      "adventure": {
+        "category": "AVENTURE MENDOZA",
+        "title": "Équitation, trekking et montagne.",
+        "description": "Paysages réels, guides locaux et expériences en plein air.",
+        "details": "À partir de 100 000 ARS · Potrerillos",
+        "cta": "Explorer les aventures"
+      },
+      "city": {
+        "category": "DÉCOUVRIR LA VILLE",
+        "title": "Trottinettes, histoire et culture.",
+        "description": "Visites urbaines des lieux emblématiques de Mendoza.",
+        "details": "À partir de 25 000 ARS · Trottinette électrique",
+        "cta": "Explorer la ville"
+      }
+    },
     "benefits": [
       {
         "title": "Envoi rapide",

@@ -1,20 +1,71 @@
 "use client";
 
-import { Suspense } from "react";
+
+
 import ExperienceSelectorHome from "@/components/experience-hero/ExperienceSelectorHome";
+
 import HideSiteChrome from "@/components/experience-hero/HideSiteChrome";
 
+import CinematicMarqueeSection from "@/components/home/CinematicMarqueeSection";
+
+import HomeAtmosphere from "@/components/home/HomeAtmosphere";
+
+import { HomeExperienceProvider } from "@/components/home/HomeExperienceContext";
+
+import ExperienceCollageSection from "@/components/home/ExperienceCollageSection";
+
+import SmoothScrollProvider from "@/components/home/SmoothScrollProvider";
+
+
+
 /**
- * Home inmersiva — selector espacial de 3 experiencias Mendoza.
- * Reemplaza el stack vertical de escenas cinematográficas.
+
+ * Home inmersiva — atmósfera unificada + scroll cinematográfico.
+
  */
+
 export default function CinematicHome() {
+
   return (
-    <>
-      <Suspense fallback={null}>
-        <HideSiteChrome />
-      </Suspense>
-      <ExperienceSelectorHome />
-    </>
+
+    <SmoothScrollProvider>
+
+      <HideSiteChrome />
+
+      <HomeExperienceProvider>
+
+        <main className="relative min-h-screen overflow-x-hidden bg-[var(--premium-base)]">
+
+          <HomeAtmosphere />
+
+          <div className="relative z-10">
+
+            <section
+
+              className="relative min-h-[100dvh] w-full"
+
+              aria-label="Selector de experiencias"
+
+            >
+
+              <ExperienceSelectorHome />
+
+            </section>
+
+            <CinematicMarqueeSection />
+
+            <ExperienceCollageSection />
+
+          </div>
+
+        </main>
+
+      </HomeExperienceProvider>
+
+    </SmoothScrollProvider>
+
   );
+
 }
+
+

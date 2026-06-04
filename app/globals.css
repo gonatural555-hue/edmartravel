@@ -1,3 +1,5 @@
+@import "lenis/dist/lenis.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,13 +38,17 @@
   --text-secondary: var(--color-text-muted);
   --accent: var(--color-accent-gold);
   --accent-secondary: var(--color-accent-moss);
+
+  --premium-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --premium-base: #050606;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-serif: var(--font-theater), Georgia, Cambria, serif;
+  --font-theater: var(--font-theater), Georgia, Cambria, serif;
 
   /* Cinematic Dark Outdoor - Colores para Tailwind */
   --color-dark-base: var(--color-dark-base);
@@ -78,12 +84,21 @@ html {
   }
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-theater), Georgia, Cambria, serif;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
 body {
   position: relative;
   min-height: 100%;
   background-color: var(--color-bg);
   color: var(--foreground);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   /* Ensure content is above background */
   z-index: 1;
   /* Smooth scrolling con momentum pesado */
@@ -279,19 +294,26 @@ main[data-route="order-success"] .bg-gray-50 {
   background-color: #CCD0CF !important;
 }
 
-/* Home — hero inmersivo a pantalla completa (sin header/footer) */
-html.experience-hero-takeover:not(.experience-hero-director-mode) header,
+/* Home inmersiva — footer oculto; header flotante fijo transparente */
 html.experience-hero-takeover footer {
   display: none !important;
 }
 
-/* Modo director: Header visible para logo centrado + calibración carrusel */
-html.experience-hero-director-mode {
-  --experience-header-height: 5.25rem;
+html.experience-hero-takeover {
+  --experience-header-height: 5.5rem;
 }
 
-html.experience-hero-director-mode header {
+html.experience-hero-takeover header {
   display: block !important;
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+}
+
+html.experience-hero-takeover body::before,
+html.experience-hero-takeover body::after {
+  opacity: 0 !important;
+  visibility: hidden;
 }
 
 html.experience-hero-takeover [role="dialog"][aria-live="polite"] {
@@ -303,8 +325,51 @@ html.experience-hero-takeover .site-chrome-overlay {
 }
 
 html.experience-hero-takeover,
-html.experience-hero-takeover body {
-  overflow: hidden;
-  height: 100%;
-  background-color: #0a120f;
+html.experience-hero-takeover body,
+html.experience-hero-takeover.lenis,
+html.experience-hero-takeover.lenis body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
+  min-height: 100%;
+  background-color: var(--premium-base);
+}
+
+/* Premium home — animaciones globales (transform + opacity) */
+@keyframes premium-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.premium-fade-in {
+  animation: premium-fade-in 800ms var(--premium-ease) both;
+}
+
+.premium-fade-in-delayed {
+  animation: premium-fade-in 800ms var(--premium-ease) 0.12s both;
+}
+
+.premium-hover {
+  transition-property: opacity, color, background-color, border-color, box-shadow;
+  transition-duration: 400ms;
+  transition-timing-function: var(--premium-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-fade-in,
+  .premium-fade-in-delayed {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .premium-hover {
+    transition: none;
+  }
 }

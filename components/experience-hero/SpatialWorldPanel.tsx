@@ -80,11 +80,11 @@ export default function SpatialWorldPanel({
 
   return (
     <motion.div
-      layout
+      layout={false}
       data-director-layer={`world-panel-${slot}`}
       className={`absolute will-change-[transform,opacity,filter] ${
         interactive && !isCenter ? "cursor-pointer" : ""
-      } ${directorOutline("worldPanel", showOutlines)}`}
+      } ${isCenter ? "group/panel" : ""} ${directorOutline("worldPanel", showOutlines)}`}
       style={{
         width: panelWidth,
         height: panelHeight,
@@ -111,15 +111,15 @@ export default function SpatialWorldPanel({
       <div
         className={`relative h-full w-full overflow-hidden ${
           isCenter
-            ? "rounded-[2rem] shadow-[0_28px_90px_rgba(0,0,0,0.5)]"
-            : "rounded-[1.25rem] shadow-[0_16px_48px_rgba(0,0,0,0.4)]"
+            ? "rounded-[32px] shadow-[0_40px_120px_rgba(0,0,0,0.5),0_16px_48px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.06)]"
+            : "rounded-[20px] shadow-[0_24px_64px_rgba(0,0,0,0.4)]"
         }`}
       >
         {children}
       </div>
       {!isCenter ? (
         <div
-          className="pointer-events-none absolute inset-0 rounded-[1.25rem] bg-black/12"
+          className="pointer-events-none absolute inset-0 rounded-[20px] bg-gradient-to-r from-black/10 via-black/8 to-black/10"
           aria-hidden
         />
       ) : null}

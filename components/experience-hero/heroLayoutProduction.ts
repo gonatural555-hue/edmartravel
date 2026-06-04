@@ -2,72 +2,170 @@ import type {
   CarouselStageDebugValues,
   CarouselWrapDebugValues,
   LogoDebugValues,
+  PanelCopyDebugValues,
   PanelSizeDebugValues,
   SlotDebugValues,
 } from "./director/experienceHeroDebugConfig";
-import type { SpatialSlot } from "./types";
+import type { ExperienceWorldId, SpatialSlot } from "./types";
 
 /**
  * Fuente de verdad del hero — sincronizada desde calibration/hero-layout.json
  * (npm run hero-layout:sync)
  */
 export const HERO_LOGO_LAYOUT: LogoDebugValues = {
-  width: 199,
-  height: 36,
-  marginTop: 0,
-  marginLeft: 0,
-  offsetX: 0,
-  offsetY: 0,
-  scale: 2,
+  "width": 199,
+  "height": 36,
+  "marginTop": 0,
+  "marginLeft": 0,
+  "offsetX": 0,
+  "offsetY": 0,
+  "scale": 2
 };
 
 export const HERO_CAROUSEL_WRAP: CarouselWrapDebugValues = {
-  paddingTopRem: 0,
-  paddingBottomRem: 0,
+  "paddingTopRem": 0,
+  "paddingBottomRem": 0
 };
 
 export const HERO_CAROUSEL_STAGE: CarouselStageDebugValues = {
-  perspectivePx: 2250,
-  originX: 48,
-  originY: 50,
+  "perspectivePx": 1200,
+  "originX": 50,
+  "originY": 50
 };
 
 export const HERO_PANEL_SIZE: PanelSizeDebugValues = {
-  widthVw: 71,
-  heightVh: 68,
-  maxWidthPx: 1080,
-  maxHeightPx: 780,
+  "widthVw": 72,
+  "heightVh": 66,
+  "maxWidthPx": 1120,
+  "maxHeightPx": 760
 };
 
 export const HERO_SLOT_LAYOUT: Record<SpatialSlot, SlotDebugValues> = {
-  center: {
-    leftPct: 51,
-    topPct: 48,
-    scale: 1,
-    opacity: 1,
-    blurPx: 0,
-    zIndex: 30,
-    z: 68,
-    rotateY: -1,
+  "center": {
+    "leftPct": 50.5,
+    "topPct": 48,
+    "scale": 1,
+    "opacity": 1,
+    "blurPx": 0,
+    "zIndex": 30,
+    "z": 0,
+    "rotateY": 0
   },
-  left: {
-    leftPct: 24,
-    topPct: 55,
-    scale: 0.69,
-    opacity: 0.56,
-    blurPx: 0,
-    zIndex: 10,
-    z: -48,
-    rotateY: 45,
+  "left": {
+    "leftPct": 12,
+    "topPct": 50,
+    "scale": 0.62,
+    "opacity": 0.55,
+    "blurPx": 2,
+    "zIndex": 10,
+    "z": -260,
+    "rotateY": 10
   },
-  right: {
-    leftPct: 73.5,
-    topPct: 55,
-    scale: 0.75,
-    opacity: 0.58,
-    blurPx: 0,
-    zIndex: 10,
-    z: -48,
-    rotateY: -45,
+  "right": {
+    "leftPct": 88,
+    "topPct": 50,
+    "scale": 0.62,
+    "opacity": 0.55,
+    "blurPx": 2,
+    "zIndex": 10,
+    "z": -260,
+    "rotateY": -10
+  }
+};
+
+export const HERO_PANEL_COPY: Record<ExperienceWorldId, PanelCopyDebugValues> = {
+  "wine": {
+    "titleLines": [
+      "WINE TOURS",
+      "& BODEGAS"
+    ],
+    "subtitle": "Bodegas emblemáticas y gastronomía de altura en Mendoza.",
+    "ctaLabel": "Explorar wine tours",
+    "layout": {
+      "leftPct": 0.5,
+      "offsetXPx": 0,
+      "offsetYPx": 0,
+      "widthPct": 86,
+      "maxWidthPx": 600,
+      "innerMaxWidthPx": 480,
+      "padLeftPct": 6,
+      "padRightPct": 6,
+      "padTopPct": 8,
+      "padBottomPct": 10,
+      "contentJustifyPct": 100,
+      "titleFontMinRem": 2.15,
+      "titleFontVw": 4.9,
+      "titleFontMaxRem": 3.7,
+      "titleLineGapPx": 2,
+      "subtitleFontMinRem": 0.72,
+      "subtitleFontVw": 1.35,
+      "subtitleFontMaxRem": 0.88,
+      "subtitleMarginTopPx": 12,
+      "subtitleMaxWidthCh": 30,
+      "ctaMarginTopPx": 20
+    }
   },
+  "adventure": {
+    "titleLines": [
+      "AVENTURA",
+      "MENDOZA"
+    ],
+    "subtitle": "Cabalgatas, trekking y paisajes que no se olvidan.",
+    "ctaLabel": "Explorar aventuras",
+    "layout": {
+      "leftPct": 0.5,
+      "offsetXPx": 0,
+      "offsetYPx": 0,
+      "widthPct": 32,
+      "maxWidthPx": 600,
+      "innerMaxWidthPx": 320,
+      "padLeftPct": 6.5,
+      "padRightPct": 6.5,
+      "padTopPct": 6,
+      "padBottomPct": 10,
+      "contentJustifyPct": 29,
+      "titleFontMinRem": 2.5,
+      "titleFontVw": 6,
+      "titleFontMaxRem": 3.85,
+      "titleLineGapPx": 3,
+      "subtitleFontMinRem": 0.72,
+      "subtitleFontVw": 1.75,
+      "subtitleFontMaxRem": 1.01,
+      "subtitleMarginTopPx": 12,
+      "subtitleMaxWidthCh": 25,
+      "ctaMarginTopPx": 18
+    }
+  },
+  "city": {
+    "titleLines": [
+      "explora",
+      "la ciudad",
+      "de mendoza"
+    ],
+    "subtitle": "Scooters, Parques Historicos y los\nlugares más emblematícos.",
+    "ctaLabel": "Explorar la ciudad",
+    "layout": {
+      "leftPct": 0,
+      "offsetXPx": 0,
+      "offsetYPx": 0,
+      "widthPct": 58,
+      "maxWidthPx": 380,
+      "innerMaxWidthPx": 320,
+      "padLeftPct": 6,
+      "padRightPct": 6,
+      "padTopPct": 7,
+      "padBottomPct": 8,
+      "contentJustifyPct": 100,
+      "titleFontMinRem": 2.5,
+      "titleFontVw": 6,
+      "titleFontMaxRem": 3.35,
+      "titleLineGapPx": 2,
+      "subtitleFontMinRem": 0.72,
+      "subtitleFontVw": 1.35,
+      "subtitleFontMaxRem": 0.88,
+      "subtitleMarginTopPx": 12,
+      "subtitleMaxWidthCh": 30,
+      "ctaMarginTopPx": 20
+    }
+  }
 };

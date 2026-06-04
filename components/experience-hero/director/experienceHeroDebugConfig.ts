@@ -1,5 +1,68 @@
 import type { SpatialSlotLayout } from "../spatialSlotLayout";
-import type { SpatialSlot } from "../types";
+import type { ExperienceWorldId, SpatialSlot } from "../types";
+
+/** Posición y tipografía del bloque editorial (panel activo / center). */
+export type PanelEditorialLayoutDebugValues = {
+  leftPct: number;
+  offsetXPx: number;
+  offsetYPx: number;
+  widthPct: number;
+  maxWidthPx: number;
+  innerMaxWidthPx: number;
+  padLeftPct: number;
+  padRightPct: number;
+  padTopPct: number;
+  padBottomPct: number;
+  /** 0 = arriba, 50 = centro, 100 = abajo */
+  contentJustifyPct: number;
+  titleFontMinRem: number;
+  titleFontVw: number;
+  titleFontMaxRem: number;
+  titleLineGapPx: number;
+  subtitleFontMinRem: number;
+  subtitleFontVw: number;
+  subtitleFontMaxRem: number;
+  subtitleMarginTopPx: number;
+  subtitleMaxWidthCh: number;
+  ctaMarginTopPx: number;
+};
+
+export const DEFAULT_PANEL_EDITORIAL_LAYOUT: PanelEditorialLayoutDebugValues = {
+  leftPct: 0,
+  offsetXPx: 0,
+  offsetYPx: 0,
+  widthPct: 58,
+  maxWidthPx: 380,
+  innerMaxWidthPx: 320,
+  padLeftPct: 6,
+  padRightPct: 6,
+  padTopPct: 7,
+  padBottomPct: 8,
+  contentJustifyPct: 100,
+  titleFontMinRem: 1.35,
+  titleFontVw: 3.2,
+  titleFontMaxRem: 2.35,
+  titleLineGapPx: 2,
+  subtitleFontMinRem: 0.72,
+  subtitleFontVw: 1.35,
+  subtitleFontMaxRem: 0.88,
+  subtitleMarginTopPx: 12,
+  subtitleMaxWidthCh: 30,
+  ctaMarginTopPx: 20,
+};
+
+export type PanelCopyDebugValues = {
+  titleLines: string[];
+  subtitle: string;
+  ctaLabel: string;
+  layout: PanelEditorialLayoutDebugValues;
+};
+
+export function contentJustifyFromPct(pct: number): "flex-start" | "center" | "flex-end" {
+  if (pct <= 33) return "flex-start";
+  if (pct >= 66) return "flex-end";
+  return "center";
+}
 
 export type LogoDebugValues = {
   width: number;
@@ -46,7 +109,20 @@ export type ExperienceHeroDebugState = {
   carouselStage: CarouselStageDebugValues;
   panelSize: PanelSizeDebugValues;
   slots: Record<SpatialSlot, SlotDebugValues>;
+  panelCopy: Record<ExperienceWorldId, PanelCopyDebugValues>;
   showOutlines: boolean;
+};
+
+export const PANEL_COPY_WORLD_ORDER: ExperienceWorldId[] = [
+  "wine",
+  "adventure",
+  "city",
+];
+
+export const DEBUG_PANEL_COPY_LABELS: Record<ExperienceWorldId, string> = {
+  wine: "Panel — Wine Tours & Bodegas",
+  adventure: "Panel — Aventura Mendoza",
+  city: "Panel — Conocer la Ciudad",
 };
 
 export function slotDebugToLayout(debug: SlotDebugValues): SpatialSlotLayout {

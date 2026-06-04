@@ -71,11 +71,11 @@ export default function CinematicCoverScene({
         aria-hidden
       />
 
-      <h2 className="pointer-events-none absolute left-[5%] top-[6%] z-[2] max-w-[min(42%,220px)] font-serif text-[clamp(0.68rem,1.35vw,0.95rem)] font-light uppercase leading-[1.35] tracking-[0.16em] text-white/90 line-clamp-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
+      <h2 className="premium-fade-in pointer-events-none absolute left-[5%] top-[6%] z-[2] max-w-[min(42%,220px)] font-theater text-[clamp(0.68rem,1.35vw,0.95rem)] font-bold uppercase leading-[1.1] tracking-[-0.03em] text-white/92 line-clamp-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.45)]">
         {title}
       </h2>
 
-      <div className="pointer-events-auto absolute bottom-[7%] left-[5%] z-[3]">
+      <div className="premium-fade-in-delayed pointer-events-auto absolute bottom-[7%] left-[5%] z-[3]">
         <PremiumExperienceCtaCard
           title={ctaTitle}
           subtitle={ctaSubtitle}

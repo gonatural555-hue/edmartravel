@@ -6,6 +6,18 @@ const config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        theater: ["var(--font-theater)", "Georgia", "Cambria", "serif"],
+        display: ["var(--font-theater)", "Georgia", "Cambria", "serif"],
+        serif: ["var(--font-theater)", "Georgia", "Cambria", "serif"],
+        sans: [
+          "Inter",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "sans-serif",
+        ],
+      },
       colors: {
         // Cinematic Dark Outdoor - Paleta base
         "dark-base": "#0c1411",

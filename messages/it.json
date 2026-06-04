@@ -11,6 +11,9 @@
     },
     "greeting": "Ciao",
     "account": "Account",
+    "login": "Login",
+    "myAccount": "Il mio account",
+    "reservations": "Le mie prenotazioni",
     "toursMenu": {
       "cabalgataPotrerillos": "Passeggiata a cavallo + Picada a Potrerillos",
       "andesSunset": "Andes Experience + Passeggiata a cavallo + Sunset Picnic",
@@ -177,6 +180,41 @@
     "whatsapp": "Contattaci su WhatsApp"
   },
   "home": {
+    "marquee": {
+      "row1": "SCOPRI MENDOZA · VINO · MONTAGNE · CITTÀ · CULTURA ·",
+      "row2": "PERCORSI AUTENTICI · GUIDE LOCALI · ESPERIENZE PREMIUM ·"
+    },
+    "collage": {
+      "ariaLabel": "Galleria esperienze a Mendoza",
+      "eyebrow": "Esperienze",
+      "headline": "Scegli come vuoi scoprire Mendoza.",
+      "default": {
+        "title": "Esperienze pensate per scoprire Mendoza.",
+        "description": "Vino, montagna e città in percorsi reali, semplici e memorabili.",
+        "cta": "Esplora le esperienze"
+      },
+      "wine": {
+        "category": "WINE TOURS & CANTINE",
+        "title": "Cantine, gastronomia e paesaggi.",
+        "description": "Esperienze selezionate per scoprire Mendoza attraverso il vino.",
+        "details": "Da $100.000 ARS · Trasferimenti disponibili",
+        "cta": "Esplora wine tour"
+      },
+      "adventure": {
+        "category": "AVVENTURA MENDOZA",
+        "title": "Equitazione, trekking e montagna.",
+        "description": "Paesaggi reali, guide locali ed esperienze all'aperto.",
+        "details": "Da $100.000 ARS · Potrerillos",
+        "cta": "Esplora avventure"
+      },
+      "city": {
+        "category": "SCOPRIRE LA CITTÀ",
+        "title": "Monopattini, storia e cultura.",
+        "description": "Tour urbani nei luoghi emblematici di Mendoza.",
+        "details": "Da $25.000 ARS · Monopattino elettrico",
+        "cta": "Esplora la città"
+      }
+    },
     "benefits": [
       {
         "title": "Spedizione rapida",

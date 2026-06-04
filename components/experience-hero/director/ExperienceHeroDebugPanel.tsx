@@ -9,12 +9,323 @@ import {
 } from "react";
 import { EXPERIENCE_HERO_DEBUG_DEFAULTS } from "../experienceHeroLayout";
 import {
+  DEBUG_PANEL_COPY_LABELS,
   DEBUG_SECTION_LABELS,
+  PANEL_COPY_WORLD_ORDER,
   slotDebugToLayout,
+  type PanelEditorialLayoutDebugValues,
   type SlotDebugValues,
 } from "./experienceHeroDebugConfig";
 import { useExperienceHeroDebug } from "./ExperienceHeroDebugContext";
-import type { SpatialSlot } from "../types";
+import type { ExperienceWorldId, SpatialSlot } from "../types";
+
+const copyInputClass =
+  "w-full rounded border border-white/20 bg-black/50 px-2 py-1.5 text-white placeholder:text-white/30";
+
+function parseTitleLines(value: string): string[] {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+}
+
+function CopyField({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="space-y-1">
+      <label className="block text-white/70">{label}</label>
+      {hint ? <p className="text-[9px] text-white/40">{hint}</p> : null}
+      {children}
+    </div>
+  );
+}
+
+function LayoutGroup({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="space-y-2 border-t border-white/10 pt-2 first:border-t-0 first:pt-0">
+      <p className="text-[10px] font-medium uppercase tracking-wider text-accent-gold/90">
+        {title}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+function panelLayoutFields(
+  layout: PanelEditorialLayoutDebugValues,
+  patchLayout: (p: Partial<PanelEditorialLayoutDebugValues>) => void
+): SliderField[] {
+  const p = patchLayout;
+  return [
+    {
+      key: "leftPct",
+      label: "left (%)",
+      min: 0,
+      max: 40,
+      step: 0.5,
+      get: () => layout.leftPct,
+      set: (v) => p({ leftPct: v }),
+    },
+    {
+      key: "offsetX",
+      label: "offset X (px)",
+      min: -80,
+      max: 80,
+      step: 1,
+      get: () => layout.offsetXPx,
+      set: (v) => p({ offsetXPx: v }),
+    },
+    {
+      key: "offsetY",
+      label: "offset Y (px)",
+      min: -80,
+      max: 80,
+      step: 1,
+      get: () => layout.offsetYPx,
+      set: (v) => p({ offsetYPx: v }),
+    },
+    {
+      key: "widthPct",
+      label: "ancho bloque (%)",
+      min: 30,
+      max: 90,
+      step: 1,
+      get: () => layout.widthPct,
+      set: (v) => p({ widthPct: v }),
+    },
+    {
+      key: "maxWidthPx",
+      label: "max ancho (px)",
+      min: 200,
+      max: 600,
+      step: 10,
+      get: () => layout.maxWidthPx,
+      set: (v) => p({ maxWidthPx: v }),
+    },
+    {
+      key: "innerMaxWidthPx",
+      label: "max contenido (px)",
+      min: 160,
+      max: 480,
+      step: 10,
+      get: () => layout.innerMaxWidthPx,
+      set: (v) => p({ innerMaxWidthPx: v }),
+    },
+    {
+      key: "padLeft",
+      label: "pad left (%)",
+      min: 0,
+      max: 20,
+      step: 0.5,
+      get: () => layout.padLeftPct,
+      set: (v) => p({ padLeftPct: v }),
+    },
+    {
+      key: "padRight",
+      label: "pad right (%)",
+      min: 0,
+      max: 20,
+      step: 0.5,
+      get: () => layout.padRightPct,
+      set: (v) => p({ padRightPct: v }),
+    },
+    {
+      key: "padTop",
+      label: "pad top (%)",
+      min: 0,
+      max: 25,
+      step: 0.5,
+      get: () => layout.padTopPct,
+      set: (v) => p({ padTopPct: v }),
+    },
+    {
+      key: "padBottom",
+      label: "pad bottom (%)",
+      min: 0,
+      max: 25,
+      step: 0.5,
+      get: () => layout.padBottomPct,
+      set: (v) => p({ padBottomPct: v }),
+    },
+    {
+      key: "justify",
+      label: "anclaje vert. (%)",
+      min: 0,
+      max: 100,
+      step: 1,
+      get: () => layout.contentJustifyPct,
+      set: (v) => p({ contentJustifyPct: v }),
+    },
+    {
+      key: "titleMin",
+      label: "título min (rem)",
+      min: 0.8,
+      max: 2.5,
+      step: 0.05,
+      get: () => layout.titleFontMinRem,
+      set: (v) => p({ titleFontMinRem: v }),
+    },
+    {
+      key: "titleVw",
+      label: "título vw",
+      min: 1,
+      max: 6,
+      step: 0.1,
+      get: () => layout.titleFontVw,
+      set: (v) => p({ titleFontVw: v }),
+    },
+    {
+      key: "titleMax",
+      label: "título max (rem)",
+      min: 1.2,
+      max: 4,
+      step: 0.05,
+      get: () => layout.titleFontMaxRem,
+      set: (v) => p({ titleFontMaxRem: v }),
+    },
+    {
+      key: "titleGap",
+      label: "gap líneas título",
+      min: 0,
+      max: 24,
+      step: 1,
+      get: () => layout.titleLineGapPx,
+      set: (v) => p({ titleLineGapPx: v }),
+    },
+    {
+      key: "subMin",
+      label: "subtítulo min (rem)",
+      min: 0.55,
+      max: 1.5,
+      step: 0.02,
+      get: () => layout.subtitleFontMinRem,
+      set: (v) => p({ subtitleFontMinRem: v }),
+    },
+    {
+      key: "subVw",
+      label: "subtítulo vw",
+      min: 0.5,
+      max: 3,
+      step: 0.05,
+      get: () => layout.subtitleFontVw,
+      set: (v) => p({ subtitleFontVw: v }),
+    },
+    {
+      key: "subMax",
+      label: "subtítulo max (rem)",
+      min: 0.65,
+      max: 1.5,
+      step: 0.02,
+      get: () => layout.subtitleFontMaxRem,
+      set: (v) => p({ subtitleFontMaxRem: v }),
+    },
+    {
+      key: "subMt",
+      label: "subtítulo margin top",
+      min: 0,
+      max: 48,
+      step: 1,
+      get: () => layout.subtitleMarginTopPx,
+      set: (v) => p({ subtitleMarginTopPx: v }),
+    },
+    {
+      key: "subCh",
+      label: "subtítulo max (ch)",
+      min: 12,
+      max: 50,
+      step: 1,
+      get: () => layout.subtitleMaxWidthCh,
+      set: (v) => p({ subtitleMaxWidthCh: v }),
+    },
+    {
+      key: "ctaMt",
+      label: "CTA margin top",
+      min: 0,
+      max: 64,
+      step: 1,
+      get: () => layout.ctaMarginTopPx,
+      set: (v) => p({ ctaMarginTopPx: v }),
+    },
+  ];
+}
+
+function PanelCopyEditor({ worldId }: { worldId: ExperienceWorldId }) {
+  const { values, setPanelCopy } = useExperienceHeroDebug();
+  const copy = values.panelCopy[worldId];
+  const patchLayout = (p: Partial<PanelEditorialLayoutDebugValues>) =>
+    setPanelCopy(worldId, { layout: { ...copy.layout, ...p } });
+
+  const layoutFields = panelLayoutFields(copy.layout, patchLayout);
+  const blockFields = layoutFields.slice(0, 11);
+  const titleFields = layoutFields.slice(11, 15);
+  const subtitleFields = layoutFields.slice(15, 19);
+  const ctaFields = layoutFields.slice(19);
+
+  return (
+    <div className="space-y-2.5">
+      <CopyField label="Título" hint="Una línea por renglón (máx. recomendado: 2)">
+        <textarea
+          rows={2}
+          value={copy.titleLines.join("\n")}
+          onChange={(e) =>
+            setPanelCopy(worldId, {
+              titleLines: parseTitleLines(e.target.value),
+            })
+          }
+          className={`${copyInputClass} resize-y font-theater text-[12px] leading-snug`}
+        />
+      </CopyField>
+      <CopyField label="Subtítulo">
+        <textarea
+          rows={2}
+          value={copy.subtitle}
+          onChange={(e) => setPanelCopy(worldId, { subtitle: e.target.value })}
+          className={`${copyInputClass} resize-y leading-snug`}
+        />
+      </CopyField>
+      <CopyField label="Botón CTA">
+        <input
+          type="text"
+          value={copy.ctaLabel}
+          onChange={(e) => setPanelCopy(worldId, { ctaLabel: e.target.value })}
+          className={copyInputClass}
+        />
+      </CopyField>
+
+      <LayoutGroup title="Bloque editorial (posición)">
+        {blockFields.map((f) => (
+          <SliderRow key={`${worldId}-${f.key}`} field={f} />
+        ))}
+      </LayoutGroup>
+      <LayoutGroup title="Título (tamaño)">
+        {titleFields.map((f) => (
+          <SliderRow key={`${worldId}-${f.key}`} field={f} />
+        ))}
+      </LayoutGroup>
+      <LayoutGroup title="Subtítulo (tamaño)">
+        {subtitleFields.map((f) => (
+          <SliderRow key={`${worldId}-${f.key}`} field={f} />
+        ))}
+      </LayoutGroup>
+      <LayoutGroup title="CTA (espaciado)">
+        {ctaFields.map((f) => (
+          <SliderRow key={`${worldId}-${f.key}`} field={f} />
+        ))}
+      </LayoutGroup>
+      <p className="text-[9px] text-white/40">
+        Solo visible en el panel activo (centro). Centrá el mundo en el carrusel para
+        previsualizar.
+      </p>
+    </div>
+  );
+}
 
 type SliderField = {
   key: string;
@@ -148,6 +459,7 @@ export default function ExperienceHeroDebugPanel() {
     carouselWrap: values.carouselWrap,
     carouselStage: values.carouselStage,
     panelSize: values.panelSize,
+    panelCopy: values.panelCopy,
     slots: SLOT_ORDER.reduce(
       (acc, slot) => {
         acc[slot] = {
@@ -172,6 +484,7 @@ export default function ExperienceHeroDebugPanel() {
     carouselStage: values.carouselStage,
     panelSize: values.panelSize,
     slots: values.slots,
+    panelCopy: values.panelCopy,
   });
 
   const applyToHome = () => {
@@ -274,7 +587,7 @@ export default function ExperienceHeroDebugPanel() {
   return (
     <div
       ref={panelRef}
-      className="fixed max-h-[min(90vh,760px)] w-[min(100vw-16px,360px)] overflow-hidden rounded-lg border border-white/20 bg-black/88 text-[11px] text-white shadow-2xl backdrop-blur-md"
+      className="fixed max-h-[min(92vh,820px)] w-[min(100vw-16px,380px)] overflow-hidden rounded-lg border border-white/20 bg-black/88 text-[11px] text-white shadow-2xl backdrop-blur-md"
       style={{ left: position.x, top: position.y, zIndex: 1000 }}
       role="region"
       aria-label="Experience Hero director debug"
@@ -327,9 +640,10 @@ export default function ExperienceHeroDebugPanel() {
           Mostrar contornos (logo + carrusel)
         </label>
         <p className="text-[9px] leading-tight text-white/45">
-          «Aplicar en /es» guarda en el navegador y descarga JSON. Luego:{" "}
-          <code className="text-accent-gold/90">npm run hero-layout:sync</code>
-          para fijar en el repo.
+          «Aplicar en /es» guarda en el navegador y descarga JSON. Layout:{" "}
+          <code className="text-accent-gold/90">npm run hero-layout:sync</code>.
+          Textos/layout: <code className="text-accent-gold/90">panelCopy</code> del JSON
+          (copy + layout por mundo).
         </p>
       </div>
 
@@ -533,6 +847,17 @@ export default function ExperienceHeroDebugPanel() {
             }}
           />
         </Section>
+
+        {PANEL_COPY_WORLD_ORDER.map((worldId) => (
+          <Section
+            key={`copy-${worldId}`}
+            title={DEBUG_PANEL_COPY_LABELS[worldId]}
+            open={expanded === `copy-${worldId}`}
+            onToggle={() => toggle(`copy-${worldId}`)}
+          >
+            <PanelCopyEditor worldId={worldId} />
+          </Section>
+        ))}
 
         {SLOT_ORDER.map((slot) => (
           <Section
