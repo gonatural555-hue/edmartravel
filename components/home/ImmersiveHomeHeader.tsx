@@ -6,20 +6,41 @@ import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { usePathname, useSearchParams } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { SITE_CONFIG } from "@/lib/config";
+import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { IMMERSIVE_HEADER_LABELS } from "@/components/home/immersive-header-labels";
+import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
+import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
+import type { HeaderUtilityPositionDebugValues } from "@/components/experience-hero/director/experienceHeroDebugConfig";
 
 const PREMIUM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
-const NAV_LINK =
-  "group relative font-theater text-[clamp(1rem,1vw,1.25rem)] font-bold uppercase tracking-[0.06em] text-[#E6ECE9]/72 transition-colors duration-[400ms] hover:text-[#F5F1E8]";
+/** Tipografía unificada del header — sans geométrica, mayúsculas, tracking amplio */
+const HEADER_TYPE =
+  "font-header text-[clamp(0.8125rem,0.95vw,1rem)] font-semibold uppercase tracking-[0.15em] antialiased";
 
-/** Utilidades derecha — glass premium (no aplicar a nav principal) */
-const GLASS_PILL =
-  "inline-flex items-center rounded-full px-4 py-2 font-theater text-[clamp(0.88rem,0.95vw,1rem)] font-bold uppercase tracking-[0.06em] text-[#F5F1E8]/90 transition-[background,border-color,box-shadow,color] duration-[350ms] [background:rgba(255,255,255,0.06)] [border:1px_solid_rgba(255,255,255,0.16)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.18),0_12px_32px_rgba(0,0,0,0.25)] hover:[background:rgba(255,255,255,0.1)] hover:[border-color:rgba(194,162,122,0.55)] hover:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(194,162,122,0.16)] hover:text-[#F5F1E8]";
+const NAV_LINK = `group relative ${HEADER_TYPE} text-[#F5F1E8]/78 transition-colors duration-[400ms] hover:text-[#F5F1E8]`;
+
+/** Utilidades derecha — glass premium + misma tipografía */
+const GLASS_PILL = `inline-flex items-center rounded-full px-4 py-2 ${HEADER_TYPE} text-[#F5F1E8]/88 transition-[background,border-color,box-shadow,color] duration-[350ms] [background:rgba(255,255,255,0.06)] [border:1px_solid_rgba(255,255,255,0.16)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.18),0_12px_32px_rgba(0,0,0,0.25)] hover:[background:rgba(255,255,255,0.1)] hover:[border-color:rgba(194,162,122,0.55)] hover:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(194,162,122,0.16)] hover:text-[#F5F1E8]`;
+
+const HEADER_TYPE_MENU = `${HEADER_TYPE} text-[clamp(1.125rem,4vw,1.5rem)] tracking-[0.12em]`;
 
 const GLASS_PANEL =
   "overflow-hidden rounded-xl py-1 [background:rgba(255,255,255,0.06)] [border:1px_solid_rgba(255,255,255,0.16)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.18),0_12px_32px_rgba(0,0,0,0.25)]";
+
+function utilityPositionStyle(
+  pos: HeaderUtilityPositionDebugValues,
+  isDirector: boolean
+) {
+  return {
+    marginTop: pos.marginTop,
+    marginLeft: pos.marginLeft,
+    transform: `translate(${pos.offsetX}px, ${pos.offsetY}px)`,
+    outline: isDirector ? "1px dashed rgba(200,155,60,0.55)" : undefined,
+    outlineOffset: isDirector ? 4 : undefined,
+  } as const;
+}
 
 type NavItem = { href: string; label: string; matchPrefix?: boolean };
 
@@ -126,7 +147,7 @@ function LanguageDropdown({
             role="option"
             aria-selected={lang === locale}
             onClick={() => setOpen(false)}
-            className={`block px-4 py-2.5 font-theater text-[0.88rem] font-bold uppercase tracking-[0.08em] transition-colors ${
+            className={`block px-4 py-2.5 ${HEADER_TYPE} text-[0.8125rem] tracking-[0.14em] transition-colors ${
               lang === locale
                 ? "bg-white/[0.06] text-[#E8C98A]"
                 : "text-[#E6ECE9]/65 hover:bg-white/[0.04] hover:text-[#F5F1E8]"
@@ -140,13 +161,32 @@ function LanguageDropdown({
   );
 }
 
-export default function ImmersiveHomeHeader() {
+type ImmersiveHomeHeaderProps = {
+  variant?: "immersive" | "default";
+};
+
+export default function ImmersiveHomeHeader({
+  variant = "immersive",
+}: ImmersiveHomeHeaderProps) {
   const locale = useLocale();
   const t = useTranslations();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { totalItems } = useCart();
   const { isLoggedIn } = useUser();
+  const isDirector = useExperienceDirectorMode();
+  const headerUtilities = useHeaderUtilitiesFromStorage(isDirector);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const isDefaultVariant = variant === "default";
+
+  useEffect(() => {
+    if (!isDefaultVariant) return;
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isDefaultVariant]);
 
   const labels = IMMERSIVE_HEADER_LABELS[locale];
   const loginLabel = t("header.login", labels.login);
@@ -211,10 +251,25 @@ export default function ImmersiveHomeHeader() {
     />
   );
 
+  const headerShellClass = [
+    "pointer-events-none fixed inset-x-0 top-0 z-50 font-header transition-[background,backdrop-filter,border-color,box-shadow] duration-[400ms]",
+    isDefaultVariant && isScrolled
+      ? "bg-[#050606]/78 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(255,255,255,0.08)] [box-shadow:0_12px_40px_rgba(0,0,0,0.35)]"
+      : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
-        <div className="mx-auto flex h-[var(--experience-header-height,5.5rem)] max-w-[96rem] items-center justify-between px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8 lg:px-10 xl:gap-12">
+      <header className={headerShellClass}>
+        {isDefaultVariant && !isScrolled ? (
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-[calc(var(--experience-header-height,5.5rem)+2rem)] bg-gradient-to-b from-[#050606]/72 via-[#050606]/28 to-transparent"
+            aria-hidden
+          />
+        ) : null}
+        <div className="relative mx-auto flex h-[var(--experience-header-height,5.5rem)] max-w-[96rem] items-center justify-between px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8 lg:px-10 xl:gap-12">
           {/* Mobile logo */}
           <Link
             href={homeHref}
@@ -250,22 +305,45 @@ export default function ImmersiveHomeHeader() {
 
           {/* Desktop — utilidades derecha */}
           <div className="pointer-events-auto hidden items-center justify-start gap-2.5 lg:flex">
-            <LanguageDropdown locale={locale} buildLocaleHref={buildLocaleHref} />
-            {isLoggedIn ? (
-              <Link href={`/${locale}/account`} className={GLASS_PILL}>
-                {myAccountLabel}
-              </Link>
-            ) : (
-              <Link href={authHref} className={GLASS_PILL}>
-                {loginLabel}
-              </Link>
-            )}
-            <Link
-              href={`/${locale}/cart`}
-              className={`${GLASS_PILL} hover:text-[#E8C98A]`}
+            <div
+              style={utilityPositionStyle(
+                headerUtilities.language,
+                isDirector
+              )}
             >
-              {reservationsLabel}
-            </Link>
+              <LanguageDropdown locale={locale} buildLocaleHref={buildLocaleHref} />
+            </div>
+            <div
+              style={utilityPositionStyle(headerUtilities.login, isDirector)}
+            >
+              {isLoggedIn ? (
+                <Link href={`/${locale}/account`} className={GLASS_PILL}>
+                  {myAccountLabel}
+                </Link>
+              ) : (
+                <Link href={authHref} className={GLASS_PILL}>
+                  {loginLabel}
+                </Link>
+              )}
+            </div>
+            <div
+              style={utilityPositionStyle(
+                headerUtilities.reservations,
+                isDirector
+              )}
+            >
+              <Link
+                href={`/${locale}/cart`}
+                className={`${GLASS_PILL} relative hover:text-[#E8C98A]`}
+              >
+                {reservationsLabel}
+                {totalItems > 0 ? (
+                  <span className="absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-[#C89B3C] px-1 text-[0.625rem] font-bold leading-none text-[#050606]">
+                    {totalItems > 99 ? "99+" : totalItems}
+                  </span>
+                ) : null}
+              </Link>
+            </div>
           </div>
 
           {/* Mobile menu */}
@@ -319,7 +397,7 @@ export default function ImmersiveHomeHeader() {
                   <Link
                     href={item.href}
                     onClick={closeMenu}
-                    className={`block py-3 font-theater text-2xl font-bold uppercase tracking-[0.04em] ${
+                    className={`block py-3 ${HEADER_TYPE_MENU} ${
                       isNavActive(pathname, item.href, item.matchPrefix)
                         ? "text-[#E8C98A]"
                         : "text-[#F5F0E6]/90"
@@ -333,7 +411,7 @@ export default function ImmersiveHomeHeader() {
                 <Link
                   href={`/${locale}/cart`}
                   onClick={closeMenu}
-                  className="block py-3 font-theater text-2xl font-bold uppercase text-[#F5F0E6]/90"
+                  className={`block py-3 ${HEADER_TYPE_MENU} text-[#F5F0E6]/90`}
                 >
                   {reservationsLabel}
                 </Link>
@@ -355,7 +433,7 @@ export default function ImmersiveHomeHeader() {
                     key={lang}
                     href={buildLocaleHref(lang)}
                     onClick={closeMenu}
-                    className={`rounded-full border px-3 py-2 font-theater text-xs font-bold uppercase ${
+                    className={`rounded-full border px-3 py-2 ${HEADER_TYPE} text-[0.75rem] tracking-[0.14em] ${
                       lang === locale
                         ? "border-[#C89B3C]/40 text-[#E8C98A]"
                         : "border-white/10 text-white/50"

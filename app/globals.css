@@ -31,6 +31,9 @@
   --color-accent: #7a1e2c;
   --color-bg: #152620;
 
+  /* Header premium global (home + sitio) */
+  --experience-header-height: 5.5rem;
+
   /* Variables semánticas para uso en componentes */
   --background: var(--color-dark-base);
   --foreground: var(--color-text-primary);

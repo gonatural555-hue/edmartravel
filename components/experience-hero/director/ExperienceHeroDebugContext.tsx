@@ -15,6 +15,8 @@ import {
 } from "../experienceHeroLayout";
 import type {
   ExperienceHeroDebugState,
+  HeaderUtilityId,
+  HeaderUtilityPositionDebugValues,
   LogoDebugValues,
   CarouselWrapDebugValues,
   CarouselStageDebugValues,
@@ -22,6 +24,8 @@ import type {
   PanelSizeDebugValues,
   SlotDebugValues,
 } from "./experienceHeroDebugConfig";
+import { DEFAULT_HEADER_UTILITIES } from "./experienceHeroDebugConfig";
+import { persistHeaderUtilitiesForHome } from "./headerUtilitiesStorage";
 import type { ExperienceWorldId, SpatialSlot } from "../types";
 
 function mergePanelCopyEntry(
@@ -49,6 +53,20 @@ function mergeDebugState(
     ...defaults,
     ...stored,
     logo: { ...defaults.logo, ...stored.logo },
+    headerUtilities: {
+      language: {
+        ...defaults.headerUtilities.language,
+        ...stored.headerUtilities?.language,
+      },
+      login: {
+        ...defaults.headerUtilities.login,
+        ...stored.headerUtilities?.login,
+      },
+      reservations: {
+        ...defaults.headerUtilities.reservations,
+        ...stored.headerUtilities?.reservations,
+      },
+    },
     carouselWrap: { ...defaults.carouselWrap, ...stored.carouselWrap },
     carouselStage: { ...defaults.carouselStage, ...stored.carouselStage },
     panelSize: { ...defaults.panelSize, ...stored.panelSize },
@@ -85,6 +103,10 @@ function loadStoredValues(): ExperienceHeroDebugState | null {
 type ExperienceHeroDebugContextValue = {
   values: ExperienceHeroDebugState;
   setLogo: (patch: Partial<LogoDebugValues>) => void;
+  setHeaderUtility: (
+    id: HeaderUtilityId,
+    patch: Partial<HeaderUtilityPositionDebugValues>
+  ) => void;
   setCarouselWrap: (patch: Partial<CarouselWrapDebugValues>) => void;
   setCarouselStage: (patch: Partial<CarouselStageDebugValues>) => void;
   setPanelSize: (patch: Partial<PanelSizeDebugValues>) => void;
@@ -117,23 +139,21 @@ export function ExperienceHeroDebugProvider({
       typeof window !== "undefined" &&
       new URLSearchParams(window.location.search).get("director") === "true";
     const stored = loadStoredValues();
-    if (isDirector && stored) {
-      setValues(mergeDebugState(stored));
-    } else {
-      setValues(EXPERIENCE_HERO_DEBUG_DEFAULTS);
-      try {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify(EXPERIENCE_HERO_DEBUG_DEFAULTS)
-        );
-      } catch {
-        /* ignore */
-      }
+    if (isDirector) {
+      setValues(
+        stored ? mergeDebugState(stored) : EXPERIENCE_HERO_DEBUG_DEFAULTS
+      );
+      return;
     }
+    // /es sin director: layout de producción en memoria, sin pisar localStorage
+    setValues(EXPERIENCE_HERO_DEBUG_DEFAULTS);
   }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const isDirector =
+      new URLSearchParams(window.location.search).get("director") === "true";
+    if (!isDirector) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
       window.dispatchEvent(new CustomEvent("experience-hero-debug-updated"));
@@ -145,6 +165,19 @@ export function ExperienceHeroDebugProvider({
   const setLogo = useCallback((patch: Partial<LogoDebugValues>) => {
     setValues((prev) => ({ ...prev, logo: { ...prev.logo, ...patch } }));
   }, []);
+
+  const setHeaderUtility = useCallback(
+    (id: HeaderUtilityId, patch: Partial<HeaderUtilityPositionDebugValues>) => {
+      setValues((prev) => ({
+        ...prev,
+        headerUtilities: {
+          ...prev.headerUtilities,
+          [id]: { ...prev.headerUtilities[id], ...patch },
+        },
+      }));
+    },
+    []
+  );
 
   const setCarouselWrap = useCallback(
     (patch: Partial<CarouselWrapDebugValues>) => {
@@ -218,16 +251,15 @@ export function ExperienceHeroDebugProvider({
   }, []);
 
   const persistForHome = useCallback(() => {
+    const existing = loadStoredValues();
     const payload = {
-      logo: values.logo,
-      carouselWrap: values.carouselWrap,
-      carouselStage: values.carouselStage,
-      panelSize: values.panelSize,
-      slots: values.slots,
-      showOutlines: values.showOutlines,
+      ...EXPERIENCE_HERO_DEBUG_DEFAULTS,
+      ...existing,
+      headerUtilities: values.headerUtilities,
     };
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      persistHeaderUtilitiesForHome(values.headerUtilities);
       window.dispatchEvent(new CustomEvent("experience-hero-debug-updated"));
     } catch {
       /* ignore */
@@ -248,6 +280,7 @@ export function ExperienceHeroDebugProvider({
     () => ({
       values,
       setLogo,
+      setHeaderUtility,
       setCarouselWrap,
       setCarouselStage,
       setPanelSize,
@@ -260,6 +293,7 @@ export function ExperienceHeroDebugProvider({
     [
       values,
       setLogo,
+      setHeaderUtility,
       setCarouselWrap,
       setCarouselStage,
       setPanelSize,

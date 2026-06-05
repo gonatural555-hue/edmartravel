@@ -2,6 +2,7 @@ import { EXPERIENCE_WORLDS } from "./experienceHeroConfig";
 import {
   HERO_CAROUSEL_STAGE,
   HERO_CAROUSEL_WRAP,
+  HERO_HEADER_UTILITIES,
   HERO_LOGO_LAYOUT,
   HERO_PANEL_COPY,
   HERO_PANEL_SIZE,
@@ -55,6 +56,7 @@ export function buildDefaultPanelCopy(): Record<
 
 export const EXPERIENCE_HERO_DEBUG_DEFAULTS: ExperienceHeroDebugState = {
   logo: HERO_LOGO_LAYOUT,
+  headerUtilities: HERO_HEADER_UTILITIES,
   carouselWrap: HERO_CAROUSEL_WRAP,
   carouselStage: HERO_CAROUSEL_STAGE,
   panelSize: HERO_PANEL_SIZE,

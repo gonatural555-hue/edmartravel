@@ -8,8 +8,6 @@ import ExperienceNavigator from "@/components/cinematic/ExperienceNavigator";
 import { experienceCategories } from "@/components/cinematic/cinematicData";
 import type { SceneId } from "@/components/cinematic/types";
 import SpatialExperienceCarousel from "./SpatialExperienceCarousel";
-import { ExperienceHeroDebugProvider } from "./director/ExperienceHeroDebugContext";
-import ExperienceHeroDebugPanel from "./director/ExperienceHeroDebugPanel";
 import { useExperienceHeroDebugOptional } from "./director/ExperienceHeroDebugContext";
 import { directorOutline } from "./director/directorOutline";
 import { useExperienceDirectorMode } from "./director/useExperienceDirectorMode";
@@ -104,15 +102,10 @@ function ExperienceSelectorHomeInner() {
         onClose={() => setIsNavigatorOpen(false)}
       />
 
-      {isDirector ? <ExperienceHeroDebugPanel /> : null}
     </>
   );
 }
 
 export default function ExperienceSelectorHome() {
-  return (
-    <ExperienceHeroDebugProvider>
-      <ExperienceSelectorHomeInner />
-    </ExperienceHeroDebugProvider>
-  );
+  return <ExperienceSelectorHomeInner />;
 }

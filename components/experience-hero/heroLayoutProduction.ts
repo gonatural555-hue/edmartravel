@@ -1,6 +1,7 @@
 import type {
   CarouselStageDebugValues,
   CarouselWrapDebugValues,
+  HeaderUtilitiesDebugValues,
   LogoDebugValues,
   PanelCopyDebugValues,
   PanelSizeDebugValues,
@@ -12,6 +13,27 @@ import type { ExperienceWorldId, SpatialSlot } from "./types";
  * Fuente de verdad del hero — sincronizada desde calibration/hero-layout.json
  * (npm run hero-layout:sync)
  */
+export const HERO_HEADER_UTILITIES: HeaderUtilitiesDebugValues = {
+  "language": {
+    "offsetX": 120,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 59
+  },
+  "login": {
+    "offsetX": 117,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 1
+  },
+  "reservations": {
+    "offsetX": -3,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 120
+  }
+};
+
 export const HERO_LOGO_LAYOUT: LogoDebugValues = {
   "width": 199,
   "height": 36,

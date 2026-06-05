@@ -74,6 +74,35 @@ export type LogoDebugValues = {
   scale: number;
 };
 
+/** Posición de utilidades del header inmersivo (director) */
+export type HeaderUtilityPositionDebugValues = {
+  offsetX: number;
+  offsetY: number;
+  marginTop: number;
+  marginLeft: number;
+};
+
+export type HeaderUtilityId = "language" | "login" | "reservations";
+
+export type HeaderUtilitiesDebugValues = Record<
+  HeaderUtilityId,
+  HeaderUtilityPositionDebugValues
+>;
+
+export const DEFAULT_HEADER_UTILITY_POSITION: HeaderUtilityPositionDebugValues =
+  {
+    offsetX: 0,
+    offsetY: 0,
+    marginTop: 0,
+    marginLeft: 0,
+  };
+
+export const DEFAULT_HEADER_UTILITIES: HeaderUtilitiesDebugValues = {
+  language: { ...DEFAULT_HEADER_UTILITY_POSITION },
+  login: { ...DEFAULT_HEADER_UTILITY_POSITION },
+  reservations: { ...DEFAULT_HEADER_UTILITY_POSITION },
+};
+
 export type CarouselWrapDebugValues = {
   paddingTopRem: number;
   paddingBottomRem: number;
@@ -105,12 +134,19 @@ export type SlotDebugValues = {
 
 export type ExperienceHeroDebugState = {
   logo: LogoDebugValues;
+  headerUtilities: HeaderUtilitiesDebugValues;
   carouselWrap: CarouselWrapDebugValues;
   carouselStage: CarouselStageDebugValues;
   panelSize: PanelSizeDebugValues;
   slots: Record<SpatialSlot, SlotDebugValues>;
   panelCopy: Record<ExperienceWorldId, PanelCopyDebugValues>;
   showOutlines: boolean;
+};
+
+export const DEBUG_HEADER_UTILITY_LABELS: Record<HeaderUtilityId, string> = {
+  language: "Header — Idiomas",
+  login: "Header — Login",
+  reservations: "Header — Mis Reservas",
 };
 
 export const PANEL_COPY_WORLD_ORDER: ExperienceWorldId[] = [

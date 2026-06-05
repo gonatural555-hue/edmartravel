@@ -7,6 +7,12 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
+        header: [
+          "var(--font-header-nav)",
+          "Montserrat",
+          "system-ui",
+          "sans-serif",
+        ],
         theater: ["var(--font-theater)", "Georgia", "Cambria", "serif"],
         display: ["var(--font-theater)", "Georgia", "Cambria", "serif"],
         serif: ["var(--font-theater)", "Georgia", "Cambria", "serif"],

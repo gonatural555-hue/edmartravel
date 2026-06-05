@@ -37,8 +37,8 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-1",
     experienceId: "city",
-    src: "/assets/images/products/MonoCityTour/featuredmonocitytour.webp",
-    alt: "Monopatín en Mendoza",
+    src: "/assets/scenes/city-tours/collage-scooter.webp",
+    alt: "Scooter en Mendoza",
     left: "70%",
     top: "8%",
     rotate: 5,
@@ -75,12 +75,6 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
     zIndex: 2,
   },
 ];
-
-export const COLLAGE_PRODUCT_HASH: Record<CollageExperienceId, string> = {
-  wine: "products-cat-wine",
-  adventure: "products-cat-adventure",
-  city: "products-cat-city",
-};
 
 /** Empuje sutil hacia afuera cuando otra imagen está activa */
 export function collagePushOffset(

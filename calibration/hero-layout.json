@@ -8,6 +8,26 @@
     "offsetY": 0,
     "scale": 2
   },
+  "headerUtilities": {
+    "language": {
+      "offsetX": 120,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 59
+    },
+    "login": {
+      "offsetX": 117,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 1
+    },
+    "reservations": {
+      "offsetX": -3,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 120
+    }
+  },
   "carouselWrap": {
     "paddingTopRem": 0,
     "paddingBottomRem": 0
@@ -150,5 +170,6 @@
         "ctaMarginTopPx": 20
       }
     }
-  }
+  },
+  "showOutlines": true
 }

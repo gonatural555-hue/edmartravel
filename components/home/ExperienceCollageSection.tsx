@@ -1,20 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useInView,
-  useReducedMotion,
-} from "framer-motion";
-import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 import HomeSectionFade from "@/components/home/HomeSectionFade";
 import {
   COLLAGE_ITEMS,
-  COLLAGE_PRODUCT_HASH,
   collagePushOffset,
-  type CollageExperienceId,
   type CollageItemDef,
 } from "@/lib/home-experience-collage";
 
@@ -42,60 +34,6 @@ function useCollageHeroScale() {
   return scale;
 }
 
-function CollageOverlay({
-  experienceId,
-  locale,
-  t,
-}: {
-  experienceId: CollageExperienceId;
-  locale: string;
-  t: ReturnType<typeof useTranslations>;
-}) {
-  const base = `home.collage.${experienceId}`;
-  const href = `/${locale}/products#${COLLAGE_PRODUCT_HASH[experienceId]}`;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4, ease: PREMIUM_EASE }}
-      className="absolute inset-0 z-10 flex flex-col justify-end p-4 sm:p-5 md:p-6"
-    >
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/78 via-black/30 to-black/5"
-        aria-hidden
-      />
-      <div className="relative">
-        <p className="font-theater text-[9px] font-bold uppercase tracking-[0.18em] text-[#E8C98A] sm:text-[10px]">
-          {t(`${base}.category`)}
-        </p>
-        <h3 className="mt-1 font-theater text-[clamp(1.15rem,2.4vw,1.75rem)] font-bold leading-[0.95] text-[#F5F0E6]">
-          {t(`${base}.title`)}
-        </h3>
-        <p className="mt-2 max-w-[28ch] font-sans text-[11px] leading-[1.5] text-[#E6ECE9]/75 sm:text-xs">
-          {t(`${base}.description`)}
-        </p>
-        <p className="mt-1.5 font-sans text-[10px] text-[#E6ECE9]/50">
-          {t(`${base}.details`)}
-        </p>
-        <Link
-          href={href}
-          className="pointer-events-auto relative mt-3 inline-flex min-h-[38px] items-center gap-2 rounded-full border border-white/70 px-4 py-2 font-sans text-[10px] font-medium text-[#1a1612] backdrop-blur-md transition-shadow hover:shadow-[0_0_24px_rgba(255,255,255,0.35)] sm:text-[11px]"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.93) 0%, rgba(240,244,248,0.88) 100%)",
-          }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-[#C89B3C]" aria-hidden />
-          {t(`${base}.cta`)} →
-        </Link>
-      </div>
-    </motion.div>
-  );
-}
-
 function DesktopCollageCard({
   item,
   selectedId,
@@ -104,8 +42,6 @@ function DesktopCollageCard({
   inView,
   staggerIndex,
   heroScale,
-  locale,
-  t,
   onHover,
 }: {
   item: CollageItemDef;
@@ -115,8 +51,6 @@ function DesktopCollageCard({
   inView: boolean;
   staggerIndex: number;
   heroScale: number;
-  locale: string;
-  t: ReturnType<typeof useTranslations>;
   onHover: (id: string | null) => void;
 }) {
   const isSelected = selectedId === item.id;
@@ -168,20 +102,11 @@ function DesktopCollageCard({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.src}
-        alt=""
+        alt={item.alt}
         className="h-full w-full object-cover"
         loading="lazy"
         decoding="async"
       />
-      <AnimatePresence>
-        {isSelected ? (
-          <CollageOverlay
-            experienceId={item.experienceId}
-            locale={locale}
-            t={t}
-          />
-        ) : null}
-      </AnimatePresence>
     </motion.div>
   );
 }
@@ -189,14 +114,10 @@ function DesktopCollageCard({
 function MobileCollageCard({
   item,
   isSelected,
-  locale,
-  t,
   onSelect,
 }: {
   item: CollageItemDef;
   isSelected: boolean;
-  locale: string;
-  t: ReturnType<typeof useTranslations>;
   onSelect: () => void;
 }) {
   return (
@@ -218,25 +139,15 @@ function MobileCollageCard({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.src}
-        alt=""
+        alt={item.alt}
         className="h-full w-full object-cover"
         loading="lazy"
       />
-      <AnimatePresence>
-        {isSelected ? (
-          <CollageOverlay
-            experienceId={item.experienceId}
-            locale={locale}
-            t={t}
-          />
-        ) : null}
-      </AnimatePresence>
     </motion.button>
   );
 }
 
 export default function ExperienceCollageSection() {
-  const locale = useLocale();
   const t = useTranslations();
   const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -300,8 +211,6 @@ export default function ExperienceCollageSection() {
               inView={inView}
               staggerIndex={index}
               heroScale={heroScale}
-              locale={locale}
-              t={t}
               onHover={setHoveredId}
             />
           ))}
@@ -316,8 +225,6 @@ export default function ExperienceCollageSection() {
               key={item.id}
               item={item}
               isSelected={tappedId === item.id}
-              locale={locale}
-              t={t}
               onSelect={() =>
                 setTappedId((prev) => (prev === item.id ? null : item.id))
               }

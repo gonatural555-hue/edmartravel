@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
+import LocaleShell from "@/components/LocaleShell";
 import Footer from "@/components/Footer";
 import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 import { getMessages } from "@/lib/i18n/messages";
@@ -26,8 +26,7 @@ export default async function LocaleLayout({
   return (
     <LocaleProvider locale={locale as Locale} messages={messages}>
       <SmoothScroll />
-      <Header />
-      {children}
+      <LocaleShell>{children}</LocaleShell>
       <CookieConsent />
       <Footer />
       <RegistrationCTA />

@@ -31,9 +31,18 @@ const slots = {
 
 const panelCopy = raw.panelCopy ?? null;
 
+const defaultHeaderUtilities = {
+  language: { offsetX: 0, offsetY: 0, marginTop: 0, marginLeft: 0 },
+  login: { offsetX: 0, offsetY: 0, marginTop: 0, marginLeft: 0 },
+  reservations: { offsetX: 0, offsetY: 0, marginTop: 0, marginLeft: 0 },
+};
+
+const headerUtilities = raw.headerUtilities ?? defaultHeaderUtilities;
+
 const fileBody = `import type {
   CarouselStageDebugValues,
   CarouselWrapDebugValues,
+  HeaderUtilitiesDebugValues,
   LogoDebugValues,
   PanelCopyDebugValues,
   PanelSizeDebugValues,
@@ -45,6 +54,8 @@ import type { ExperienceWorldId, SpatialSlot } from "./types";
  * Fuente de verdad del hero — sincronizada desde calibration/hero-layout.json
  * (npm run hero-layout:sync)
  */
+export const HERO_HEADER_UTILITIES: HeaderUtilitiesDebugValues = ${JSON.stringify(headerUtilities, null, 2)};
+
 export const HERO_LOGO_LAYOUT: LogoDebugValues = ${JSON.stringify(raw.logo, null, 2)};
 
 export const HERO_CAROUSEL_WRAP: CarouselWrapDebugValues = ${JSON.stringify(raw.carouselWrap, null, 2)};
@@ -65,4 +76,9 @@ fs.writeFileSync(
 console.log("heroLayoutProduction.ts actualizado.");
 if (!panelCopy) {
   console.warn("Aviso: el JSON no incluye panelCopy — HERO_PANEL_COPY quedará null.");
+}
+if (!raw.headerUtilities) {
+  console.warn(
+    "Aviso: el JSON no incluye headerUtilities — se usan valores por defecto."
+  );
 }

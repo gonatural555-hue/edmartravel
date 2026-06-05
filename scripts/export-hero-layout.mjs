@@ -9,6 +9,7 @@ import { chromium } from "playwright";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const STORAGE_KEY = "experience-hero-debug-layout";
+const HOME_UTILITIES_KEY = "experience-header-utilities-home";
 const url = process.argv[2] ?? "http://localhost:3000/es?director=true";
 const outFile =
   process.argv[3] ?? path.join(root, "calibration/hero-layout.json");
@@ -20,19 +21,25 @@ try {
   await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
   await page.waitForTimeout(2000);
 
-  const stored = await page.evaluate(
-    (key) => localStorage.getItem(key),
-    STORAGE_KEY
+  const { stored, appliedUtilities } = await page.evaluate(
+    (keys) => ({
+      stored: localStorage.getItem(keys.debug),
+      appliedUtilities: localStorage.getItem(keys.home),
+    }),
+    { debug: STORAGE_KEY, home: HOME_UTILITIES_KEY }
   );
 
-  if (!stored) {
+  if (!stored && !appliedUtilities) {
     console.error(
-      "No hay valores en localStorage. Abrí ?director=true, calibrá y mové un slider."
+      "No hay valores en localStorage. Abrí ?director=true, calibrá y pulsá «Aplicar en /es»."
     );
     process.exit(1);
   }
 
-  const parsed = JSON.parse(stored);
+  const parsed = stored ? JSON.parse(stored) : {};
+  if (appliedUtilities) {
+    parsed.headerUtilities = JSON.parse(appliedUtilities);
+  }
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, JSON.stringify(parsed, null, 2));
   console.log(`Exportado → ${outFile}`);
