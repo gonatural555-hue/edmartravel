@@ -17,3 +17,6 @@ export const CATEGORY_FINAL_CTA_IMAGES: Record<CategorySlug, string> = {
 };
 
 export const CATEGORY_PAGE_BG = "#F8F5EE";
+
+/** Fondo editorial de Home — mismo tono que categorías y blog */
+export const HOME_PAGE_BG = CATEGORY_PAGE_BG;

@@ -19,7 +19,14 @@ function isHeaderUtilities(
   value: unknown
 ): value is HeaderUtilitiesDebugValues {
   if (!value || typeof value !== "object") return false;
-  const keys = ["language", "login", "reservations"] as const;
+  const keys = [
+    "home",
+    "tours",
+    "blog",
+    "language",
+    "login",
+    "reservations",
+  ] as const;
   return keys.every((key) => key in (value as Record<string, unknown>));
 }
 

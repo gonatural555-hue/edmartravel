@@ -9,7 +9,7 @@ import {
 } from "react";
 import {
   DEBUG_HEADER_UTILITY_LABELS,
-  type HeaderUtilityId,
+  HEADER_UTILITY_IDS,
   type HeaderUtilityPositionDebugValues,
 } from "./experienceHeroDebugConfig";
 import { useExperienceHeroDebug } from "./ExperienceHeroDebugContext";
@@ -23,12 +23,6 @@ type SliderField = {
   get: () => number;
   set: (v: number) => void;
 };
-
-const HEADER_UTILITY_ORDER: HeaderUtilityId[] = [
-  "language",
-  "login",
-  "reservations",
-];
 
 function utilityPositionFields(
   getPos: () => HeaderUtilityPositionDebugValues,
@@ -143,7 +137,7 @@ export default function ExperienceHeroDebugPanel() {
     originY: number;
   } | null>(null);
   const [position, setPosition] = useState({ x: 12, y: 48 });
-  const [expanded, setExpanded] = useState<string>("header-language");
+  const [expanded, setExpanded] = useState<string>("header-home");
   const [copied, setCopied] = useState(false);
   const [savedHome, setSavedHome] = useState(false);
 
@@ -251,7 +245,7 @@ export default function ExperienceHeroDebugPanel() {
             type="button"
             onClick={() => {
               resetAll();
-              setExpanded("header-language");
+              setExpanded("header-home");
             }}
             className="flex-1 rounded bg-white/10 px-2 py-1 hover:bg-white/20"
           >
@@ -259,13 +253,13 @@ export default function ExperienceHeroDebugPanel() {
           </button>
         </div>
         <p className="text-[9px] leading-tight text-white/45">
-          Ajustá posición de Idiomas, Login y Mis Reservas. Los cambios se guardan
-          en el navegador al mover los sliders.
+          Ajustá posición de Home, Tours, Blog, Idiomas, Login y Mis Reservas. Los
+          cambios se guardan en el navegador al mover los sliders.
         </p>
       </div>
 
       <div className="max-h-[min(70vh,420px)] overflow-y-auto px-2 py-2">
-        {HEADER_UTILITY_ORDER.map((utilityId) => {
+        {HEADER_UTILITY_IDS.map((utilityId) => {
           const sectionKey = `header-${utilityId}`;
           return (
             <Section

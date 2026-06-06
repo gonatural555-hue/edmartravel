@@ -24,7 +24,10 @@ import type {
   PanelSizeDebugValues,
   SlotDebugValues,
 } from "./experienceHeroDebugConfig";
-import { DEFAULT_HEADER_UTILITIES } from "./experienceHeroDebugConfig";
+import {
+  DEFAULT_HEADER_UTILITIES,
+  HEADER_UTILITY_IDS,
+} from "./experienceHeroDebugConfig";
 import { persistHeaderUtilitiesForHome } from "./headerUtilitiesStorage";
 import type { ExperienceWorldId, SpatialSlot } from "../types";
 
@@ -53,20 +56,16 @@ function mergeDebugState(
     ...defaults,
     ...stored,
     logo: { ...defaults.logo, ...stored.logo },
-    headerUtilities: {
-      language: {
-        ...defaults.headerUtilities.language,
-        ...stored.headerUtilities?.language,
-      },
-      login: {
-        ...defaults.headerUtilities.login,
-        ...stored.headerUtilities?.login,
-      },
-      reservations: {
-        ...defaults.headerUtilities.reservations,
-        ...stored.headerUtilities?.reservations,
-      },
-    },
+    headerUtilities: HEADER_UTILITY_IDS.reduce(
+      (acc, id) => ({
+        ...acc,
+        [id]: {
+          ...defaults.headerUtilities[id],
+          ...stored.headerUtilities?.[id],
+        },
+      }),
+      { ...DEFAULT_HEADER_UTILITIES }
+    ),
     carouselWrap: { ...defaults.carouselWrap, ...stored.carouselWrap },
     carouselStage: { ...defaults.carouselStage, ...stored.carouselStage },
     panelSize: { ...defaults.panelSize, ...stored.panelSize },

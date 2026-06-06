@@ -1,9 +1,11 @@
-import BlogHero from "@/components/blog/BlogHero";
-import BlogGrid from "@/components/blog/BlogGrid";
-import BlogSectionLinks from "@/components/blog/BlogSectionLinks";
-import { blogSections } from "@/lib/blog-sections";
+import BlogPageView from "@/components/blog/BlogPageView";
+import {
+  BLOG_DEFAULT_HERO_IMAGE,
+  BLOG_FEATURED_SLUG,
+  BLOG_SECONDARY_SLUGS,
+} from "@/lib/blog-page-config";
+import { buildBlogPostSummaries } from "@/lib/blog-utils";
 import { getMessages } from "@/lib/i18n/messages";
-import { createTranslator } from "@/lib/i18n/translate";
 import type { Locale } from "@/lib/i18n/config";
 import { buildMetadata } from "@/lib/seo";
 
@@ -26,7 +28,7 @@ export async function generateMetadata({
       fr: "/fr/blog",
       it: "/it/blog",
     },
-    ogImage: "/assets/images/blog/blog-hero.webp",
+    ogImage: BLOG_DEFAULT_HERO_IMAGE,
   });
 }
 
@@ -37,33 +39,38 @@ export default async function BlogPage({
 }) {
   const { locale } = await params;
   const messages = await getMessages(locale);
-  const t = createTranslator(messages);
-  const posts = Object.entries(messages.blog.posts).map(([slug, post]: any) => ({
-    href: `/${locale}/blog/${slug}`,
-    title: post.title,
-    excerpt: post.excerpt,
-    image: post.sections?.[0]?.image || "/assets/images/blog/blog-hero.webp",
-  }));
+  const allPosts = buildBlogPostSummaries(
+    messages.blog.posts,
+    locale,
+    BLOG_DEFAULT_HERO_IMAGE
+  );
+
+  const featured =
+    allPosts.find((post) => post.slug === BLOG_FEATURED_SLUG) ?? allPosts[0];
+
+  const secondary = BLOG_SECONDARY_SLUGS.map((slug) =>
+    allPosts.find((post) => post.slug === slug)
+  ).filter((post): post is NonNullable<typeof post> => Boolean(post));
+
+  const usedSlugs = new Set([
+    featured.slug,
+    ...secondary.map((post) => post.slug),
+  ]);
+  const grid = allPosts.filter((post) => !usedSlugs.has(post.slug));
+
+  const readingTimeTemplate =
+    messages.blog.readingTime ?? "{minutes} min read";
+  const ctaLabel = messages.blog.readCta ?? messages.common.readArticle;
 
   return (
-    <main className="bg-dark-base">
-      <BlogHero
-        title={t("blog.title")}
-        subtitle={t("blog.subtitle")}
-        image="/assets/images/blog/blog-hero.webp"
+    <main className="category-page relative min-h-screen">
+      <BlogPageView
+        featured={featured}
+        secondary={secondary}
+        grid={grid}
+        readingTimeTemplate={readingTimeTemplate}
+        ctaLabel={ctaLabel}
       />
-
-      <section className="py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-16">
-          <p className="text-lg text-text-muted">{t("blog.intro")}</p>
-          <div className="mt-8">
-            <BlogSectionLinks sections={blogSections} locale={locale} />
-          </div>
-        </div>
-      </section>
-
-      <BlogGrid posts={posts} ctaLabel={t("common.readArticle")} />
     </main>
   );
 }
-

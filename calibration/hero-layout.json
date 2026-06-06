@@ -9,23 +9,41 @@
     "scale": 2
   },
   "headerUtilities": {
-    "language": {
-      "offsetX": 120,
+    "home": {
+      "offsetX": 0,
       "offsetY": 0,
       "marginTop": 0,
-      "marginLeft": 59
+      "marginLeft": 0
+    },
+    "tours": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 0
+    },
+    "blog": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 0
+    },
+    "language": {
+      "offsetX": 0,
+      "offsetY": 0,
+      "marginTop": 0,
+      "marginLeft": 0
     },
     "login": {
-      "offsetX": 117,
+      "offsetX": 0,
       "offsetY": 0,
       "marginTop": 0,
-      "marginLeft": 1
+      "marginLeft": 0
     },
     "reservations": {
-      "offsetX": -3,
+      "offsetX": 0,
       "offsetY": 0,
       "marginTop": 0,
-      "marginLeft": 120
+      "marginLeft": 0
     }
   },
   "carouselWrap": {

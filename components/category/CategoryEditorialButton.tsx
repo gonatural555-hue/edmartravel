@@ -19,6 +19,17 @@ export function categoryEditorialButtonClass(
   return `${base} ${className}`.trim();
 }
 
+/** Tamaño compacto para utilidades del header (mismo CTA que el hero). */
+export const HEADER_UTILITY_CTA_COMPACT =
+  "!min-h-[40px] gap-1.5 px-5 py-2.5 font-header text-[11px] font-semibold uppercase tracking-[0.14em] sm:!min-h-[42px] sm:px-6 sm:text-xs sm:tracking-[0.12em]";
+
+export function headerUtilityCtaClass(className = "") {
+  return categoryEditorialButtonClass(
+    "primary",
+    `${HEADER_UTILITY_CTA_COMPACT} ${className}`.trim()
+  );
+}
+
 type BaseProps = {
   children: ReactNode;
   variant?: CategoryEditorialButtonVariant;

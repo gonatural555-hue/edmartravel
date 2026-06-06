@@ -1,4 +1,20 @@
-import type { HeaderUtilitiesDebugValues } from "./experienceHeroDebugConfig";
+import {
+  HEADER_UTILITY_IDS,
+  type HeaderUtilitiesDebugValues,
+} from "./experienceHeroDebugConfig";
+
+function mergeHeaderUtilities(
+  stored: Partial<HeaderUtilitiesDebugValues>,
+  fallback: HeaderUtilitiesDebugValues
+): HeaderUtilitiesDebugValues {
+  return HEADER_UTILITY_IDS.reduce(
+    (acc, id) => ({
+      ...acc,
+      [id]: { ...fallback[id], ...stored[id] },
+    }),
+    {} as HeaderUtilitiesDebugValues
+  );
+}
 
 export const HEADER_UTILITIES_HOME_KEY = "experience-header-utilities-home";
 export const HEADER_UTILITIES_DEBUG_KEY = "experience-hero-debug-layout";
@@ -11,15 +27,20 @@ export function readHeaderUtilitiesForHome(
   try {
     const applied = localStorage.getItem(HEADER_UTILITIES_HOME_KEY);
     if (applied) {
-      return JSON.parse(applied) as HeaderUtilitiesDebugValues;
+      return mergeHeaderUtilities(
+        JSON.parse(applied) as Partial<HeaderUtilitiesDebugValues>,
+        fallback
+      );
     }
 
     const debug = localStorage.getItem(HEADER_UTILITIES_DEBUG_KEY);
     if (debug) {
       const parsed = JSON.parse(debug) as {
-        headerUtilities?: HeaderUtilitiesDebugValues;
+        headerUtilities?: Partial<HeaderUtilitiesDebugValues>;
       };
-      if (parsed.headerUtilities) return parsed.headerUtilities;
+      if (parsed.headerUtilities) {
+        return mergeHeaderUtilities(parsed.headerUtilities, fallback);
+      }
     }
   } catch {
     /* ignore */

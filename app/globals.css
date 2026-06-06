@@ -368,7 +368,7 @@ main[data-route="order-success"] .bg-gray-50 {
   background-color: #CCD0CF !important;
 }
 
-/* Home inmersiva — footer oculto; header flotante fijo transparente */
+/* Home inmersiva — footer oculto; fondo editorial #F8F5EE */
 html.experience-hero-takeover footer {
   display: none !important;
 }
@@ -383,16 +383,19 @@ html.experience-hero-takeover header.site-header {
 }
 
 html.experience-hero-takeover header.site-header:not(.is-scrolled) {
-  background: transparent !important;
-  backdrop-filter: none !important;
+  background: rgba(248, 245, 238, 0.82) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.06) !important;
+  box-shadow: 0 8px 32px rgba(26, 26, 26, 0.04) !important;
 }
 
 html.experience-hero-takeover header.site-header.is-scrolled {
-  background: rgba(5, 6, 6, 0.78) !important;
+  background: rgba(248, 245, 238, 0.94) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35) !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08) !important;
+  box-shadow: 0 12px 40px rgba(26, 26, 26, 0.06) !important;
 }
 
 html.experience-hero-takeover body::before,
@@ -417,7 +420,7 @@ html.experience-hero-takeover.lenis body {
   overflow-y: auto;
   height: auto;
   min-height: 100%;
-  background-color: var(--premium-base);
+  background-color: #f8f5ee;
 }
 
 /* /products — selector inmersivo: sin header ni footer */

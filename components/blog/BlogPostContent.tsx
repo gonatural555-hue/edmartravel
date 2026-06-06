@@ -27,32 +27,34 @@ export default function BlogPostContent({
   };
 
   return (
-    <section className="py-14 md:py-18">
-      <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16">
-        <p className="text-lg md:text-xl text-text-muted leading-relaxed">
-          {resolveLocale(intro)}
-        </p>
+    <section className="category-page-section pb-16 md:pb-20 lg:pb-24">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-10">
+        {intro ? (
+          <p className="text-lg leading-[1.8] text-[#1a1a1a]/78 md:text-[1.3125rem] md:leading-[1.85]">
+            {resolveLocale(intro)}
+          </p>
+        ) : null}
 
-        <div className="mt-10 space-y-10 md:space-y-12">
+        <div className="mt-12 space-y-14 md:mt-16 md:space-y-16">
           {sections.map((block, index) => (
-            <div key={index} className="space-y-5">
-              {block.heading && (
-                <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
+            <div key={index} className="space-y-6 md:space-y-8">
+              {block.heading ? (
+                <h2 className="font-theater text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-[#1a1a1a]">
                   {block.heading}
                 </h2>
-              )}
-              <div className="space-y-4">
+              ) : null}
+              <div className="space-y-5">
                 {block.paragraphs.map((paragraph, paragraphIndex) => (
                   <p
                     key={paragraphIndex}
-                    className="text-base md:text-lg text-text-muted leading-relaxed"
+                    className="text-lg leading-[1.8] text-[#1a1a1a]/72 md:text-[1.3125rem] md:leading-[1.85]"
                   >
                     {renderParagraph(paragraph)}
                   </p>
                 ))}
               </div>
-              {block.image && (
-                <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-white/10">
+              {block.image ? (
+                <div className="relative aspect-video overflow-hidden rounded-[28px] md:rounded-[32px]">
                   <img
                     src={block.image}
                     alt={block.heading || "Journal image"}
@@ -60,18 +62,18 @@ export default function BlogPostContent({
                     decoding="async"
                     className="absolute inset-0 h-full w-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-dark-base/20 via-dark-base/20 to-dark-base/45" />
                 </div>
-              )}
+              ) : null}
             </div>
           ))}
         </div>
 
-        <p className="mt-12 text-base md:text-lg text-text-muted leading-relaxed">
-          {resolveLocale(closing)}
-        </p>
+        {closing ? (
+          <p className="mt-14 text-lg leading-[1.8] text-[#1a1a1a]/72 md:mt-16 md:text-[1.3125rem] md:leading-[1.85]">
+            {resolveLocale(closing)}
+          </p>
+        ) : null}
       </div>
     </section>
   );
 }
-

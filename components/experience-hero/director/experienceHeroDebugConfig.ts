@@ -82,7 +82,22 @@ export type HeaderUtilityPositionDebugValues = {
   marginLeft: number;
 };
 
-export type HeaderUtilityId = "language" | "login" | "reservations";
+export type HeaderUtilityId =
+  | "home"
+  | "tours"
+  | "blog"
+  | "language"
+  | "login"
+  | "reservations";
+
+export const HEADER_UTILITY_IDS: HeaderUtilityId[] = [
+  "home",
+  "tours",
+  "blog",
+  "language",
+  "login",
+  "reservations",
+];
 
 export type HeaderUtilitiesDebugValues = Record<
   HeaderUtilityId,
@@ -98,6 +113,9 @@ export const DEFAULT_HEADER_UTILITY_POSITION: HeaderUtilityPositionDebugValues =
   };
 
 export const DEFAULT_HEADER_UTILITIES: HeaderUtilitiesDebugValues = {
+  home: { ...DEFAULT_HEADER_UTILITY_POSITION },
+  tours: { ...DEFAULT_HEADER_UTILITY_POSITION },
+  blog: { ...DEFAULT_HEADER_UTILITY_POSITION },
   language: { ...DEFAULT_HEADER_UTILITY_POSITION },
   login: { ...DEFAULT_HEADER_UTILITY_POSITION },
   reservations: { ...DEFAULT_HEADER_UTILITY_POSITION },
@@ -144,6 +162,9 @@ export type ExperienceHeroDebugState = {
 };
 
 export const DEBUG_HEADER_UTILITY_LABELS: Record<HeaderUtilityId, string> = {
+  home: "Nav — Home",
+  tours: "Nav — Tours",
+  blog: "Nav — Blog",
   language: "Header — Idiomas",
   login: "Header — Login",
   reservations: "Header — Mis Reservas",

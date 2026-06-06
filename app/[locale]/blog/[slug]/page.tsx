@@ -2,9 +2,13 @@ import { notFound } from "next/navigation";
 import BlogPostHero from "@/components/blog/BlogPostHero";
 import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogPostFooter from "@/components/blog/BlogPostFooter";
-import BlogSectionLinks from "@/components/blog/BlogSectionLinks";
-import EditorialProductCards from "@/components/editorial/EditorialProductCards";
-import { blogSections } from "@/lib/blog-sections";
+import RelatedExperiencesSection from "@/components/blog/RelatedExperiencesSection";
+import { BLOG_DEFAULT_HERO_IMAGE } from "@/lib/blog-page-config";
+import {
+  estimateReadingMinutes,
+  formatReadingTime,
+  getPostHeroImage,
+} from "@/lib/blog-utils";
 import { getMessages } from "@/lib/i18n/messages";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { buildMetadata, formatTemplate } from "@/lib/seo";
@@ -43,10 +47,7 @@ export async function generateMetadata({
   const description = formatTemplate(seo?.descriptionTemplate || "{excerpt}", {
     excerpt: post.excerpt || post.subtitle || post.title,
   });
-  const heroImage =
-    post.heroImage ||
-    post.sections?.[0]?.image ||
-    "/assets/images/blog/blog-hero.webp";
+  const heroImage = getPostHeroImage(post, BLOG_DEFAULT_HERO_IMAGE);
   const pathByLocale = locales.reduce(
     (acc, localeKey) => ({
       ...acc,
@@ -79,18 +80,22 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const heroImage =
-    post.heroImage ||
-    post.sections?.[0]?.image ||
-    "/assets/images/blog/blog-hero.webp";
+  const heroImage = getPostHeroImage(post, BLOG_DEFAULT_HERO_IMAGE);
+  const readingMinutes = estimateReadingMinutes(post);
+  const readingTimeTemplate =
+    messages.blog.readingTime ?? "{minutes} min read";
+  const readingTimeLabel = formatReadingTime(
+    readingTimeTemplate,
+    readingMinutes
+  );
 
   const intro = typeof post.intro === "string" ? post.intro : "";
   const sections = Array.isArray(post.sections) ? post.sections : [];
   const closing = typeof post.closing === "string" ? post.closing : "";
 
-  const gearProducts = pickProductsForPost(slug, post, products);
-  const gearCards = await Promise.all(
-    gearProducts.map(async (product) => {
+  const relatedProducts = pickProductsForPost(slug, post, products);
+  const experienceCards = await Promise.all(
+    relatedProducts.map(async (product) => {
       const images = await getProductImages(product.id);
       const image =
         images.featured?.[0] || images.gallery?.[0] || product.images?.[0] || "";
@@ -102,12 +107,22 @@ export default async function BlogPostPage({
     })
   );
 
+  const relatedTitle =
+    messages.blog.relatedExperiences?.title ??
+    messages.blog.fieldGear?.title ??
+    "Related Experiences";
+  const exploreCta =
+    messages.blog.relatedExperiences?.exploreCta ??
+    messages.common.viewExperience ??
+    "Explore experience →";
+
   return (
-    <main className="bg-dark-base">
+    <main className="category-page relative min-h-screen">
       <BlogPostHero
         title={post.title}
         subtitle={post.subtitle}
         image={heroImage}
+        readingTimeLabel={readingTimeLabel}
       />
       <BlogPostContent
         intro={intro}
@@ -115,18 +130,12 @@ export default async function BlogPostPage({
         closing={closing}
         locale={locale}
       />
-      <EditorialProductCards
-        title={messages.blog.fieldGear.title}
+      <RelatedExperiencesSection
+        title={relatedTitle}
+        exploreCta={exploreCta}
         locale={locale}
-        caption={messages.blog.fieldGear.caption}
-        products={gearCards.filter((item) => item.image)}
+        experiences={experienceCards.filter((item) => item.image)}
       />
-      <section className="py-10 md:py-12">
-        <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16">
-          <h2 className="sr-only">Blog sections</h2>
-          <BlogSectionLinks sections={blogSections} locale={locale} />
-        </div>
-      </section>
       <BlogPostFooter
         label={messages.common.backToJournal}
         href={`/${locale}/blog`}
@@ -134,4 +143,3 @@ export default async function BlogPostPage({
     </main>
   );
 }
-

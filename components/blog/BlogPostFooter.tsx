@@ -10,16 +10,15 @@ export default function BlogPostFooter({
   label = "Back to journal",
 }: BlogPostFooterProps) {
   return (
-    <section className="py-12 md:py-16">
-      <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16">
+    <section className="category-page-section border-t border-[#1a1a1a]/8 py-14 md:py-16">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-10">
         <Link
           href={href}
-          className="inline-flex items-center text-sm text-accent-gold transition-colors duration-200 ease-out hover:text-accent-gold/90"
+          className="inline-flex text-sm font-medium tracking-[0.04em] text-[#1a1a1a]/65 transition-colors duration-500 hover:text-[#1a1a1a]"
         >
-          {label}
+          ← {label}
         </Link>
       </div>
     </section>
   );
 }
-

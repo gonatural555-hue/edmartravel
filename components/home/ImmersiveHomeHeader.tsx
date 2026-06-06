@@ -10,9 +10,17 @@ import { SITE_CONFIG } from "@/lib/config";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { IMMERSIVE_HEADER_LABELS } from "@/components/home/immersive-header-labels";
+import CategoryEditorialButton, {
+  HEADER_UTILITY_CTA_COMPACT,
+  headerUtilityCtaClass,
+} from "@/components/category/CategoryEditorialButton";
+import { isHomePath } from "@/lib/is-home-path";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
 import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
-import type { HeaderUtilityPositionDebugValues } from "@/components/experience-hero/director/experienceHeroDebugConfig";
+import type {
+  HeaderUtilityId,
+  HeaderUtilityPositionDebugValues,
+} from "@/components/experience-hero/director/experienceHeroDebugConfig";
 
 const PREMIUM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -22,13 +30,17 @@ const HEADER_TYPE =
 
 const NAV_LINK = `group relative ${HEADER_TYPE} text-[#F5F1E8]/78 transition-colors duration-[400ms] hover:text-[#F5F1E8]`;
 
-/** Utilidades derecha — glass premium + misma tipografía */
-const GLASS_PILL = `inline-flex items-center rounded-full px-4 py-2 ${HEADER_TYPE} text-[#F5F1E8]/88 transition-[background,border-color,box-shadow,color] duration-[350ms] [background:rgba(255,255,255,0.06)] [border:1px_solid_rgba(255,255,255,0.16)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.18),0_12px_32px_rgba(0,0,0,0.25)] hover:[background:rgba(255,255,255,0.1)] hover:[border-color:rgba(194,162,122,0.55)] hover:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.22),0_0_22px_rgba(194,162,122,0.16)] hover:text-[#F5F1E8]`;
+const NAV_LINK_EDITORIAL = `group relative ${HEADER_TYPE} text-[#1a1a1a]/80 transition-colors duration-[400ms] hover:text-[#1a1a1a]`;
 
 const HEADER_TYPE_MENU = `${HEADER_TYPE} text-[clamp(1.125rem,4vw,1.5rem)] tracking-[0.12em]`;
 
-const GLASS_PANEL =
-  "overflow-hidden rounded-xl py-1 [background:rgba(255,255,255,0.06)] [border:1px_solid_rgba(255,255,255,0.16)] [backdrop-filter:blur(18px)] [-webkit-backdrop-filter:blur(18px)] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.18),0_12px_32px_rgba(0,0,0,0.25)]";
+const LANGUAGE_PANEL =
+  "overflow-hidden rounded-xl border border-[#1a1a1a]/10 bg-white py-1 shadow-[0_12px_32px_rgba(26,26,26,0.08)]";
+
+function isEditorialSurface(pathname: string) {
+  if (isHomePath(pathname)) return true;
+  return /\/(blog|category)(\/|$)/.test(pathname);
+}
 
 function utilityPositionStyle(
   pos: HeaderUtilityPositionDebugValues,
@@ -45,6 +57,8 @@ function utilityPositionStyle(
 
 type NavItem = { href: string; label: string; matchPrefix?: boolean };
 
+const NAV_UTILITY_IDS: HeaderUtilityId[] = ["home", "tours", "blog"];
+
 function isNavActive(pathname: string, href: string, matchPrefix?: boolean) {
   const normalized = pathname.replace(/\/$/, "") || "/";
   const target = href.replace(/\/$/, "") || "/";
@@ -59,17 +73,24 @@ function PremiumNavLink({
   label,
   active,
   onNavigate,
+  linkClass = NAV_LINK,
 }: {
   href: string;
   label: string;
   active: boolean;
   onNavigate?: () => void;
+  linkClass?: string;
 }) {
+  const activeClass =
+    linkClass === NAV_LINK_EDITORIAL
+      ? "text-[#1a1a1a]"
+      : "text-[#F5F1E8]";
+
   return (
     <Link
       href={href}
       onClick={onNavigate}
-      className={`${NAV_LINK} ${active ? "text-[#F5F1E8]" : ""}`}
+      className={`${linkClass} ${active ? activeClass : ""}`}
       style={{ transitionTimingFunction: PREMIUM_EASE }}
       aria-current={active ? "page" : undefined}
     >
@@ -112,7 +133,7 @@ function LanguageDropdown({
         type="button"
         onClick={() => setOpen((o) => !o)}
         onMouseEnter={() => setOpen(true)}
-        className={`${GLASS_PILL} gap-1.5`}
+        className={headerUtilityCtaClass()}
         aria-expanded={open}
         aria-haspopup="listbox"
       >
@@ -132,7 +153,7 @@ function LanguageDropdown({
         </svg>
       </button>
       <div
-        className={`absolute right-0 top-[calc(100%+0.5rem)] min-w-[5.5rem] ${GLASS_PANEL} transition-all duration-[350ms] ${
+        className={`absolute right-0 top-[calc(100%+0.5rem)] min-w-[5.5rem] ${LANGUAGE_PANEL} transition-all duration-[350ms] ${
           open
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-1 opacity-0"
@@ -150,8 +171,8 @@ function LanguageDropdown({
             onClick={() => setOpen(false)}
             className={`block px-4 py-2.5 ${HEADER_TYPE} text-[0.8125rem] tracking-[0.14em] transition-colors ${
               lang === locale
-                ? "bg-white/[0.06] text-[#E8C98A]"
-                : "text-[#E6ECE9]/65 hover:bg-white/[0.04] hover:text-[#F5F1E8]"
+                ? "bg-[#1a1a1a]/6 text-[#1a1a1a]"
+                : "text-[#1a1a1a]/55 hover:bg-[#1a1a1a]/4 hover:text-[#1a1a1a]"
             }`}
           >
             {lang.toUpperCase()}
@@ -167,11 +188,15 @@ type ImmersiveHomeHeaderProps = {
 };
 
 export default function ImmersiveHomeHeader({
-  variant: _variant = "immersive",
+  variant = "immersive",
 }: ImmersiveHomeHeaderProps) {
+  const pathname = usePathname();
+  const isHomeEditorial = variant === "immersive";
+  const isEditorialNav = isEditorialSurface(pathname);
+  const isEditorialHeader = isHomeEditorial || isEditorialNav;
+  const navLinkClass = isEditorialNav ? NAV_LINK_EDITORIAL : NAV_LINK;
   const locale = useLocale();
   const t = useTranslations();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const { totalItems } = useCart();
   const { isLoggedIn } = useUser();
@@ -248,7 +273,11 @@ export default function ImmersiveHomeHeader({
       alt={SITE_CONFIG.name}
       width={280}
       height={52}
-      className="h-[2.35rem] w-auto max-w-[12rem] object-contain opacity-[0.97] drop-shadow-[0_0_36px_rgba(200,155,60,0.24),0_4px_16px_rgba(0,0,0,0.45)] sm:h-[2.6rem] sm:max-w-[13.5rem] lg:h-[4rem] lg:max-w-[18rem] xl:h-[4.5rem] xl:max-w-[20rem]"
+      className={`h-[2.35rem] w-auto max-w-[12rem] object-contain opacity-[0.97] sm:h-[2.6rem] sm:max-w-[13.5rem] lg:h-[4rem] lg:max-w-[18rem] xl:h-[4.5rem] xl:max-w-[20rem] ${
+        isEditorialHeader
+          ? "drop-shadow-[0_2px_12px_rgba(26,26,26,0.08)]"
+          : "drop-shadow-[0_0_36px_rgba(200,155,60,0.24),0_4px_16px_rgba(0,0,0,0.45)]"
+      }`}
       decoding="async"
     />
   );
@@ -256,8 +285,12 @@ export default function ImmersiveHomeHeader({
   const headerShellClass = [
     "site-header pointer-events-none fixed inset-x-0 top-0 z-[100] font-header transition-[background,backdrop-filter,border-color,box-shadow] duration-[400ms]",
     isScrolled
-      ? "is-scrolled bg-[#050606]/78 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(255,255,255,0.08)] [box-shadow:0_12px_40px_rgba(0,0,0,0.35)]"
-      : "",
+      ? isEditorialHeader
+        ? "is-scrolled bg-[#F8F5EE]/94 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(26,26,26,0.08)] [box-shadow:0_12px_40px_rgba(26,26,26,0.06)]"
+        : "is-scrolled bg-[#050606]/78 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(255,255,255,0.08)] [box-shadow:0_12px_40px_rgba(0,0,0,0.35)]"
+      : isEditorialHeader
+        ? "bg-[#F8F5EE]/82 [backdrop-filter:blur(14px)] [-webkit-backdrop-filter:blur(14px)] [border-bottom:1px_solid_rgba(26,26,26,0.06)]"
+        : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -265,7 +298,7 @@ export default function ImmersiveHomeHeader({
   const chrome = (
     <>
       <header className={headerShellClass}>
-        {!isScrolled ? (
+        {!isScrolled && !isEditorialHeader ? (
           <div
             className="pointer-events-none absolute inset-x-0 top-0 h-[calc(var(--experience-header-height,5.5rem)+2rem)] bg-gradient-to-b from-[#050606]/72 via-[#050606]/28 to-transparent"
             aria-hidden
@@ -283,16 +316,28 @@ export default function ImmersiveHomeHeader({
 
           {/* Desktop — nav izquierda */}
           <nav
-            className="pointer-events-auto hidden w-full min-w-0 items-center justify-end gap-5 xl:gap-7 lg:flex"
+            className="pointer-events-auto hidden w-full min-w-0 items-center justify-start gap-5 xl:gap-7 lg:flex"
             aria-label="Principal"
           >
-            {navItems.map((item) => (
-              <PremiumNavLink
+            {navItems.map((item, index) => (
+              <div
                 key={item.href}
-                href={item.href}
-                label={item.label}
-                active={isNavActive(pathname, item.href, item.matchPrefix)}
-              />
+                style={
+                  isDirector
+                    ? utilityPositionStyle(
+                        headerUtilities[NAV_UTILITY_IDS[index]],
+                        isDirector
+                      )
+                    : undefined
+                }
+              >
+                <PremiumNavLink
+                  href={item.href}
+                  label={item.label}
+                  active={isNavActive(pathname, item.href, item.matchPrefix)}
+                  linkClass={navLinkClass}
+                />
+              </div>
             ))}
           </nav>
 
@@ -306,7 +351,7 @@ export default function ImmersiveHomeHeader({
           </Link>
 
           {/* Desktop — utilidades derecha */}
-          <div className="pointer-events-auto hidden w-full min-w-0 items-center justify-start gap-5 xl:gap-7 lg:flex">
+          <div className="pointer-events-auto hidden w-full min-w-0 items-center justify-end gap-5 xl:gap-7 lg:flex">
             <div
               style={
                 isDirector
@@ -314,7 +359,10 @@ export default function ImmersiveHomeHeader({
                   : undefined
               }
             >
-              <LanguageDropdown locale={locale} buildLocaleHref={buildLocaleHref} />
+              <LanguageDropdown
+                locale={locale}
+                buildLocaleHref={buildLocaleHref}
+              />
             </div>
             <div
               style={
@@ -324,13 +372,19 @@ export default function ImmersiveHomeHeader({
               }
             >
               {isLoggedIn ? (
-                <Link href={`/${locale}/account`} className={GLASS_PILL}>
+                <CategoryEditorialButton
+                  href={`/${locale}/account`}
+                  className={HEADER_UTILITY_CTA_COMPACT}
+                >
                   {myAccountLabel}
-                </Link>
+                </CategoryEditorialButton>
               ) : (
-                <Link href={authHref} className={GLASS_PILL}>
+                <CategoryEditorialButton
+                  href={authHref}
+                  className={HEADER_UTILITY_CTA_COMPACT}
+                >
                   {loginLabel}
-                </Link>
+                </CategoryEditorialButton>
               )}
             </div>
             <div
@@ -343,9 +397,9 @@ export default function ImmersiveHomeHeader({
                   : undefined
               }
             >
-              <Link
+              <CategoryEditorialButton
                 href={`/${locale}/cart`}
-                className={`${GLASS_PILL} relative hover:text-[#E8C98A]`}
+                className={`relative ${HEADER_UTILITY_CTA_COMPACT}`}
               >
                 {reservationsLabel}
                 {totalItems > 0 ? (
@@ -353,7 +407,7 @@ export default function ImmersiveHomeHeader({
                     {totalItems > 99 ? "99+" : totalItems}
                   </span>
                 ) : null}
-              </Link>
+              </CategoryEditorialButton>
             </div>
           </div>
 
@@ -361,7 +415,11 @@ export default function ImmersiveHomeHeader({
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
-            className="premium-hover pointer-events-auto col-start-3 flex h-10 w-10 items-center justify-center justify-self-end rounded-full border border-white/[0.14] bg-black/40 text-white/80 backdrop-blur-md lg:hidden"
+            className={`premium-hover pointer-events-auto col-start-3 flex h-10 w-10 items-center justify-center justify-self-end rounded-full border backdrop-blur-md lg:hidden ${
+              isEditorialHeader
+                ? "border-[#1a1a1a]/14 bg-white/70 text-[#1a1a1a]/80"
+                : "border-white/[0.14] bg-black/40 text-white/80"
+            }`}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
           >
@@ -394,7 +452,9 @@ export default function ImmersiveHomeHeader({
         >
           <button
             type="button"
-            className="absolute inset-0 bg-[#050606]/88 backdrop-blur-md"
+            className={`absolute inset-0 backdrop-blur-md ${
+              isEditorialHeader ? "bg-[#F8F5EE]/92" : "bg-[#050606]/88"
+            }`}
             onClick={closeMenu}
             aria-label="Cerrar"
           />
@@ -410,8 +470,12 @@ export default function ImmersiveHomeHeader({
                     onClick={closeMenu}
                     className={`block py-3 ${HEADER_TYPE_MENU} ${
                       isNavActive(pathname, item.href, item.matchPrefix)
-                        ? "text-[#E8C98A]"
-                        : "text-[#F5F0E6]/90"
+                        ? isEditorialNav
+                          ? "text-[#7A6248]"
+                          : "text-[#E8C98A]"
+                        : isEditorialNav
+                          ? "text-[#1a1a1a]/90"
+                          : "text-[#F5F0E6]/90"
                     }`}
                   >
                     {item.label}
@@ -422,7 +486,9 @@ export default function ImmersiveHomeHeader({
                 <Link
                   href={`/${locale}/cart`}
                   onClick={closeMenu}
-                  className={`block py-3 ${HEADER_TYPE_MENU} text-[#F5F0E6]/90`}
+                  className={`block py-3 ${HEADER_TYPE_MENU} ${
+                    isEditorialNav ? "text-[#1a1a1a]/90" : "text-[#F5F0E6]/90"
+                  }`}
                 >
                   {reservationsLabel}
                 </Link>
@@ -430,14 +496,29 @@ export default function ImmersiveHomeHeader({
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
               {isLoggedIn ? (
-                <Link href={`/${locale}/account`} onClick={closeMenu} className={GLASS_PILL}>
+                <CategoryEditorialButton
+                  href={`/${locale}/account`}
+                  onClick={closeMenu}
+                  className={HEADER_UTILITY_CTA_COMPACT}
+                >
                   {myAccountLabel}
-                </Link>
+                </CategoryEditorialButton>
               ) : (
-                <Link href={authHref} onClick={closeMenu} className={GLASS_PILL}>
+                <CategoryEditorialButton
+                  href={authHref}
+                  onClick={closeMenu}
+                  className={HEADER_UTILITY_CTA_COMPACT}
+                >
                   {loginLabel}
-                </Link>
+                </CategoryEditorialButton>
               )}
+              <CategoryEditorialButton
+                href={`/${locale}/cart`}
+                onClick={closeMenu}
+                className={HEADER_UTILITY_CTA_COMPACT}
+              >
+                {reservationsLabel}
+              </CategoryEditorialButton>
               <div className="flex gap-2">
                 {locales.map((lang) => (
                   <Link
@@ -446,8 +527,12 @@ export default function ImmersiveHomeHeader({
                     onClick={closeMenu}
                     className={`rounded-full border px-3 py-2 ${HEADER_TYPE} text-[0.75rem] tracking-[0.14em] ${
                       lang === locale
-                        ? "border-[#C89B3C]/40 text-[#E8C98A]"
-                        : "border-white/10 text-white/50"
+                        ? isEditorialNav
+                          ? "border-[#1a1a1a]/20 text-[#1a1a1a]"
+                          : "border-[#C89B3C]/40 text-[#E8C98A]"
+                        : isEditorialNav
+                          ? "border-[#1a1a1a]/10 text-[#1a1a1a]/50"
+                          : "border-white/10 text-white/50"
                     }`}
                   >
                     {lang.toUpperCase()}

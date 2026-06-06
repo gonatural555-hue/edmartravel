@@ -748,8 +748,14 @@
   },
   "blog": {
     "title": "Journal",
-    "subtitle": "Storie di esplorazione, gear e viaggi silenziosi.",
-    "intro": "Pensieri e racconti per chi si muove con intenzione.",
+    "subtitle": "Storie su Mendoza, vino, montagna e città.",
+    "intro": "Una pubblicazione editoriale per ispirarti prima di prenotare.",
+    "readingTime": "{minutes} min di lettura",
+    "readCta": "Leggi l’articolo →",
+    "relatedExperiences": {
+      "title": "Esperienze correlate",
+      "exploreCta": "Esplora l’esperienza →"
+    },
     "fieldGear": {
       "title": "Attrezzatura usata sul campo",
       "caption": "Scelta per un uso calmo e affidabile in condizioni reali."

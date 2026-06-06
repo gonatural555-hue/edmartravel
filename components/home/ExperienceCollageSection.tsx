@@ -273,10 +273,10 @@ export default function ExperienceCollageSection() {
         animate={{ opacity: hasSelection ? 0.42 : 1 }}
         transition={{ duration: 0.5, ease: PREMIUM_EASE }}
       >
-        <p className="font-sans text-[10px] font-medium uppercase tracking-[0.32em] text-[#E6ECE9]/40">
+        <p className="font-sans text-[10px] font-medium uppercase tracking-[0.32em] text-[#1a1a1a]/45">
           {t("home.collage.eyebrow", "Experiencias")}
         </p>
-        <h2 className="mt-3 font-theater text-[clamp(1.75rem,4vw,3rem)] font-bold uppercase leading-[0.92] tracking-[-0.02em] text-[#F5F0E6]">
+        <h2 className="mt-3 font-theater text-[clamp(1.75rem,4vw,3rem)] font-bold uppercase leading-[0.92] tracking-[-0.02em] text-[#1a1a1a]">
           {t(
             "home.collage.headline",
             "Elegí cómo querés descubrir Mendoza."

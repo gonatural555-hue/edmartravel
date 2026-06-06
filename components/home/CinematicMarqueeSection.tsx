@@ -22,15 +22,13 @@ const ROW_TYPO =
   "font-theater text-[clamp(3.2rem,6.5vw,7.5rem)] font-bold normal-case leading-[0.9] tracking-[0.04em]";
 
 const ROW1_STYLE: CSSProperties = {
-  color: "#F5F1E8",
-  opacity: 0.95,
-  filter: "drop-shadow(0 0 10px rgba(245, 241, 232, 0.06))",
+  color: "#1a1a1a",
+  opacity: 0.92,
 };
 
 const ROW2_STYLE: CSSProperties = {
-  color: "#C2A27A",
-  opacity: 0.95,
-  filter: "drop-shadow(0 0 10px rgba(194, 162, 122, 0.06))",
+  color: "#7A6248",
+  opacity: 0.88,
 };
 
 function repeatText(text: string, times: number) {
