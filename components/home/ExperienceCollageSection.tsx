@@ -19,7 +19,11 @@ const MOTION_S = 1.1;
 /** Mismo radio que los paneles laterales del hero */
 const COLLAGE_RADIUS = "rounded-[20px]";
 const CARD_BASE =
-  "w-[clamp(200px,26vw,300px)] aspect-[16/10] overflow-hidden border border-white/[0.12] shadow-[0_24px_70px_rgba(0,0,0,0.5)]";
+  "aspect-[16/10] overflow-hidden border border-white/[0.12] shadow-[0_24px_70px_rgba(0,0,0,0.5)]";
+
+const CARD_DESKTOP = `${CARD_BASE} w-[clamp(200px,26vw,300px)]`;
+
+const CARD_MOBILE = `${CARD_BASE} w-full max-w-[22rem]`;
 
 function useCollageHeroScale() {
   const [scale, setScale] = useState(3.2);
@@ -139,7 +143,7 @@ function DesktopCollageCard({
 
   return (
     <motion.div
-      className={`absolute ${CARD_BASE} ${COLLAGE_RADIUS} will-change-[transform,opacity]`}
+      className={`absolute ${CARD_DESKTOP} ${COLLAGE_RADIUS} will-change-[transform,opacity]`}
       initial={reducedMotion ? false : { opacity: 0, y: 40 }}
       animate={
         inView
@@ -193,24 +197,39 @@ function MobileCollageCard({
   item,
   isSelected,
   onSelect,
+  index,
+  inView,
+  reducedMotion,
 }: {
   item: CollageItemDef;
   isSelected: boolean;
   onSelect: () => void;
+  index: number;
+  inView: boolean;
+  reducedMotion: boolean;
 }) {
   return (
     <motion.div
-      layout
-      className={`relative ${CARD_BASE} ${COLLAGE_RADIUS} shrink-0 snap-center border transition-shadow ${
+      className={`relative ${CARD_MOBILE} ${COLLAGE_RADIUS} border transition-shadow ${
         isSelected
           ? "border-0 shadow-[0_32px_80px_rgba(0,0,0,0.55)]"
           : "border-white/[0.12]"
       }`}
-      animate={{
-        scale: isSelected ? 1.12 : 1,
-        opacity: isSelected ? 1 : 0.88,
+      initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+      animate={
+        inView
+          ? {
+              scale: isSelected ? 1.02 : 1,
+              opacity: isSelected ? 1 : 0.92,
+              y: 0,
+            }
+          : { opacity: 0, y: 24 }
+      }
+      transition={{
+        duration: reducedMotion ? 0 : 0.65,
+        ease: PREMIUM_EASE,
+        delay: reducedMotion ? 0 : index * 0.06,
       }}
-      transition={{ duration: 0.5, ease: PREMIUM_EASE }}
     >
       <button
         type="button"
@@ -262,14 +281,16 @@ export default function ExperienceCollageSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-28 flex min-h-[96dvh] w-full flex-col items-center justify-center overflow-hidden pb-10 md:-mt-[10.5rem] md:min-h-[98dvh] md:pb-12"
+      className="relative flex w-full flex-col items-center overflow-hidden max-lg:min-h-0 max-lg:justify-start max-lg:pb-10 lg:-mt-[10.5rem] lg:min-h-[98dvh] lg:justify-center lg:pb-12"
       aria-label={t("home.collage.ariaLabel", "Experiencias Edmar Travel")}
       onMouseLeave={clearHover}
     >
-      <HomeSectionFade edge="top" />
+      <div className="max-lg:hidden">
+        <HomeSectionFade edge="top" />
+      </div>
 
       <motion.header
-        className="relative z-20 mb-5 max-w-[40rem] px-6 text-center md:mb-6"
+        className="relative z-20 mb-5 max-w-[40rem] px-6 text-center max-lg:mb-4 md:mb-6"
         animate={{ opacity: hasSelection ? 0.42 : 1 }}
         transition={{ duration: 0.5, ease: PREMIUM_EASE }}
       >
@@ -284,9 +305,9 @@ export default function ExperienceCollageSection() {
         </h2>
       </motion.header>
 
-      {/* Desktop — collage centrado */}
+      {/* Desktop — collage absoluto */}
       <div
-        className="relative z-10 hidden w-full max-w-[min(96vw,1200px)] px-4 md:block"
+        className="relative z-10 hidden w-full max-w-[min(96vw,1200px)] px-4 lg:block"
         onMouseLeave={clearHover}
       >
         <div className="relative mx-auto h-[min(62vh,680px)] w-full">
@@ -306,13 +327,16 @@ export default function ExperienceCollageSection() {
         </div>
       </div>
 
-      {/* Mobile — scroll horizontal */}
-      <div className="relative z-10 w-full md:hidden">
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {COLLAGE_ITEMS.map((item) => (
+      {/* Mobile — columna vertical */}
+      <div className="relative z-10 w-full lg:hidden">
+        <div className="mx-auto flex w-full max-w-[22rem] flex-col items-stretch gap-4 px-6 pb-2">
+          {COLLAGE_ITEMS.map((item, index) => (
             <MobileCollageCard
               key={item.id}
               item={item}
+              index={index}
+              inView={inView}
+              reducedMotion={!!reducedMotion}
               isSelected={tappedId === item.id}
               onSelect={() =>
                 setTappedId((prev) => (prev === item.id ? null : item.id))

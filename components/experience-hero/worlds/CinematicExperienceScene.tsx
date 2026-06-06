@@ -7,6 +7,7 @@ import {
   DEFAULT_PANEL_EDITORIAL_LAYOUT,
   type PanelEditorialLayoutDebugValues,
 } from "../director/experienceHeroDebugConfig";
+import { useHeroMobile } from "../useHeroMobile";
 
 export type CinematicExperienceSceneProps = {
   imageSrc: string;
@@ -37,6 +38,8 @@ export default function CinematicExperienceScene({
   editorialLayout = DEFAULT_PANEL_EDITORIAL_LAYOUT,
 }: CinematicExperienceSceneProps) {
   const layout = editorialLayout;
+  const isMobile = useHeroMobile();
+
   if (compact) {
     return (
       <div className="relative h-full w-full overflow-hidden bg-[#050606]">
@@ -53,6 +56,63 @@ export default function CinematicExperienceScene({
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/18 via-transparent to-black/12"
           aria-hidden
         />
+      </div>
+    );
+  }
+
+  if (isMobile) {
+    return (
+      <div className="group/scene relative h-full w-full overflow-hidden bg-[#050606]">
+        <div className="absolute inset-0 overflow-hidden">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            priority
+            className="object-cover"
+            style={{ objectPosition: imagePosition }}
+            sizes="100vw"
+            draggable={false}
+          />
+        </div>
+
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 via-45% to-black/10"
+          aria-hidden
+        />
+
+        <div className="absolute inset-0 z-[2] flex flex-col items-center justify-end px-5 pb-8 pt-16 text-center">
+          <div className="flex w-full max-w-[min(100%,22rem)] flex-col items-center">
+            <h2 className="font-theater font-bold uppercase leading-[0.94] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">
+              {titleLines.map((line, i) => (
+                <span
+                  key={`${line}-${i}`}
+                  className="block"
+                  style={{
+                    fontSize: "clamp(1.5rem, 7.5vw, 2rem)",
+                    marginTop: i > 0 ? 4 : 0,
+                  }}
+                >
+                  {line}
+                </span>
+              ))}
+            </h2>
+
+            <p className="mt-3 max-w-[28ch] font-sans text-sm font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/82">
+              {subtitle}
+            </p>
+
+            {detailTags.length > 0 ? (
+              <p className="mt-2 font-sans text-[9px] font-medium uppercase tracking-[0.22em] text-[#F5F0E6]/55">
+                {detailTags.join(" · ")}
+              </p>
+            ) : null}
+
+            <div className="pointer-events-auto mt-5 flex justify-center">
+              <PremiumExperienceCtaButton label={ctaLabel} href={ctaHref} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

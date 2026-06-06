@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { ReactNode } from "react";
 import { slotDebugToLayout } from "./director/experienceHeroDebugConfig";
 import { useExperienceHeroDebugOptional } from "./director/ExperienceHeroDebugContext";
 import { directorOutline } from "./director/directorOutline";
 import { useExperienceDirectorMode } from "./director/useExperienceDirectorMode";
+import { useHeroMobile } from "./useHeroMobile";
 import { HERO_SLOT_LAYOUT } from "./heroLayoutProduction";
 import {
   layoutToMotionTarget,
@@ -18,20 +19,6 @@ import {
   SPATIAL_TRANSITION,
 } from "./spatialSlotLayout";
 import type { SpatialSlot } from "./types";
-
-function useIsMobile() {
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const apply = () => setMobile(mq.matches);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
-
-  return mobile;
-}
 
 type SpatialWorldPanelProps = {
   slot: SpatialSlot;
@@ -47,7 +34,7 @@ export default function SpatialWorldPanel({
   interactive = false,
 }: SpatialWorldPanelProps) {
   const isCenter = slot === "center";
-  const isMobile = useIsMobile();
+  const isMobile = useHeroMobile();
   const isDirector = useExperienceDirectorMode();
   const debug = useExperienceHeroDebugOptional();
   const showOutlines = isDirector && (debug?.values.showOutlines ?? true);
@@ -111,7 +98,9 @@ export default function SpatialWorldPanel({
       <div
         className={`relative h-full w-full overflow-hidden ${
           isCenter
-            ? "rounded-[32px] shadow-[0_40px_120px_rgba(0,0,0,0.5),0_16px_48px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.06)]"
+            ? isMobile
+              ? "rounded-[24px] shadow-[0_24px_56px_rgba(0,0,0,0.22)]"
+              : "rounded-[32px] shadow-[0_40px_120px_rgba(0,0,0,0.5),0_16px_48px_rgba(0,0,0,0.35),0_0_0_1px_rgba(255,255,255,0.06)]"
             : "rounded-[20px] shadow-[0_24px_64px_rgba(0,0,0,0.4)]"
         }`}
       >
