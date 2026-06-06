@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getProducts, getProductById } from "@/lib/products";
 import { getProductImages } from "@/lib/product-images";
 import { getProductVariants } from "@/lib/product-variants";
-import type { Product } from "@/lib/products";
 import { getMessages } from "@/lib/i18n/messages";
 import { createTranslator } from "@/lib/i18n/translate";
 import { locales, type Locale } from "@/lib/i18n/config";
@@ -13,6 +12,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import {
   getExperienceRichContent,
 } from "@/lib/experience-content";
+import { localizeProduct, localizeProducts } from "@/lib/localize-product";
 import ExperiencePageClient from "@/components/experience/ExperiencePageClient";
 import RelatedExperiences from "@/components/experience/RelatedExperiences";
 
@@ -110,15 +110,7 @@ export default async function ProductPage({ params }: Props) {
     );
   }
 
-  const localized = product.translations?.[locale];
-  const localizedProduct: Product = {
-    ...product,
-    title: localized?.title ?? product.title,
-    description: localized?.description ?? product.description,
-    shortDescription: localized?.shortDescription ?? product.shortDescription,
-    longDescription: localized?.longDescription ?? product.longDescription,
-    features: localized?.features ?? product.features,
-  };
+  const localizedProduct = localizeProduct(product, locale);
 
   const messages = await getMessages(locale);
   const t = createTranslator(messages);
@@ -171,9 +163,12 @@ export default async function ProductPage({ params }: Props) {
 
   const seoH1 = localizedProduct.title;
 
-  const relatedProducts = getProducts()
-    .filter((item) => item.category === product.category && item.id !== product.id)
-    .slice(0, 3);
+  const relatedProducts = localizeProducts(
+    getProducts()
+      .filter((item) => item.category === product.category && item.id !== product.id)
+      .slice(0, 3),
+    locale
+  );
 
   const rich = getExperienceRichContent(product.id, locale);
   const whatsappHref =
@@ -226,6 +221,8 @@ export default async function ProductPage({ params }: Props) {
     comingSoonHint: t("experiencePage.comingSoonHint"),
     ctaAvailableSoon: t("experiencePage.ctaAvailableSoon"),
     finalCtaSubtitleComingSoon: t("experiencePage.finalCtaSubtitleComingSoon"),
+    whatsappInquiry: t("experiencePage.whatsappInquiry"),
+    siteTagline: t("experiencePage.siteTagline"),
   };
 
   return (
@@ -243,7 +240,14 @@ export default async function ProductPage({ params }: Props) {
           noImageLabel={t("common.noImage")}
         />
 
-        <ProductReviews productSlug={productSlug} reviews={REVIEWS_SEED} />
+        <ProductReviews
+          productSlug={productSlug}
+          reviews={REVIEWS_SEED}
+          title={t("productPage.reviewsTitle")}
+          emptyText={t("productPage.reviewsEmptyText")}
+          countLabel={t("productPage.reviewsCountLabel")}
+          verifiedLabel={t("productPage.reviewsVerifiedBadge")}
+        />
         {reviewsSchema && (
           <script
             type="application/ld+json"

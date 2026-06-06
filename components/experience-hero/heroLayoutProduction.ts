@@ -14,24 +14,24 @@ import type { ExperienceWorldId, SpatialSlot } from "./types";
  * (npm run hero-layout:sync)
  */
 export const HERO_HEADER_UTILITIES: HeaderUtilitiesDebugValues = {
-  "language": {
-    "offsetX": 120,
-    "offsetY": 0,
-    "marginTop": 0,
-    "marginLeft": 59
+  language: {
+    offsetX: 0,
+    offsetY: 0,
+    marginTop: 0,
+    marginLeft: 0,
   },
-  "login": {
-    "offsetX": 117,
-    "offsetY": 0,
-    "marginTop": 0,
-    "marginLeft": 1
+  login: {
+    offsetX: 0,
+    offsetY: 0,
+    marginTop: 0,
+    marginLeft: 0,
   },
-  "reservations": {
-    "offsetX": -3,
-    "offsetY": 0,
-    "marginTop": 0,
-    "marginLeft": 120
-  }
+  reservations: {
+    offsetX: 0,
+    offsetY: 0,
+    marginTop: 0,
+    marginLeft: 0,
+  },
 };
 
 export const HERO_LOGO_LAYOUT: LogoDebugValues = {

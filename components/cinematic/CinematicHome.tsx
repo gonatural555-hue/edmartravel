@@ -42,7 +42,7 @@ export default function CinematicHome() {
 
             <section
 
-              className="relative min-h-[100dvh] w-full"
+              className="relative -mb-10 min-h-[100dvh] w-full md:-mb-16"
 
               aria-label="Selector de experiencias"
 

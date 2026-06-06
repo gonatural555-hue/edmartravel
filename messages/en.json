@@ -155,7 +155,9 @@
     "comingSoonHint": "Online booking is not open yet. Message us on WhatsApp to join the waitlist and be notified when departures go live.",
     "ctaAvailableSoon": "Available soon",
     "finalCtaSubtitleComingSoon": "This experience is not open for booking yet—message us on WhatsApp to join the waitlist.",
-    "notFound": "Experience not found"
+    "notFound": "Experience not found",
+    "whatsappInquiry": "Hi, I'm inquiring about the experience: {title}",
+    "siteTagline": "Unique experiences in Mendoza"
   },
   "testimonials": {
     "title": "What travelers on Google say about their time in Mendoza",

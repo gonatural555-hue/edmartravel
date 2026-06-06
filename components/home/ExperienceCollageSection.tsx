@@ -1,17 +1,23 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useTranslations } from "@/components/i18n/LocaleProvider";
+import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
+import HomeCtaButton from "@/components/home/HomeCtaButton";
 import HomeSectionFade from "@/components/home/HomeSectionFade";
 import {
   COLLAGE_ITEMS,
+  collageExperienceHref,
   collagePushOffset,
+  type CollageExperienceId,
   type CollageItemDef,
 } from "@/lib/home-experience-collage";
 
 const PREMIUM_EASE = [0.22, 1, 0.36, 1] as const;
 const MOTION_S = 1.1;
+/** Mismo radio que los paneles laterales del hero */
+const COLLAGE_RADIUS = "rounded-[20px]";
 const CARD_BASE =
   "w-[clamp(200px,26vw,300px)] aspect-[16/10] overflow-hidden border border-white/[0.12] shadow-[0_24px_70px_rgba(0,0,0,0.5)]";
 
@@ -32,6 +38,80 @@ function useCollageHeroScale() {
   }, []);
 
   return scale;
+}
+
+type CollageExperienceCopy = {
+  title: string;
+  cta: string;
+  href: string;
+};
+
+function useCollageExperienceCopy(
+  experienceId: CollageExperienceId
+): CollageExperienceCopy {
+  const locale = useLocale();
+  const t = useTranslations();
+  const key = experienceId;
+
+  return {
+    title: t(`home.collage.${key}.category`),
+    cta: t(`home.collage.${key}.cta`),
+    href: collageExperienceHref(locale, experienceId),
+  };
+}
+
+function CollageCardOverlay({
+  experienceId,
+  isSelected,
+  heroScale,
+  compact = false,
+}: {
+  experienceId: CollageExperienceId;
+  isSelected: boolean;
+  heroScale: number;
+  compact?: boolean;
+}) {
+  const { title, cta, href } = useCollageExperienceCopy(experienceId);
+  const counterScale = isSelected && heroScale > 1 ? 1 / heroScale : 1;
+
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center px-3 text-center sm:px-4"
+      style={{ transform: `scale(${counterScale})` }}
+    >
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25"
+        aria-hidden
+      />
+      <div className="pointer-events-auto relative flex max-w-[92%] flex-col items-center gap-2 sm:gap-2.5">
+        <Link
+          href={href}
+          className={`font-theater font-bold uppercase leading-[0.95] tracking-[-0.02em] text-[#F5F0E6] transition-colors hover:text-[#E8C98A] ${
+            compact
+              ? "text-[clamp(0.62rem,2.8vw,0.85rem)]"
+              : isSelected
+                ? "text-[clamp(1rem,2.2vw,1.65rem)]"
+                : "text-[clamp(0.65rem,1.4vw,0.95rem)]"
+          }`}
+        >
+          {title}
+        </Link>
+        <HomeCtaButton
+          href={href}
+          variant="primary"
+          className={
+            compact
+              ? "!min-h-[34px] !px-4 !py-2 !text-[8px] !tracking-[0.12em] sm:!text-[9px]"
+              : isSelected
+                ? "!min-h-[40px] !px-6 !py-2.5 !text-[10px] sm:!min-h-[44px] sm:!text-[11px]"
+                : "!min-h-[34px] !px-4 !py-2 !text-[8px] !tracking-[0.12em] sm:!text-[9px]"
+          }
+        >
+          {cta}
+        </HomeCtaButton>
+      </div>
+    </div>
+  );
 }
 
 function DesktopCollageCard({
@@ -59,9 +139,7 @@ function DesktopCollageCard({
 
   return (
     <motion.div
-      className={`absolute ${CARD_BASE} will-change-[transform,opacity,filter] ${
-        isSelected ? "rounded-[36px] md:rounded-[40px]" : "rounded-[30px]"
-      }`}
+      className={`absolute ${CARD_BASE} ${COLLAGE_RADIUS} will-change-[transform,opacity]`}
       initial={reducedMotion ? false : { opacity: 0, y: 40 }}
       animate={
         inView
@@ -74,16 +152,12 @@ function DesktopCollageCard({
               rotate: isSelected ? 0 : item.rotate,
               opacity: isSelected ? 1 : dimmed ? 0.52 : 0.9,
               zIndex: isSelected ? 60 : item.zIndex,
-              filter: isSelected
-                ? "blur(0px) brightness(1)"
-                : dimmed
-                  ? "blur(2px) brightness(0.68)"
-                  : "blur(0px) brightness(0.92)",
+              borderWidth: isSelected ? 0 : 1,
               borderColor: isSelected
-                ? "rgba(255,255,255,0.26)"
+                ? "rgba(255,255,255,0)"
                 : "rgba(255,255,255,0.12)",
               boxShadow: isSelected
-                ? "0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.2)"
+                ? "0 40px 100px rgba(0,0,0,0.6)"
                 : "0 24px 70px rgba(0,0,0,0.5)",
             }
           : { opacity: 0, y: 40 }
@@ -96,7 +170,6 @@ function DesktopCollageCard({
       onMouseEnter={() => onHover(item.id)}
       onFocus={() => onHover(item.id)}
       tabIndex={0}
-      role="button"
       aria-label={item.alt}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -106,6 +179,11 @@ function DesktopCollageCard({
         className="h-full w-full object-cover"
         loading="lazy"
         decoding="async"
+      />
+      <CollageCardOverlay
+        experienceId={item.experienceId}
+        isSelected={isSelected}
+        heroScale={heroScale}
       />
     </motion.div>
   );
@@ -121,21 +199,26 @@ function MobileCollageCard({
   onSelect: () => void;
 }) {
   return (
-    <motion.button
-      type="button"
+    <motion.div
       layout
-      onClick={onSelect}
-      className={`relative ${CARD_BASE} shrink-0 snap-center rounded-[30px] transition-shadow ${
-        isSelected ? "border-white/25 shadow-[0_32px_80px_rgba(0,0,0,0.55)]" : ""
+      className={`relative ${CARD_BASE} ${COLLAGE_RADIUS} shrink-0 snap-center border transition-shadow ${
+        isSelected
+          ? "border-0 shadow-[0_32px_80px_rgba(0,0,0,0.55)]"
+          : "border-white/[0.12]"
       }`}
       animate={{
         scale: isSelected ? 1.12 : 1,
         opacity: isSelected ? 1 : 0.88,
       }}
       transition={{ duration: 0.5, ease: PREMIUM_EASE }}
-      aria-pressed={isSelected}
-      aria-label={item.alt}
     >
+      <button
+        type="button"
+        onClick={onSelect}
+        className="absolute inset-0 z-[1] cursor-pointer"
+        aria-pressed={isSelected}
+        aria-label={item.alt}
+      />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.src}
@@ -143,7 +226,13 @@ function MobileCollageCard({
         className="h-full w-full object-cover"
         loading="lazy"
       />
-    </motion.button>
+      <CollageCardOverlay
+        experienceId={item.experienceId}
+        isSelected={isSelected}
+        heroScale={1}
+        compact
+      />
+    </motion.div>
   );
 }
 
@@ -173,7 +262,7 @@ export default function ExperienceCollageSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-8 flex min-h-[96dvh] w-full flex-col items-center justify-center overflow-hidden py-10 md:-mt-12 md:min-h-[98dvh] md:py-12"
+      className="relative -mt-28 flex min-h-[96dvh] w-full flex-col items-center justify-center overflow-hidden pb-10 md:-mt-[10.5rem] md:min-h-[98dvh] md:pb-12"
       aria-label={t("home.collage.ariaLabel", "Experiencias Edmar Travel")}
       onMouseLeave={clearHover}
     >

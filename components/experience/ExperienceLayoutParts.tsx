@@ -6,40 +6,59 @@ export function SectionShell({
   title,
   children,
   className = "",
+  centered = false,
 }: {
   id?: string;
   title: string;
   children: ReactNode;
   className?: string;
+  centered?: boolean;
 }) {
+  const heading = (
+    <h2
+      id={id ? `${id}-heading` : undefined}
+      className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl"
+    >
+      {title}
+    </h2>
+  );
+
   return (
     <section
       id={id}
       className={`scroll-mt-28 border-t border-white/10 py-14 md:py-16 lg:py-20 ${className}`}
       aria-labelledby={id ? `${id}-heading` : undefined}
     >
-      <h2
-        id={id ? `${id}-heading` : undefined}
-        className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl"
-      >
-        {title}
-      </h2>
-      <div className="mt-8">{children}</div>
+      {centered ? (
+        <div className="mx-auto max-w-4xl px-2 text-center sm:px-0">
+          {heading}
+          <div className="mt-8">{children}</div>
+        </div>
+      ) : (
+        <>
+          {heading}
+          <div className="mt-8">{children}</div>
+        </>
+      )}
     </section>
   );
 }
 
 export function QuickFactsGrid({
   items,
+  centered = false,
 }: {
   items: { label: string; value: string }[];
+  centered?: boolean;
 }) {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <ul
+      className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ${centered ? "mx-auto" : ""}`}
+    >
       {items.map((item) => (
         <li
           key={item.label}
-          className="rounded-2xl border border-white/10 bg-dark-surface/35 px-4 py-3"
+          className={`rounded-2xl border border-white/10 bg-dark-surface/35 px-4 py-3 ${centered ? "text-center" : ""}`}
         >
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted/80">
             {item.label}
@@ -53,13 +72,21 @@ export function QuickFactsGrid({
   );
 }
 
-export function WhyLoveGrid({ items }: { items: string[] }) {
+export function WhyLoveGrid({
+  items,
+  centered = false,
+}: {
+  items: string[];
+  centered?: boolean;
+}) {
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
+    <ul className={`grid gap-4 md:grid-cols-2 ${centered ? "mx-auto" : ""}`}>
       {items.map((text, i) => (
         <li
           key={i}
-          className="flex gap-3 rounded-2xl border border-white/10 bg-dark-surface/25 p-5"
+          className={`flex gap-3 rounded-2xl border border-white/10 bg-dark-surface/25 p-5 ${
+            centered ? "flex-col items-center text-center" : ""
+          }`}
         >
           <span
             className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-gold/15 text-xs font-semibold text-accent-gold"
@@ -76,11 +103,21 @@ export function WhyLoveGrid({ items }: { items: string[] }) {
   );
 }
 
-export function EditorialColumns({ paragraphs }: { paragraphs: string[] }) {
+export function EditorialColumns({
+  paragraphs,
+  centered = false,
+}: {
+  paragraphs: string[];
+  centered?: boolean;
+}) {
   return (
-    <div className="space-y-6 text-base leading-[1.75] text-text-muted md:text-lg">
+    <div
+      className={`space-y-6 text-base leading-[1.75] text-text-muted md:text-lg ${
+        centered ? "mx-auto max-w-3xl text-center" : ""
+      }`}
+    >
       {paragraphs.map((p, i) => (
-        <p key={i} className="max-w-3xl">
+        <p key={i} className={centered ? "" : "max-w-3xl"}>
           {p}
         </p>
       ))}
@@ -106,15 +143,29 @@ export function ItineraryTimeline({ lines }: { lines: string[] }) {
   );
 }
 
-export function PlacesList({ items }: { items: string[] }) {
+export function PlacesList({
+  items,
+  centered = false,
+}: {
+  items: string[];
+  centered?: boolean;
+}) {
   return (
-    <ul className="grid gap-3 md:grid-cols-2">
+    <ul className={`grid gap-3 md:grid-cols-2 ${centered ? "mx-auto" : ""}`}>
       {items.map((place) => (
         <li
           key={place}
-          className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-text-muted md:text-base"
+          className={`flex rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-text-muted md:text-base ${
+            centered
+              ? "items-center justify-center gap-2 text-center"
+              : "items-start gap-3"
+          }`}
         >
-          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-gold" />
+          <span
+            className={`shrink-0 rounded-full bg-accent-gold ${
+              centered ? "h-1.5 w-1.5" : "mt-1 h-1.5 w-1.5"
+            }`}
+          />
           {place}
         </li>
       ))}
@@ -128,15 +179,21 @@ export function IncludedExcluded({
   includedTitle,
   excludedTitle,
   hideColumnTitles = false,
+  centered = false,
 }: {
   included: string[];
   excluded: string[];
   includedTitle: string;
   excludedTitle: string;
   hideColumnTitles?: boolean;
+  centered?: boolean;
 }) {
+  const listItemClass = centered ? "flex justify-center gap-2" : "flex gap-2";
+
   return (
-    <div className="grid gap-10 md:grid-cols-2 md:gap-12">
+    <div
+      className={`grid gap-10 md:grid-cols-2 md:gap-12 ${centered ? "mx-auto text-center" : ""}`}
+    >
       <div>
         {!hideColumnTitles ? (
         <h3 className="text-lg font-semibold text-text-primary">
@@ -147,7 +204,7 @@ export function IncludedExcluded({
           className={`space-y-2.5 text-sm text-text-muted md:text-base ${hideColumnTitles ? "" : "mt-4"}`}
         >
           {included.map((line) => (
-            <li key={line} className="flex gap-2">
+            <li key={line} className={listItemClass}>
               <span className="text-accent-gold" aria-hidden>
                 ✓
               </span>
@@ -164,7 +221,7 @@ export function IncludedExcluded({
         ) : null}
         <ul className={`space-y-2.5 text-sm text-text-muted md:text-base ${hideColumnTitles ? "" : "mt-4"}`}>
           {excluded.map((line) => (
-            <li key={line} className="flex gap-2">
+            <li key={line} className={listItemClass}>
               <span className="text-text-muted/50" aria-hidden>
                 —
               </span>
@@ -180,6 +237,7 @@ export function IncludedExcluded({
 export function PracticalInfoBlock({
   rich,
   labels,
+  centered = false,
 }: {
   rich: ExperienceRichContent;
   labels: {
@@ -188,16 +246,21 @@ export function PracticalInfoBlock({
     weather: string;
     pickupDetails: string;
   };
+  centered?: boolean;
 }) {
+  const listItemClass = centered ? "flex justify-center gap-2" : "flex gap-2";
+
   return (
-    <div className="grid gap-10 md:grid-cols-2">
+    <div
+      className={`grid gap-10 md:grid-cols-2 ${centered ? "mx-auto text-center" : ""}`}
+    >
       <div>
         <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-text-muted/80">
           {labels.whatToBring}
         </h3>
         <ul className="mt-3 space-y-2 text-sm text-text-muted md:text-base">
           {rich.practical.whatToBring.map((item) => (
-            <li key={item} className="flex gap-2">
+            <li key={item} className={listItemClass}>
               <span className="text-accent-gold/90">·</span>
               {item}
             </li>
@@ -236,20 +299,30 @@ export function PracticalInfoBlock({
 
 export function FaqAccordion({
   items,
+  centered = false,
 }: {
   items: { question: string; answer: string }[];
+  centered?: boolean;
 }) {
   return (
-    <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-dark-surface/20">
+    <div
+      className={`divide-y divide-white/10 rounded-2xl border border-white/10 bg-dark-surface/20 ${
+        centered ? "mx-auto max-w-2xl text-center" : ""
+      }`}
+    >
       {items.map((item, i) => (
         <details
           key={i}
           className="group px-4 py-1 md:px-6 [&_summary::-webkit-details-marker]:hidden"
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left text-sm font-medium text-text-primary md:text-base">
+          <summary
+            className={`flex cursor-pointer list-none items-center gap-4 py-4 text-sm font-medium text-text-primary md:text-base ${
+              centered ? "justify-center text-center" : "justify-between text-left"
+            }`}
+          >
             {item.question}
             <span
-              className="text-text-muted transition-transform group-open:rotate-45"
+              className="shrink-0 text-text-muted transition-transform group-open:rotate-45"
               aria-hidden
             >
               +
@@ -274,16 +347,17 @@ export function TestimonialsMini({
   if (!items.length) return null;
   return (
     <section className="border-t border-white/10 py-14 md:py-16">
-      <h2 className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl">
-        {title}
-      </h2>
-      <div className="mt-8 grid gap-6 md:grid-cols-3">
+      <div className="mx-auto max-w-5xl px-2 text-center sm:px-0">
+        <h2 className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl">
+          {title}
+        </h2>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
         {items.map((t) => (
           <figure
             key={t.name + t.text.slice(0, 12)}
-            className="rounded-2xl border border-white/10 bg-dark-surface/30 p-6"
+            className="rounded-2xl border border-white/10 bg-dark-surface/30 p-6 text-center"
           >
-            <div className="flex gap-0.5 text-accent-gold" aria-hidden>
+            <div className="flex justify-center gap-0.5 text-accent-gold" aria-hidden>
               {Array.from({ length: 5 }, (_, i) => (
                 <span key={i} className={i < t.rating ? "opacity-100" : "opacity-25"}>
                   ★
@@ -298,6 +372,7 @@ export function TestimonialsMini({
             </figcaption>
           </figure>
         ))}
+        </div>
       </div>
     </section>
   );

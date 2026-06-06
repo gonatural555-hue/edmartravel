@@ -155,7 +155,9 @@
     "comingSoonHint": "La réservation en ligne n’est pas encore ouverte. Écrivez-nous sur WhatsApp pour la liste d’attente.",
     "ctaAvailableSoon": "Bientôt disponible",
     "finalCtaSubtitleComingSoon": "Cette expérience n’est pas encore en vente — contactez-nous sur WhatsApp pour la liste d’attente.",
-    "notFound": "Expérience introuvable"
+    "notFound": "Expérience introuvable",
+    "whatsappInquiry": "Bonjour, je souhaite des informations sur l’expérience : {title}",
+    "siteTagline": "Expériences uniques à Mendoza"
   },
   "testimonials": {
     "title": "Ce que disent sur Google les voyageurs après Mendoza",
@@ -181,7 +183,7 @@
   },
   "home": {
     "marquee": {
-      "row1": "DÉCOUVREZ MENDOZA · VIN · MONTAGNES · VILLE · CULTURE ·",
+      "row1": "DÉCOUVREZ MENDOZA · VINS · MONTAGNES · VILLE · CULTURE ·",
       "row2": "ITINÉRAIRES AUTHENTIQUES · GUIDES LOCAUX · EXPÉRIENCES PREMIUM ·"
     },
     "collage": {

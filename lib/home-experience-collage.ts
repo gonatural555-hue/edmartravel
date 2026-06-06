@@ -27,8 +27,8 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "adventure-1",
     experienceId: "adventure",
-    src: "/assets/scenes/adventure-mendoza/backgrounds/hero-cabalgata.jpg",
-    alt: "Cabalgata Mendoza",
+    src: "/assets/scenes/adventure-mendoza/collage/aventura-mendoza.webp",
+    alt: "Aventura en Mendoza",
     left: "38%",
     top: "4%",
     rotate: 2,
@@ -47,8 +47,8 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "wine-2",
     experienceId: "wine",
-    src: "/assets/images/products/ValleDeUco/valle-uco.webp",
-    alt: "Valle de Uco",
+    src: "/assets/scenes/wine-tours/wine-tours-collage.webp",
+    alt: "Wine tours con montañas de Mendoza",
     left: "4%",
     top: "54%",
     rotate: 3,
@@ -57,8 +57,8 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "adventure-2",
     experienceId: "adventure",
-    src: "/assets/images/products/CabalgataPicada/cabalgatapicada1.webp",
-    alt: "Cabalgata y picada",
+    src: "/assets/scenes/adventure-mendoza/collage/aventura-mendoza-01.webp",
+    alt: "Experiencia de aventura en Mendoza",
     left: "36%",
     top: "56%",
     rotate: -2,
@@ -75,6 +75,14 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
     zIndex: 2,
   },
 ];
+
+/** URL de la categoría de experiencia */
+export function collageExperienceHref(
+  locale: string,
+  experienceId: CollageExperienceId
+): string {
+  return `/${locale}/category/${experienceId}`;
+}
 
 /** Empuje sutil hacia afuera cuando otra imagen está activa */
 export function collagePushOffset(

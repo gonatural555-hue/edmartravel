@@ -3,6 +3,10 @@ import type { ReviewSeed } from "@/lib/reviews-data";
 type ProductReviewsProps = {
   productSlug: string;
   reviews: ReviewSeed[];
+  title: string;
+  emptyText: string;
+  countLabel: string;
+  verifiedLabel: string;
 };
 
 function getAverageRating(reviews: ReviewSeed[]) {
@@ -32,6 +36,10 @@ function renderStars(rating: number) {
 export default function ProductReviews({
   productSlug,
   reviews,
+  title,
+  emptyText,
+  countLabel,
+  verifiedLabel,
 }: ProductReviewsProps) {
   const productReviews = reviews.filter(
     (review) => review.productSlug === productSlug
@@ -43,13 +51,11 @@ export default function ProductReviews({
     <section className="border-t border-white/10 py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
         <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
-          Customer reviews
+          {title}
         </h2>
 
         {productReviews.length === 0 ? (
-          <p className="mt-3 text-sm text-text-muted">
-            This product does not have published reviews yet
-          </p>
+          <p className="mt-3 text-sm text-text-muted">{emptyText}</p>
         ) : (
           <>
             <div className="mt-3 flex items-center gap-3 text-sm text-text-muted">
@@ -58,7 +64,9 @@ export default function ProductReviews({
               </div>
               <span className="text-text-primary">{averageLabel}</span>
               <span aria-hidden="true">•</span>
-              <span>{productReviews.length} reviews</span>
+              <span>
+                {productReviews.length} {countLabel}
+              </span>
             </div>
 
             <div className="mt-8 space-y-4">
@@ -86,7 +94,7 @@ export default function ProductReviews({
                   </p>
                   {review.verified && (
                     <span className="mt-4 inline-flex rounded-full border border-white/10 px-3 py-1 text-xs text-text-muted">
-                      Verified purchase
+                      {verifiedLabel}
                     </span>
                   )}
                 </article>
@@ -98,4 +106,3 @@ export default function ProductReviews({
     </section>
   );
 }
-

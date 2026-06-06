@@ -183,6 +183,68 @@ body::after {
   }
 }
 
+/* Home CTA — estilo editorial (referencia: esquinas rectas + inversión de color + shimmer) */
+.home-cta {
+  box-shadow: none;
+}
+
+.home-cta__shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.42) 50%,
+    transparent 62%
+  );
+  transform: translateX(-130%) skewX(-16deg);
+}
+
+.home-cta--secondary .home-cta__shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 62%
+  );
+}
+
+@keyframes home-cta-shimmer {
+  from {
+    transform: translateX(-130%) skewX(-16deg);
+  }
+  to {
+    transform: translateX(130%) skewX(-16deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta {
+    transition-duration: 0.01ms !important;
+  }
+
+  .home-cta__shimmer {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .home-cta:hover .home-cta__shimmer,
+  .home-cta:focus-visible .home-cta__shimmer {
+    opacity: 1;
+    animation: home-cta-shimmer 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-cta:active:not(:disabled) {
+    transform: scale(0.98);
+    transition: color 350ms, background-color 350ms, border-color 350ms,
+      transform 120ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
 /* Featured experiences — encabezado editorial (home) */
 @keyframes featured-editorial-rise {
   from {

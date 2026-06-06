@@ -10,8 +10,6 @@ import { getMessages } from "@/lib/i18n/messages";
 import { createTranslator } from "@/lib/i18n/translate";
 import { locales, type Locale } from "@/lib/i18n/config";
 import { buildMetadata, formatTemplate } from "@/lib/seo";
-import EditorialPostCards from "@/components/editorial/EditorialPostCards";
-import { pickPostsForCategory } from "@/lib/internal-links";
 import { SITE_CONFIG } from "@/lib/config";
 import { PRODUCTS_LISTING_NOISE_BG } from "@/lib/constants/products-listing-surface";
 import type { ExperienceCategory } from "@/lib/product-types";
@@ -289,20 +287,6 @@ export default async function CategoryPage({ params }: Props) {
   const categoryLabel = t(`categories.names.${category.slug}`, category.name);
   const seoH1 = categoryLabel;
 
-  const fieldStories = pickPostsForCategory(slug, messages.blog.posts, 3)
-    .map(([postSlug, post]) => ({
-      href: `/${locale}/blog/${postSlug}`,
-      title: post.title,
-      image:
-        post.heroImage ||
-        post.sections?.[0]?.image ||
-        "/assets/images/blog/blog-hero.webp",
-    }))
-    .filter(
-      (post): post is { href: string; title: string; image: string } =>
-        Boolean(post.title)
-    );
-
   const introIsLight = slug === "adventure";
   const { prev: prevSlug, next: nextSlug } = categoryNeighbors(slug);
   const prevCat = getCategoryBySlug(prevSlug);
@@ -383,11 +367,6 @@ export default async function CategoryPage({ params }: Props) {
         products={products}
         locale={locale}
         t={t}
-      />
-
-      <EditorialPostCards
-        title={t("categoriesPage.fieldStoriesTitle")}
-        posts={fieldStories}
       />
 
       <section className="border-t border-white/10 py-16 md:py-20">

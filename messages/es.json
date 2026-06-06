@@ -155,7 +155,9 @@
     "comingSoonHint": "La reserva online aún no está habilitada. Escribinos por WhatsApp para lista de espera y avisos cuando abran las salidas.",
     "ctaAvailableSoon": "Próximamente",
     "finalCtaSubtitleComingSoon": "Esta experiencia aún no está a la venta — escribinos por WhatsApp para lista de espera.",
-    "notFound": "Experiencia no encontrada"
+    "notFound": "Experiencia no encontrada",
+    "whatsappInquiry": "Hola, consulto por la experiencia: {title}",
+    "siteTagline": "Experiencias únicas en Mendoza"
   },
   "testimonials": {
     "title": "Lo que dicen en Google quienes visitaron Mendoza con nosotros",
@@ -182,7 +184,7 @@
   "home": {
     "marquee": {
       "row1": "DESCUBRÍ MENDOZA · VINO · MONTAÑAS · CIUDAD · CULTURA ·",
-      "row2": "RUTAS AUTÉNTICAS · GUÍAS LOCALES · EXPERIENCIAS PREMIUM ·"
+      "row2": "RUTAS AUTÉNTICAS · GUÍAS LOCALES · EXPERIENCIAS PRÉMIUM ·"
     },
     "collage": {
       "ariaLabel": "Galería de experiencias en Mendoza",

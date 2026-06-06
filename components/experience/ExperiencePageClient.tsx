@@ -29,7 +29,6 @@ import {
   TestimonialsMini,
   WhyLoveGrid,
 } from "@/components/experience/ExperienceLayoutParts";
-import { SITE_CONFIG } from "@/lib/config";
 
 type ProductSummary = {
   id: string;
@@ -337,7 +336,7 @@ export default function ExperiencePageClient({
 
   const whatsappLinkWithText = whatsappHref
     ? `${whatsappHref}?text=${encodeURIComponent(
-        `Hola, consulto por la experiencia: ${product.title}`
+        labels.whatsappInquiry.replace("{title}", product.title)
       )}`
     : undefined;
 
@@ -414,7 +413,7 @@ export default function ExperiencePageClient({
           </nav>
 
           <p className="max-w-2xl text-sm font-medium uppercase tracking-[0.2em] text-white/75">
-            {SITE_CONFIG.tagline}
+            {labels.siteTagline}
           </p>
           <h1 className="mt-3 max-w-4xl text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
             {seoH1}
@@ -504,7 +503,7 @@ export default function ExperiencePageClient({
       {/* Galería + sticky layout */}
       <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] xl:gap-14 xl:items-start">
-          <div className="min-w-0 pb-20 xl:pb-24">
+          <div className="min-w-0">
             {/* Galería */}
             {activeImages.featured || activeImages.gallery.length ? (
               <section
@@ -554,110 +553,6 @@ export default function ExperiencePageClient({
                 />
               </div>
             </div>
-
-            {quickFacts.length > 0 ? (
-              <SectionShell id="facts" title={labels.quickFactsTitle}>
-                <QuickFactsGrid items={quickFacts} />
-              </SectionShell>
-            ) : null}
-
-            {whyLove.length > 0 ? (
-              <SectionShell id="why" title={labels.whyLoveTitle}>
-                <WhyLoveGrid items={whyLove} />
-              </SectionShell>
-            ) : null}
-
-            <SectionShell id="editorial" title={labels.editorialTitle}>
-              <EditorialColumns paragraphs={editorial} />
-            </SectionShell>
-
-            {product.schedule?.length ? (
-              <SectionShell id="itinerary" title={labels.itineraryTitle}>
-                <ItineraryTimeline lines={product.schedule} />
-              </SectionShell>
-            ) : null}
-
-            {places.length > 0 ? (
-              <SectionShell id="places" title={labels.placesTitle}>
-                <PlacesList items={places} />
-              </SectionShell>
-            ) : null}
-
-            {included.length > 0 || excluded.length > 0 ? (
-              <SectionShell
-                id="included"
-                title={`${labels.includedTitle} · ${labels.excludedTitle}`}
-              >
-                <IncludedExcluded
-                  included={included}
-                  excluded={excluded}
-                  includedTitle={labels.includedTitle}
-                  excludedTitle={labels.excludedTitle}
-                  hideColumnTitles
-                />
-              </SectionShell>
-            ) : null}
-
-            {rich ? (
-              <SectionShell id="practical" title={labels.practicalTitle}>
-                <PracticalInfoBlock
-                  rich={rich}
-                  labels={{
-                    whatToBring: labels.whatToBring,
-                    restrictions: labels.restrictions,
-                    weather: labels.weather,
-                    pickupDetails: labels.pickupDetails,
-                  }}
-                />
-              </SectionShell>
-            ) : null}
-
-            {faq.length > 0 ? (
-              <SectionShell id="faq" title={labels.faqTitle}>
-                <FaqAccordion items={faq} />
-              </SectionShell>
-            ) : null}
-
-            {testimonials.length > 0 ? (
-              <TestimonialsMini items={testimonials} title={labels.socialTitle} />
-            ) : null}
-
-            <div className="pb-28 xl:pb-12">
-              {whatsappLinkWithText ? (
-                <FinalCtaBand
-                  title={labels.finalCtaTitle}
-                  subtitle={
-                    comingSoon
-                      ? labels.finalCtaSubtitleComingSoon
-                      : labels.finalCtaSubtitle
-                  }
-                  primaryLabel={
-                    comingSoon ? labels.ctaAvailableSoon : labels.finalCtaPrimary
-                  }
-                  secondaryLabel={labels.finalCtaSecondary}
-                  primaryHrefMobile="#experience-book"
-                  primaryHrefDesktop="#experience-book-desktop"
-                  secondaryHref={whatsappLinkWithText}
-                  primaryDisabled={comingSoon}
-                />
-              ) : (
-                <FinalCtaBand
-                  title={labels.finalCtaTitle}
-                  subtitle={
-                    comingSoon
-                      ? labels.finalCtaSubtitleComingSoon
-                      : labels.finalCtaSubtitle
-                  }
-                  primaryLabel={
-                    comingSoon ? labels.ctaAvailableSoon : labels.finalCtaPrimary
-                  }
-                  secondaryLabel={labels.finalCtaSecondary}
-                  primaryHrefMobile="#experience-book"
-                  primaryHrefDesktop="#experience-book-desktop"
-                  primaryDisabled={comingSoon}
-                />
-              )}
-            </div>
           </div>
 
           {/* Sticky desktop booking */}
@@ -680,6 +575,116 @@ export default function ExperiencePageClient({
               />
             </div>
           </aside>
+        </div>
+
+        {/* Secciones centradas en el ancho completo de la página */}
+        <div className="pb-20 xl:pb-24">
+          {quickFacts.length > 0 ? (
+            <SectionShell id="facts" title={labels.quickFactsTitle} centered>
+              <QuickFactsGrid items={quickFacts} centered />
+            </SectionShell>
+          ) : null}
+
+          {whyLove.length > 0 ? (
+            <SectionShell id="why" title={labels.whyLoveTitle} centered>
+              <WhyLoveGrid items={whyLove} centered />
+            </SectionShell>
+          ) : null}
+
+          <SectionShell id="editorial" title={labels.editorialTitle} centered>
+            <EditorialColumns paragraphs={editorial} centered />
+          </SectionShell>
+
+          {product.schedule?.length ? (
+            <SectionShell id="itinerary" title={labels.itineraryTitle}>
+              <ItineraryTimeline lines={product.schedule} />
+            </SectionShell>
+          ) : null}
+
+          {places.length > 0 ? (
+            <SectionShell id="places" title={labels.placesTitle} centered>
+              <PlacesList items={places} centered />
+            </SectionShell>
+          ) : null}
+
+          {included.length > 0 || excluded.length > 0 ? (
+            <SectionShell
+              id="included"
+              title={`${labels.includedTitle} · ${labels.excludedTitle}`}
+              centered
+            >
+              <IncludedExcluded
+                included={included}
+                excluded={excluded}
+                includedTitle={labels.includedTitle}
+                excludedTitle={labels.excludedTitle}
+                hideColumnTitles
+                centered
+              />
+            </SectionShell>
+          ) : null}
+
+          {rich ? (
+            <SectionShell id="practical" title={labels.practicalTitle} centered>
+              <PracticalInfoBlock
+                rich={rich}
+                labels={{
+                  whatToBring: labels.whatToBring,
+                  restrictions: labels.restrictions,
+                  weather: labels.weather,
+                  pickupDetails: labels.pickupDetails,
+                }}
+                centered
+              />
+            </SectionShell>
+          ) : null}
+
+          {faq.length > 0 ? (
+            <SectionShell id="faq" title={labels.faqTitle} centered>
+              <FaqAccordion items={faq} centered />
+            </SectionShell>
+          ) : null}
+
+          {testimonials.length > 0 ? (
+            <TestimonialsMini items={testimonials} title={labels.socialTitle} />
+          ) : null}
+
+          <div className="mx-auto max-w-4xl px-2 pb-28 text-center sm:px-0 xl:pb-12">
+            {whatsappLinkWithText ? (
+              <FinalCtaBand
+                title={labels.finalCtaTitle}
+                subtitle={
+                  comingSoon
+                    ? labels.finalCtaSubtitleComingSoon
+                    : labels.finalCtaSubtitle
+                }
+                primaryLabel={
+                  comingSoon ? labels.ctaAvailableSoon : labels.finalCtaPrimary
+                }
+                secondaryLabel={labels.finalCtaSecondary}
+                primaryHrefMobile="#experience-book"
+                primaryHrefDesktop="#experience-book-desktop"
+                secondaryHref={whatsappLinkWithText}
+                primaryDisabled={comingSoon}
+              />
+            ) : (
+              <FinalCtaBand
+                title={labels.finalCtaTitle}
+                subtitle={
+                  comingSoon
+                    ? labels.finalCtaSubtitleComingSoon
+                    : labels.finalCtaSubtitle
+                }
+                primaryLabel={
+                  comingSoon ? labels.ctaAvailableSoon : labels.finalCtaPrimary
+                }
+                secondaryLabel={labels.finalCtaSecondary}
+                primaryHrefMobile="#experience-book"
+                primaryHrefDesktop="#experience-book-desktop"
+                primaryDisabled={comingSoon}
+              />
+            )}
+          </div>
         </div>
       </div>
 

@@ -133,7 +133,7 @@ export default function CinematicExperienceScene({
           ) : null}
 
           <div
-            className="pointer-events-auto transition-[filter] duration-[400ms] group-hover/scene:drop-shadow-[0_0_28px_rgba(255,255,255,0.35)]"
+            className="pointer-events-auto"
             style={{ marginTop: layout.ctaMarginTopPx }}
           >
             <PremiumExperienceCtaButton label={ctaLabel} onAction={onExplore} />

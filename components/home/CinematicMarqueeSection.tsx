@@ -12,15 +12,14 @@ import {
   useTransform,
   type MotionValue,
 } from "framer-motion";
-import { useTranslations } from "@/components/i18n/LocaleProvider";
-import HomeSectionFade from "@/components/home/HomeSectionFade";
+import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 
 const REPEAT_COUNT = 12;
 const EDGE_MASK =
   "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)";
 
 const ROW_TYPO =
-  "font-theater text-[clamp(3.2rem,6.5vw,7.5rem)] font-bold uppercase leading-[0.9] tracking-[0.04em]";
+  "font-theater text-[clamp(3.2rem,6.5vw,7.5rem)] font-bold normal-case leading-[0.9] tracking-[0.04em]";
 
 const ROW1_STYLE: CSSProperties = {
   color: "#F5F1E8",
@@ -117,6 +116,7 @@ function StaticMarqueeRows({
 }
 
 export default function CinematicMarqueeSection() {
+  const locale = useLocale();
   const t = useTranslations();
   const reducedMotion = useReducedMotion();
   const scrollRef = useRef<HTMLElement>(null);
@@ -139,10 +139,10 @@ export default function CinematicMarqueeSection() {
     return (
       <section
         ref={scrollRef}
-        className="relative -mt-px w-full overflow-hidden"
+        lang={locale}
+        className="relative -mt-20 w-full overflow-hidden md:-mt-28"
         aria-label="Edmar Travel · Mendoza"
       >
-        <HomeSectionFade edge="top" />
         <div className="relative flex h-screen w-full flex-col overflow-hidden">
           <StaticMarqueeRows
             row1Segments={row1Segments}
@@ -156,10 +156,10 @@ export default function CinematicMarqueeSection() {
   return (
     <section
       ref={scrollRef}
-      className="relative -mt-px h-[118vh] w-full"
+      lang={locale}
+      className="relative -mt-20 -mb-10 h-[100dvh] w-full md:-mt-28 md:-mb-16"
       aria-label="Edmar Travel · Mendoza"
     >
-      <HomeSectionFade edge="top" />
       <div className="sticky top-0 z-[5] h-screen w-full overflow-hidden">
         <div className="relative z-10 flex h-full w-full flex-col items-center justify-center">
           <div className="flex w-full flex-col items-center gap-[clamp(3rem,7vh,5rem)]">

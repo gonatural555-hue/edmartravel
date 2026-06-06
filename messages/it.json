@@ -155,7 +155,9 @@
     "comingSoonHint": "La prenotazione online non ? ancora attiva. Scrivici su WhatsApp per la lista d'attesa.",
     "ctaAvailableSoon": "Disponibile a breve",
     "finalCtaSubtitleComingSoon": "Questa esperienza non ? ancora in vendita ? scrivici su WhatsApp per la lista d'attesa.",
-    "notFound": "Esperienza non trovata"
+    "notFound": "Esperienza non trovata",
+    "whatsappInquiry": "Ciao, vorrei informazioni sull’esperienza: {title}",
+    "siteTagline": "Esperienze uniche a Mendoza"
   },
   "testimonials": {
     "title": "Cosa dicono su Google chi ha vissuto Mendoza con noi",

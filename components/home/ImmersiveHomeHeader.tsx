@@ -234,8 +234,6 @@ export default function ImmersiveHomeHeader({
       label: t("header.nav.blog"),
       matchPrefix: true,
     },
-    { href: `/${locale}/about`, label: t("header.nav.about") },
-    { href: `/${locale}/contact`, label: t("header.nav.contact") },
   ];
 
   const closeMenu = () => setMenuOpen(false);
@@ -269,11 +267,11 @@ export default function ImmersiveHomeHeader({
             aria-hidden
           />
         ) : null}
-        <div className="relative mx-auto flex h-[var(--experience-header-height,5.5rem)] max-w-[96rem] items-center justify-between px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8 lg:px-10 xl:gap-12">
+        <div className="relative mx-auto grid h-[var(--experience-header-height,5.5rem)] max-w-[96rem] grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 sm:px-6 lg:gap-10 lg:px-10 xl:gap-12">
           {/* Mobile logo */}
           <Link
             href={homeHref}
-            className="pointer-events-auto inline-flex shrink-0 items-center lg:hidden"
+            className="pointer-events-auto col-span-2 inline-flex shrink-0 items-center lg:col-span-1 lg:hidden"
             aria-label={SITE_CONFIG.name}
           >
             {logoImg}
@@ -281,7 +279,7 @@ export default function ImmersiveHomeHeader({
 
           {/* Desktop — nav izquierda */}
           <nav
-            className="pointer-events-auto hidden items-center justify-end gap-5 xl:gap-7 lg:flex"
+            className="pointer-events-auto hidden w-full min-w-0 items-center justify-end gap-5 xl:gap-7 lg:flex"
             aria-label="Principal"
           >
             {navItems.map((item) => (
@@ -304,17 +302,22 @@ export default function ImmersiveHomeHeader({
           </Link>
 
           {/* Desktop — utilidades derecha */}
-          <div className="pointer-events-auto hidden items-center justify-start gap-2.5 lg:flex">
+          <div className="pointer-events-auto hidden w-full min-w-0 items-center justify-start gap-5 xl:gap-7 lg:flex">
             <div
-              style={utilityPositionStyle(
-                headerUtilities.language,
+              style={
                 isDirector
-              )}
+                  ? utilityPositionStyle(headerUtilities.language, isDirector)
+                  : undefined
+              }
             >
               <LanguageDropdown locale={locale} buildLocaleHref={buildLocaleHref} />
             </div>
             <div
-              style={utilityPositionStyle(headerUtilities.login, isDirector)}
+              style={
+                isDirector
+                  ? utilityPositionStyle(headerUtilities.login, isDirector)
+                  : undefined
+              }
             >
               {isLoggedIn ? (
                 <Link href={`/${locale}/account`} className={GLASS_PILL}>
@@ -327,10 +330,14 @@ export default function ImmersiveHomeHeader({
               )}
             </div>
             <div
-              style={utilityPositionStyle(
-                headerUtilities.reservations,
+              style={
                 isDirector
-              )}
+                  ? utilityPositionStyle(
+                      headerUtilities.reservations,
+                      isDirector
+                    )
+                  : undefined
+              }
             >
               <Link
                 href={`/${locale}/cart`}
@@ -350,7 +357,7 @@ export default function ImmersiveHomeHeader({
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
-            className="premium-hover pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.14] bg-black/40 text-white/80 backdrop-blur-md lg:hidden"
+            className="premium-hover pointer-events-auto col-start-3 flex h-10 w-10 items-center justify-center justify-self-end rounded-full border border-white/[0.14] bg-black/40 text-white/80 backdrop-blur-md lg:hidden"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
           >
