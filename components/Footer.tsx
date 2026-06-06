@@ -4,6 +4,39 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n/config";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { SITE_CONFIG } from "@/lib/config";
+import { CATEGORY_PAGE_BG } from "@/lib/category-page-assets";
+
+const FOOTER_LINK_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+function FooterLink({
+  href,
+  label,
+  variant = "default",
+}: {
+  href: string;
+  label: string;
+  variant?: "default" | "legal";
+}) {
+  const linkClass =
+    variant === "legal"
+      ? "group relative text-xs text-[#1a1a1a]/65 transition-colors duration-[400ms] hover:text-[#1a1a1a] sm:text-sm"
+      : "group relative text-sm text-[#1a1a1a]/70 transition-colors duration-[400ms] hover:text-[#1a1a1a]";
+
+  return (
+    <Link
+      href={href}
+      className={linkClass}
+      style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
+    >
+      {label}
+      <span
+        className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#C89B3C] transition-transform duration-[400ms] group-hover:scale-x-100"
+        style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
+        aria-hidden
+      />
+    </Link>
+  );
+}
 
 export default function Footer() {
   const locale = useLocale();
@@ -65,7 +98,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-dark-base text-text-muted mt-auto">
+    <footer
+      className="mt-auto"
+      style={{ backgroundColor: CATEGORY_PAGE_BG, color: "#1a1a1a" }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           {/* Branding Section — logo y tagline alineados al mismo eje vertical */}
@@ -83,25 +119,20 @@ export default function Footer() {
                 decoding="async"
               />
             </Link>
-            <p className="max-w-xs text-balance text-sm leading-relaxed text-text-muted">
+            <p className="max-w-xs text-balance text-sm leading-relaxed text-[#1a1a1a]/70">
               {t("footer.brandBlurb")}
             </p>
           </div>
 
           {/* Navigation Section */}
           <div>
-            <h3 className="text-text-primary font-semibold text-xs uppercase tracking-wider mb-4">
+            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
               {t("footer.navigationTitle")}
             </h3>
             <ul className="space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
+                  <FooterLink href={link.href} label={link.label} />
                 </li>
               ))}
             </ul>
@@ -109,18 +140,13 @@ export default function Footer() {
 
           {/* Company Section */}
           <div>
-            <h3 className="text-text-primary font-semibold text-xs uppercase tracking-wider mb-4">
+            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
               {t("footer.companyTitle")}
             </h3>
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
+                  <FooterLink href={link.href} label={link.label} />
                 </li>
               ))}
             </ul>
@@ -128,18 +154,17 @@ export default function Footer() {
 
           {/* Legal Section */}
           <div>
-            <h3 className="text-text-primary font-semibold text-xs uppercase tracking-wider mb-4">
+            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
               {t("footer.legalTitle")}
             </h3>
             <ul className="space-y-3">
               {legalLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <FooterLink
                     href={link.href}
-                    className="text-xs text-text-muted/80 hover:text-text-primary transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
+                    label={link.label}
+                    variant="legal"
+                  />
                 </li>
               ))}
             </ul>
@@ -147,10 +172,10 @@ export default function Footer() {
 
           {/* Trust Section */}
           <div>
-            <h3 className="text-text-primary font-semibold text-xs uppercase tracking-wider mb-4">
+            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
               {t("footer.trustTitle")}
             </h3>
-            <ul className="space-y-3 text-sm text-text-muted">
+            <ul className="space-y-3 text-sm text-[#1a1a1a]/70">
               <li className="flex items-start gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +183,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-5 h-5 text-text-muted/60 flex-shrink-0 mt-0.5"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
                 >
                   <path
                     strokeLinecap="round"
@@ -175,7 +200,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-5 h-5 text-text-muted/60 flex-shrink-0 mt-0.5"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
                 >
                   <path
                     strokeLinecap="round"
@@ -192,7 +217,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-5 h-5 text-text-muted/60 flex-shrink-0 mt-0.5"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
                 >
                   <path
                     strokeLinecap="round"
@@ -209,7 +234,7 @@ export default function Footer() {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="w-5 h-5 text-text-muted/60 flex-shrink-0 mt-0.5"
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
                 >
                   <path
                     strokeLinecap="round"
@@ -224,8 +249,8 @@ export default function Footer() {
         </div>
 
         {/* Copyright Section */}
-        <div className="mt-12 pt-8 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-text-muted">
+        <div className="mt-12 border-t border-[#1a1a1a]/10 pt-8">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#1a1a1a]/65 sm:flex-row">
             <p>
               © {currentYear} {SITE_CONFIG.name}. {t("footer.rights")}
             </p>

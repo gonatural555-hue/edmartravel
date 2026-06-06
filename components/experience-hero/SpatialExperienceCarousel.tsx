@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo } from "react";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 import WineWorldScene from "./worlds/WineWorldScene";
 import PhotoWorldScene from "./worlds/PhotoWorldScene";
 import CityWorldScene from "./worlds/CityWorldScene";
 import SpatialWorldPanel from "./SpatialWorldPanel";
 import CarouselNavArrow from "./CarouselNavArrow";
+import { collageExperienceHref } from "@/lib/home-experience-collage";
 import { directorOutline } from "./director/directorOutline";
 import { useExperienceHeroDebugOptional } from "./director/ExperienceHeroDebugContext";
 import { useExperienceDirectorMode } from "./director/useExperienceDirectorMode";
@@ -21,7 +23,6 @@ import type { ExperienceWorldId, SpatialSlot } from "./types";
 type SpatialExperienceCarouselProps = {
   activeId: ExperienceWorldId;
   onSelect: (id: ExperienceWorldId) => void;
-  onExplore: (id: ExperienceWorldId) => void;
 };
 
 const SLOT_PAINT_ORDER: Record<SpatialSlot, number> = {
@@ -41,7 +42,7 @@ function renderScene(
   worldId: ExperienceWorldId,
   config: SceneRenderConfig,
   compact: boolean,
-  onExplore: () => void
+  ctaHref: string
 ) {
   const sceneProps = {
     imageSrc: config.heroImage,
@@ -52,7 +53,7 @@ function renderScene(
     detailTags: config.detailTags,
     imagePosition: config.imagePosition,
     editorialLayout: config.layout,
-    onExplore,
+    ctaHref,
     compact,
   };
 
@@ -64,8 +65,8 @@ function renderScene(
 export default function SpatialExperienceCarousel({
   activeId,
   onSelect,
-  onExplore,
 }: SpatialExperienceCarouselProps) {
+  const locale = useLocale();
   const slots = useMemo(() => getSpatialSlots(activeId), [activeId]);
   const isDirector = useExperienceDirectorMode();
   const debug = useExperienceHeroDebugOptional();
@@ -140,7 +141,7 @@ export default function SpatialExperienceCarousel({
                   world.id,
                   sceneConfig,
                   slot !== "center",
-                  () => onExplore(world.id)
+                  collageExperienceHref(locale, world.id)
                 )}
               </SpatialWorldPanel>
             );

@@ -1,30 +1,47 @@
 "use client";
 
-import HomeCtaButton, {
-  type HomeCtaVariant,
-} from "@/components/home/HomeCtaButton";
+import CategoryEditorialButton, {
+  type CategoryEditorialButtonVariant,
+} from "@/components/category/CategoryEditorialButton";
 
 type PremiumExperienceCtaButtonProps = {
   label: string;
-  onAction: () => void;
-  variant?: HomeCtaVariant;
-};
+  variant?: CategoryEditorialButtonVariant;
+} & (
+  | { href: string; onAction?: never }
+  | { href?: undefined; onAction: () => void }
+);
 
-/** CTA editorial — esquinas rectas, mayúsculas, inversión de color al hover */
+/** CTA del hero — mismo estilo pill que las cards de categoría. */
 export default function PremiumExperienceCtaButton({
   label,
+  href,
   onAction,
   variant = "primary",
 }: PremiumExperienceCtaButtonProps) {
+  const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+
+  if (href) {
+    return (
+      <CategoryEditorialButton
+        href={href}
+        variant={variant}
+        onClick={stopPropagation}
+      >
+        {label}
+      </CategoryEditorialButton>
+    );
+  }
+
   return (
-    <HomeCtaButton
+    <CategoryEditorialButton
       variant={variant}
       onClick={(e) => {
-        e.stopPropagation();
-        onAction();
+        stopPropagation(e);
+        onAction?.();
       }}
     >
       {label}
-    </HomeCtaButton>
+    </CategoryEditorialButton>
   );
 }

@@ -259,12 +259,76 @@
     "subtitle": "Salidas organizadas, guías locales y traslados para quienes buscan Mendoza con autenticidad y un servicio boutique. Elegí tu próxima experiencia y reservá con tranquilidad."
   },
   "categoriesPage": {
-    "ctaTitle": "Seguí explorando la colección.",
-    "ctaButton": "Explorar colecciones",
+    "scrollLabel": "Explorar",
+    "collectionEyebrow": "Nuestras experiencias",
+    "fromPrice": "Desde",
     "emptyTitle": "Próximamente",
     "emptyText": "Estamos preparando esta colección.",
-    "editorialIntro": "Una nota de campo que acompaña esta colección:",
-    "fieldStoriesTitle": "Historias de campo"
+    "finalCtaPrimary": "Ver experiencias",
+    "finalCtaSecondary": "Reservar ahora",
+    "wine": {
+      "heroTitle": "WINE TOURS & BODEGAS",
+      "heroSubtitle": "Catas, viñedos y jornadas entre montaña y copa en el corazón de Mendoza.",
+      "editorialHeading": "Más allá de la ruta clásica",
+      "editorialBody": "Mendoza no se resume en una sola bodega ni en un solo valle. Las mejores experiencias nacen cuando el ritmo es humano: traslados cómodos, guías que conocen el terreno y paradas que combinan paisaje, vino y tiempo para disfrutar. Esta colección reúne salidas curadas por Edmar Travel — desde Maipú hasta el Valle de Uco — para quienes buscan autenticidad sin perder el nivel premium.",
+      "collectionTitle": "La colección",
+      "finalCtaTitle": "¿Listo para descubrir Mendoza?",
+      "finalCtaSubtitle": "Elegí tu experiencia y reservá con el respaldo de un equipo local.",
+      "testimonials": [
+        {
+          "quote": "Una de las mejores experiencias de nuestro viaje por Argentina.",
+          "author": "Cliente",
+          "location": "Alemania"
+        },
+        {
+          "quote": "Organización impecable y bodegas que no hubiéramos encontrado solos.",
+          "author": "Sophie & Marc",
+          "location": "Francia"
+        }
+      ]
+    },
+    "adventure": {
+      "heroTitle": "AVENTURA EN MENDOZA",
+      "heroSubtitle": "Cabalgatas, montaña y experiencias auténticas en la cordillera de los Andes.",
+      "editorialHeading": "Explorar más allá de Mendoza",
+      "editorialBody": "La cordillera cambia el ritmo: aire limpio, silencio y paisajes que no se ven desde la ciudad. Trabajamos con operadores locales para ofrecer salidas seguras, bien coordinadas y con la calidez de quien conoce cada sendero, cada curva y cada mirador. Estas experiencias están pensadas para sentir Mendoza en su faceta más salvaje y más humana.",
+      "collectionTitle": "La colección",
+      "finalCtaTitle": "¿Listo para vivir la montaña?",
+      "finalCtaSubtitle": "Elegí tu aventura y escribinos para reservar con tranquilidad.",
+      "testimonials": [
+        {
+          "quote": "Los paisajes son inolvidables. El equipo local marca la diferencia.",
+          "author": "James",
+          "location": "Estados Unidos"
+        },
+        {
+          "quote": "Cabalgata y alta montaña en el mismo viaje — impecable de principio a fin.",
+          "author": "Lucía & Tomás",
+          "location": "España"
+        }
+      ]
+    },
+    "city": {
+      "heroTitle": "CONOCÉ LA CIUDAD",
+      "heroSubtitle": "Mendoza a tu ritmo: historia, plazas, parques y la vida urbana con mirada local.",
+      "editorialHeading": "Empezar por Mendoza",
+      "editorialBody": "Antes de la montaña o el vino, la ciudad te da contexto: el damero fundacional, el verde del Parque San Martín, la calma de las plazas. Estas experiencias son la puerta de entrada ideal — claras, accesibles y pensadas para orientarte sin perder el encanto boutique que define a Edmar Travel.",
+      "collectionTitle": "La colección",
+      "finalCtaTitle": "¿Listo para descubrir Mendoza?",
+      "finalCtaSubtitle": "Recorré la ciudad con experiencias curadas y reservá en pocos pasos.",
+      "testimonials": [
+        {
+          "quote": "Perfecto para el primer día: entendimos la ciudad y disfrutamos cada parada.",
+          "author": "Emma",
+          "location": "Reino Unido"
+        },
+        {
+          "quote": "El monopatín por el parque fue lo más divertido del viaje.",
+          "author": "Marco",
+          "location": "Italia"
+        }
+      ]
+    }
   },
   "productPage": {
     "storyTitle": "Diseñado para movimiento silencioso",

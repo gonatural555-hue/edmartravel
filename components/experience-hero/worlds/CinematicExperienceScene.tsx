@@ -14,8 +14,8 @@ export type CinematicExperienceSceneProps = {
   titleLines: string[];
   subtitle: string;
   ctaLabel: string;
+  ctaHref: string;
   detailTags?: string[];
-  onExplore: () => void;
   compact?: boolean;
   imagePosition?: string;
   editorialLayout?: PanelEditorialLayoutDebugValues;
@@ -30,8 +30,8 @@ export default function CinematicExperienceScene({
   titleLines,
   subtitle,
   ctaLabel,
+  ctaHref,
   detailTags = [],
-  onExplore,
   compact = false,
   imagePosition = "50% 42%",
   editorialLayout = DEFAULT_PANEL_EDITORIAL_LAYOUT,
@@ -136,7 +136,7 @@ export default function CinematicExperienceScene({
             className="pointer-events-auto"
             style={{ marginTop: layout.ctaMarginTopPx }}
           >
-            <PremiumExperienceCtaButton label={ctaLabel} onAction={onExplore} />
+            <PremiumExperienceCtaButton label={ctaLabel} href={ctaHref} />
           </div>
         </div>
       </div>

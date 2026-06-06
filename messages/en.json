@@ -259,12 +259,76 @@
     "subtitle": "Curated departures, local guides, and private transfers for travelers who want Mendoza with depth and calm, boutique-level care. Choose your next experience and book with confidence."
   },
   "categoriesPage": {
-    "ctaTitle": "Continue exploring the collection.",
-    "ctaButton": "Explore all collections",
+    "scrollLabel": "Explore",
+    "collectionEyebrow": "Our experiences",
+    "fromPrice": "From",
     "emptyTitle": "Coming soon",
     "emptyText": "We are preparing this collection.",
-    "editorialIntro": "A field note that pairs with this collection:",
-    "fieldStoriesTitle": "Field Stories"
+    "finalCtaPrimary": "View experiences",
+    "finalCtaSecondary": "Book now",
+    "wine": {
+      "heroTitle": "WINE TOURS & WINERIES",
+      "heroSubtitle": "Tastings, vineyards, and unhurried days between the Andes and the glass.",
+      "editorialHeading": "Beyond the classic route",
+      "editorialBody": "Mendoza is not one winery or one valley. The best days unfold at a human pace: comfortable transfers, guides who know the land, and stops that blend landscape, wine, and time to savor it. This collection brings together Edmar Travel–curated departures — from Maipú to Valle de Uco — for travelers who want authenticity without sacrificing a premium feel.",
+      "collectionTitle": "The collection",
+      "finalCtaTitle": "Ready to discover Mendoza?",
+      "finalCtaSubtitle": "Choose your experience and book with a trusted local team.",
+      "testimonials": [
+        {
+          "quote": "One of the best experiences of our trip through Argentina.",
+          "author": "Guest",
+          "location": "Germany"
+        },
+        {
+          "quote": "Flawless organization and wineries we would never have found alone.",
+          "author": "Sophie & Marc",
+          "location": "France"
+        }
+      ]
+    },
+    "adventure": {
+      "heroTitle": "MENDOZA ADVENTURE",
+      "heroSubtitle": "Horseback rides, high mountain routes, and authentic Andes experiences.",
+      "editorialHeading": "Explore beyond the city",
+      "editorialBody": "The mountains change the rhythm: clean air, silence, and views you cannot get downtown. We work with local operators to deliver safe, well-coordinated outings with the warmth of people who know every trail and every viewpoint. These experiences are built to feel Mendoza at its wildest — and most human.",
+      "collectionTitle": "The collection",
+      "finalCtaTitle": "Ready for the mountains?",
+      "finalCtaSubtitle": "Pick your adventure and message us to book with confidence.",
+      "testimonials": [
+        {
+          "quote": "The landscapes are unforgettable. The local team makes all the difference.",
+          "author": "James",
+          "location": "United States"
+        },
+        {
+          "quote": "Horseback and high mountain in one trip — seamless from start to finish.",
+          "author": "Lucía & Tomás",
+          "location": "Spain"
+        }
+      ]
+    },
+    "city": {
+      "heroTitle": "DISCOVER THE CITY",
+      "heroSubtitle": "Mendoza at your pace: history, plazas, parks, and urban life with a local lens.",
+      "editorialHeading": "Start with Mendoza",
+      "editorialBody": "Before the mountains or the wine, the city gives you context: the foundational grid, the green of Parque San Martín, the calm of the plazas. These experiences are the ideal entry point — clear, accessible, and designed to orient you without losing the boutique feel that defines Edmar Travel.",
+      "collectionTitle": "The collection",
+      "finalCtaTitle": "Ready to discover Mendoza?",
+      "finalCtaSubtitle": "Explore the city with curated experiences and book in a few steps.",
+      "testimonials": [
+        {
+          "quote": "Perfect for day one: we understood the city and enjoyed every stop.",
+          "author": "Emma",
+          "location": "United Kingdom"
+        },
+        {
+          "quote": "The scooter loop through the park was the most fun part of the trip.",
+          "author": "Marco",
+          "location": "Italy"
+        }
+      ]
+    }
   },
   "productPage": {
     "storyTitle": "Built for quiet movement",
