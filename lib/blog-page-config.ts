@@ -1,7 +1,4 @@
-/** Artículo principal del hero editorial */
-export const BLOG_FEATURED_SLUG = "quiet-journeys";
-
-/** Tres historias destacadas bajo el hero */
+/** Tres historias destacadas al inicio del listado */
 export const BLOG_SECONDARY_SLUGS = [
   "edge-of-water",
   "winter-lines",

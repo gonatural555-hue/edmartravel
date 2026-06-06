@@ -1,7 +1,6 @@
 import BlogPageView from "@/components/blog/BlogPageView";
 import {
   BLOG_DEFAULT_HERO_IMAGE,
-  BLOG_FEATURED_SLUG,
   BLOG_SECONDARY_SLUGS,
 } from "@/lib/blog-page-config";
 import { buildBlogPostSummaries } from "@/lib/blog-utils";
@@ -45,17 +44,11 @@ export default async function BlogPage({
     BLOG_DEFAULT_HERO_IMAGE
   );
 
-  const featured =
-    allPosts.find((post) => post.slug === BLOG_FEATURED_SLUG) ?? allPosts[0];
-
   const secondary = BLOG_SECONDARY_SLUGS.map((slug) =>
     allPosts.find((post) => post.slug === slug)
   ).filter((post): post is NonNullable<typeof post> => Boolean(post));
 
-  const usedSlugs = new Set([
-    featured.slug,
-    ...secondary.map((post) => post.slug),
-  ]);
+  const usedSlugs = new Set(secondary.map((post) => post.slug));
   const grid = allPosts.filter((post) => !usedSlugs.has(post.slug));
 
   const readingTimeTemplate =
@@ -65,7 +58,6 @@ export default async function BlogPage({
   return (
     <main className="category-page relative min-h-screen">
       <BlogPageView
-        featured={featured}
         secondary={secondary}
         grid={grid}
         readingTimeTemplate={readingTimeTemplate}

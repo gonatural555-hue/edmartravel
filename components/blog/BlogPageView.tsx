@@ -1,12 +1,10 @@
 "use client";
 
 import type { BlogPostSummary } from "@/lib/blog-utils";
-import BlogFeaturedHero from "./BlogFeaturedHero";
 import BlogSecondaryFeatured from "./BlogSecondaryFeatured";
 import BlogEditorialGrid from "./BlogEditorialGrid";
 
 type BlogPageViewProps = {
-  featured: BlogPostSummary;
   secondary: BlogPostSummary[];
   grid: BlogPostSummary[];
   readingTimeTemplate: string;
@@ -14,7 +12,6 @@ type BlogPageViewProps = {
 };
 
 export default function BlogPageView({
-  featured,
   secondary,
   grid,
   readingTimeTemplate,
@@ -25,11 +22,6 @@ export default function BlogPageView({
 
   return (
     <>
-      <BlogFeaturedHero
-        post={featured}
-        readingTimeLabel={formatReadingTime(featured.readingMinutes)}
-        ctaLabel={ctaLabel}
-      />
       <BlogSecondaryFeatured
         posts={secondary}
         ctaLabel={ctaLabel}

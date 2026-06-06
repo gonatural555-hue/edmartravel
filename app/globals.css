@@ -33,6 +33,9 @@
 
   /* Header premium global (home + sitio) */
   --experience-header-height: 5.5rem;
+  /* Aire editorial bajo el header superpuesto (nav + primer bloque de contenido) */
+  --site-header-gap: 1.5rem;
+  --site-header-gap-editorial: 2rem;
 
   /* Variables semánticas para uso en componentes */
   --background: var(--color-dark-base);
@@ -165,6 +168,21 @@ body::after {
 
   .surface-editorial-subtle {
     @apply rounded-2xl border border-white/[0.06] bg-dark-surface/35;
+  }
+
+  /* Offset bajo header absolute — evita superposición con nav/logo */
+  .pt-below-site-header {
+    padding-top: calc(
+      var(--experience-header-height) + var(--site-header-gap) +
+        env(safe-area-inset-top, 0px)
+    );
+  }
+
+  .pt-below-site-header-editorial {
+    padding-top: calc(
+      var(--experience-header-height) + var(--site-header-gap-editorial) +
+        env(safe-area-inset-top, 0px)
+    );
   }
 }
 
@@ -510,4 +528,23 @@ html.tours-page-takeover body {
 
 .category-page-section {
   position: relative;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-gap: 2rem;
+    --site-header-gap-editorial: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --site-header-gap-editorial: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --experience-header-height: 6rem;
+  }
 }
