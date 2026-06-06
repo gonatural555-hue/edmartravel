@@ -26,6 +26,9 @@ function mergeCatalogTranslations(base: Product): Product {
 }
 
 type ProductScriptJson = {
+  images?: {
+    featured?: unknown[];
+  };
   media?: {
     cardVideo?: {
       src?: unknown;
@@ -34,33 +37,59 @@ type ProductScriptJson = {
   };
 };
 
-function readProductMedia(productId: string): Product["media"] | undefined {
+function readProductScriptJson(productId: string): ProductScriptJson | undefined {
   const jsonPath = join(process.cwd(), "scripts", "products", `${productId}.json`);
   if (!existsSync(jsonPath)) return undefined;
   try {
     const raw = readFileSync(jsonPath, "utf8");
-    const parsed = JSON.parse(raw) as ProductScriptJson;
-    const cardVideo = parsed.media?.cardVideo;
-    if (!cardVideo || typeof cardVideo !== "object") return undefined;
-    if (typeof cardVideo.src !== "string" || cardVideo.src.length === 0) {
-      return undefined;
-    }
-    const media: Product["media"] = {
-      cardVideo: {
-        src: cardVideo.src,
-        poster: typeof cardVideo.poster === "string" ? cardVideo.poster : undefined,
-      },
-    };
-    return media;
+    return JSON.parse(raw) as ProductScriptJson;
   } catch {
     return undefined;
   }
 }
 
-function mergeScriptMedia(base: Product): Product {
+function readProductMedia(productId: string): Product["media"] | undefined {
+  const parsed = readProductScriptJson(productId);
+  if (!parsed) return undefined;
+  const cardVideo = parsed.media?.cardVideo;
+  if (!cardVideo || typeof cardVideo !== "object") return undefined;
+  if (typeof cardVideo.src !== "string" || cardVideo.src.length === 0) {
+    return undefined;
+  }
+  const media: Product["media"] = {
+    cardVideo: {
+      src: cardVideo.src,
+      poster: typeof cardVideo.poster === "string" ? cardVideo.poster : undefined,
+    },
+  };
+  return media;
+}
+
+function readProductFeaturedImage(productId: string): string | undefined {
+  const parsed = readProductScriptJson(productId);
+  const featured = parsed?.images?.featured;
+  if (!Array.isArray(featured) || featured.length === 0) return undefined;
+  const first = featured[0];
+  return typeof first === "string" && first.startsWith("/") ? first : undefined;
+}
+
+function mergeScriptAssets(base: Product): Product {
   const media = readProductMedia(base.id);
-  if (!media) return base;
-  return { ...base, media };
+  const featuredImage = readProductFeaturedImage(base.id);
+  const images = featuredImage
+    ? [featuredImage, ...base.images.filter((img) => img !== featuredImage)]
+    : base.images;
+
+  if (!media && images === base.images) return base;
+  return {
+    ...base,
+    images,
+    ...(media ? { media } : {}),
+  };
+}
+
+function mergeScriptMedia(base: Product): Product {
+  return mergeScriptAssets(base);
 }
 
 const BASE_PRODUCTS: Product[] = PRODUCTS_DATA.map(mergeCatalogTranslations);

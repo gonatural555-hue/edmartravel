@@ -3,14 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatPriceARS } from "@/lib/format-price";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Product } from "@/lib/products";
 import { defaultLocale, type Locale } from "@/lib/i18n/config";
 import { useCart } from "@/context/CartContext";
-import {
-  getSafeLocalImageSrc,
-  PRODUCT_BLUR_DATA_URL,
-} from "@/lib/product-image-helper";
+import ProductCardVideo, {
+  usePrefersReducedMotion,
+} from "@/components/product/ProductCardVideo";
 
 type Props = {
   product: Product;
@@ -36,18 +35,10 @@ function isValidImageSrc(src?: string | null) {
   return src.startsWith("/");
 }
 
-function usePrefersReducedMotion() {
-  const [prefersReduced, setPrefersReduced] = useState(false);
-  useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onChange = () => setPrefersReduced(mq.matches);
-    onChange();
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-  return prefersReduced;
-}
+import {
+  getSafeLocalImageSrc,
+  PRODUCT_BLUR_DATA_URL,
+} from "@/lib/product-image-helper";
 
 export default function ProductCardSimple({
   product,
@@ -110,18 +101,12 @@ export default function ProductCardSimple({
         <div
           className={`relative w-full bg-stone-200 overflow-hidden ${mediaAspectClass}`}
         >
-          {hasValidVideo ? (
-            <video
-              src={cardVideo?.src}
-              poster={cardVideo?.poster}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="metadata"
+          {hasValidVideo && cardVideo ? (
+            <ProductCardVideo
+              cardVideo={cardVideo}
+              title={title}
               onError={() => setVideoFailed(true)}
-              className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-              aria-label={title}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
             />
           ) : (
             <Image

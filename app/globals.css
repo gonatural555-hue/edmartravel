@@ -420,6 +420,32 @@ html.experience-hero-takeover.lenis body {
   background-color: var(--premium-base);
 }
 
+/* /products — selector inmersivo: sin header ni footer */
+html.tours-page-takeover footer,
+html.tours-page-takeover header.site-header {
+  display: none !important;
+}
+
+html.tours-page-takeover {
+  --experience-header-height: 0px;
+}
+
+html.tours-page-takeover body::before,
+html.tours-page-takeover body::after {
+  opacity: 0 !important;
+  visibility: hidden;
+}
+
+html.tours-page-takeover,
+html.tours-page-takeover body {
+  overflow-x: hidden;
+  background-color: var(--premium-base);
+}
+
+html.tours-page-takeover body {
+  min-height: 100%;
+}
+
 /* Premium home — animaciones globales (transform + opacity) */
 @keyframes premium-fade-in {
   from {

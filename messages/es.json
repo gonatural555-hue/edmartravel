@@ -258,6 +258,27 @@
     "title": "Tours y vivencias entre viñedos, montaña y ciudad",
     "subtitle": "Salidas organizadas, guías locales y traslados para quienes buscan Mendoza con autenticidad y un servicio boutique. Elegí tu próxima experiencia y reservá con tranquilidad."
   },
+  "toursPage": {
+    "ctaLabel": "Ver experiencias",
+    "experienceCount": "{count} experiencias",
+    "worlds": {
+      "wine": {
+        "titleLines": ["WINE TOURS", "&", "BODEGAS"],
+        "description": "Bodegas seleccionadas, gastronomía y paisajes mendocinos.",
+        "imageAlt": "Experiencia de vino y gastronomía en Mendoza"
+      },
+      "adventure": {
+        "titleLines": ["AVENTURA", "EN", "MENDOZA"],
+        "description": "Montaña, cabalgatas y experiencias auténticas en la cordillera.",
+        "imageAlt": "Cabalgata en los Andes, Mendoza"
+      },
+      "city": {
+        "titleLines": ["CONOCÉ", "LA", "CIUDAD"],
+        "description": "Scooters, parques históricos y los lugares más emblemáticos.",
+        "imageAlt": "Tour en scooter por Mendoza"
+      }
+    }
+  },
   "categoriesPage": {
     "scrollLabel": "Explorar",
     "collectionEyebrow": "Nuestras experiencias",

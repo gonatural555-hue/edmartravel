@@ -258,6 +258,27 @@
     "title": "Experiences and tours across wine country, mountains & city",
     "subtitle": "Curated departures, local guides, and private transfers for travelers who want Mendoza with depth and calm, boutique-level care. Choose your next experience and book with confidence."
   },
+  "toursPage": {
+    "ctaLabel": "View experiences",
+    "experienceCount": "{count} experiences",
+    "worlds": {
+      "wine": {
+        "titleLines": ["WINE TOURS", "&", "WINERIES"],
+        "description": "Curated wineries, gastronomy, and Mendoza landscapes.",
+        "imageAlt": "Wine and gastronomy experience in Mendoza"
+      },
+      "adventure": {
+        "titleLines": ["ADVENTURE", "IN", "MENDOZA"],
+        "description": "Mountains, horseback riding, and authentic Andes experiences.",
+        "imageAlt": "Horseback riding in the Andes, Mendoza"
+      },
+      "city": {
+        "titleLines": ["DISCOVER", "THE", "CITY"],
+        "description": "Scooters, historic parks, and Mendoza's most iconic places.",
+        "imageAlt": "Scooter tour in Mendoza"
+      }
+    }
+  },
   "categoriesPage": {
     "scrollLabel": "Explore",
     "collectionEyebrow": "Our experiences",

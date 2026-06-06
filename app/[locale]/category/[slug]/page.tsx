@@ -133,13 +133,18 @@ export default async function CategoryPage({ params }: Props) {
 
   const experiences: CategoryExperienceItem[] = products.map((product) => {
     const href = `/${locale}/products/${product.id}`;
+    const cardVideo = product.media?.cardVideo;
+    const fallbackImage =
+      cardVideo?.poster ?? product.images[0] ?? heroImage;
+
     return {
       id: product.id,
       title: product.title,
       price: product.price,
-      image: product.images[0] ?? heroImage,
+      image: fallbackImage,
       href,
       bookHref: `${href}#experience-book`,
+      cardVideo,
     };
   });
 

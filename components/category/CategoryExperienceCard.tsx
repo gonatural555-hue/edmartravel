@@ -3,8 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ProductCardVideo, {
+  usePrefersReducedMotion,
+} from "@/components/product/ProductCardVideo";
 import { formatPriceARS } from "@/lib/format-price";
 import { PRODUCT_BLUR_DATA_URL } from "@/lib/product-image-helper";
+import type { ProductCardVideo as ProductCardVideoType } from "@/lib/product-types";
 import CategoryEditorialButton from "./CategoryEditorialButton";
 
 export type CategoryExperienceItem = {
@@ -14,6 +19,7 @@ export type CategoryExperienceItem = {
   image: string;
   href: string;
   bookHref: string;
+  cardVideo?: ProductCardVideoType;
 };
 
 type CategoryExperienceCardProps = {
@@ -33,6 +39,11 @@ export default function CategoryExperienceCard({
   bookLabel,
   index,
 }: CategoryExperienceCardProps) {
+  const [videoFailed, setVideoFailed] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const showVideo =
+    Boolean(item.cardVideo?.src) && !videoFailed && !prefersReducedMotion;
+
   const imageRadius =
     size === "featured" ? "rounded-[36px]" : "rounded-[32px]";
   const titleClass =
@@ -58,21 +69,30 @@ export default function CategoryExperienceCard({
         href={item.href}
         className={`relative block aspect-video overflow-hidden ${imageRadius} shadow-[0_20px_60px_rgba(26,26,26,0.08)] transition-shadow duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:shadow-[0_28px_70px_rgba(26,26,26,0.14)]`}
       >
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
-          sizes={
-            size === "featured"
-              ? "(max-width: 1024px) 100vw, 70vw"
-              : size === "medium"
-                ? "(max-width: 1024px) 100vw, 45vw"
-                : "(max-width: 1024px) 100vw, 33vw"
-          }
-          placeholder="blur"
-          blurDataURL={PRODUCT_BLUR_DATA_URL}
-        />
+        {showVideo && item.cardVideo ? (
+          <ProductCardVideo
+            cardVideo={item.cardVideo}
+            title={item.title}
+            onError={() => setVideoFailed(true)}
+            className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+          />
+        ) : (
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
+            sizes={
+              size === "featured"
+                ? "(max-width: 1024px) 100vw, 70vw"
+                : size === "medium"
+                  ? "(max-width: 1024px) 100vw, 45vw"
+                  : "(max-width: 1024px) 100vw, 33vw"
+            }
+            placeholder="blur"
+            blurDataURL={PRODUCT_BLUR_DATA_URL}
+          />
+        )}
       </Link>
 
       <div className="flex flex-1 flex-col transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2">
