@@ -54,9 +54,8 @@ export default function HomeCtaButton({
   const classes = `${BASE} ${VARIANTS[variant]} ${className}`.trim();
 
   if (href) {
-    const { ...linkProps } = props as Omit<
-      ComponentPropsWithoutRef<typeof Link>,
-      "children"
+    const { href: _href, ...linkProps } = props as ComponentPropsWithoutRef<
+      typeof Link
     >;
     return (
       <Link href={href} className={classes} {...linkProps}>
