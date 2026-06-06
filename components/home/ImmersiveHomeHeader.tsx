@@ -32,14 +32,20 @@ const NAV_LINK = `group relative ${HEADER_TYPE} text-[#F5F1E8]/78 transition-col
 
 const NAV_LINK_EDITORIAL = `group relative ${HEADER_TYPE} text-[#1a1a1a]/80 transition-colors duration-[400ms] hover:text-[#1a1a1a]`;
 
+const NAV_LINK_CATEGORY = `group relative ${HEADER_TYPE} text-[#FFFFFF]/78 transition-colors duration-[400ms] hover:text-[#FFFFFF]`;
+
 const HEADER_TYPE_MENU = `${HEADER_TYPE} text-[clamp(1.125rem,4vw,1.5rem)] tracking-[0.12em]`;
 
 const LANGUAGE_PANEL =
   "overflow-hidden rounded-xl border border-[#1a1a1a]/10 bg-white py-1 shadow-[0_12px_32px_rgba(26,26,26,0.08)]";
 
-function isEditorialSurface(pathname: string) {
+function isCategoryPath(pathname: string) {
+  return /\/category(\/|$)/.test(pathname);
+}
+
+function isEditorialNavSurface(pathname: string) {
   if (isHomePath(pathname)) return true;
-  return /\/(blog|category)(\/|$)/.test(pathname);
+  return /\/blog(\/|$)/.test(pathname);
 }
 
 function utilityPositionStyle(
@@ -84,7 +90,9 @@ function PremiumNavLink({
   const activeClass =
     linkClass === NAV_LINK_EDITORIAL
       ? "text-[#1a1a1a]"
-      : "text-[#F5F1E8]";
+      : linkClass === NAV_LINK_CATEGORY
+        ? "text-[#FFFFFF]"
+        : "text-[#F5F1E8]";
 
   return (
     <Link
@@ -200,9 +208,14 @@ export default function ImmersiveHomeHeader({
   const headerUtilities = useHeaderUtilitiesFromStorage(isDirector);
 
   const isHomeEditorial = variant === "immersive";
-  const isEditorialNav = isEditorialSurface(pathname);
+  const isCategoryPage = isCategoryPath(pathname);
+  const isEditorialNav = isEditorialNavSurface(pathname);
   const isEditorialHeader = isHomeEditorial || isEditorialNav;
-  const navLinkClass = isEditorialNav ? NAV_LINK_EDITORIAL : NAV_LINK;
+  const navLinkClass = isCategoryPage
+    ? NAV_LINK_CATEGORY
+    : isEditorialNav
+      ? NAV_LINK_EDITORIAL
+      : NAV_LINK;
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -471,12 +484,16 @@ export default function ImmersiveHomeHeader({
                     onClick={closeMenu}
                     className={`block py-3 ${HEADER_TYPE_MENU} ${
                       isNavActive(pathname, item.href, item.matchPrefix)
-                        ? isEditorialNav
-                          ? "text-[#7A6248]"
-                          : "text-[#E8C98A]"
-                        : isEditorialNav
-                          ? "text-[#1a1a1a]/90"
-                          : "text-[#F5F0E6]/90"
+                        ? isCategoryPage
+                          ? "text-[#FFFFFF]"
+                          : isEditorialNav
+                            ? "text-[#7A6248]"
+                            : "text-[#E8C98A]"
+                        : isCategoryPage
+                          ? "text-[#FFFFFF]/78"
+                          : isEditorialNav
+                            ? "text-[#1a1a1a]/90"
+                            : "text-[#F5F0E6]/90"
                     }`}
                   >
                     {item.label}
