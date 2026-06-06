@@ -191,17 +191,18 @@ export default function ImmersiveHomeHeader({
   variant = "immersive",
 }: ImmersiveHomeHeaderProps) {
   const pathname = usePathname();
-  const isHomeEditorial = variant === "immersive";
-  const isEditorialNav = isEditorialSurface(pathname);
-  const isEditorialHeader = isHomeEditorial || isEditorialNav;
-  const navLinkClass = isEditorialNav ? NAV_LINK_EDITORIAL : NAV_LINK;
+  const searchParams = useSearchParams();
   const locale = useLocale();
   const t = useTranslations();
-  const searchParams = useSearchParams();
   const { totalItems } = useCart();
   const { isLoggedIn } = useUser();
   const isDirector = useExperienceDirectorMode();
   const headerUtilities = useHeaderUtilitiesFromStorage(isDirector);
+
+  const isHomeEditorial = variant === "immersive";
+  const isEditorialNav = isEditorialSurface(pathname);
+  const isEditorialHeader = isHomeEditorial || isEditorialNav;
+  const navLinkClass = isEditorialNav ? NAV_LINK_EDITORIAL : NAV_LINK;
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
