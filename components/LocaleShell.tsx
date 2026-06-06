@@ -8,8 +8,10 @@ import { ExperienceHeroDebugProvider } from "@/components/experience-hero/direct
 export default function LocaleShell({ children }: { children: ReactNode }) {
   return (
     <ExperienceHeroDebugProvider>
-      <Header />
-      {children}
+      <div className="relative">
+        <Header />
+        {children}
+      </div>
     </ExperienceHeroDebugProvider>
   );
 }

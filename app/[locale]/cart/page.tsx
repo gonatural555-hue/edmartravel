@@ -10,8 +10,16 @@ import {
   BOOKING_GLASS,
   BOOKING_INPUT_CLASS,
   BOOKING_LABEL_CLASS,
+  BOOKING_PAGE_INTRO,
+  BOOKING_PAGE_KICKER,
+  BOOKING_PAGE_TITLE,
+  BOOKING_QTY_CONTROL,
   BOOKING_SECTION_HINT,
   BOOKING_SECTION_TITLE,
+  BOOKING_TEXT_FAINT,
+  BOOKING_TEXT_MUTED,
+  BOOKING_TEXT_PRIMARY,
+  BOOKING_TEXT_SECONDARY,
   bookingMotion,
 } from "@/lib/booking-ui";
 import { formatPriceARS } from "@/lib/format-price";
@@ -59,16 +67,16 @@ export default function CartPage() {
         className={`${BOOKING_GLASS.pageWrap} flex flex-col`}
       >
         <div className={BOOKING_GLASS.pageBackdrop} aria-hidden />
-        <div className="relative z-10 flex min-h-[70dvh] flex-col items-center justify-center px-4 pb-16 pt-28 md:pt-32">
+        <div className="relative z-10 flex min-h-[70dvh] flex-col items-center justify-center px-4 pb-16 pt-[calc(var(--experience-header-height,5.5rem)+1.5rem)]">
           <div className="absolute inset-0 -z-10">
             <Image
               src="/assets/images/hero/emptycart.webp"
               alt={t("cartPage.emptyImageAlt")}
               fill
-              className="object-cover object-center opacity-40"
+              className="object-cover object-center opacity-25"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-[#0a0908]/85 to-[#0a0908]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F8F5EE]/40 via-[#F8F5EE]/88 to-[#F8F5EE]" />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -76,10 +84,10 @@ export default function CartPage() {
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-lg text-center"
           >
-            <h1 className="mb-4 text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h1 className={`mb-4 ${BOOKING_PAGE_TITLE}`}>
               {t("cartPage.emptyTitle")}
             </h1>
-            <p className="mb-10 text-base leading-relaxed text-white/65">
+            <p className={`mb-10 text-base leading-relaxed ${BOOKING_TEXT_MUTED}`}>
               {t("cartPage.emptyText")}
             </p>
             <Link
@@ -97,20 +105,20 @@ export default function CartPage() {
   return (
     <main data-route="cart" className={BOOKING_GLASS.pageWrap}>
       <div className={BOOKING_GLASS.pageBackdrop} aria-hidden />
-      <div className={`${BOOKING_GLASS.container} pb-16 pt-28 md:pt-32`}>
+      <div className={`${BOOKING_GLASS.container} pb-16 pt-[calc(var(--experience-header-height,5.5rem)+1.5rem)] md:pt-[calc(var(--experience-header-height,5.5rem)+2rem)]`}>
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
           className="mb-10 md:mb-12"
         >
-          <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-accent-gold/90">
+          <p className={BOOKING_PAGE_KICKER}>
             {t("cartPage.kicker")}
           </p>
-          <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-white md:text-4xl">
+          <h1 className={BOOKING_PAGE_TITLE}>
             {t("cartPage.title")}
           </h1>
-          <p className="mt-3 max-w-xl text-sm text-white/55 md:text-base">
+          <p className={BOOKING_PAGE_INTRO}>
             {t("cartPage.intro")}
           </p>
         </motion.div>
@@ -132,7 +140,7 @@ export default function CartPage() {
                     <div key={item.id} className={BOOKING_GLASS.experienceCard}>
                       <div className="flex flex-col gap-5 sm:flex-row sm:gap-6">
                         {item.image ? (
-                          <div className="relative mx-auto h-40 w-full shrink-0 overflow-hidden rounded-xl border border-white/10 sm:mx-0 sm:h-32 sm:w-40">
+                          <div className="relative mx-auto h-40 w-full shrink-0 overflow-hidden rounded-xl border border-[#1a1a1a]/10 sm:mx-0 sm:h-32 sm:w-40">
                             <Image
                               src={item.image}
                               alt={item.title}
@@ -141,35 +149,35 @@ export default function CartPage() {
                             />
                           </div>
                         ) : (
-                          <div className="mx-auto h-40 w-full shrink-0 rounded-xl border border-white/10 bg-white/[0.04] sm:mx-0 sm:h-32 sm:w-40" />
+                          <div className="mx-auto h-40 w-full shrink-0 rounded-xl border border-[#1a1a1a]/10 bg-[#1a1a1a]/4 sm:mx-0 sm:h-32 sm:w-40" />
                         )}
                         <div className="min-w-0 flex-1">
-                          <h3 className="text-lg font-semibold text-white">
+                          <h3 className={`text-lg font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                             {item.title}
                           </h3>
-                          <p className="mt-2 text-sm text-white/55">
+                          <p className={`mt-2 text-sm ${BOOKING_TEXT_MUTED}`}>
                             {formatPriceARS(item.price)}
                             {formatVariantSummary(item)
                               ? ` · ${formatVariantSummary(item)}`
                               : ""}
                           </p>
                           <div className="mt-5 flex flex-wrap items-center gap-4">
-                            <div className="inline-flex items-center overflow-hidden rounded-lg border border-white/15 bg-white/[0.06]">
+                            <div className={BOOKING_QTY_CONTROL}>
                               <button
                                 type="button"
                                 onClick={() => decreaseQty(item.id)}
-                                className="px-4 py-2 text-lg text-white/80 transition hover:bg-white/10"
+                                className={`px-4 py-2 text-lg ${BOOKING_TEXT_SECONDARY} transition hover:bg-[#1a1a1a]/5`}
                                 aria-label={t("cartPage.decreaseQty")}
                               >
                                 −
                               </button>
-                              <span className="min-w-[3rem] border-x border-white/15 px-4 py-2 text-center text-sm font-semibold text-white">
+                              <span className={`min-w-[3rem] border-x border-[#1a1a1a]/12 px-4 py-2 text-center text-sm font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                                 {item.quantity}
                               </span>
                               <button
                                 type="button"
                                 onClick={() => increaseQty(item.id)}
-                                className="px-4 py-2 text-lg text-white/80 transition hover:bg-white/10"
+                                className={`px-4 py-2 text-lg ${BOOKING_TEXT_SECONDARY} transition hover:bg-[#1a1a1a]/5`}
                                 aria-label={t("cartPage.increaseQty")}
                               >
                                 +
@@ -178,17 +186,17 @@ export default function CartPage() {
                             <button
                               type="button"
                               onClick={() => removeItem(item.id)}
-                              className="text-sm font-medium text-rose-300/90 underline-offset-4 transition hover:text-rose-200"
+                              className="text-sm font-medium text-rose-700/90 underline-offset-4 transition hover:text-rose-800"
                             >
                               {t("cartPage.remove")}
                             </button>
                           </div>
                         </div>
                         <div className="text-right sm:pt-1">
-                          <p className="text-xs uppercase tracking-wider text-white/40">
+                          <p className={`text-xs uppercase tracking-wider ${BOOKING_TEXT_FAINT}`}>
                             {t("cartPage.itemSubtotal")}
                           </p>
-                          <p className="text-xl font-semibold text-white">
+                          <p className={`text-xl font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                             {formatPriceARS(itemSubtotal)}
                           </p>
                         </div>
@@ -275,25 +283,25 @@ export default function CartPage() {
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className={BOOKING_GLASS.sticky}
             >
-              <h2 className="text-lg font-semibold text-white">
+              <h2 className={`text-lg font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                 {t("cartPage.summaryTitle")}
               </h2>
-              <p className="mt-1 text-sm text-white/50">{t("cartPage.summaryLead")}</p>
+              <p className={`mt-1 text-sm ${BOOKING_TEXT_MUTED}`}>{t("cartPage.summaryLead")}</p>
 
-              <ul className="mt-8 space-y-4 border-b border-white/10 pb-8">
+              <ul className="mt-8 space-y-4 border-b border-[#1a1a1a]/10 pb-8">
                 {items.map((item) => (
                   <li
                     key={`sum-${item.id}`}
                     className="flex justify-between gap-3 text-sm"
                   >
-                    <span className="text-white/75">
+                    <span className={BOOKING_TEXT_SECONDARY}>
                       {item.title}
-                      <span className="text-white/40">
+                      <span className={BOOKING_TEXT_FAINT}>
                         {" "}
                         ×{item.quantity}
                       </span>
                     </span>
-                    <span className="shrink-0 font-medium text-white">
+                    <span className={`shrink-0 font-medium ${BOOKING_TEXT_PRIMARY}`}>
                       {formatPriceARS(item.price * item.quantity)}
                     </span>
                   </li>
@@ -301,15 +309,15 @@ export default function CartPage() {
               </ul>
 
               <div className="mt-8 flex items-end justify-between gap-4">
-                <span className="text-sm font-medium uppercase tracking-wider text-white/45">
+                <span className={`text-sm font-medium uppercase tracking-wider ${BOOKING_TEXT_FAINT}`}>
                   {t("cartPage.summaryTotal")}
                 </span>
-                <span className="text-2xl font-semibold tracking-tight text-white">
+                <span className={`text-2xl font-semibold tracking-tight ${BOOKING_TEXT_PRIMARY}`}>
                   {formatPriceARS(subtotal)}
                 </span>
               </div>
 
-              <p className="mt-6 text-xs leading-relaxed text-white/45">
+              <p className={`mt-6 text-xs leading-relaxed ${BOOKING_TEXT_FAINT}`}>
                 {t("cartPage.summaryNote")}
               </p>
 

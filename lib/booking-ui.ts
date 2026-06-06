@@ -1,46 +1,60 @@
 /**
- * Sistema visual del flujo de reservas (Edmar Travel): vidrio oscuro, inputs premium, motion presets.
- * Alineado con `lib/about-ui` (ABOUT_GLASS).
+ * Sistema visual del flujo de reservas (Edmar Travel) — fondo editorial #F8F5EE.
  */
-import { ABOUT_GLASS } from "@/lib/about-ui";
+import { categoryEditorialButtonClass } from "@/components/category/CategoryEditorialButton";
 
 export const BOOKING_GLASS = {
-  /** Fondo de página con gradiente suave */
   pageWrap:
-    "relative min-h-[100dvh] overflow-x-hidden bg-[#0a0908] text-white",
-  pageBackdrop:
-    "pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,rgba(180,140,90,0.12),transparent_55%),radial-gradient(ellipse_80%_50%_at_100%_50%,rgba(60,90,70,0.08),transparent_45%)]",
-  /** Contenedor principal: misma caja que `Header` (max-w-7xl + padding) para alinear con el logo */
+    "category-page relative min-h-[100dvh] overflow-x-hidden text-[#1a1a1a]",
+  pageBackdrop: "pointer-events-none absolute inset-0 z-0",
   container:
     "relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-10 lg:px-16",
-  /** Panel principal (secciones izquierda) */
-  panel: `${ABOUT_GLASS.panel} rounded-[1.35rem] p-6 sm:p-8 md:p-9`,
-  /** Barra lateral sticky */
-  sticky: `${ABOUT_GLASS.panel} rounded-[1.35rem] p-6 sm:p-8 lg:sticky lg:top-24`,
-  /** Tarjeta de experiencia / ítem */
-  experienceCard: `${ABOUT_GLASS.card} rounded-2xl border border-white/[0.1] p-5 sm:p-6`,
-  /** Botón primario CTA */
-  primaryCta:
-    "inline-flex w-full items-center justify-center rounded-xl bg-white px-6 py-4 text-[0.95rem] font-semibold tracking-wide text-[#0c0a09] shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:scale-[1.01] hover:shadow-[0_14px_40px_rgba(0,0,0,0.45)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0908] disabled:pointer-events-none disabled:opacity-45 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100",
-  /** Enlace secundario */
+  panel:
+    "rounded-[1.35rem] border border-[#1a1a1a]/8 bg-[#FFFFFF] p-6 shadow-[0_12px_48px_rgba(26,26,26,0.06)] sm:p-8 md:p-9",
+  sticky:
+    "rounded-[1.35rem] border border-[#1a1a1a]/8 bg-[#FFFFFF] p-6 shadow-[0_12px_48px_rgba(26,26,26,0.06)] sm:p-8 lg:sticky lg:top-8",
+  experienceCard:
+    "rounded-2xl border border-[#1a1a1a]/8 bg-[#FFFFFF] p-5 shadow-[0_8px_32px_rgba(26,26,26,0.05)] sm:p-6",
+  primaryCta: `${categoryEditorialButtonClass("primary", "w-full !min-h-[48px]")}`,
   subtleLink:
-    "text-sm font-medium text-white/75 underline-offset-4 transition-colors hover:text-accent-moss",
+    "text-sm font-medium text-[#1a1a1a]/65 underline-offset-4 transition-colors hover:text-[#1a1a1a]",
 } as const;
 
 export const BOOKING_INPUT_CLASS =
-  "w-full max-w-full rounded-xl border border-white/[0.12] bg-white/[0.06] px-4 py-3 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] placeholder:text-white/35 transition-[border-color,box-shadow,background-color] duration-200 " +
-  "focus:border-accent-gold/40 focus:bg-white/[0.09] focus:outline-none focus:ring-2 focus:ring-accent-gold/25";
+  "w-full max-w-full rounded-xl border border-[#1a1a1a]/12 bg-white px-4 py-3 text-sm text-[#1a1a1a] shadow-[inset_0_1px_2px_rgba(26,26,26,0.04)] placeholder:text-[#1a1a1a]/35 transition-[border-color,box-shadow,background-color] duration-200 " +
+  "focus:border-[#1a1a1a]/30 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1a1a1a]/10";
 
 export const BOOKING_LABEL_CLASS =
-  "mb-2 block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/50";
+  "mb-2 block text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-[#1a1a1a]/50";
 
 export const BOOKING_SECTION_TITLE =
-  "text-lg font-semibold tracking-tight text-white md:text-xl";
+  "font-theater text-lg font-semibold tracking-tight text-[#1a1a1a] md:text-xl";
 
-export const BOOKING_SECTION_HINT = "mt-1 text-sm text-white/45";
+export const BOOKING_SECTION_HINT = "mt-1 text-sm text-[#1a1a1a]/55";
+
+export const BOOKING_PAGE_KICKER =
+  "mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#7A6248]";
+
+export const BOOKING_PAGE_TITLE =
+  "font-theater max-w-2xl text-3xl font-semibold tracking-tight text-[#1a1a1a] md:text-4xl";
+
+export const BOOKING_PAGE_INTRO =
+  "mt-3 max-w-xl text-sm text-[#1a1a1a]/65 md:text-base";
+
+export const BOOKING_TEXT_PRIMARY = "text-[#1a1a1a]";
+
+export const BOOKING_TEXT_SECONDARY = "text-[#1a1a1a]/72";
+
+export const BOOKING_TEXT_MUTED = "text-[#1a1a1a]/55";
+
+export const BOOKING_TEXT_FAINT = "text-[#1a1a1a]/45";
+
+export const BOOKING_BORDER = "border-[#1a1a1a]/10";
+
+export const BOOKING_QTY_CONTROL =
+  "inline-flex items-center overflow-hidden rounded-lg border border-[#1a1a1a]/12 bg-white";
 
 export const bookingMotion = {
-  /** Sin `opacity: 0` en el contenedor: evita que el bloque quede invisible en cliente si el stagger falla */
   container: {
     hidden: {},
     show: {

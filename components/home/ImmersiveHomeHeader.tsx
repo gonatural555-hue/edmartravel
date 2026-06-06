@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { usePathname, useSearchParams } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n/config";
@@ -45,7 +44,9 @@ function isCategoryPath(pathname: string) {
 
 function isEditorialNavSurface(pathname: string) {
   if (isHomePath(pathname)) return true;
-  return /\/blog(\/|$)/.test(pathname);
+  if (/\/blog(\/|$)/.test(pathname)) return true;
+  if (/\/(cart|checkout)(\/|$)/.test(pathname)) return true;
+  return false;
 }
 
 function utilityPositionStyle(
@@ -217,19 +218,6 @@ export default function ImmersiveHomeHeader({
       ? NAV_LINK_EDITORIAL
       : NAV_LINK;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const labels = IMMERSIVE_HEADER_LABELS[locale];
   const loginLabel = t("header.login", labels.login);
@@ -296,28 +284,12 @@ export default function ImmersiveHomeHeader({
     />
   );
 
-  const headerShellClass = [
-    "site-header pointer-events-none fixed inset-x-0 top-0 z-[100] font-header transition-[background,backdrop-filter,border-color,box-shadow] duration-[400ms]",
-    isScrolled
-      ? isEditorialHeader
-        ? "is-scrolled bg-[#F8F5EE]/94 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(26,26,26,0.08)] [box-shadow:0_12px_40px_rgba(26,26,26,0.06)]"
-        : "is-scrolled bg-[#050606]/78 [backdrop-filter:blur(20px)] [-webkit-backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(255,255,255,0.08)] [box-shadow:0_12px_40px_rgba(0,0,0,0.35)]"
-      : isEditorialHeader
-        ? "bg-[#F8F5EE]/82 [backdrop-filter:blur(14px)] [-webkit-backdrop-filter:blur(14px)] [border-bottom:1px_solid_rgba(26,26,26,0.06)]"
-        : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const headerShellClass =
+    "site-header pointer-events-none absolute inset-x-0 top-0 z-[100] w-full bg-transparent font-header";
 
   const chrome = (
     <>
       <header className={headerShellClass}>
-        {!isScrolled && !isEditorialHeader ? (
-          <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-[calc(var(--experience-header-height,5.5rem)+2rem)] bg-gradient-to-b from-[#050606]/72 via-[#050606]/28 to-transparent"
-            aria-hidden
-          />
-        ) : null}
         <div className="relative mx-auto grid h-[var(--experience-header-height,5.5rem)] max-w-[96rem] grid-cols-[1fr_auto_1fr] items-center gap-6 px-4 sm:px-6 lg:gap-10 lg:px-10 xl:gap-12">
           {/* Mobile logo */}
           <Link
@@ -564,9 +536,5 @@ export default function ImmersiveHomeHeader({
     </>
   );
 
-  if (!mounted) {
-    return chrome;
-  }
-
-  return createPortal(chrome, document.body);
+  return chrome;
 }

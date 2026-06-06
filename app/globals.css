@@ -46,13 +46,18 @@
   --premium-base: #050606;
 }
 
-/* Header fijo — permanece arriba al hacer scroll */
+/* Header superpuesto — transparente, no ocupa espacio en el flujo */
 header.site-header {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 @theme inline {
@@ -382,20 +387,14 @@ html.experience-hero-takeover header.site-header {
   border: none !important;
 }
 
-html.experience-hero-takeover header.site-header:not(.is-scrolled) {
-  background: rgba(248, 245, 238, 0.82) !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.06) !important;
-  box-shadow: 0 8px 32px rgba(26, 26, 26, 0.04) !important;
-}
-
+html.experience-hero-takeover header.site-header,
+html.experience-hero-takeover header.site-header:not(.is-scrolled),
 html.experience-hero-takeover header.site-header.is-scrolled {
-  background: rgba(248, 245, 238, 0.94) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.08) !important;
-  box-shadow: 0 12px 40px rgba(26, 26, 26, 0.06) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
 
 html.experience-hero-takeover body::before,

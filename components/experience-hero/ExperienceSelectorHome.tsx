@@ -35,7 +35,7 @@ function ExperienceSelectorHomeInner() {
 
   return (
     <div className="relative flex min-h-[100dvh] w-full flex-col text-white">
-      <div className="relative z-10 flex min-h-0 flex-1 flex-col pt-[var(--experience-header-height,4.25rem)]">
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col">
         <motion.main
           className="premium-fade-in-delayed relative min-h-0 flex-1 touch-pan-y"
           style={{ x: dragX }}

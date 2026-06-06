@@ -18,7 +18,7 @@ export default function BlogFeaturedHero({
   ctaLabel,
 }: BlogFeaturedHeroProps) {
   return (
-    <section className="category-page-section pt-[var(--experience-header-height,5.5rem)]">
+    <section className="category-page-section">
       <div className="mx-auto max-w-[88rem] px-4 sm:px-6 lg:px-10 xl:px-14">
         <BlogScrollReveal>
           <Link href={post.href} className="group block">

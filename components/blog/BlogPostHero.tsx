@@ -14,7 +14,7 @@ export default function BlogPostHero({
   readingTimeLabel,
 }: BlogPostHeroProps) {
   return (
-    <header className="category-page-section pt-[var(--experience-header-height,5.5rem)]">
+    <header className="category-page-section">
       <div className="relative min-h-[58vh] w-full overflow-hidden sm:min-h-[68vh] lg:min-h-[78vh]">
         <Image
           src={image}

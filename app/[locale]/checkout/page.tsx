@@ -12,8 +12,15 @@ import {
   BOOKING_GLASS,
   BOOKING_INPUT_CLASS,
   BOOKING_LABEL_CLASS,
+  BOOKING_PAGE_INTRO,
+  BOOKING_PAGE_KICKER,
+  BOOKING_PAGE_TITLE,
   BOOKING_SECTION_HINT,
   BOOKING_SECTION_TITLE,
+  BOOKING_TEXT_FAINT,
+  BOOKING_TEXT_MUTED,
+  BOOKING_TEXT_PRIMARY,
+  BOOKING_TEXT_SECONDARY,
   bookingMotion,
 } from "@/lib/booking-ui";
 import { formatPriceARS } from "@/lib/format-price";
@@ -341,10 +348,10 @@ export default function CheckoutPage() {
           animate={{ opacity: 1, y: 0 }}
           className={`relative z-10 max-w-md text-center ${BOOKING_GLASS.panel}`}
         >
-          <h1 className="text-2xl font-semibold text-white">
+          <h1 className={`text-2xl font-semibold ${BOOKING_TEXT_PRIMARY}`}>
             {t("checkoutPage.emptyTitle")}
           </h1>
-          <p className="mt-3 text-sm text-white/55">
+          <p className={`mt-3 text-sm ${BOOKING_TEXT_MUTED}`}>
             {t("checkoutPage.emptyText")}
           </p>
           <Link
@@ -361,8 +368,8 @@ export default function CheckoutPage() {
   const paymentOptionClass = (active: boolean) =>
     `flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-4 text-sm transition-[border-color,background-color,transform,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ` +
     (active
-      ? "border-accent-gold/35 bg-white/[0.08] shadow-[0_8px_28px_rgba(0,0,0,0.25)]"
-      : "border-white/12 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06] hover:-translate-y-0.5 hover:shadow-md motion-reduce:hover:translate-y-0");
+      ? "border-[#1a1a1a]/25 bg-[#FFFFFF] shadow-[0_8px_28px_rgba(26,26,26,0.08)]"
+      : "border-[#1a1a1a]/10 bg-[#FFFFFF] hover:border-[#1a1a1a]/18 hover:-translate-y-0.5 hover:shadow-md motion-reduce:hover:translate-y-0");
 
   return (
     <main
@@ -370,26 +377,26 @@ export default function CheckoutPage() {
       className={`${BOOKING_GLASS.pageWrap} min-h-[100dvh]`}
     >
       <div className={BOOKING_GLASS.pageBackdrop} aria-hidden />
-      <div className={`${BOOKING_GLASS.container} pb-16 pt-28 md:pt-32`}>
+      <div className={`${BOOKING_GLASS.container} pb-16 pt-[calc(var(--experience-header-height,5.5rem)+1.5rem)] md:pt-[calc(var(--experience-header-height,5.5rem)+2rem)]`}>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
         >
           <div>
-            <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-accent-gold/90">
+            <p className={BOOKING_PAGE_KICKER}>
               {t("checkoutPage.kicker")}
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h1 className={BOOKING_PAGE_TITLE}>
               {t("checkoutPage.title")}
             </h1>
-            <p className="mt-3 max-w-xl text-sm text-white/55">
+            <p className={BOOKING_PAGE_INTRO}>
               {t("checkoutPage.intro")}
             </p>
           </div>
           <Link
             href={`/${locale}/cart`}
-            className="text-sm font-medium text-white/70 transition hover:text-white"
+            className={`text-sm font-medium ${BOOKING_TEXT_SECONDARY} transition hover:text-[#1a1a1a]`}
           >
             {t("checkoutPage.backToCart")}
           </Link>
@@ -399,18 +406,18 @@ export default function CheckoutPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-8 rounded-2xl border border-amber-400/25 bg-amber-500/10 px-5 py-4 text-sm text-amber-50 backdrop-blur-md"
+            className="mb-8 rounded-2xl border border-amber-600/20 bg-amber-50 px-5 py-4 text-sm text-amber-950"
             role="status"
           >
-            <p className="font-semibold text-amber-100">
+            <p className="font-semibold text-amber-950">
               {t("checkoutPage.loginRequiredTitle")}
             </p>
-            <p className="mt-2 text-amber-100/85">
+            <p className="mt-2 text-amber-900/85">
               {t("checkoutPage.loginRequiredBody")}
             </p>
             <Link
               href={`/${locale}/auth`}
-              className="mt-4 inline-flex rounded-lg bg-white px-4 py-2 text-xs font-semibold text-[#0c0a09] transition hover:bg-white/90"
+              className={`${BOOKING_GLASS.primaryCta} mt-4 !w-auto !min-h-[40px] !px-5 !py-2 !text-xs`}
             >
               {t("checkoutPage.loginCta")}
             </Link>
@@ -494,10 +501,10 @@ export default function CheckoutPage() {
                 </div>
               </div>
               {user && (
-                <p className="mt-6 text-xs text-white/45">
+                <p className={`mt-6 text-xs ${BOOKING_TEXT_FAINT}`}>
                   <Link
                     href={`/${locale}/account`}
-                    className="font-medium text-accent-moss underline-offset-4 transition hover:text-accent-moss/90"
+                    className="font-medium text-[#3A5F4A] underline-offset-4 transition hover:text-[#1a1a1a]"
                   >
                     {t("checkoutPage.manageAccountLink")}
                   </Link>
@@ -613,30 +620,30 @@ export default function CheckoutPage() {
                       value={option.value}
                       checked={paymentMethod === option.value}
                       onChange={() => setPaymentMethod(option.value)}
-                      className="mt-1 h-4 w-4 shrink-0 border-white/30 bg-transparent text-accent-gold focus:ring-accent-gold/40"
+                      className="mt-1 h-4 w-4 shrink-0 border-[#1a1a1a]/25 bg-white text-[#1a1a1a] focus:ring-[#1a1a1a]/15"
                     />
                     <span className="space-y-1">
-                      <span className="block font-semibold text-white">
+                      <span className={`block font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                         {option.label}
                       </span>
-                      <span className="block text-xs text-white/50">
+                      <span className={`block text-xs ${BOOKING_TEXT_MUTED}`}>
                         {option.hint}
                       </span>
                     </span>
                   </label>
                 ))}
                 {paymentMethod === "paypal" && (
-                  <div className="mt-6 border-t border-white/10 pt-6">
+                  <div className="mt-6 border-t border-[#1a1a1a]/10 pt-6">
                     {!authInitialized ? (
-                      <p className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/65">
+                      <p className={`rounded-xl border border-[#1a1a1a]/10 bg-white px-4 py-3 text-sm ${BOOKING_TEXT_MUTED}`}>
                         {t("checkoutPage.authLoading")}
                       </p>
                     ) : !user ? (
-                      <p className="rounded-xl border border-amber-400/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-100/90">
+                      <p className="rounded-xl border border-amber-600/20 bg-amber-50 px-4 py-3 text-sm text-amber-950">
                         {t("checkoutPage.loginRequiredBody")}
                       </p>
                     ) : !travelerOk ? (
-                      <p className="rounded-xl border border-amber-400/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-100/90">
+                      <p className="rounded-xl border border-amber-600/20 bg-amber-50 px-4 py-3 text-sm text-amber-950">
                         {t("checkoutPage.paypalNeedTraveler")}
                       </p>
                     ) : (
@@ -661,24 +668,24 @@ export default function CheckoutPage() {
               transition={{ duration: 0.5, delay: 0.08 }}
               className={BOOKING_GLASS.sticky}
             >
-              <h2 className="text-lg font-semibold text-white">
+              <h2 className={`text-lg font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                 {t("checkoutPage.summary")}
               </h2>
-              <p className="mt-1 text-sm text-white/50">
+              <p className={`mt-1 text-sm ${BOOKING_TEXT_MUTED}`}>
                 {t("checkoutPage.summaryLead")}
               </p>
 
-              <div className="mt-8 space-y-4 border-b border-white/10 pb-8">
+              <div className="mt-8 space-y-4 border-b border-[#1a1a1a]/10 pb-8">
                 {items.map((item) => (
                   <div key={item.id} className="flex justify-between gap-3 text-sm">
                     <div className="min-w-0">
-                      <p className="font-medium text-white/90">{item.title}</p>
-                      <p className="mt-1 text-xs text-white/45">
+                      <p className={`font-medium ${BOOKING_TEXT_PRIMARY}`}>{item.title}</p>
+                      <p className={`mt-1 text-xs ${BOOKING_TEXT_FAINT}`}>
                         {t("checkoutPage.quantity")}: {item.quantity} ·{" "}
                         {formatPriceARS(item.price)} {t("checkoutPage.unitPrice")}
                       </p>
                     </div>
-                    <span className="shrink-0 font-semibold text-white">
+                    <span className={`shrink-0 font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                       {formatPriceARS(item.price * item.quantity)}
                     </span>
                   </div>
@@ -686,46 +693,46 @@ export default function CheckoutPage() {
               </div>
 
               <div className="mt-6 space-y-3 text-sm">
-                <div className="flex justify-between gap-3 text-white/75">
+                <div className={`flex justify-between gap-3 ${BOOKING_TEXT_SECONDARY}`}>
                   <span>{t("checkoutPage.slotDate")}</span>
-                  <span className="text-right font-medium text-white">
+                  <span className={`text-right font-medium ${BOOKING_TEXT_PRIMARY}`}>
                     {formattedSlot.datePart}
                   </span>
                 </div>
-                <div className="flex justify-between gap-3 text-white/75">
+                <div className={`flex justify-between gap-3 ${BOOKING_TEXT_SECONDARY}`}>
                   <span>{t("checkoutPage.slotTime")}</span>
-                  <span className="text-right font-medium text-white">
+                  <span className={`text-right font-medium ${BOOKING_TEXT_PRIMARY}`}>
                     {formattedSlot.timePart}
                   </span>
                 </div>
-                <div className="flex justify-between gap-3 text-white/75">
+                <div className={`flex justify-between gap-3 ${BOOKING_TEXT_SECONDARY}`}>
                   <span>{t("checkoutPage.slotParty")}</span>
-                  <span className="font-medium text-white">
+                  <span className={`font-medium ${BOOKING_TEXT_PRIMARY}`}>
                     {formattedSlot.partySize}
                   </span>
                 </div>
               </div>
 
-              <div className="mt-8 flex items-end justify-between border-t border-white/10 pt-8">
-                <span className="text-sm font-medium uppercase tracking-wider text-white/45">
+              <div className="mt-8 flex items-end justify-between border-t border-[#1a1a1a]/10 pt-8">
+                <span className={`text-sm font-medium uppercase tracking-wider ${BOOKING_TEXT_FAINT}`}>
                   {t("checkoutPage.total")}
                 </span>
-                <span className="text-2xl font-semibold text-white">
+                <span className={`text-2xl font-semibold ${BOOKING_TEXT_PRIMARY}`}>
                   {formatPriceARS(subtotal)}
                 </span>
               </div>
 
-              <p className="mt-6 rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-xs leading-relaxed text-white/60">
+              <p className={`mt-6 rounded-xl border border-[#1a1a1a]/8 bg-[#FFFFFF] px-4 py-3 text-xs leading-relaxed ${BOOKING_TEXT_MUTED}`}>
                 {t("checkoutPage.trustMessage")}
               </p>
 
-              <p className="mt-4 text-xs leading-relaxed text-white/45">
+              <p className={`mt-4 text-xs leading-relaxed ${BOOKING_TEXT_FAINT}`}>
                 {t("checkoutPage.summaryNote")}
               </p>
 
               {bookingError && (
                 <p
-                  className="mt-6 rounded-xl border border-rose-400/30 bg-rose-500/10 px-4 py-3 text-xs text-rose-100"
+                  className="mt-6 rounded-xl border border-rose-400/30 bg-rose-50 px-4 py-3 text-xs text-rose-900"
                   role="alert"
                 >
                   {bookingError}
@@ -750,7 +757,7 @@ export default function CheckoutPage() {
                 </button>
               )}
 
-              <p className="mt-6 text-center text-[0.7rem] text-white/40">
+              <p className={`mt-6 text-center text-[0.7rem] ${BOOKING_TEXT_FAINT}`}>
                 {t("checkoutPage.terms")}
               </p>
 
