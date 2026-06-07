@@ -125,6 +125,7 @@ function BookingPanel({
         label={isComingSoon ? labels.ctaAvailableSoon : labels.ctaReserve}
         disabled={isComingSoon}
         variant="invert"
+        openDrawerOnAdd={!isComingSoon}
         className="w-full rounded-xl py-3.5 text-base font-semibold"
       />
       {whatsappLinkWithText ? (

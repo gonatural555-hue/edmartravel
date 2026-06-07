@@ -640,6 +640,18 @@
       }
     }
   },
+  "cartDrawer": {
+    "title": "Votre réservation",
+    "addedConfirmation": "Expérience ajoutée à votre panier.",
+    "duplicateNotice": "Vous avez déjà cette expérience dans votre réservation. Nous avons ajouté une entrée de plus.",
+    "completeBooking": "Finaliser la réservation",
+    "continueShopping": "Continuer vos achats",
+    "closeCart": "FERMER LE PANIER",
+    "summaryHint": "Vérifiez la date et le nombre de personnes à l’étape suivante.",
+    "entrySingular": "entrée",
+    "entryPlural": "entrées",
+    "comingSoonWarning": "Cette expérience sera bientôt disponible. La réservation en ligne n’est pas encore ouverte."
+  },
   "contactPage": {
     "title": "Contact",
     "backgroundAlt": "Paysage de montagne, arrière-plan de la page contact Edmar Travel",

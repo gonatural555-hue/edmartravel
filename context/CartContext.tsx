@@ -2,10 +2,12 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
   useReducer,
+  useState,
   ReactNode,
 } from "react";
 
@@ -132,7 +134,12 @@ type CartContextValue = {
   reservation: ReservationMeta;
   totalItems: number;
   subtotal: number;
+  isDrawerOpen: boolean;
+  duplicateNotice: boolean;
   addItem: (item: Omit<CartItem, "quantity">) => void;
+  reserveAndOpen: (item: Omit<CartItem, "quantity">) => void;
+  openDrawer: () => void;
+  closeDrawer: () => void;
   removeItem: (id: string) => void;
   increaseQty: (id: string) => void;
   decreaseQty: (id: string) => void;
@@ -173,6 +180,8 @@ function parseStoredCart(raw: string): CartState {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [duplicateNotice, setDuplicateNotice] = useState(false);
 
   useEffect(() => {
     try {
@@ -193,6 +202,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [state]);
 
+  const closeDrawer = useCallback(() => {
+    setIsDrawerOpen(false);
+    setDuplicateNotice(false);
+  }, []);
+
+  const openDrawer = useCallback(() => {
+    if (state.items.length > 0) {
+      setIsDrawerOpen(true);
+    }
+  }, [state.items.length]);
+
+  const addItem = useCallback((item: Omit<CartItem, "quantity">) => {
+    dispatch({ type: "ADD_ITEM", payload: item });
+  }, []);
+
+  const reserveAndOpen = useCallback(
+    (item: Omit<CartItem, "quantity">) => {
+      const wasDuplicate = state.items.some((entry) => entry.id === item.id);
+      dispatch({ type: "ADD_ITEM", payload: item });
+      setDuplicateNotice(wasDuplicate);
+      setIsDrawerOpen(true);
+    },
+    [state.items]
+  );
+
   const value = useMemo<CartContextValue>(() => {
     const totalItems = state.items.reduce(
       (acc, item) => acc + item.quantity,
@@ -209,18 +243,35 @@ export function CartProvider({ children }: { children: ReactNode }) {
       reservation: state.reservation,
       totalItems,
       subtotal,
-      addItem: (item) => dispatch({ type: "ADD_ITEM", payload: item }),
+      isDrawerOpen,
+      duplicateNotice,
+      addItem,
+      reserveAndOpen,
+      openDrawer,
+      closeDrawer,
       removeItem: (id) =>
         dispatch({ type: "REMOVE_ITEM", payload: { id } }),
       increaseQty: (id) =>
         dispatch({ type: "INCREASE_QTY", payload: { id } }),
       decreaseQty: (id) =>
         dispatch({ type: "DECREASE_QTY", payload: { id } }),
-      clearCart: () => dispatch({ type: "CLEAR_CART" }),
+      clearCart: () => {
+        dispatch({ type: "CLEAR_CART" });
+        setIsDrawerOpen(false);
+        setDuplicateNotice(false);
+      },
       updateReservation: (partial) =>
         dispatch({ type: "UPDATE_RESERVATION", payload: partial }),
     };
-  }, [state]);
+  }, [
+    state,
+    isDrawerOpen,
+    duplicateNotice,
+    addItem,
+    reserveAndOpen,
+    openDrawer,
+    closeDrawer,
+  ]);
 
   return (
     <CartContext.Provider value={value}>{children}</CartContext.Provider>

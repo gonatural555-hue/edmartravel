@@ -725,6 +725,18 @@
       }
     }
   },
+  "cartDrawer": {
+    "title": "Your booking",
+    "addedConfirmation": "Experience added to your cart.",
+    "duplicateNotice": "You already have this experience in your booking. We added another entry.",
+    "completeBooking": "Complete booking",
+    "continueShopping": "Continue shopping",
+    "closeCart": "CLOSE CART",
+    "summaryHint": "Review date and guests in the next step.",
+    "entrySingular": "entry",
+    "entryPlural": "entries",
+    "comingSoonWarning": "This experience will be available soon. Online booking is not open yet."
+  },
   "contactPage": {
     "title": "Contact",
     "backgroundAlt": "Mountain landscape, Edmar Travel contact page background",

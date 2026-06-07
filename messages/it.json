@@ -640,6 +640,18 @@
       }
     }
   },
+  "cartDrawer": {
+    "title": "La tua prenotazione",
+    "addedConfirmation": "Esperienza aggiunta al carrello.",
+    "duplicateNotice": "Hai già questa esperienza nella prenotazione. Abbiamo aggiunto un’altra voce.",
+    "completeBooking": "Completa prenotazione",
+    "continueShopping": "Continua lo shopping",
+    "closeCart": "CHIUDI CARRELLO",
+    "summaryHint": "Controlla data e persone nel passo successivo.",
+    "entrySingular": "voce",
+    "entryPlural": "voci",
+    "comingSoonWarning": "Questa esperienza sarà presto disponibile. La prenotazione online non è ancora attiva."
+  },
   "contactPage": {
     "title": "Contatto",
     "backgroundAlt": "Paesaggio montano, sfondo della pagina contatti Edmar Travel",

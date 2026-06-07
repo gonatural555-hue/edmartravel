@@ -725,6 +725,18 @@
       }
     }
   },
+  "cartDrawer": {
+    "title": "Tu reserva",
+    "addedConfirmation": "Experiencia agregada a tu carrito.",
+    "duplicateNotice": "Ya tenés esta experiencia en tu reserva. Sumamos otra entrada.",
+    "completeBooking": "Completar reserva",
+    "continueShopping": "Seguir comprando",
+    "closeCart": "CERRAR CARRITO",
+    "summaryHint": "Revisá fecha y personas en el siguiente paso.",
+    "entrySingular": "entrada",
+    "entryPlural": "entradas",
+    "comingSoonWarning": "Esta experiencia estará disponible pronto. La reserva online aún no está habilitada."
+  },
   "contactPage": {
     "title": "Contacto",
     "backgroundAlt": "Paisaje de montaña, fondo de la página de contacto de Edmar Travel",

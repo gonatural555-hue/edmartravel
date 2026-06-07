@@ -7,6 +7,7 @@ import { useMemo, useState } from "react";
 import { Product } from "@/lib/products";
 import { defaultLocale, type Locale } from "@/lib/i18n/config";
 import { useCart } from "@/context/CartContext";
+import { useTranslations } from "@/components/i18n/LocaleProvider";
 import ProductCardVideo, {
   usePrefersReducedMotion,
 } from "@/components/product/ProductCardVideo";
@@ -73,7 +74,10 @@ export default function ProductCardSimple({
   const viewProductLabel = labels?.viewProduct || "View product";
   const noImageLabel = labels?.noImage || "No image";
   const addToCartLabel = labels?.addToCart || "Agregar al carrito";
-  const { addItem } = useCart();
+  const { reserveAndOpen } = useCart();
+  const t = useTranslations();
+  const isComingSoon = product.comingSoon === true;
+  const [showComingSoonWarning, setShowComingSoonWarning] = useState(false);
 
   const articleClassName = elevated
     ? [
@@ -126,13 +130,26 @@ export default function ProductCardSimple({
           )}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
+            {showComingSoonWarning ? (
+              <div
+                className="pointer-events-none absolute inset-x-3 bottom-3 rounded-lg border border-amber-200/40 bg-black/75 px-3 py-2.5 text-center text-[11px] font-medium leading-snug text-amber-50 backdrop-blur-sm"
+                role="alert"
+              >
+                {t("cartDrawer.comingSoonWarning")}
+              </div>
+            ) : null}
             <div className="absolute inset-x-0 bottom-4 flex items-center justify-center">
               <button
                 type="button"
                 onClick={(event) => {
                   event.preventDefault();
                   event.stopPropagation();
-                  addItem({
+                  if (isComingSoon) {
+                    setShowComingSoonWarning(true);
+                    return;
+                  }
+                  setShowComingSoonWarning(false);
+                  reserveAndOpen({
                     id: product.id,
                     title,
                     price: product.price,

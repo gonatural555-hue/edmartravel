@@ -18,6 +18,8 @@ type Props = {
   className?: string;
   /** PDP: hover con fondo oscuro y texto dorado */
   variant?: "default" | "invert";
+  /** Abre el panel lateral de carrito tras agregar (PDP / cards). */
+  openDrawerOnAdd?: boolean;
 };
 
 export default function AddToCartButton({
@@ -30,8 +32,18 @@ export default function AddToCartButton({
   label,
   className,
   variant = "default",
+  openDrawerOnAdd = false,
 }: Props) {
-  const { addItem } = useCart();
+  const { addItem, reserveAndOpen } = useCart();
+
+  const handleClick = () => {
+    const payload = { id, title, price, image, variantSelections };
+    if (openDrawerOnAdd) {
+      reserveAndOpen(payload);
+      return;
+    }
+    addItem(payload);
+  };
 
   const variantClass =
     variant === "invert"
@@ -40,7 +52,7 @@ export default function AddToCartButton({
 
   return (
     <button
-      onClick={() => addItem({ id, title, price, image, variantSelections })}
+      onClick={handleClick}
       disabled={disabled}
       className={[
         variantClass,
