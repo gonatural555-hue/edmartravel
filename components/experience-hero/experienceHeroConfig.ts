@@ -63,13 +63,13 @@ export const EXPERIENCE_WORLDS: ExperienceWorldConfig[] = [
   },
   {
     id: "city",
-    title: "EXPLORA LA CIUDAD DE MENDOZA",
+    title: "MENDOZA LA CIUDAD",
     sidebarTitle: "Ciudad",
     icon: "city",
     heroImage:
       "/assets/scenes/discover-mendoza/backgrounds/background-mendoza.png",
     heroImageAlt: "Descubrí Mendoza en scooter, plaza y fuente al atardecer",
-    titleLines: ["explora", "la ciudad", "de mendoza"],
+    titleLines: ["Mendoza La Ciudad"],
     subtitle:
       "Scooters, Parques Historicos y los\nlugares más emblematícos.",
     ctaLabel: "Explorar la ciudad",

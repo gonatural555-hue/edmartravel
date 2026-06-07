@@ -15,6 +15,8 @@ export type PanelEditorialLayoutDebugValues = {
   padBottomPct: number;
   /** 0 = arriba, 50 = centro, 100 = abajo */
   contentJustifyPct: number;
+  /** Alineación horizontal del bloque editorial */
+  contentAlign?: "left" | "center" | "right";
   titleFontMinRem: number;
   titleFontVw: number;
   titleFontMaxRem: number;

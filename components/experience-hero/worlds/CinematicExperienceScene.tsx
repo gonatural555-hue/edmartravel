@@ -39,6 +39,8 @@ export default function CinematicExperienceScene({
 }: CinematicExperienceSceneProps) {
   const layout = editorialLayout;
   const isMobile = useHeroMobile();
+  const alignCenter = layout.contentAlign === "center";
+  const alignRight = layout.contentAlign === "right";
 
   if (compact) {
     return (
@@ -77,9 +79,13 @@ export default function CinematicExperienceScene({
           aria-hidden
         />
 
-        <div className="absolute inset-0 z-[2] flex flex-col items-center justify-end px-5 pb-2 pt-16 text-center">
-          <div className="flex w-full max-w-[min(100%,22rem)] flex-col items-center">
-            <h2 className="font-theater font-bold uppercase leading-[0.98] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">
+        <div
+          className={`absolute inset-0 z-[2] flex flex-col justify-end px-5 pt-16${alignCenter ? " items-center pb-5 text-center" : alignRight ? " items-end pb-8 text-right" : " items-center pb-8 text-center"}`}
+        >
+          <div
+            className={`flex w-full max-w-[min(100%,22rem)] flex-col${alignRight ? " items-end" : " items-center"}`}
+          >
+            <h2 className="font-theater font-bold uppercase leading-[1.02] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">
               {titleLines.map((line, i) => (
                 <span
                   key={`${line}-${i}`}
@@ -104,7 +110,9 @@ export default function CinematicExperienceScene({
               </p>
             ) : null}
 
-            <div className="pointer-events-auto mt-5 flex justify-center">
+            <div
+              className={`pointer-events-auto mt-5 flex${alignRight ? " justify-end" : " justify-center"}`}
+            >
               <PremiumExperienceCtaButton label={ctaLabel} href={ctaHref} />
             </div>
           </div>
@@ -135,23 +143,26 @@ export default function CinematicExperienceScene({
       />
 
       <div
-        className="pointer-events-none absolute inset-y-0 z-[2] flex flex-col"
+        className={`pointer-events-none absolute inset-y-0 z-[2] flex flex-col${alignCenter ? " items-center" : alignRight ? " items-end" : ""}`}
         style={{
-          left: `${layout.leftPct}%`,
+          left: alignCenter ? "50%" : alignRight ? "auto" : `${layout.leftPct}%`,
+          right: alignRight ? `${layout.padRightPct}%` : undefined,
           width: `min(${layout.widthPct}%, ${layout.maxWidthPx}px)`,
-          paddingLeft: `${layout.padLeftPct}%`,
-          paddingRight: `${layout.padRightPct}%`,
+          paddingLeft: alignRight ? undefined : `${layout.padLeftPct}%`,
+          paddingRight: alignRight ? undefined : `${layout.padRightPct}%`,
           paddingTop: `${layout.padTopPct}%`,
           paddingBottom: `${layout.padBottomPct}%`,
           justifyContent: contentJustifyFromPct(layout.contentJustifyPct),
-          transform: `translate(${layout.offsetXPx}px, ${layout.offsetYPx}px)`,
+          transform: alignCenter
+            ? `translate(calc(-50% + ${layout.offsetXPx}px), ${layout.offsetYPx}px)`
+            : `translate(${layout.offsetXPx}px, ${layout.offsetYPx}px)`,
         }}
       >
         <div
-          className="flex w-full flex-col gap-0"
+          className={`flex w-full flex-col gap-0${alignCenter ? " items-center text-center" : alignRight ? " items-end text-right" : ""}`}
           style={{ maxWidth: layout.innerMaxWidthPx }}
         >
-          <h2 className="font-theater font-bold uppercase leading-[0.95] tracking-[-0.04em] text-[#F5F0E6] drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)] transition-[color,filter] duration-[500ms] group-hover/scene:text-[#FFFBF5] group-hover/scene:drop-shadow-[0_2px_24px_rgba(0,0,0,0.32)]">
+          <h2 className={`font-theater font-bold uppercase leading-[1.02] tracking-[-0.04em] text-[#F5F0E6] drop-shadow-[0_2px_20px_rgba(0,0,0,0.4)] transition-[color,filter] duration-[500ms] group-hover/scene:text-[#FFFBF5] group-hover/scene:drop-shadow-[0_2px_24px_rgba(0,0,0,0.32)]${alignCenter ? " text-center" : alignRight ? " text-right" : ""}`}>
             {titleLines.map((line, i) => (
               <span
                 key={`${line}-${i}`}
@@ -168,7 +179,7 @@ export default function CinematicExperienceScene({
           </h2>
 
           <p
-            className="whitespace-pre-line font-sans font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/78"
+            className={`whitespace-pre-line font-sans font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/78${alignCenter ? " mx-auto text-center" : alignRight ? " ml-auto text-right" : ""}`}
             style={{
               marginTop: layout.subtitleMarginTopPx,
               maxWidth: `${layout.subtitleMaxWidthCh}ch`,
@@ -185,7 +196,7 @@ export default function CinematicExperienceScene({
           ) : null}
 
           <div
-            className="pointer-events-auto"
+            className={`pointer-events-auto${alignCenter ? " flex justify-center" : alignRight ? " flex justify-end" : ""}`}
             style={{ marginTop: layout.ctaMarginTopPx }}
           >
             <PremiumExperienceCtaButton label={ctaLabel} href={ctaHref} />
