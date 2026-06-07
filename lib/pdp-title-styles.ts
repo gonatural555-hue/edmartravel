@@ -1,3 +1,8 @@
+/** Dorado brillante — hero PDP, collage */
+export const brandBrightGoldClass = "text-[#FFD86A]";
+
+/** Títulos en product cards */
+export const productCardTitleClass = "text-product-card-title";
 /** Título principal del hero en PDP */
 export const pdpHeroTitleClass =
   "mt-3 max-w-4xl text-balance font-theater text-4xl font-bold uppercase tracking-[-0.03em] text-[#FFD86A] drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)] sm:text-5xl lg:text-6xl";

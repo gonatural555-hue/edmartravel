@@ -3,6 +3,7 @@ const config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./lib/**/*.{js,ts}",
   ],
   theme: {
     extend: {
@@ -32,6 +33,7 @@ const config = {
         "text-muted": "#9BA6A1",
         "accent-gold": "#C89B3C",
         "pdp-title-gold": "#FFD86A",
+        "product-card-title": "#ad8000",
         "accent-moss": "#3A5F4A",
         "mist-white": "#F8F6F2",
         "wine-burgundy": "#5A2E2E",

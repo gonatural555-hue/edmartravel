@@ -180,6 +180,14 @@ function loadPersistedLocal(): PersistedLocal {
   }
 }
 
+function mapAuthError(e: unknown): string {
+  const msg = e instanceof Error ? e.message : "Error desconocido";
+  if (/failed to fetch|networkerror|load failed|fetch failed/i.test(msg)) {
+    return "No se pudo conectar con Supabase. Revisá que NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY en .env.local sean correctos y que el proyecto exista en supabase.com.";
+  }
+  return msg;
+}
+
 function profileFromSupabaseUser(user: SupabaseUser): UserProfile {
   const meta = user.user_metadata as Record<string, string | undefined>;
   return profileRowToAppUser({
@@ -307,8 +315,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         await applySessionUser(session?.user ?? null);
         return { error: null };
       } catch (e) {
-        const msg = e instanceof Error ? e.message : "Error de inicio de sesión";
-        return { error: msg };
+        return { error: mapAuthError(e) };
       }
     },
     [applySessionUser]
@@ -353,8 +360,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           needsEmailConfirmation: !data.session,
         };
       } catch (e) {
-        const msg = e instanceof Error ? e.message : "Error al registrarse";
-        return { error: msg };
+        return { error: mapAuthError(e) };
       }
     },
     [applySessionUser]

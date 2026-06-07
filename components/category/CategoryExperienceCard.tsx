@@ -97,9 +97,12 @@ export default function CategoryExperienceCard({
 
       <div className="flex flex-1 flex-col transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2">
         <h3
-          className={`mt-8 font-theater font-semibold leading-[1.08] tracking-[-0.02em] text-[#1a1a1a] ${titleClass}`}
+          className={`mt-8 font-theater font-semibold leading-[1.08] tracking-[-0.02em] text-product-card-title ${titleClass}`}
         >
-          <Link href={item.href} className="hover:text-[#1a1a1a]/75">
+          <Link
+            href={item.href}
+            className="text-product-card-title transition-colors hover:text-product-card-title/80"
+          >
             {item.title}
           </Link>
         </h3>

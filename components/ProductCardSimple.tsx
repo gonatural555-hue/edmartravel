@@ -178,7 +178,7 @@ export default function ProductCardSimple({
         {/* INFO */}
         <div className="min-h-0 space-y-2 p-4 md:p-5">
           <h2
-            className={`text-base font-semibold leading-snug text-[#1C1F1D] ${
+            className={`text-base font-semibold leading-snug text-product-card-title ${
               isListing ? "" : "line-clamp-2"
             }`}
           >
