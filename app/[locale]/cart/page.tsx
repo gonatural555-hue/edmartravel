@@ -9,7 +9,6 @@ import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import {
   BOOKING_GLASS,
   BOOKING_INPUT_CLASS,
-  BOOKING_LABEL_CLASS,
   BOOKING_PAGE_INTRO,
   BOOKING_PAGE_KICKER,
   BOOKING_PAGE_TITLE,
@@ -208,70 +207,21 @@ export default function CartPage() {
             </motion.section>
 
             <motion.section variants={bookingMotion.item} className={BOOKING_GLASS.panel}>
-              <h2 className={BOOKING_SECTION_TITLE}>{t("cartPage.detailsSection")}</h2>
-              <p className={BOOKING_SECTION_HINT}>{t("cartPage.detailsHint")}</p>
-              <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <div className="sm:col-span-1">
-                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-date">
-                    {t("cartPage.fieldDate")}
-                  </label>
-                  <input
-                    id="res-date"
-                    type="date"
-                    value={reservation.preferredDate}
-                    onChange={(e) =>
-                      updateReservation({ preferredDate: e.target.value })
-                    }
-                    className={BOOKING_INPUT_CLASS}
-                  />
-                </div>
-                <div className="sm:col-span-1">
-                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-time">
-                    {t("cartPage.fieldTime")}
-                  </label>
-                  <input
-                    id="res-time"
-                    type="time"
-                    value={reservation.preferredTime}
-                    onChange={(e) =>
-                      updateReservation({ preferredTime: e.target.value })
-                    }
-                    className={BOOKING_INPUT_CLASS}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-party">
-                    {t("cartPage.fieldParty")}
-                  </label>
-                  <input
-                    id="res-party"
-                    type="number"
-                    min={1}
-                    max={99}
-                    value={reservation.partySize}
-                    onChange={(e) =>
-                      updateReservation({
-                        partySize: Math.max(1, Number(e.target.value) || 1),
-                      })
-                    }
-                    className={BOOKING_INPUT_CLASS}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className={BOOKING_LABEL_CLASS} htmlFor="res-notes">
-                    {t("cartPage.fieldNotes")}
-                  </label>
-                  <textarea
-                    id="res-notes"
-                    rows={4}
-                    value={reservation.notes}
-                    onChange={(e) =>
-                      updateReservation({ notes: e.target.value })
-                    }
-                    placeholder={t("cartPage.fieldNotesPlaceholder")}
-                    className={`${BOOKING_INPUT_CLASS} min-h-[6rem] resize-y`}
-                  />
-                </div>
+              <h2 className={BOOKING_SECTION_TITLE}>{t("cartPage.fieldNotes")}</h2>
+              <div className="mt-8">
+                <label className="sr-only" htmlFor="res-notes">
+                  {t("cartPage.fieldNotes")}
+                </label>
+                <textarea
+                  id="res-notes"
+                  rows={4}
+                  value={reservation.notes}
+                  onChange={(e) =>
+                    updateReservation({ notes: e.target.value })
+                  }
+                  placeholder={t("cartPage.fieldNotesPlaceholder")}
+                  className={`${BOOKING_INPUT_CLASS} min-h-[6rem] resize-y`}
+                />
               </div>
             </motion.section>
           </motion.div>
