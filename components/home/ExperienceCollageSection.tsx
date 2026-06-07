@@ -104,15 +104,15 @@ function CollageCardOverlay({
   const counterScale = isSelected && heroScale > 1 ? 1 / heroScale : 1;
   const titleSizeClass = isProductLink
     ? compact
-      ? "text-[clamp(0.8125rem,3.6vw,1.1rem)]"
+      ? "text-[clamp(1.22rem,5.4vw,1.65rem)]"
       : isSelected
-        ? "text-[clamp(1.05rem,2.4vw,1.65rem)]"
-        : "text-[clamp(0.875rem,1.85vw,1.2rem)]"
+        ? "text-[clamp(1.58rem,3.6vw,2.48rem)]"
+        : "text-[clamp(1.31rem,2.78vw,1.8rem)]"
     : compact
-      ? "text-[clamp(0.9375rem,4.2vw,1.28rem)]"
+      ? "text-[clamp(1.41rem,6.3vw,1.92rem)]"
       : isSelected
-        ? "text-[clamp(1.5rem,3.3vw,2.48rem)]"
-        : "text-[clamp(0.975rem,2.1vw,1.43rem)]";
+        ? "text-[clamp(2.25rem,4.95vw,3.72rem)]"
+        : "text-[clamp(1.46rem,3.15vw,2.15rem)]";
 
   return (
     <div
@@ -138,14 +138,14 @@ function CollageCardOverlay({
           <p
             className={`font-sans ${
               compact
-                ? "text-[clamp(0.6875rem,2.8vw,0.8125rem)]"
+                ? "text-[clamp(1.03rem,4.2vw,1.22rem)]"
                 : isSelected
-                  ? "text-[clamp(0.8125rem,1.55vw,1rem)]"
-                  : "text-[clamp(0.6875rem,1.35vw,0.8125rem)]"
+                  ? "text-[clamp(1.22rem,2.33vw,1.5rem)]"
+                  : "text-[clamp(1.03rem,2.03vw,1.22rem)]"
             }`}
           >
             {fromPriceLabel ? (
-              <span className="mr-1.5 font-medium tracking-[0.06em] text-[#F5F0E6]/72">
+              <span className="mr-1.5 font-semibold tracking-[0.06em] text-[#FFD86A] drop-shadow-[0_0_14px_rgba(255,216,106,0.55)]">
                 {fromPriceLabel}
               </span>
             ) : null}

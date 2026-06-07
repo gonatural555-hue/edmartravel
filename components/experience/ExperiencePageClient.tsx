@@ -29,6 +29,8 @@ import {
   TestimonialsMini,
   WhyLoveGrid,
 } from "@/components/experience/ExperienceLayoutParts";
+import { WhatsAppButtonLabel, WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { pdpHeroTitleClass, pdpReserveCtaClass } from "@/lib/pdp-title-styles";
 
 type ProductSummary = {
   id: string;
@@ -122,16 +124,17 @@ function BookingPanel({
         variantSelections={variantSelections}
         label={isComingSoon ? labels.ctaAvailableSoon : labels.ctaReserve}
         disabled={isComingSoon}
-        className="w-full py-3.5 text-base font-semibold"
+        variant="invert"
+        className="w-full rounded-xl py-3.5 text-base font-semibold"
       />
       {whatsappLinkWithText ? (
         <a
           href={whatsappLinkWithText}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center rounded-xl border-2 border-white/30 bg-white/5 px-4 py-3 text-sm font-semibold text-text-primary transition hover:bg-white/10"
+          className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/5 px-4 py-3 text-sm font-semibold text-text-primary transition hover:bg-white/10"
         >
-          {labels.ctaWhatsApp}
+          <WhatsAppButtonLabel label={labels.ctaWhatsApp} />
         </a>
       ) : null}
     </div>
@@ -415,7 +418,7 @@ export default function ExperiencePageClient({
           <p className="max-w-2xl text-sm font-medium uppercase tracking-[0.2em] text-white/75">
             {labels.siteTagline}
           </p>
-          <h1 className="mt-3 max-w-4xl text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h1 className={pdpHeroTitleClass}>
             {seoH1}
           </h1>
           {rich?.subtitle ? (
@@ -468,7 +471,7 @@ export default function ExperiencePageClient({
               ) : (
                 <a
                   href="#experience-book"
-                  className="inline-flex min-w-[200px] items-center justify-center rounded-xl bg-accent-gold px-8 py-3.5 text-sm font-semibold text-dark-base shadow-lg transition hover:bg-accent-gold/90 xl:hidden"
+                  className={`${pdpReserveCtaClass} min-w-[200px] px-8 py-3.5 text-sm xl:hidden`}
                 >
                   {labels.ctaReserve}
                 </a>
@@ -480,7 +483,7 @@ export default function ExperiencePageClient({
               ) : (
                 <a
                   href="#experience-book-desktop"
-                  className="hidden min-w-[200px] items-center justify-center rounded-xl bg-accent-gold px-8 py-3.5 text-sm font-semibold text-dark-base shadow-lg transition hover:bg-accent-gold/90 xl:inline-flex"
+                  className={`${pdpReserveCtaClass} hidden min-w-[200px] px-8 py-3.5 text-sm xl:inline-flex`}
                 >
                   {labels.ctaReserve}
                 </a>
@@ -490,9 +493,9 @@ export default function ExperiencePageClient({
                   href={whatsappLinkWithText}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-w-[200px] items-center justify-center rounded-xl border-2 border-white/45 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15"
+                  className="inline-flex min-w-[200px] items-center justify-center gap-2 rounded-xl border-2 border-white/45 bg-white/10 px-8 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15"
                 >
-                  {labels.ctaWhatsApp}
+                  <WhatsAppButtonLabel label={labels.ctaWhatsApp} />
                 </a>
               ) : null}
             </div>
@@ -704,9 +707,10 @@ export default function ExperiencePageClient({
               href={whatsappLinkWithText}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 px-3 py-2.5 text-xs font-semibold text-white"
+              aria-label={labels.ctaWhatsApp}
+              className="inline-flex shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 p-2.5"
             >
-              {labels.ctaWhatsAppShort}
+              <WhatsAppIcon size={24} />
             </a>
           ) : null}
           {comingSoon ? (
@@ -716,7 +720,7 @@ export default function ExperiencePageClient({
           ) : (
             <a
               href="#experience-book"
-              className="inline-flex flex-1 items-center justify-center rounded-xl bg-accent-gold px-4 py-3 text-sm font-semibold text-dark-base"
+              className={`${pdpReserveCtaClass} flex-1 px-4 py-3 text-sm`}
             >
               {labels.ctaReserve}
             </a>

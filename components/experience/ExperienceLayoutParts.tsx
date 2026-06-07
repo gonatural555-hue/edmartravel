@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import type { ExperienceRichContent } from "@/lib/experience-model";
+import { WhatsAppButtonLabel } from "@/components/icons/WhatsAppIcon";
+import { pdpReserveCtaClass } from "@/lib/pdp-title-styles";
 
 export function SectionShell({
   id,
@@ -402,8 +404,7 @@ export function FinalCtaBand({
     "inline-flex min-w-[200px] items-center justify-center rounded-xl px-8 py-3.5 text-sm font-semibold transition xl:hidden";
   const primaryClassDesktop =
     "hidden min-w-[200px] items-center justify-center rounded-xl px-8 py-3.5 text-sm font-semibold transition xl:inline-flex";
-  const primaryActive =
-    "bg-accent-gold text-dark-base hover:bg-accent-gold/90";
+  const primaryActive = pdpReserveCtaClass;
   const primaryMuted =
     "cursor-not-allowed bg-accent-gold/35 text-dark-base/75";
 
@@ -459,9 +460,9 @@ export function FinalCtaBand({
               href={secondaryHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-w-[200px] items-center justify-center rounded-xl border-2 border-white/40 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="inline-flex min-w-[200px] items-center justify-center gap-2 rounded-xl border-2 border-white/40 bg-white/5 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10"
             >
-              {secondaryLabel}
+              <WhatsAppButtonLabel label={secondaryLabel} />
             </a>
           ) : null}
         </div>
