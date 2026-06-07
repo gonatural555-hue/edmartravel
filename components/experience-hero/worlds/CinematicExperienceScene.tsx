@@ -52,10 +52,6 @@ export default function CinematicExperienceScene({
           sizes="32vw"
           draggable={false}
         />
-        <div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/18 via-transparent to-black/12"
-          aria-hidden
-        />
       </div>
     );
   }
@@ -81,16 +77,16 @@ export default function CinematicExperienceScene({
           aria-hidden
         />
 
-        <div className="absolute inset-0 z-[2] flex flex-col items-center justify-end px-5 pb-8 pt-16 text-center">
+        <div className="absolute inset-0 z-[2] flex flex-col items-center justify-end px-5 pb-2 pt-16 text-center">
           <div className="flex w-full max-w-[min(100%,22rem)] flex-col items-center">
-            <h2 className="font-theater font-bold uppercase leading-[0.94] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">
+            <h2 className="font-theater font-bold uppercase leading-[0.98] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)]">
               {titleLines.map((line, i) => (
                 <span
                   key={`${line}-${i}`}
                   className="block"
                   style={{
-                    fontSize: "clamp(1.5rem, 7.5vw, 2rem)",
-                    marginTop: i > 0 ? 4 : 0,
+                    fontSize: "clamp(2.25rem, 11.25vw, 3rem)",
+                    marginTop: i > 0 ? 6 : 0,
                   }}
                 >
                   {line}
@@ -132,11 +128,7 @@ export default function CinematicExperienceScene({
         />
       </div>
 
-      {/* Scrim lateral para legibilidad del bloque editorial */}
-      <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/18 via-[38%] to-transparent transition-opacity duration-[600ms] group-hover/scene:from-black/48"
-        aria-hidden
-      />
+      {/* Scrim inferior para legibilidad del bloque editorial */}
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 from-0% via-transparent via-[40%] to-transparent"
         aria-hidden
@@ -165,7 +157,7 @@ export default function CinematicExperienceScene({
                 key={`${line}-${i}`}
                 className="block opacity-95"
                 style={{
-                  fontSize: `clamp(${layout.titleFontMinRem}rem, ${layout.titleFontVw}vw, ${layout.titleFontMaxRem}rem)`,
+                  fontSize: `clamp(${layout.titleFontMinRem * 1.5}rem, ${layout.titleFontVw * 1.5}vw, ${layout.titleFontMaxRem * 1.5}rem)`,
                   marginTop: i > 0 ? layout.titleLineGapPx : 0,
                   opacity: i === 0 ? 1 : 0.95,
                 }}

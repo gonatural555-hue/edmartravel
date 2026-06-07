@@ -3,6 +3,8 @@ export type CollageExperienceId = "wine" | "adventure" | "city";
 export type CollageItemDef = {
   id: string;
   experienceId: CollageExperienceId;
+  /** Si está presente, el overlay enlaza al PDP en lugar de la categoría */
+  productId?: string;
   src: string;
   alt: string;
   /** Posición % dentro del stage fijo */
@@ -17,6 +19,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "wine-1",
     experienceId: "wine",
+    productId: "luxury-wine-experience-bodega-boutique",
     src: "/assets/images/products/HalfDayWine/tour-bodega-medio-dia-1.webp",
     alt: "Wine tour en bodega",
     left: "6%",
@@ -27,6 +30,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "adventure-1",
     experienceId: "adventure",
+    productId: "cabalgata-picada-potrerillos",
     src: "/assets/scenes/adventure-mendoza/collage/aventura-mendoza.webp",
     alt: "Aventura en Mendoza",
     left: "38%",
@@ -37,6 +41,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-1",
     experienceId: "city",
+    productId: "mono-city-tour-mendoza",
     src: "/assets/scenes/city-tours/collage-scooter.webp",
     alt: "Scooter en Mendoza",
     left: "70%",
@@ -47,6 +52,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "wine-2",
     experienceId: "wine",
+    productId: "half-day-winery-tour-maipu",
     src: "/assets/scenes/wine-tours/wine-tours-collage.webp",
     alt: "Wine tours con montañas de Mendoza",
     left: "4%",
@@ -57,6 +63,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "adventure-2",
     experienceId: "adventure",
+    productId: "andes-experience-horseback-sunset-picnic",
     src: "/assets/scenes/adventure-mendoza/collage/aventura-mendoza-01.webp",
     alt: "Experiencia de aventura en Mendoza",
     left: "36%",
@@ -67,6 +74,7 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-2",
     experienceId: "city",
+    productId: "city-tour-mendoza",
     src: "/assets/images/products/CityTour/city-tour-2.webp",
     alt: "Ciudad de Mendoza",
     left: "68%",
@@ -82,6 +90,11 @@ export function collageExperienceHref(
   experienceId: CollageExperienceId
 ): string {
   return `/${locale}/category/${experienceId}`;
+}
+
+/** URL del PDP de una experiencia concreta */
+export function collageProductHref(locale: string, productId: string): string {
+  return `/${locale}/products/${productId}`;
 }
 
 /** Empuje sutil hacia afuera cuando otra imagen está activa */

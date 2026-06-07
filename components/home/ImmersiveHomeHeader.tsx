@@ -13,6 +13,7 @@ import CategoryEditorialButton, {
   HEADER_UTILITY_CTA_COMPACT,
   headerUtilityCtaClass,
 } from "@/components/category/CategoryEditorialButton";
+import { HOME_PAGE_BG } from "@/lib/category-page-assets";
 import { isHomePath } from "@/lib/is-home-path";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
 import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
@@ -223,6 +224,7 @@ export default function ImmersiveHomeHeader({
   const loginLabel = t("header.login", labels.login);
   const reservationsLabel = t("header.reservations", labels.reservations);
   const myAccountLabel = t("header.myAccount", labels.myAccount);
+  const closeMenuLabel = t("header.closeMenu", "Cerrar menú");
   const authHref = `/${locale}/auth?tab=login`;
 
   useEffect(() => {
@@ -433,63 +435,54 @@ export default function ImmersiveHomeHeader({
       {menuOpen ? (
         <div
           className="fixed inset-0 z-[110] flex flex-col lg:hidden"
+          style={{ backgroundColor: HOME_PAGE_BG }}
           role="dialog"
           aria-modal="true"
+          aria-label={closeMenuLabel}
         >
-          <button
-            type="button"
-            className={`absolute inset-0 backdrop-blur-md ${
-              isEditorialHeader ? "bg-[#F8F5EE]/92" : "bg-[#050606]/88"
-            }`}
-            onClick={closeMenu}
-            aria-label="Cerrar"
-          />
+          <div className="flex items-center justify-end px-6 pb-2 pt-[max(0.75rem,env(safe-area-inset-top))]">
+            <button
+              type="button"
+              onClick={closeMenu}
+              className={`${HEADER_TYPE} text-[#1a1a1a]/55 transition-colors duration-300 hover:text-[#1a1a1a]`}
+            >
+              {closeMenuLabel}
+            </button>
+          </div>
+
           <nav
-            className="relative z-10 flex flex-1 flex-col px-6 pb-10 pt-[calc(var(--experience-header-height,5.5rem)+1.5rem)]"
-            onClick={(e) => e.stopPropagation()}
+            className="relative flex flex-1 flex-col overflow-y-auto px-6 pb-[max(1.5rem,env(safe-area-inset-bottom))]"
+            aria-label="Menú principal"
           >
-            <ul className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={closeMenu}
-                    className={`block py-3 ${HEADER_TYPE_MENU} ${
-                      isNavActive(pathname, item.href, item.matchPrefix)
-                        ? isCategoryPage
-                          ? "text-[#FFFFFF]"
-                          : isEditorialNav
-                            ? "text-[#7A6248]"
-                            : "text-[#E8C98A]"
-                        : isCategoryPage
-                          ? "text-[#FFFFFF]/78"
-                          : isEditorialNav
-                            ? "text-[#1a1a1a]/90"
-                            : "text-[#F5F0E6]/90"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href={`/${locale}/cart`}
-                  onClick={closeMenu}
-                  className={`block py-3 ${HEADER_TYPE_MENU} ${
-                    isEditorialNav ? "text-[#1a1a1a]/90" : "text-[#F5F0E6]/90"
-                  }`}
-                >
-                  {reservationsLabel}
-                </Link>
-              </li>
+            <ul className="flex flex-col border-b border-[#1a1a1a]/10 pb-6">
+              {navItems.map((item) => {
+                const active = isNavActive(
+                  pathname,
+                  item.href,
+                  item.matchPrefix
+                );
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      className={`block py-3.5 ${HEADER_TYPE_MENU} ${
+                        active ? "text-[#7A6248]" : "text-[#1a1a1a]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
+
+            <div className="mt-8 flex w-full max-w-sm flex-col gap-3">
               {isLoggedIn ? (
                 <CategoryEditorialButton
                   href={`/${locale}/account`}
                   onClick={closeMenu}
-                  className={HEADER_UTILITY_CTA_COMPACT}
+                  className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
                 >
                   {myAccountLabel}
                 </CategoryEditorialButton>
@@ -497,7 +490,7 @@ export default function ImmersiveHomeHeader({
                 <CategoryEditorialButton
                   href={authHref}
                   onClick={closeMenu}
-                  className={HEADER_UTILITY_CTA_COMPACT}
+                  className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
                 >
                   {loginLabel}
                 </CategoryEditorialButton>
@@ -505,25 +498,24 @@ export default function ImmersiveHomeHeader({
               <CategoryEditorialButton
                 href={`/${locale}/cart`}
                 onClick={closeMenu}
-                className={HEADER_UTILITY_CTA_COMPACT}
+                className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
               >
                 {reservationsLabel}
               </CategoryEditorialButton>
-              <div className="flex gap-2">
+            </div>
+
+            <div className="mt-10">
+              <div className="flex flex-wrap gap-2">
                 {locales.map((lang) => (
                   <Link
                     key={lang}
                     href={buildLocaleHref(lang)}
                     onClick={closeMenu}
-                    className={`rounded-full border px-3 py-2 ${HEADER_TYPE} text-[0.75rem] tracking-[0.14em] ${
+                    className={
                       lang === locale
-                        ? isEditorialNav
-                          ? "border-[#1a1a1a]/20 text-[#1a1a1a]"
-                          : "border-[#C89B3C]/40 text-[#E8C98A]"
-                        : isEditorialNav
-                          ? "border-[#1a1a1a]/10 text-[#1a1a1a]/50"
-                          : "border-white/10 text-white/50"
-                    }`}
+                        ? headerUtilityCtaClass("!min-h-[40px] !px-5")
+                        : `${HEADER_TYPE} inline-flex min-h-[40px] items-center justify-center rounded-full border border-[#1a1a1a]/12 px-5 text-[0.75rem] tracking-[0.14em] text-[#1a1a1a]/55 transition-colors hover:border-[#1a1a1a]/25 hover:text-[#1a1a1a]`
+                    }
                   >
                     {lang.toUpperCase()}
                   </Link>

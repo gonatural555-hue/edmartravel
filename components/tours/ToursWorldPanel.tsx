@@ -156,9 +156,9 @@ export default function ToursWorldPanel({
         aria-hidden
       />
 
-      {/* Contenido editorial */}
+      {/* Contenido editorial — mobile: centrado en el panel */}
       <div
-        className={`relative z-10 flex h-full flex-col justify-end px-6 pb-10 pt-[var(--experience-header-height,5.5rem)] sm:px-8 sm:pb-12 lg:px-12 lg:pb-14 xl:px-16 xl:pb-16 ${
+        className={`relative z-10 flex h-full flex-col items-center justify-center px-5 py-8 text-center sm:px-8 lg:items-stretch lg:justify-end lg:px-12 lg:py-0 lg:pb-14 lg:pt-[var(--experience-header-height,5.5rem)] lg:text-left xl:px-16 xl:pb-16 ${
           isNavigating ? "opacity-0" : ""
         }`}
         style={{
@@ -167,59 +167,64 @@ export default function ToursWorldPanel({
             : `opacity ${TOURS_NAV_TRANSITION_MS}ms ${TOURS_PANEL_EASE}`,
         }}
       >
-        <h2
-          className="font-theater font-normal uppercase leading-[0.92] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/panel:-translate-y-2.5"
-          style={{
-            fontSize: isDesktop
-              ? "clamp(5.625rem, 7vw, 8.75rem)"
-              : "clamp(2.75rem, 11vw, 4.5rem)",
-            transform: isActive ? "translateY(-10px)" : undefined,
-          }}
-        >
-          {world.titleLines.map((line, i) => (
-            <span
-              key={`${line}-${i}`}
-              className="block"
-              style={{ marginTop: i > 0 ? "0.06em" : 0 }}
-            >
-              {line}
-            </span>
-          ))}
-        </h2>
-
-        <p
-          className="mt-4 max-w-md font-sans text-sm leading-relaxed tracking-[0.02em] text-[#F5F0E6]/78 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-base md:max-w-lg md:text-[1.05rem] group-hover/panel:text-[#F5F0E6]/88"
-          style={{
-            opacity: isActive ? 1 : 0.78,
-            transform: isActive ? "translateY(-4px)" : undefined,
-          }}
-        >
-          {world.description}
-        </p>
-
-        <p
-          className="mt-3 text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5F0E6]/45 transition-opacity duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-xs"
-          style={{ opacity: isActive ? 0.72 : 0.45 }}
-        >
-          {world.experienceCountLabel}
-        </p>
-
-        <div
-          className="mt-6 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:mt-8 group-hover/panel:-translate-y-1"
-          style={{ transform: isActive ? "translateY(-6px)" : undefined }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <CategoryEditorialButton
-            href={world.href}
-            variant="primary"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onNavigate(world.id, world.href);
+        <div className="flex w-full max-w-[min(92vw,26rem)] flex-col items-center lg:max-w-none lg:items-stretch">
+          <h2
+            className="font-theater font-bold uppercase leading-[0.98] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:font-normal lg:leading-[0.92] lg:drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)] lg:group-hover/panel:-translate-y-2.5"
+            style={{
+              fontSize: isDesktop
+                ? "clamp(5.625rem, 7vw, 8.75rem)"
+                : "clamp(2.25rem, 11.25vw, 3rem)",
+              transform: isDesktop && isActive ? "translateY(-10px)" : undefined,
             }}
           >
-            {world.ctaLabel} →
-          </CategoryEditorialButton>
+            {world.titleLines.map((line, i) => (
+              <span
+                key={`${line}-${i}`}
+                className="block"
+                style={{ marginTop: i > 0 ? (isDesktop ? "0.06em" : 4) : 0 }}
+              >
+                {line}
+              </span>
+            ))}
+          </h2>
+
+          <p
+            className="mt-3 max-w-[28ch] font-sans text-sm font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/82 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:mt-4 lg:max-w-md lg:text-[#F5F0E6]/78 sm:text-base md:max-w-lg md:text-[1.05rem] lg:group-hover/panel:text-[#F5F0E6]/88"
+            style={{
+              opacity: isDesktop && isActive ? 1 : isDesktop ? 0.78 : 1,
+              transform: isDesktop && isActive ? "translateY(-4px)" : undefined,
+            }}
+          >
+            {world.description}
+          </p>
+
+          <p
+            className="mt-3 hidden text-[11px] font-medium uppercase tracking-[0.22em] text-[#F5F0E6]/45 transition-opacity duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-xs lg:block"
+            style={{ opacity: isActive ? 0.72 : 0.45 }}
+          >
+            {world.experienceCountLabel}
+          </p>
+
+          <div
+            className="mt-5 w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:mt-6 lg:w-auto sm:mt-8 lg:group-hover/panel:-translate-y-1"
+            style={{
+              transform: isDesktop && isActive ? "translateY(-6px)" : undefined,
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CategoryEditorialButton
+              href={world.href}
+              variant="primary"
+              className="w-full justify-center lg:w-auto"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onNavigate(world.id, world.href);
+              }}
+            >
+              {world.ctaLabel} →
+            </CategoryEditorialButton>
+          </div>
         </div>
       </div>
     </article>

@@ -4,26 +4,10 @@ export * from "./product-types";
 
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { locales, type Locale } from "./i18n/config";
-import { PRODUCT_I18N_EXTRA } from "./products-i18n-extra";
-import { PRODUCTS_DATA } from "./products-data";
-
-function mergeCatalogTranslations(base: Product): Product {
-  const extra = PRODUCT_I18N_EXTRA[base.id];
-  if (!extra) return base;
-  const translations = { ...base.translations };
-  for (const loc of locales) {
-    const patch = extra[loc as Locale];
-    if (!patch) continue;
-    const prev = translations[loc as Locale];
-    translations[loc as Locale] = {
-      ...prev,
-      ...patch,
-      seo: { ...prev?.seo, ...patch.seo },
-    };
-  }
-  return { ...base, translations };
-}
+import {
+  CATALOG_PRODUCTS,
+  getCatalogProductById,
+} from "./products-catalog";
 
 type ProductScriptJson = {
   images?: {
@@ -88,18 +72,12 @@ function mergeScriptAssets(base: Product): Product {
   };
 }
 
-function mergeScriptMedia(base: Product): Product {
-  return mergeScriptAssets(base);
-}
-
-const BASE_PRODUCTS: Product[] = PRODUCTS_DATA.map(mergeCatalogTranslations);
-
 export function getProducts(): Product[] {
-  return BASE_PRODUCTS.map(mergeScriptMedia);
+  return CATALOG_PRODUCTS.map(mergeScriptAssets);
 }
 
 export function getProductById(id: string): Product | undefined {
-  const base = BASE_PRODUCTS.find((p) => p.id === id);
+  const base = getCatalogProductById(id);
   if (!base) return undefined;
-  return mergeScriptMedia(base);
+  return mergeScriptAssets(base);
 }

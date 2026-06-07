@@ -149,15 +149,6 @@ export default function SpatialExperienceCarousel({
         </div>
       </div>
 
-      <div
-        className="pointer-events-none absolute inset-0 z-20 hidden lg:block"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(5,6,6,0.42) 0%, transparent 6%, transparent 94%, rgba(5,6,6,0.42) 100%)",
-        }}
-        aria-hidden
-      />
-
       <CarouselNavArrow
         direction="prev"
         onClick={goPrev}

@@ -14,6 +14,7 @@
     "login": "Ingresar",
     "myAccount": "Mi Cuenta",
     "reservations": "Mis Reservas",
+    "closeMenu": "Cerrar menú",
     "toursMenu": {
       "cabalgataPotrerillos": "Cabalgata + Picada en Potrerillos",
       "andesSunset": "Andes Experience + Cabalgata + Sunset Picnic",
@@ -263,7 +264,7 @@
     "experienceCount": "{count} experiencias",
     "worlds": {
       "wine": {
-        "titleLines": ["WINE TOURS", "&", "BODEGAS"],
+        "titleLines": ["WINE TOURS &", "BODEGAS"],
         "description": "Bodegas seleccionadas, gastronomía y paisajes mendocinos.",
         "imageAlt": "Experiencia de vino y gastronomía en Mendoza"
       },

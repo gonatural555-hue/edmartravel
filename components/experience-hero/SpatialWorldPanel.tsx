@@ -106,12 +106,6 @@ export default function SpatialWorldPanel({
       >
         {children}
       </div>
-      {!isCenter ? (
-        <div
-          className="pointer-events-none absolute inset-0 rounded-[20px] bg-gradient-to-r from-black/10 via-black/8 to-black/10"
-          aria-hidden
-        />
-      ) : null}
     </motion.div>
   );
 }

@@ -14,6 +14,7 @@
     "login": "Login",
     "myAccount": "My Account",
     "reservations": "My Reservations",
+    "closeMenu": "Close menu",
     "toursMenu": {
       "cabalgataPotrerillos": "Horseback ride + Picada in Potrerillos",
       "andesSunset": "Andes Experience + Horseback + Sunset Picnic",
@@ -263,7 +264,7 @@
     "experienceCount": "{count} experiences",
     "worlds": {
       "wine": {
-        "titleLines": ["WINE TOURS", "&", "WINERIES"],
+        "titleLines": ["WINE TOURS &", "WINERIES"],
         "description": "Curated wineries, gastronomy, and Mendoza landscapes.",
         "imageAlt": "Wine and gastronomy experience in Mendoza"
       },

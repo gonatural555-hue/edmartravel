@@ -9,10 +9,14 @@ import HomeSectionFade from "@/components/home/HomeSectionFade";
 import {
   COLLAGE_ITEMS,
   collageExperienceHref,
+  collageProductHref,
   collagePushOffset,
-  type CollageExperienceId,
   type CollageItemDef,
 } from "@/lib/home-experience-collage";
+import { formatPriceARS } from "@/lib/format-price";
+import type { Locale } from "@/lib/i18n/config";
+import { localizeProduct } from "@/lib/localize-product";
+import { getCatalogProductById } from "@/lib/products-catalog";
 
 const PREMIUM_EASE = [0.22, 1, 0.36, 1] as const;
 const MOTION_S = 1.1;
@@ -44,39 +48,71 @@ function useCollageHeroScale() {
   return scale;
 }
 
-type CollageExperienceCopy = {
+type CollageCardCopy = {
   title: string;
+  fromPriceLabel: string | null;
+  priceAmount: string | null;
   cta: string;
   href: string;
+  isProductLink: boolean;
 };
 
-function useCollageExperienceCopy(
-  experienceId: CollageExperienceId
-): CollageExperienceCopy {
-  const locale = useLocale();
+function useCollageCardCopy(item: CollageItemDef): CollageCardCopy {
+  const locale = useLocale() as Locale;
   const t = useTranslations();
-  const key = experienceId;
+  const categoryKey = item.experienceId;
+
+  if (item.productId) {
+    const product = getCatalogProductById(item.productId);
+    if (product) {
+      const localized = localizeProduct(product, locale);
+      const fromPrice = t("experiencePage.fromPrice", "Desde");
+      return {
+        title: localized.title,
+        fromPriceLabel: fromPrice,
+        priceAmount: formatPriceARS(localized.price),
+        cta: t(`home.collage.${categoryKey}.cta`),
+        href: collageProductHref(locale, item.productId),
+        isProductLink: true,
+      };
+    }
+  }
 
   return {
-    title: t(`home.collage.${key}.category`),
-    cta: t(`home.collage.${key}.cta`),
-    href: collageExperienceHref(locale, experienceId),
+    title: t(`home.collage.${categoryKey}.category`),
+    fromPriceLabel: null,
+    priceAmount: null,
+    cta: t(`home.collage.${categoryKey}.cta`),
+    href: collageExperienceHref(locale, item.experienceId),
+    isProductLink: false,
   };
 }
 
 function CollageCardOverlay({
-  experienceId,
+  item,
   isSelected,
   heroScale,
   compact = false,
 }: {
-  experienceId: CollageExperienceId;
+  item: CollageItemDef;
   isSelected: boolean;
   heroScale: number;
   compact?: boolean;
 }) {
-  const { title, cta, href } = useCollageExperienceCopy(experienceId);
+  const { title, fromPriceLabel, priceAmount, cta, href, isProductLink } =
+    useCollageCardCopy(item);
   const counterScale = isSelected && heroScale > 1 ? 1 / heroScale : 1;
+  const titleSizeClass = isProductLink
+    ? compact
+      ? "text-[clamp(0.8125rem,3.6vw,1.1rem)]"
+      : isSelected
+        ? "text-[clamp(1.05rem,2.4vw,1.65rem)]"
+        : "text-[clamp(0.875rem,1.85vw,1.2rem)]"
+    : compact
+      ? "text-[clamp(0.9375rem,4.2vw,1.28rem)]"
+      : isSelected
+        ? "text-[clamp(1.5rem,3.3vw,2.48rem)]"
+        : "text-[clamp(0.975rem,2.1vw,1.43rem)]";
 
   return (
     <div
@@ -90,16 +126,34 @@ function CollageCardOverlay({
       <div className="pointer-events-auto relative flex max-w-[92%] flex-col items-center gap-2 sm:gap-2.5">
         <Link
           href={href}
-          className={`font-theater font-bold uppercase leading-[0.95] tracking-[-0.02em] text-[#F5F0E6] transition-colors hover:text-[#E8C98A] ${
-            compact
-              ? "text-[clamp(0.62rem,2.8vw,0.85rem)]"
-              : isSelected
-                ? "text-[clamp(1rem,2.2vw,1.65rem)]"
-                : "text-[clamp(0.65rem,1.4vw,0.95rem)]"
-          }`}
+          className={`font-theater font-bold leading-[1.02] text-[#F5F0E6] transition-colors hover:text-[#E8C98A] ${
+            isProductLink
+              ? "normal-case tracking-[-0.01em]"
+              : "uppercase tracking-[-0.02em] leading-[0.95]"
+          } ${titleSizeClass}`}
         >
           {title}
         </Link>
+        {priceAmount ? (
+          <p
+            className={`font-sans ${
+              compact
+                ? "text-[clamp(0.6875rem,2.8vw,0.8125rem)]"
+                : isSelected
+                  ? "text-[clamp(0.8125rem,1.55vw,1rem)]"
+                  : "text-[clamp(0.6875rem,1.35vw,0.8125rem)]"
+            }`}
+          >
+            {fromPriceLabel ? (
+              <span className="mr-1.5 font-medium tracking-[0.06em] text-[#F5F0E6]/72">
+                {fromPriceLabel}
+              </span>
+            ) : null}
+            <span className="font-semibold tabular-nums tracking-[0.02em] text-[#FFD86A] drop-shadow-[0_0_14px_rgba(255,216,106,0.55)]">
+              {priceAmount}
+            </span>
+          </p>
+        ) : null}
         <HomeCtaButton
           href={href}
           variant="primary"
@@ -185,7 +239,7 @@ function DesktopCollageCard({
         decoding="async"
       />
       <CollageCardOverlay
-        experienceId={item.experienceId}
+        item={item}
         isSelected={isSelected}
         heroScale={heroScale}
       />
@@ -246,7 +300,7 @@ function MobileCollageCard({
         loading="lazy"
       />
       <CollageCardOverlay
-        experienceId={item.experienceId}
+        item={item}
         isSelected={isSelected}
         heroScale={1}
         compact
