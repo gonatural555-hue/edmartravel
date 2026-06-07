@@ -331,7 +331,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         const siteUrl =
           process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
           (typeof window !== "undefined" ? window.location.origin : "");
-        const nextPath = `/${payload.locale}/account`;
+        const nextPath = `/${payload.locale}/products`;
         const { data, error } = await supabase.auth.signUp({
           email: payload.email.trim(),
           password: payload.password,

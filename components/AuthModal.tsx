@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import AuthForm from "@/components/AuthForm";
+import { useLocale } from "@/components/i18n/LocaleProvider";
 
 type Props = {
   open: boolean;
@@ -10,6 +12,14 @@ type Props = {
 };
 
 export default function AuthModal({ open, onClose, initialTab = "login" }: Props) {
+  const router = useRouter();
+  const locale = useLocale();
+
+  const handleAuthSuccess = () => {
+    onClose();
+    router.push(`/${locale}/products`);
+    router.refresh();
+  };
   useEffect(() => {
     if (!open) return;
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -38,7 +48,7 @@ export default function AuthModal({ open, onClose, initialTab = "login" }: Props
         aria-label="Cerrar"
       />
       <div className="relative w-full max-w-md bg-dark-base border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.45)] rounded-3xl px-8 py-8">
-        <AuthForm initialTab={initialTab} onSuccess={onClose} isPage={false} />
+        <AuthForm initialTab={initialTab} onSuccess={handleAuthSuccess} isPage={false} />
       </div>
     </div>
   );

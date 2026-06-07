@@ -64,10 +64,7 @@ export default function AuthForm({
     return "Creá tu cuenta para acelerar futuras compras";
   }, [activeTab]);
 
-  const postAuthPath = useMemo(() => {
-    if (redirectNext && redirectNext.startsWith("/")) return redirectNext;
-    return `/${locale}/account`;
-  }, [redirectNext, locale]);
+  const postAuthPath = `/${locale}/products`;
 
   const handleInputFocus = (inputRef: React.RefObject<HTMLInputElement | null>) => {
     if (inputRef.current && isPage) {

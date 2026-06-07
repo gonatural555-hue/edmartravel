@@ -25,7 +25,7 @@ function AuthPageContent() {
   // Redirect if already logged in
   useEffect(() => {
     if (mounted && isLoggedIn) {
-      router.push(`/${locale}/account`);
+      router.push(`/${locale}/products`);
     }
   }, [mounted, isLoggedIn, router, locale]);
 

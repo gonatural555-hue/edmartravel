@@ -11,7 +11,7 @@ import { defaultLocale } from "@/lib/i18n/config";
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  let next = searchParams.get("next") ?? `/${defaultLocale}/account`;
+  let next = searchParams.get("next") ?? `/${defaultLocale}/products`;
   if (!next.startsWith("/")) next = `/${next}`;
 
   if (code) {
