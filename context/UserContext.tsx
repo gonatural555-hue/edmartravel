@@ -50,6 +50,8 @@ export type ReservationSnapshot = {
 
 export type Order = {
   id: string;
+  /** Código corto legible (EDM-XXXXX), estable para el mismo id. */
+  requestCode?: string;
   items: {
     id: string;
     title: string;
@@ -218,25 +220,31 @@ async function fetchProfileForUser(
 }
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
-  const [state, setState] = useState<UserState>({
-    isLoggedIn: false,
-    user: null,
-    addresses: [],
-    orders: [],
-    lastOrderId: null,
-    authInitialized: false,
+  const [state, setState] = useState<UserState>(() => {
+    if (typeof window === "undefined") {
+      return {
+        isLoggedIn: false,
+        user: null,
+        addresses: [],
+        orders: [],
+        lastOrderId: null,
+        authInitialized: false,
+      };
+    }
+    const local = loadPersistedLocal();
+    return {
+      isLoggedIn: false,
+      user: null,
+      addresses: local.addresses,
+      orders: local.orders,
+      lastOrderId: local.lastOrderId ?? null,
+      authInitialized: false,
+    };
   });
 
   const persistRef = useRef(false);
 
   useEffect(() => {
-    const local = loadPersistedLocal();
-    setState((prev) => ({
-      ...prev,
-      addresses: local.addresses,
-      orders: local.orders,
-      lastOrderId: local.lastOrderId ?? null,
-    }));
     persistRef.current = true;
   }, []);
 
