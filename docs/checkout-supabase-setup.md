@@ -1,10 +1,29 @@
 # Checkout: configuración manual en Supabase
 
-Guía paso a paso para resolver el error **"No pudimos guardar tu reserva"** al confirmar en checkout.
+Guía paso a paso para checkout y reservas (invitado o con cuenta).
 
-## Resumen
+## Modo invitado (sin login) — configuración actual
 
-El checkout guarda la reserva llamando a `POST /api/bookings`, que escribe en Supabase las tablas `bookings` y `booking_passengers`. Si la base de datos no tiene las migraciones aplicadas, o el usuario no tiene fila en `profiles`, la reserva falla.
+Por defecto la UI de login/cuenta está **oculta** (`NEXT_PUBLIC_AUTH_UI_ENABLED` no definida o `false`). Cualquier visitante puede reservar sin sesión.
+
+**Variables en Vercel / `.env.local`:**
+
+| Variable | Dónde | Obligatoria (invitado) |
+|----------|-------|------------------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Pública | Sí |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Pública | Sí |
+| `SUPABASE_SERVICE_ROLE_KEY` | Solo servidor | **Sí** (insert de reservas sin login) |
+| `NEXT_PUBLIC_AUTH_UI_ENABLED` | Pública | No (`false` = invitado) |
+
+**Para reactivar login y cuentas:** `NEXT_PUBLIC_AUTH_UI_ENABLED=true` + redeploy.
+
+**Migración obligatoria para invitados:** `005_bookings_guest_user_id_nullable.sql` (permite `user_id` null en `bookings`).
+
+---
+
+## Resumen (errores al guardar reserva)
+
+El checkout guarda la reserva llamando a `POST /api/bookings`, que escribe en Supabase las tablas `bookings` y `booking_passengers`. Si la base de datos no tiene las migraciones aplicadas, o falta `SUPABASE_SERVICE_ROLE_KEY`, la reserva falla.
 
 ---
 
@@ -153,4 +172,6 @@ Ejecutá en Supabase SQL Editor **en este orden** (solo las que falten):
 - [ ] Tabla `profiles` existe y el trigger `on_auth_user_created` está activo
 - [ ] El usuario de prueba tiene fila en `profiles`
 - [ ] `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` correctos en producción
-- [ ] Redeploy después de cambiar variables o migraciones
+- [ ] Migración **005** aplicada (reservas de invitado)
+- [ ] `SUPABASE_SERVICE_ROLE_KEY` configurada en Vercel (solo servidor)
+- [ ] `NEXT_PUBLIC_AUTH_UI_ENABLED=false` (o sin definir)

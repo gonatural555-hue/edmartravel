@@ -11,6 +11,7 @@ import { PRODUCTS_DATA } from "@/lib/products-data";
 import type { TourismExperience } from "@/lib/product-types";
 import ProductCardSimple from "@/components/ProductCardSimple";
 import { formatPriceARS } from "@/lib/format-price";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 function hasShippingLines(order: Order) {
   const a = order.address;
@@ -31,6 +32,7 @@ export default function OrderSuccessPage() {
   const locale = useLocale();
   const t = useTranslations();
   const { orders, lastOrderId } = useUser();
+  const authUiEnabled = isAuthUiEnabled();
   const [order, setOrder] = useState<Order | null>(null);
 
   /** Catálogo estático (sin `node:fs`) — `getProducts()` solo es válido en servidor */
@@ -222,12 +224,14 @@ export default function OrderSuccessPage() {
               <Link href={`/${locale}/products`} className={BOOKING_GLASS.primaryCta}>
                 {t("orderSuccessPage.continueShopping")}
               </Link>
-              <Link
-                href={`/${locale}/account`}
-                className="inline-flex items-center justify-center rounded-xl border border-white/15 px-6 py-3.5 text-sm font-semibold text-white/90 transition hover:bg-white/[0.06]"
-              >
-                {t("orderSuccessPage.viewAccount")}
-              </Link>
+              {authUiEnabled ? (
+                <Link
+                  href={`/${locale}/account`}
+                  className="inline-flex items-center justify-center rounded-xl border border-white/15 px-6 py-3.5 text-sm font-semibold text-white/90 transition hover:bg-white/[0.06]"
+                >
+                  {t("orderSuccessPage.viewAccount")}
+                </Link>
+              ) : null}
             </div>
           </motion.div>
         ) : (
@@ -452,12 +456,14 @@ export default function OrderSuccessPage() {
               >
                 {t("orderSuccessPage.continueShopping")}
               </Link>
-              <Link
-                href={`/${locale}/account`}
-                className="inline-flex flex-1 items-center justify-center rounded-xl border border-white/20 px-8 py-3.5 text-base font-semibold text-white/90 transition hover:bg-white/[0.06] sm:flex-none"
-              >
-                {t("orderSuccessPage.viewAccount")}
-              </Link>
+              {authUiEnabled ? (
+                <Link
+                  href={`/${locale}/account`}
+                  className="inline-flex flex-1 items-center justify-center rounded-xl border border-white/20 px-8 py-3.5 text-base font-semibold text-white/90 transition hover:bg-white/[0.06] sm:flex-none"
+                >
+                  {t("orderSuccessPage.viewAccount")}
+                </Link>
+              ) : null}
             </div>
 
             {recommendedProducts.length > 0 && (

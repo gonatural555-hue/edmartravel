@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from "@/lib/supabase/server";
 import AccountPageClient from "@/components/AccountPageClient";
 import { locales, type Locale } from "@/lib/i18n/config";
 import type { ProfileRow } from "@/lib/auth/profile";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 /**
  * Server Component: verifica sesión con cookies y lee `profiles` antes de hidratar el cliente.
@@ -16,6 +17,10 @@ export default async function AccountPage({
   const { locale } = await params;
   if (!locales.includes(locale as Locale)) {
     notFound();
+  }
+
+  if (!isAuthUiEnabled()) {
+    redirect(`/${locale}/products`);
   }
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;

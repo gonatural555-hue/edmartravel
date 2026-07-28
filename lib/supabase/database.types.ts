@@ -9,7 +9,7 @@ export type BookingPaymentMethod = "manual" | "whatsapp" | "paypal";
 
 export type BookingRow = {
   id: string;
-  user_id: string;
+  user_id: string | null;
   status: BookingStatus;
   currency: string;
   total_amount: string | null;
@@ -29,7 +29,7 @@ export type BookingRow = {
 };
 
 export type BookingInsert = {
-  user_id: string;
+  user_id?: string | null;
   status?: BookingStatus;
   currency?: string;
   total_amount?: string | number | null;

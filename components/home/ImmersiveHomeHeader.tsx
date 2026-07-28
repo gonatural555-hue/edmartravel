@@ -16,6 +16,7 @@ import CategoryEditorialButton, {
 import { HOME_PAGE_BG } from "@/lib/category-page-assets";
 import { isHomePath } from "@/lib/is-home-path";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
 import type {
   HeaderUtilityId,
@@ -206,6 +207,7 @@ export default function ImmersiveHomeHeader({
   const t = useTranslations();
   const { totalItems } = useCart();
   const { isLoggedIn } = useUser();
+  const authUiEnabled = isAuthUiEnabled();
   const isDirector = useExperienceDirectorMode();
   const headerUtilities = useHeaderUtilitiesFromStorage(isDirector);
 
@@ -352,29 +354,31 @@ export default function ImmersiveHomeHeader({
                 buildLocaleHref={buildLocaleHref}
               />
             </div>
-            <div
-              style={
-                isDirector
-                  ? utilityPositionStyle(headerUtilities.login, isDirector)
-                  : undefined
-              }
-            >
-              {isLoggedIn ? (
-                <CategoryEditorialButton
-                  href={`/${locale}/account`}
-                  className={HEADER_UTILITY_CTA_COMPACT}
-                >
-                  {myAccountLabel}
-                </CategoryEditorialButton>
-              ) : (
-                <CategoryEditorialButton
-                  href={authHref}
-                  className={HEADER_UTILITY_CTA_COMPACT}
-                >
-                  {loginLabel}
-                </CategoryEditorialButton>
-              )}
-            </div>
+            {authUiEnabled ? (
+              <div
+                style={
+                  isDirector
+                    ? utilityPositionStyle(headerUtilities.login, isDirector)
+                    : undefined
+                }
+              >
+                {isLoggedIn ? (
+                  <CategoryEditorialButton
+                    href={`/${locale}/account`}
+                    className={HEADER_UTILITY_CTA_COMPACT}
+                  >
+                    {myAccountLabel}
+                  </CategoryEditorialButton>
+                ) : (
+                  <CategoryEditorialButton
+                    href={authHref}
+                    className={HEADER_UTILITY_CTA_COMPACT}
+                  >
+                    {loginLabel}
+                  </CategoryEditorialButton>
+                )}
+              </div>
+            ) : null}
             <div
               style={
                 isDirector
@@ -478,23 +482,25 @@ export default function ImmersiveHomeHeader({
             </ul>
 
             <div className="mt-8 flex w-full max-w-sm flex-col gap-3">
-              {isLoggedIn ? (
-                <CategoryEditorialButton
-                  href={`/${locale}/account`}
-                  onClick={closeMenu}
-                  className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
-                >
-                  {myAccountLabel}
-                </CategoryEditorialButton>
-              ) : (
-                <CategoryEditorialButton
-                  href={authHref}
-                  onClick={closeMenu}
-                  className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
-                >
-                  {loginLabel}
-                </CategoryEditorialButton>
-              )}
+              {authUiEnabled ? (
+                isLoggedIn ? (
+                  <CategoryEditorialButton
+                    href={`/${locale}/account`}
+                    onClick={closeMenu}
+                    className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
+                  >
+                    {myAccountLabel}
+                  </CategoryEditorialButton>
+                ) : (
+                  <CategoryEditorialButton
+                    href={authHref}
+                    onClick={closeMenu}
+                    className={`${HEADER_UTILITY_CTA_COMPACT} w-full justify-center`}
+                  >
+                    {loginLabel}
+                  </CategoryEditorialButton>
+                )
+              ) : null}
               <CategoryEditorialButton
                 href={`/${locale}/cart`}
                 onClick={closeMenu}

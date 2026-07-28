@@ -24,6 +24,7 @@ import {
   bookingMotion,
 } from "@/lib/booking-ui";
 import { bookingErrorI18nKey } from "@/lib/booking-error-codes";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 import { formatPriceARS } from "@/lib/format-price";
 
 type TravelerForm = {
@@ -103,6 +104,7 @@ export default function CheckoutPage() {
   const locale = useLocale();
   const t = useTranslations();
   const { user, addOrder, authInitialized } = useUser();
+  const authUiEnabled = isAuthUiEnabled();
   const [isLoading, setIsLoading] = useState(false);
   const [bookingError, setBookingError] = useState<string | null>(null);
   const [paymentMethod, setPaymentMethod] = useState<
@@ -220,7 +222,7 @@ export default function CheckoutPage() {
       return;
     }
 
-    if (!authInitialized || !user) {
+    if (authUiEnabled && (!authInitialized || !user)) {
       setBookingError(t("checkoutPage.loginRequiredBody"));
       return;
     }
@@ -257,7 +259,7 @@ export default function CheckoutPage() {
   const handlePayPalSuccess = async (details: { id?: string } | null) => {
     if (items.length === 0 || !travelerOk) return;
 
-    if (!authInitialized || !user) {
+    if (authUiEnabled && (!authInitialized || !user)) {
       setBookingError(t("checkoutPage.loginRequiredBody"));
       return;
     }
@@ -405,7 +407,7 @@ export default function CheckoutPage() {
           </Link>
         </motion.div>
 
-        {authInitialized && !user && (
+        {authUiEnabled && authInitialized && !user && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -503,7 +505,7 @@ export default function CheckoutPage() {
                   />
                 </div>
               </div>
-              {user && (
+              {authUiEnabled && user && (
                 <p className={`mt-6 text-xs ${BOOKING_TEXT_FAINT}`}>
                   <Link
                     href={`/${locale}/account`}
@@ -637,11 +639,11 @@ export default function CheckoutPage() {
                 ))}
                 {paymentMethod === "paypal" && (
                   <div className="mt-6 border-t border-[#1a1a1a]/10 pt-6">
-                    {!authInitialized ? (
+                    {authUiEnabled && !authInitialized ? (
                       <p className={`rounded-xl border border-[#1a1a1a]/10 bg-white px-4 py-3 text-sm ${BOOKING_TEXT_MUTED}`}>
                         {t("checkoutPage.authLoading")}
                       </p>
-                    ) : !user ? (
+                    ) : authUiEnabled && !user ? (
                       <p className="rounded-xl border border-amber-600/20 bg-amber-50 px-4 py-3 text-sm text-amber-950">
                         {t("checkoutPage.loginRequiredBody")}
                       </p>
@@ -749,8 +751,7 @@ export default function CheckoutPage() {
                   disabled={
                     isLoading ||
                     !travelerOk ||
-                    !authInitialized ||
-                    !user
+                    (authUiEnabled && (!authInitialized || !user))
                   }
                   className={`${BOOKING_GLASS.primaryCta} mt-8`}
                 >

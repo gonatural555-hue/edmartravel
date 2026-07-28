@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useUser } from "@/context/UserContext";
 import { useAuth } from "@/context/AuthContext";
 import { useTranslations, useLocale } from "@/components/i18n/LocaleProvider";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 const SESSION_STORAGE_MINIMIZED = "gn-registration-cta-minimized";
 
@@ -180,7 +181,7 @@ export default function RegistrationCTA() {
   };
 
   // Don't show if input is focused (keyboard is open)
-  if (!isVisible || isInputFocused) return null;
+  if (!isAuthUiEnabled() || !isVisible || isInputFocused) return null;
 
   if (isMinimized) {
     return (

@@ -8,6 +8,7 @@ Documentación de las tablas públicas relacionadas con **perfiles**, **reservas
 2. `002_bookings_and_contacts.sql` — reservas, pasajeros y formularios de contacto.
 3. `003_bookings_detail_columns.sql` — columnas estructuradas en `bookings` (contacto, alojamiento, fecha/hora/personas, notas, método de pago).
 4. `004_backfill_missing_profiles.sql` — (opcional) crea filas en `profiles` para usuarios de Auth que no tengan perfil.
+5. `005_bookings_guest_user_id_nullable.sql` — `user_id` opcional en `bookings` (reservas sin cuenta).
 
 Guía manual paso a paso para checkout en producción: `docs/checkout-supabase-setup.md`.
 

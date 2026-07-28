@@ -1,20 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import {
   createBrowserSupabaseClient,
   isSupabaseConfigured,
 } from "@/lib/supabase/client";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 export default function ForgotPasswordPage() {
   const locale = useLocale();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">(
     "idle"
   );
   const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isAuthUiEnabled()) {
+      router.replace(`/${locale}/products`);
+    }
+  }, [router, locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

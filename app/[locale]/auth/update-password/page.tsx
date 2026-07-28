@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLocale } from "@/components/i18n/LocaleProvider";
@@ -8,6 +8,7 @@ import {
   createBrowserSupabaseClient,
   isSupabaseConfigured,
 } from "@/lib/supabase/client";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 export default function UpdatePasswordPage() {
   const locale = useLocale();
@@ -16,6 +17,12 @@ export default function UpdatePasswordPage() {
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthUiEnabled()) {
+      router.replace(`/${locale}/products`);
+    }
+  }, [router, locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

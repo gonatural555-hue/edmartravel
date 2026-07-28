@@ -6,6 +6,7 @@ import Link from "next/link";
 import AuthForm from "@/components/AuthForm";
 import { useLocale } from "@/components/i18n/LocaleProvider";
 import { useUser } from "@/context/UserContext";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 function AuthPageContent() {
   const searchParams = useSearchParams();
@@ -21,6 +22,12 @@ function AuthPageContent() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isAuthUiEnabled()) {
+      router.replace(`/${locale}/products`);
+    }
+  }, [router, locale]);
 
   // Redirect if already logged in
   useEffect(() => {

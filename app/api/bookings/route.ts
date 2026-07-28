@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
+import { createServiceSupabaseClient } from "@/lib/supabase/admin";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { formatPriceARS } from "@/lib/format-price";
 
@@ -100,15 +103,84 @@ function parsePreferredDate(s: string | undefined): string | null {
   return t;
 }
 
+type BookingInsertPayload = {
+  user_id: string | null;
+  status: "pending" | "confirmed";
+  currency: string;
+  total_amount: number;
+  notes: string;
+  country: string | null;
+  contact_email: string | null;
+  contact_phone: string | null;
+  accommodation: string | null;
+  checkout_notes: string | null;
+  experience_notes: string | null;
+  preferred_date: string | null;
+  preferred_time: string | null;
+  party_size: number | null;
+  payment_method: "manual" | "whatsapp" | "paypal";
+};
+
+async function insertBookingWithPassenger(
+  supabase: SupabaseClient,
+  payload: BookingInsertPayload,
+  passenger: {
+    first_name: string;
+    last_name: string;
+    document_id: string;
+  }
+): Promise<
+  { ok: true; bookingId: string } | { ok: false; error: string; message: string }
+> {
+  const { data: booking, error: bookingError } = await supabase
+    .from("bookings")
+    .insert(payload)
+    .select("id")
+    .single();
+
+  if (bookingError || !booking) {
+    console.error("[bookings API] insert booking", bookingError);
+    return {
+      ok: false,
+      error: "BOOKING_INSERT_FAILED",
+      message: bookingError?.message ?? "No se pudo crear la reserva",
+    };
+  }
+
+  const { error: passengerError } = await supabase
+    .from("booking_passengers")
+    .insert({
+      booking_id: booking.id,
+      first_name: passenger.first_name,
+      last_name: passenger.last_name,
+      document_id: passenger.document_id || null,
+      birth_date: null,
+    });
+
+  if (passengerError) {
+    console.error("[bookings API] insert passenger", passengerError);
+    await supabase.from("bookings").delete().eq("id", booking.id);
+    return {
+      ok: false,
+      error: "PASSENGER_INSERT_FAILED",
+      message: passengerError.message,
+    };
+  }
+
+  return { ok: true, bookingId: booking.id };
+}
+
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createServerSupabaseClient();
+    const sessionSupabase = await createServerSupabaseClient();
     const {
       data: { user },
       error: authError,
-    } = await supabase.auth.getUser();
+    } = await sessionSupabase.auth.getUser();
 
-    if (authError || !user) {
+    const guestCheckoutAllowed = !isAuthUiEnabled();
+
+    if ((authError || !user) && !guestCheckoutAllowed) {
       return NextResponse.json(
         { error: "UNAUTHORIZED", message: "Sesión requerida" },
         { status: 401 }
@@ -205,8 +277,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const status =
-      paymentMethod === "paypal" ? "confirmed" : "pending";
+    const status = paymentMethod === "paypal" ? "confirmed" : "pending";
 
     const notes = buildNotes(items, paymentMethod, paypalOrderId, reservation, {
       accommodation:
@@ -238,62 +309,56 @@ export async function POST(request: NextRequest) {
         ? Math.min(999, Math.floor(reservation.partySize))
         : null;
 
-    const { data: booking, error: bookingError } = await supabase
-      .from("bookings")
-      .insert({
-        user_id: user.id,
-        status,
-        currency: "ARS",
-        total_amount: subtotal,
-        notes,
-        country: nullIfEmpty(trimmed.country),
-        contact_email: nullIfEmpty(trimmed.email),
-        contact_phone: nullIfEmpty(trimmed.phone),
-        accommodation: nullIfEmpty(accommodation),
-        checkout_notes: nullIfEmpty(checkoutNotesRaw),
-        experience_notes: nullIfEmpty(reservation?.notes?.trim()),
-        preferred_date: parsePreferredDate(reservation?.preferredDate),
-        preferred_time: nullIfEmpty(reservation?.preferredTime?.trim()),
-        party_size: partySize,
-        payment_method: paymentMethod,
-      })
-      .select("id")
-      .single();
+    const bookingPayload: BookingInsertPayload = {
+      user_id: user?.id ?? null,
+      status,
+      currency: "ARS",
+      total_amount: subtotal,
+      notes,
+      country: nullIfEmpty(trimmed.country),
+      contact_email: nullIfEmpty(trimmed.email),
+      contact_phone: nullIfEmpty(trimmed.phone),
+      accommodation: nullIfEmpty(accommodation),
+      checkout_notes: nullIfEmpty(checkoutNotesRaw),
+      experience_notes: nullIfEmpty(reservation?.notes?.trim()),
+      preferred_date: parsePreferredDate(reservation?.preferredDate),
+      preferred_time: nullIfEmpty(reservation?.preferredTime?.trim()),
+      party_size: partySize,
+      payment_method: paymentMethod,
+    };
 
-    if (bookingError || !booking) {
-      console.error("[bookings API] insert booking", bookingError);
+    let supabase: SupabaseClient;
+    if (user) {
+      supabase = sessionSupabase;
+    } else {
+      try {
+        supabase = createServiceSupabaseClient();
+      } catch (e) {
+        console.error("[bookings API] guest checkout missing service role", e);
+        return NextResponse.json(
+          {
+            error: "INTERNAL",
+            message: "Reservas de invitado no configuradas (SUPABASE_SERVICE_ROLE_KEY)",
+          },
+          { status: 500 }
+        );
+      }
+    }
+
+    const result = await insertBookingWithPassenger(supabase, bookingPayload, {
+      first_name,
+      last_name,
+      document_id: trimmed.idDocument,
+    });
+
+    if (!result.ok) {
       return NextResponse.json(
-        {
-          error: "BOOKING_INSERT_FAILED",
-          message: bookingError?.message ?? "No se pudo crear la reserva",
-        },
+        { error: result.error, message: result.message },
         { status: 500 }
       );
     }
 
-    const { error: passengerError } = await supabase
-      .from("booking_passengers")
-      .insert({
-        booking_id: booking.id,
-        first_name,
-        last_name,
-        document_id: trimmed.idDocument || null,
-        birth_date: null,
-      });
-
-    if (passengerError) {
-      console.error("[bookings API] insert passenger", passengerError);
-      await supabase.from("bookings").delete().eq("id", booking.id);
-      return NextResponse.json(
-        {
-          error: "PASSENGER_INSERT_FAILED",
-          message: passengerError.message,
-        },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({ bookingId: booking.id });
+    return NextResponse.json({ bookingId: result.bookingId });
   } catch (e) {
     console.error("[bookings API]", e);
     return NextResponse.json(

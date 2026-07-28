@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 /**
  * Ruta de conveniencia: /{locale}/register → formulario de registro canónico.
@@ -10,5 +11,8 @@ export default async function RegisterPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  if (!isAuthUiEnabled()) {
+    redirect(`/${locale}/products`);
+  }
   redirect(`/${locale}/auth?tab=register`);
 }
