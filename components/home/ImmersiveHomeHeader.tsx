@@ -47,7 +47,7 @@ function isCategoryPath(pathname: string) {
 function isEditorialNavSurface(pathname: string) {
   if (isHomePath(pathname)) return true;
   if (/\/blog(\/|$)/.test(pathname)) return true;
-  if (/\/(cart|checkout)(\/|$)/.test(pathname)) return true;
+  if (/\/(cart|checkout|order-success)(\/|$)/.test(pathname)) return true;
   return false;
 }
 
@@ -277,12 +277,12 @@ export default function ImmersiveHomeHeader({
     <img
       src="/assets/images/logo/logo.png"
       alt={SITE_CONFIG.name}
-      width={280}
-      height={52}
-      className={`h-[2.35rem] w-auto max-w-[12rem] object-contain opacity-[0.97] sm:h-[2.6rem] sm:max-w-[13.5rem] lg:h-[4rem] lg:max-w-[18rem] xl:h-[4.5rem] xl:max-w-[20rem] ${
+      width={200}
+      height={133}
+      className={`h-[2.35rem] w-auto max-w-[9.5rem] object-contain object-left sm:h-[2.55rem] sm:max-w-[10.5rem] lg:h-[3rem] lg:max-w-[12.5rem] xl:h-[3.25rem] xl:max-w-[13.5rem] ${
         isEditorialHeader
-          ? "drop-shadow-[0_2px_12px_rgba(26,26,26,0.08)]"
-          : "drop-shadow-[0_0_36px_rgba(200,155,60,0.24),0_4px_16px_rgba(0,0,0,0.45)]"
+          ? "mix-blend-screen"
+          : "mix-blend-screen opacity-[0.92]"
       }`}
       decoding="async"
     />
