@@ -2111,6 +2111,12 @@
     "loginCta": "Sign in",
     "bookingErrorGeneric": "We could not save your booking. Please try again.",
     "bookingErrorSubtotal": "The cart total no longer matches the items. Refresh and try again.",
+    "bookingErrorUnauthorized": "Your session expired or could not be verified. Sign out, sign in again, and retry.",
+    "bookingErrorTraveler": "Traveler details are incomplete. Check name, ID, email, phone, and country.",
+    "bookingErrorItems": "The cart is invalid. Return to the cart, add the experience again, and retry.",
+    "bookingErrorPayment": "The selected payment method is invalid. Choose another option and try again.",
+    "bookingErrorDatabase": "We could not save the booking to the database. If this persists, contact us — Supabase may need setup.",
+    "bookingErrorPassenger": "Part of the booking was saved but passenger registration failed. Retry or contact us.",
     "bookingPayPalDbError": "Payment was received, but we could not save your booking. Contact us with your PayPal receipt.",
     "terms": "By confirming your order, you accept our terms and conditions"
   },

@@ -2111,6 +2111,12 @@
     "loginCta": "Iniciar sesión",
     "bookingErrorGeneric": "No pudimos guardar tu reserva. Intentá de nuevo.",
     "bookingErrorSubtotal": "El total ya no coincide con los ítems. Actualizá la página e intentá otra vez.",
+    "bookingErrorUnauthorized": "Tu sesión expiró o no se reconoce. Cerrá sesión, volvé a iniciar e intentá otra vez.",
+    "bookingErrorTraveler": "Faltan datos del viajero. Revisá nombre, documento, email, teléfono y país.",
+    "bookingErrorItems": "El carrito no es válido. Volvé al carrito, agregá la experiencia de nuevo e intentá otra vez.",
+    "bookingErrorPayment": "El método de pago seleccionado no es válido. Elegí otra opción e intentá de nuevo.",
+    "bookingErrorDatabase": "No pudimos guardar la reserva en la base de datos. Si el problema continúa, contactanos — puede faltar configuración en Supabase.",
+    "bookingErrorPassenger": "Guardamos parte de la reserva pero falló el registro del pasajero. Intentá de nuevo o contactanos.",
     "bookingPayPalDbError": "El pago se registró, pero no pudimos guardar la reserva. Escribinos con el comprobante de PayPal.",
     "terms": "Al confirmar tu pedido, aceptás nuestros términos y condiciones"
   },

@@ -2026,6 +2026,12 @@
     "loginCta": "Accedi",
     "bookingErrorGeneric": "Non abbiamo potuto salvare la prenotazione. Riprova.",
     "bookingErrorSubtotal": "Il totale non corrisponde più agli articoli. Aggiorna la pagina e riprova.",
+    "bookingErrorUnauthorized": "La sessione è scaduta o non è stata verificata. Esci, accedi di nuovo e riprova.",
+    "bookingErrorTraveler": "I dati del viaggiatore sono incompleti. Controlla nome, documento, email, telefono e paese.",
+    "bookingErrorItems": "Il carrello non è valido. Torna al carrello, aggiungi di nuovo l’esperienza e riprova.",
+    "bookingErrorPayment": "Il metodo di pagamento selezionato non è valido. Scegli un’altra opzione e riprova.",
+    "bookingErrorDatabase": "Non abbiamo potuto salvare la prenotazione nel database. Se persiste, contattaci — potrebbe mancare la configurazione Supabase.",
+    "bookingErrorPassenger": "Parte della prenotazione è stata salvata ma la registrazione del passeggero è fallita. Riprova o contattaci.",
     "bookingPayPalDbError": "Pagamento ricevuto, ma non abbiamo salvato la prenotazione. Contattaci con la ricevuta PayPal.",
     "terms": "Confermando il tuo ordine, accetti i nostri termini e condizioni"
   },

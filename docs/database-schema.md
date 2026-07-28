@@ -7,8 +7,9 @@ Documentación de las tablas públicas relacionadas con **perfiles**, **reservas
 1. `001_profiles_and_auth.sql` — perfiles enlazados a `auth.users`, RLS y trigger `set_profiles_updated_at` en `profiles`.
 2. `002_bookings_and_contacts.sql` — reservas, pasajeros y formularios de contacto.
 3. `003_bookings_detail_columns.sql` — columnas estructuradas en `bookings` (contacto, alojamiento, fecha/hora/personas, notas, método de pago).
+4. `004_backfill_missing_profiles.sql` — (opcional) crea filas en `profiles` para usuarios de Auth que no tengan perfil.
 
-Ejecución recomendada: **Supabase Dashboard → SQL Editor**, pegar el contenido de cada archivo en orden y ejecutar.
+Guía manual paso a paso para checkout en producción: `docs/checkout-supabase-setup.md`.
 
 ## Tabla `public.profiles`
 

@@ -23,6 +23,7 @@ import {
   BOOKING_TEXT_SECONDARY,
   bookingMotion,
 } from "@/lib/booking-ui";
+import { bookingErrorI18nKey } from "@/lib/booking-error-codes";
 import { formatPriceARS } from "@/lib/format-price";
 
 type TravelerForm = {
@@ -196,19 +197,21 @@ export default function CheckoutPage() {
     const data = (await res.json().catch(() => null)) as {
       bookingId?: string;
       error?: string;
+      message?: string;
     } | null;
     if (!res.ok || !data?.bookingId) {
+      console.error("[Checkout] persistBookingToSupabase failed", {
+        status: res.status,
+        error: data?.error,
+        message: data?.message,
+      });
       return { ok: false, errorCode: data?.error };
     }
     return { ok: true, bookingId: data.bookingId };
   };
 
-  const bookingErrorMessage = (code?: string) => {
-    if (code === "SUBTOTAL_MISMATCH") {
-      return t("checkoutPage.bookingErrorSubtotal");
-    }
-    return t("checkoutPage.bookingErrorGeneric");
-  };
+  const bookingErrorMessage = (code?: string) =>
+    t(bookingErrorI18nKey(code));
 
   const handleConfirmOrder = async () => {
     if (items.length === 0 || !travelerOk) return;

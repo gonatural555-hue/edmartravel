@@ -2026,6 +2026,12 @@
     "loginCta": "Se connecter",
     "bookingErrorGeneric": "Impossible d’enregistrer votre réservation. Réessayez.",
     "bookingErrorSubtotal": "Le total ne correspond plus aux articles. Actualisez la page et réessayez.",
+    "bookingErrorUnauthorized": "Votre session a expiré ou n’a pas pu être vérifiée. Déconnectez-vous, reconnectez-vous et réessayez.",
+    "bookingErrorTraveler": "Les informations du voyageur sont incomplètes. Vérifiez nom, pièce d’identité, e-mail, téléphone et pays.",
+    "bookingErrorItems": "Le panier n’est pas valide. Retournez au panier, ajoutez l’expérience à nouveau et réessayez.",
+    "bookingErrorPayment": "Le mode de paiement sélectionné n’est pas valide. Choisissez une autre option et réessayez.",
+    "bookingErrorDatabase": "Impossible d’enregistrer la réservation en base. Si le problème persiste, contactez-nous — Supabase peut nécessiter une configuration.",
+    "bookingErrorPassenger": "Une partie de la réservation a été enregistrée, mais l’enregistrement du passager a échoué. Réessayez ou contactez-nous.",
     "bookingPayPalDbError": "Paiement reçu, mais la réservation n’a pas été enregistrée. Contactez-nous avec votre reçu PayPal.",
     "terms": "En confirmant votre commande, vous acceptez nos conditions générales"
   },
