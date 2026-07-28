@@ -275,15 +275,11 @@ export default function ImmersiveHomeHeader({
 
   const logoImg = (
     <img
-      src="/assets/images/logo/logo.png"
+      src="/assets/images/logo/logo.svg"
       alt={SITE_CONFIG.name}
       width={200}
       height={133}
-      className={`h-[2.35rem] w-auto max-w-[9.5rem] object-contain object-left sm:h-[2.55rem] sm:max-w-[10.5rem] lg:h-[3rem] lg:max-w-[12.5rem] xl:h-[3.25rem] xl:max-w-[13.5rem] ${
-        isEditorialHeader
-          ? "mix-blend-screen"
-          : "mix-blend-screen opacity-[0.92]"
-      }`}
+      className="h-[2.35rem] w-auto max-w-[9.5rem] object-contain object-left sm:h-[2.55rem] sm:max-w-[10.5rem] lg:h-[3rem] lg:max-w-[12.5rem] xl:h-[3.25rem] xl:max-w-[13.5rem]"
       decoding="async"
     />
   );

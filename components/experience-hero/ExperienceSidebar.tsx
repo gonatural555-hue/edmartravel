@@ -84,11 +84,11 @@ export default function ExperienceSidebar({
         }
       >
         <Image
-          src="/assets/images/logo/logo.png"
+          src="/assets/images/logo/logo.svg"
           alt="Edmar Travel"
           width={logo?.width ?? 120}
           height={logo?.height ?? 40}
-          className={logo ? "object-contain brightness-110" : "h-9 w-auto object-contain brightness-110"}
+          className={logo ? "object-contain" : "h-9 w-auto object-contain"}
           style={
             logo ? { width: logo.width, height: logo.height } : undefined
           }

@@ -112,7 +112,7 @@ export default function Footer() {
               aria-label={SITE_CONFIG.name}
             >
               <img
-                src="/assets/images/logo/logo.png"
+                src="/assets/images/logo/logo.svg"
                 alt={SITE_CONFIG.name}
                 className="h-14 w-auto max-w-[min(12rem,48vw)] sm:h-16 md:h-20 md:max-w-[14rem] opacity-90 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
                 loading="lazy"
