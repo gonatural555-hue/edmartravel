@@ -1,2 +1,1 @@
-export { default, generateMetadata } from "../privacy-policy/page";
-
+export { default, generateMetadata } from "../privacy/page";

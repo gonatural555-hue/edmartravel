@@ -391,11 +391,7 @@ main[data-route="order-success"] .bg-gray-50 {
   background-color: #CCD0CF !important;
 }
 
-/* Home inmersiva — footer oculto; fondo editorial #F8F5EE */
-html.experience-hero-takeover footer {
-  display: none !important;
-}
-
+/* Home inmersiva — fondo editorial #F8F5EE (footer visible en todas las páginas) */
 html.experience-hero-takeover {
   --experience-header-height: 5.5rem;
 }
@@ -421,8 +417,8 @@ html.experience-hero-takeover body::after {
   visibility: hidden;
 }
 
-html.experience-hero-takeover [role="dialog"][aria-live="polite"] {
-  display: none !important;
+html.experience-hero-takeover [role="dialog"][aria-label="Cookie consent"] {
+  display: block !important;
 }
 
 html.experience-hero-takeover .site-chrome-overlay {

@@ -1,0 +1,278 @@
+{
+  "legal": {
+    "kicker": "Transparency",
+    "metaTitle": "Legal information | Edmar Travel",
+    "metaDescription": "Registration details for Edmar Travel S.A.S, licensed travel agency in Argentina.",
+    "title": "Legal information",
+    "intro": "Edmar Travel operates as a registered travel agency in Argentina. This page lists company identifiers, the official domain, and how to reach us for legal or administrative inquiries.",
+    "updatedAt": "Last updated: August 2026",
+    "fields": {
+      "legalName": "Legal name",
+      "cuit": "Tax ID (CUIT)",
+      "legajo": "RNAVYT file number",
+      "domain": "Official domain",
+      "email": "Contact email",
+      "address": "Registered address",
+      "phone": "Phone",
+      "addressPending": "To be published soon",
+      "phonePending": "To be published soon"
+    },
+    "complaintCta": "Report a travel agency (Argentina.gob.ar)",
+    "sections": [
+      {
+        "title": "Registered travel agency",
+        "paragraphs": [
+          "Edmar Travel S.A.S offers tourism experiences in Mendoza through edmartravel.tur.ar under applicable Argentine tourism regulations.",
+          "The file number listed corresponds to the National Registry of Travel and Tourism Agencies (RNAVYT)."
+        ]
+      },
+      {
+        "title": "Use of this information",
+        "paragraphs": [
+          "Data published here is for users, authorities, and partners. Official registry records prevail in case of discrepancy.",
+          "For experience bookings use the contact form or email. For privacy or cancellations see the dedicated policies in the site footer."
+        ]
+      }
+    ],
+    "closing": "We keep this page updated as our registrations and legal obligations evolve."
+  },
+  "privacy": {
+    "kicker": "Privacy",
+    "metaTitle": "Privacy Policy | Edmar Travel",
+    "metaDescription": "How Edmar Travel S.A.S handles personal data when you browse, book, or contact us.",
+    "title": "Privacy Policy",
+    "intro": "Edmar Travel S.A.S (Tax ID 20-43925089-6) respects your privacy. This policy explains what we collect through the site, booking and contact forms, how we protect it, and your rights under applicable law.",
+    "updatedAt": "Last updated: August 2026",
+    "sections": [
+      {
+        "title": "Data controller",
+        "paragraphs": [
+          "Controller: Edmar Travel S.A.S — Tax ID 20-43925089-6 — RNAVYT file 2116.",
+          "Privacy contact: edmartravelsas@gmail.com — Domain: edmartravel.tur.ar"
+        ]
+      },
+      {
+        "title": "Data we collect",
+        "paragraphs": [
+          "Identity and contact details: name, email, phone, country, ID document, accommodation when you submit booking or contact forms.",
+          "Experience details: preferred date, time, party size, notes or special needs.",
+          "Technical data: browser, device, language, and aggregated pages visited for security and improvement.",
+          "Cookies and preferences: as described in our Cookie Policy."
+        ]
+      },
+      {
+        "title": "Purposes",
+        "paragraphs": [
+          "Manage booking requests, inquiries, and coordination via WhatsApp or email.",
+          "Deliver the contracted service and communicate before, during, and after the experience.",
+          "Meet legal, accounting, and registry obligations as a travel agency.",
+          "Improve the site, measure aggregated usage (when you accept analytics cookies), and maintain security."
+        ]
+      },
+      {
+        "title": "Legal basis and retention",
+        "paragraphs": [
+          "We process data based on consent, pre-contractual or contractual performance, legitimate interests (site security), or legal obligations.",
+          "We retain information as long as needed for these purposes or as required by law."
+        ]
+      },
+      {
+        "title": "Sharing with third parties",
+        "paragraphs": [
+          "We may share minimal data with experience providers (guides, wineries, transport) to coordinate your outing.",
+          "We use infrastructure providers (hosting, email, databases) as processors under our instructions.",
+          "We do not sell personal data for unrelated commercial purposes."
+        ]
+      },
+      {
+        "title": "Security",
+        "paragraphs": [
+          "We apply reasonable technical and organizational measures against unauthorized access, loss, or alteration.",
+          "No system is perfect; use strong passwords if you create an account and avoid sharing sensitive data through unofficial channels."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "paragraphs": [
+          "You may request access, rectification, update, or deletion where applicable, object to certain processing, and withdraw consent.",
+          "Contact edmartravelsas@gmail.com with your request; we will respond within a reasonable timeframe."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "Edmar Travel S.A.S — edmartravelsas@gmail.com — edmartravel.tur.ar"
+        ]
+      }
+    ],
+    "closing": "We may update this policy; the current version is always published on the site."
+  },
+  "cookies": {
+    "kicker": "Cookies",
+    "metaTitle": "Cookie Policy | Edmar Travel",
+    "metaDescription": "Cookie types used on edmartravel.tur.ar and how to manage them.",
+    "title": "Cookie Policy",
+    "intro": "This site uses cookies and similar technologies to work properly, remember preferences, and—with your consent—analyze usage in aggregate.",
+    "updatedAt": "Last updated: August 2026",
+    "sections": [
+      {
+        "title": "What cookies are",
+        "paragraphs": [
+          "Small text files stored by your browser. They help the site remember actions or preferences for a period of time."
+        ]
+      },
+      {
+        "title": "Essential cookies",
+        "paragraphs": [
+          "Required for basic operation: security, load balancing, selected language, and cookie consent state.",
+          "They do not require prior consent because they are strictly necessary."
+        ]
+      },
+      {
+        "title": "Preference cookies",
+        "paragraphs": [
+          "Remember choices such as language or interface settings for future visits."
+        ]
+      },
+      {
+        "title": "Analytics cookies",
+        "paragraphs": [
+          "If you accept the banner, we may use aggregated measurement tools to understand which sections are most visited.",
+          "We do not use analytics cookies if you decline consent."
+        ]
+      },
+      {
+        "title": "How to disable them",
+        "paragraphs": [
+          "Decline non-essential cookies from the banner when entering the site.",
+          "You can also block or delete cookies in your browser settings.",
+          "Disabling essential cookies may affect site functionality."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "Questions: edmartravelsas@gmail.com"
+        ]
+      }
+    ],
+    "closing": "We will update this policy if we add new cookie categories."
+  },
+  "terms": {
+    "kicker": "Terms",
+    "metaTitle": "Terms and Conditions | Edmar Travel",
+    "metaDescription": "Terms of use of edmartravel.tur.ar and booking conditions with Edmar Travel S.A.S.",
+    "title": "Terms and Conditions",
+    "intro": "These terms govern access to edmartravel.tur.ar and general conditions for tourism experiences offered by Edmar Travel S.A.S (Tax ID 20-43925089-6, RNAVYT file 2116).",
+    "updatedAt": "Last updated: August 2026",
+    "sections": [
+      {
+        "title": "Acceptance and use",
+        "paragraphs": [
+          "By browsing or using the site you accept these terms and applicable Argentine law.",
+          "You must use the site lawfully and must not attempt to compromise its security."
+        ]
+      },
+      {
+        "title": "Nature of the service",
+        "paragraphs": [
+          "Edmar Travel S.A.S organizes and intermediates experiences in Mendoza. Third parties may deliver part of the service.",
+          "Requests submitted online are not final until expressly confirmed and, where applicable, payment is agreed."
+        ]
+      },
+      {
+        "title": "Bookings and payment",
+        "paragraphs": [
+          "Published prices are indicative until confirmation. We will communicate the final amount before closing the booking.",
+          "Available payment methods are confirmed per experience.",
+          "Bookings depend on provider availability and specific outing conditions."
+        ]
+      },
+      {
+        "title": "Participation",
+        "paragraphs": [
+          "Activities may involve inherent risks (weather, terrain, traffic, alcohol during tastings). Assess your health and follow guide instructions.",
+          "Minors must have authorization and adult supervision when required."
+        ]
+      },
+      {
+        "title": "Intellectual property",
+        "paragraphs": [
+          "Site content belongs to Edmar Travel S.A.S or licensors. Reproduction without permission is prohibited."
+        ]
+      },
+      {
+        "title": "Limitation of liability",
+        "paragraphs": [
+          "To the extent permitted by law, we are not liable for indirect damages from site use, without prejudice to non-waivable consumer rights.",
+          "On-site delivery may be by third parties subject to their operational conditions."
+        ]
+      },
+      {
+        "title": "Changes and jurisdiction",
+        "paragraphs": [
+          "We may update these terms; the published version applies.",
+          "Disputes fall under ordinary courts of Argentina, subject to consumer protection rules.",
+          "Contact: edmartravelsas@gmail.com"
+        ]
+      }
+    ],
+    "closing": "Thank you for choosing Edmar Travel to discover Mendoza."
+  },
+  "cancellations": {
+    "kicker": "Cancellations",
+    "metaTitle": "Cancellation Policy | Edmar Travel",
+    "metaDescription": "Cancellation, date changes, refunds, and force majeure for Edmar Travel S.A.S bookings.",
+    "title": "Cancellation Policy",
+    "intro": "This policy complements the Terms and Conditions and explains how we handle cancellations, date changes, and refunds.",
+    "updatedAt": "Last updated: August 2026",
+    "sections": [
+      {
+        "title": "Booking requests",
+        "paragraphs": [
+          "Online requests require confirmation via WhatsApp or email. Until then the booking is not firm.",
+          "Specific deadlines and conditions are communicated when each experience is confirmed."
+        ]
+      },
+      {
+        "title": "Date changes",
+        "paragraphs": [
+          "Changes depend on provider availability and how far in advance you notify us.",
+          "More notice usually allows rescheduling with fewer penalties.",
+          "Peak season or limited-capacity experiences may not allow changes; we will inform you when booking."
+        ]
+      },
+      {
+        "title": "Cancellations by the guest",
+        "paragraphs": [
+          "Cancel in writing at edmartravelsas@gmail.com with your request reference or booking details.",
+          "Early cancellation may allow rescheduling or partial refund depending on costs already incurred.",
+          "Late cancellation or no-show may incur full or partial non-refundable charges as agreed at confirmation."
+        ]
+      },
+      {
+        "title": "Refunds",
+        "paragraphs": [
+          "When a refund applies, it will be made via the agreed method within a reasonable time after confirming cancellation.",
+          "Bank, payment gateway, or administrative fees already incurred may be non-refundable.",
+          "We will provide a breakdown when applicable."
+        ]
+      },
+      {
+        "title": "Force majeure and weather",
+        "paragraphs": [
+          "If an experience cannot run due to extreme weather, road closures, official measures, or force majeure, we will prioritize rescheduling.",
+          "If rescheduling is not possible, we will assess full or partial refund based on amounts already paid to third parties and applicable law.",
+          "Safety of guests and guides comes first for outdoor activities."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "Cancellations and changes: edmartravelsas@gmail.com — Edmar Travel S.A.S — File 2116."
+        ]
+      }
+    ],
+    "closing": "Our team will work with you to find the best solution in each case."
+  }
+}

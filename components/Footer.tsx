@@ -5,130 +5,116 @@ import type { Locale } from "@/lib/i18n/config";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { SITE_CONFIG } from "@/lib/config";
 import { CATEGORY_PAGE_BG } from "@/lib/category-page-assets";
+import { LEGAL_SLUGS, type LegalPageKey } from "@/lib/seo";
 
 const FOOTER_LINK_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 function FooterLink({
   href,
   label,
-  variant = "default",
+  external,
 }: {
   href: string;
   label: string;
-  variant?: "default" | "legal";
+  external?: boolean;
 }) {
-  const linkClass =
-    variant === "legal"
-      ? "group relative text-xs text-[#1a1a1a]/65 transition-colors duration-[400ms] hover:text-[#1a1a1a] sm:text-sm"
-      : "group relative text-sm text-[#1a1a1a]/70 transition-colors duration-[400ms] hover:text-[#1a1a1a]";
+  const className =
+    "group relative text-sm text-[#1a1a1a]/70 transition-colors duration-[400ms] hover:text-[#1a1a1a] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A6248]/30 rounded-sm";
+
+  const underline = (
+    <span
+      className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#C89B3C] transition-transform duration-[400ms] group-hover:scale-x-100"
+      style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
+      aria-hidden
+    />
+  );
+
+  if (external) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
+      >
+        {label}
+        {underline}
+      </a>
+    );
+  }
 
   return (
     <Link
       href={href}
-      className={linkClass}
+      className={className}
       style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
     >
       {label}
-      <span
-        className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-[#C89B3C] transition-transform duration-[400ms] group-hover:scale-x-100"
-        style={{ transitionTimingFunction: FOOTER_LINK_EASE }}
-        aria-hidden
-      />
+      {underline}
     </Link>
   );
+}
+
+function buildLegalHref(key: LegalPageKey, currentLocale: Locale) {
+  return `/${currentLocale}/${LEGAL_SLUGS[key][currentLocale]}`;
 }
 
 export default function Footer() {
   const locale = useLocale();
   const t = useTranslations();
-  const currentYear = new Date().getFullYear();
-
-  const legalSlugs = {
-    privacy: {
-      en: "privacy-policy",
-      es: "politica-de-privacidad",
-      fr: "politique-de-confidentialite",
-      it: "informativa-sulla-privacy",
-    },
-    cookies: {
-      en: "cookie-policy",
-      es: "politica-de-cookies",
-      fr: "politique-de-cookies",
-      it: "informativa-sui-cookie",
-    },
-    terms: {
-      en: "terms-and-conditions",
-      es: "terminos-y-condiciones",
-      fr: "conditions-generales",
-      it: "termini-e-condizioni",
-    },
-    disclaimer: {
-      en: "disclaimer",
-      es: "descargo-de-responsabilidad",
-      fr: "avis-de-non-responsabilite",
-      it: "esclusione-di-responsabilita",
-    },
-  } as const;
-
-  const buildLegalHref = (
-    key: keyof typeof legalSlugs,
-    currentLocale: Locale
-  ) => `/${currentLocale}/${legalSlugs[key][currentLocale]}`;
+  const { company, contact } = SITE_CONFIG;
 
   const navigationLinks = [
     { href: `/${locale}`, label: t("footer.links.home") },
-    { href: `/${locale}/products`, label: t("footer.links.products") },
-    { href: `/${locale}/cart`, label: t("footer.links.cart") },
-    { href: `/${locale}/checkout`, label: t("footer.links.checkout") },
-  ];
-
-  const legalLinks = [
-    { href: buildLegalHref("privacy", locale), label: t("footer.links.privacy") },
-    { href: buildLegalHref("cookies", locale), label: t("footer.links.cookies") },
-    { href: buildLegalHref("terms", locale), label: t("footer.links.terms") },
-    {
-      href: buildLegalHref("disclaimer", locale),
-      label: t("footer.links.disclaimer"),
-    },
-  ];
-
-  const companyLinks = [
+    { href: `/${locale}/products`, label: t("footer.links.experiences") },
     { href: `/${locale}/about`, label: t("footer.links.about") },
     { href: `/${locale}/contact`, label: t("footer.links.contact") },
   ];
 
+  const legalLinks: { key: LegalPageKey; label: string }[] = [
+    { key: "legal", label: t("footer.links.legalInfo") },
+    { key: "privacy", label: t("footer.links.privacy") },
+    { key: "cookies", label: t("footer.links.cookies") },
+    { key: "terms", label: t("footer.links.terms") },
+    { key: "cancellations", label: t("footer.links.cancellations") },
+  ];
+
   return (
     <footer
-      className="mt-auto"
+      className="mt-auto border-t border-[#1a1a1a]/8"
       style={{ backgroundColor: CATEGORY_PAGE_BG, color: "#1a1a1a" }}
+      role="contentinfo"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
-          {/* Branding Section — logo y tagline alineados al mismo eje vertical */}
-          <div className="flex flex-col items-center text-center lg:col-span-1">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+          {/* Columna 1 — Marca */}
+          <div className="lg:col-span-1">
             <Link
               href={`/${locale}`}
-              className="group mb-4 flex shrink-0 justify-center"
+              className="group mb-5 inline-flex shrink-0"
               aria-label={SITE_CONFIG.name}
             >
               <img
                 src="/assets/images/logo/logo.svg"
-                alt={SITE_CONFIG.name}
-                className="h-14 w-auto max-w-[min(12rem,48vw)] sm:h-16 md:h-20 md:max-w-[14rem] opacity-90 transition-transform duration-300 ease-out group-hover:scale-[1.04]"
+                alt=""
+                width={160}
+                height={48}
+                className="h-12 w-auto max-w-[11rem] object-contain object-left opacity-95 transition-transform duration-300 ease-out group-hover:scale-[1.02] sm:h-14"
                 loading="lazy"
                 decoding="async"
               />
             </Link>
-            <p className="max-w-xs text-balance text-sm leading-relaxed text-[#1a1a1a]/70">
+            <p className="max-w-xs text-sm leading-relaxed text-[#1a1a1a]/68">
               {t("footer.brandBlurb")}
             </p>
           </div>
 
-          {/* Navigation Section */}
+          {/* Columna 2 — Navegación */}
           <div>
-            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
+            <h2 className="mb-4 font-theater text-lg font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-xl">
               {t("footer.navigationTitle")}
-            </h3>
+            </h2>
             <ul className="space-y-3">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
@@ -138,123 +124,68 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company Section */}
+          {/* Columna 3 — Legal */}
           <div>
-            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
-              {t("footer.companyTitle")}
-            </h3>
-            <ul className="space-y-3">
-              {companyLinks.map((link) => (
-                <li key={link.href}>
-                  <FooterLink href={link.href} label={link.label} />
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal Section */}
-          <div>
-            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
+            <h2 className="mb-4 font-theater text-lg font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-xl">
               {t("footer.legalTitle")}
-            </h3>
+            </h2>
             <ul className="space-y-3">
               {legalLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.key}>
                   <FooterLink
-                    href={link.href}
+                    href={buildLegalHref(link.key, locale)}
                     label={link.label}
-                    variant="legal"
                   />
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Trust Section */}
+          {/* Columna 4 — Contacto corporativo */}
           <div>
-            <h3 className="mb-4 text-[26px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-[28px]">
-              {t("footer.trustTitle")}
-            </h3>
-            <ul className="space-y-3 text-sm text-[#1a1a1a]/70">
-              <li className="flex items-start gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
-                <span>{t("footer.trustItems.0")}</span>
+            <h2 className="mb-4 font-theater text-lg font-semibold uppercase tracking-[0.12em] text-[#1a1a1a] sm:text-xl">
+              {t("footer.contactTitle")}
+            </h2>
+            <ul className="space-y-3 text-sm leading-relaxed text-[#1a1a1a]/72">
+              <li>
+                <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#1a1a1a]/48">
+                  {t("footer.contactLabels.company")}
+                </span>
+                <span className="mt-1 block font-medium text-[#1a1a1a]">
+                  {company.legalName}
+                </span>
               </li>
-              <li className="flex items-start gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"
-                  />
-                </svg>
-                <span>{t("footer.trustItems.1")}</span>
+              <li>
+                <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#1a1a1a]/48">
+                  {t("footer.contactLabels.legajo")}
+                </span>
+                <span className="mt-1 block">{company.legajo}</span>
               </li>
-              <li className="flex items-start gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-1.135 9.232 9.232 0 003.478-3.465c.33-.921-.074-1.9-.563-2.44a2.253 2.253 0 00-1.5-1.5c-.921-.33-1.9-.074-2.44.563a2.253 2.253 0 01-1.5 1.5 9.232 9.232 0 00-3.465 3.478 9.38 9.38 0 00-.372 2.625c0 .633.135 1.25.372 1.853a2.253 2.253 0 01-1.5 1.5 9.337 9.337 0 01-4.121 1.135 9.232 9.232 0 01-3.478-3.465 2.253 2.253 0 00-1.5-1.5 9.38 9.38 0 01-.372-2.625 9.38 9.38 0 00-.372-2.625 2.253 2.253 0 011.5-1.5 9.232 9.232 0 013.478-3.465 2.253 2.253 0 011.5-1.5c.921-.33 1.9-.074 2.44.563a2.253 2.253 0 011.5 1.5 9.232 9.232 0 003.465 3.478 9.38 9.38 0 00.372 2.625c0 .633-.135 1.25-.372 1.853a2.253 2.253 0 01-1.5 1.5z"
-                  />
-                </svg>
-                <span>{t("footer.trustItems.2")}</span>
+              <li>
+                <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#1a1a1a]/48">
+                  {t("footer.contactLabels.cuit")}
+                </span>
+                <span className="mt-1 block">{company.cuit}</span>
               </li>
-              <li className="flex items-start gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#1a1a1a]/45"
+              <li>
+                <span className="block text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-[#1a1a1a]/48">
+                  {t("footer.contactLabels.email")}
+                </span>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="mt-1 block font-medium text-[#1a1a1a] underline-offset-4 transition hover:text-[#7A6248] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7A6248]/30 rounded-sm"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
-                <span>{t("footer.trustItems.3")}</span>
+                  {contact.email}
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Copyright Section */}
         <div className="mt-12 border-t border-[#1a1a1a]/10 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 text-sm text-[#1a1a1a]/65 sm:flex-row">
-            <p>
-              © {currentYear} {SITE_CONFIG.name}. {t("footer.rights")}
-            </p>
-          </div>
+          <p className="text-center text-sm text-[#1a1a1a]/58 sm:text-left">
+            {t("footer.copyright")}
+          </p>
         </div>
       </div>
     </footer>

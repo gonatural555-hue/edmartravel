@@ -1,2 +1,1 @@
-export { default, generateMetadata } from "../terms-and-conditions/page";
-
+export { default, generateMetadata } from "../terms/page";

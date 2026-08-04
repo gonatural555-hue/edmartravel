@@ -264,17 +264,28 @@
     "experienceCount": "{count} experiencias",
     "worlds": {
       "wine": {
-        "titleLines": ["WINE TOURS &", "BODEGAS"],
+        "titleLines": [
+          "WINE TOURS &",
+          "BODEGAS"
+        ],
         "description": "Bodegas seleccionadas, gastronomía y paisajes mendocinos.",
         "imageAlt": "Experiencia de vino y gastronomía en Mendoza"
       },
       "adventure": {
-        "titleLines": ["AVENTURA", "EN", "MENDOZA"],
+        "titleLines": [
+          "AVENTURA",
+          "EN",
+          "MENDOZA"
+        ],
         "description": "Montaña, cabalgatas y experiencias auténticas en la cordillera.",
         "imageAlt": "Cabalgata en los Andes, Mendoza"
       },
       "city": {
-        "titleLines": ["CONOCÉ", "LA", "CIUDAD"],
+        "titleLines": [
+          "CONOCÉ",
+          "LA",
+          "CIUDAD"
+        ],
         "description": "Scooters, parques históricos y los lugares más emblemáticos.",
         "imageAlt": "Tour en scooter por Mendoza"
       }
@@ -366,287 +377,312 @@
     "reviewsEmptyText": "Este producto aún no tiene reseñas publicadas"
   },
   "legal": {
-    "privacy": {
-      "metaTitle": "Política de Privacidad | Edmar Travel",
-      "metaDescription": "Cómo Edmar Travel trata los datos personales cuando consultás o reservás experiencias en Mendoza.",
-      "title": "Política de Privacidad",
-      "intro": "En Edmar Travel (marca comercial) tratamos tus datos con cuidado. Esta política explica qué recopilamos, con qué finalidad y cómo podés ejercer tus derechos. El responsable del tratamiento es EDGAR DAVID NUÑEZ ZAVALLA (CUIT 20-43925089-6), con domicilio en Salta 1393, Piso 2, Depto. 8, Ciudad de Mendoza, Argentina.",
-      "updatedAt": "Última actualización: abril de 2026",
+    "legal": {
+      "kicker": "Transparencia",
+      "metaTitle": "Información legal | Edmar Travel",
+      "metaDescription": "Datos registrales de Edmar Travel S.A.S, agencia de viajes habilitada en Argentina. Legajo, CUIT, dominio y contacto oficial.",
+      "title": "Información legal",
+      "intro": "Edmar Travel opera como agencia de viajes registrada en la República Argentina. En esta página encontrás los datos identificatorios de la empresa, el dominio oficial del sitio y cómo contactarnos para consultas legales o administrativas.",
+      "updatedAt": "Última actualización: agosto de 2026",
+      "fields": {
+        "legalName": "Razón social",
+        "cuit": "CUIT",
+        "legajo": "Legajo RNAVYT",
+        "domain": "Dominio oficial",
+        "email": "Email de contacto",
+        "address": "Domicilio legal",
+        "phone": "Teléfono",
+        "addressPending": "A publicar próximamente",
+        "phonePending": "A publicar próximamente"
+      },
+      "complaintCta": "Denuncias contra agencias de viajes (Argentina.gob.ar)",
       "sections": [
         {
-          "title": "Qué recopilamos",
+          "title": "Agencia de viajes registrada",
           "paragraphs": [
-            "Datos que nos brindás al consultar o contratar experiencias turísticas: nombre, correo electrónico, teléfono u otros datos necesarios para la reserva o la comunicación, según el caso.",
-            "Mensajes que nos enviás (consultas, WhatsApp cuando lo uses, soporte).",
-            "Datos técnicos básicos como tipo de dispositivo, navegador y páginas visitadas para mantener el sitio estable y seguro."
+            "Edmar Travel S.A.S comercializa experiencias turísticas en Mendoza y alrededores bajo el dominio edmartravel.tur.ar, conforme a la normativa aplicable al turismo receptivo y emisivo en Argentina.",
+            "El legajo indicado corresponde al Registro Nacional de Agencias de Viajes y Turismo (RNAVYT) dependiente de la Secretaría de Turismo de la Nación."
           ]
         },
         {
-          "title": "Cómo usamos la información",
+          "title": "Uso de la información",
           "paragraphs": [
-            "Para gestionar consultas, reservas, pagos vinculados a la experiencia contratada y comunicación antes o después del servicio.",
-            "Para mejorar la experiencia del sitio y mantener la seguridad.",
-            "Para cumplir obligaciones legales y contables cuando corresponda."
+            "Los datos aquí publicados tienen carácter informativo para usuarios, autoridades y proveedores. Ante cualquier discrepancia, prevalece la información oficial registrada ante los organismos competentes.",
+            "Para consultas comerciales sobre experiencias, utilizá el formulario de contacto o escribinos por email. Para cuestiones vinculadas a privacidad o cancelaciones, consultá las políticas específicas en el pie del sitio."
+          ]
+        }
+      ],
+      "closing": "Mantenemos esta información actualizada conforme evolucionen nuestros registros y obligaciones legales."
+    },
+    "privacy": {
+      "kicker": "Privacidad",
+      "metaTitle": "Política de Privacidad | Edmar Travel",
+      "metaDescription": "Cómo Edmar Travel S.A.S trata tus datos personales al consultar, reservar o contactarnos.",
+      "title": "Política de Privacidad",
+      "intro": "Edmar Travel S.A.S (CUIT 20-43925089-6) respeta tu privacidad. Esta política explica qué datos recopilamos a través del sitio, formularios de contacto y reservas, cómo los protegemos y qué derechos podés ejercer conforme a la normativa argentina aplicable.",
+      "updatedAt": "Última actualización: agosto de 2026",
+      "sections": [
+        {
+          "title": "Responsable del tratamiento",
+          "paragraphs": [
+            "Responsable: Edmar Travel S.A.S — CUIT 20-43925089-6 — Legajo RNAVYT 2116.",
+            "Contacto de privacidad: edmartravelsas@gmail.com — Dominio: edmartravel.tur.ar"
           ]
         },
         {
-          "title": "Bases legales",
+          "title": "Qué datos recopilamos",
           "paragraphs": [
-            "Tratamos datos según consentimiento, ejecución de medidas precontractuales o contrato, intereses legítimos (por ejemplo, seguridad del sitio) u obligaciones legales, de acuerdo con la normativa aplicable.",
-            "Podés retirar tu consentimiento cuando el tratamiento se base en él, sin afectar la licitud del tratamiento previo."
+            "Datos de identificación y contacto: nombre, apellido, email, teléfono, país, documento y alojamiento cuando completás formularios de reserva o contacto.",
+            "Datos de la experiencia: fecha preferida, hora, cantidad de personas, notas o necesidades especiales vinculadas a tu salida.",
+            "Datos técnicos: tipo de navegador, dispositivo, idioma y páginas visitadas de forma agregada para seguridad y mejora del sitio.",
+            "Cookies y preferencias: según lo descrito en nuestra Política de Cookies."
           ]
         },
         {
-          "title": "Encargados y proveedores",
+          "title": "Finalidades del tratamiento",
           "paragraphs": [
-            "Compartimos solo lo necesario con proveedores que nos ayudan a operar: entre otros, procesamiento de pagos. Los pagos con tarjeta u otros medios pueden gestionarse a través de PayPal u otros proveedores; ellos tratan datos según sus propias políticas de privacidad.",
-            "Cuando la experiencia la prestan terceros (bodegas, guías, transporte, etc.), podemos compartir datos mínimos necesarios para coordinar el servicio, según la experiencia contratada.",
-            "No vendemos datos personales."
+            "Gestionar solicitudes de reserva, consultas y coordinación por WhatsApp o email.",
+            "Prestar el servicio contratado y comunicarnos antes, durante y después de la experiencia.",
+            "Cumplir obligaciones legales, contables y registrales como agencia de viajes.",
+            "Mejorar el sitio, medir uso agregado (cuando aceptes cookies analíticas) y mantener la seguridad."
           ]
         },
         {
-          "title": "Transferencias internacionales",
+          "title": "Base legal y conservación",
           "paragraphs": [
-            "Si algún proveedor (por ejemplo PayPal) trata datos fuera de Argentina, aplican las garantías y condiciones previstas por la normativa aplicable y por la política de dicho proveedor."
+            "Tratamos datos con base en tu consentimiento, la ejecución de medidas precontractuales o contrato, intereses legítimos (seguridad del sitio) u obligaciones legales.",
+            "Conservamos la información el tiempo necesario para las finalidades indicadas o el plazo exigido por la ley."
           ]
         },
         {
-          "title": "Conservación y seguridad",
+          "title": "Compartir datos con terceros",
           "paragraphs": [
-            "Conservamos la información el tiempo necesario para las finalidades indicadas o el plazo que exija la ley.",
-            "Aplicamos medidas razonables para reducir riesgos de acceso no autorizado o uso indebido."
+            "Podemos compartir datos mínimos con proveedores de la experiencia (guías, bodegas, transporte) para coordinar la salida.",
+            "Utilizamos servicios de infraestructura (hosting, email, bases de datos) que actúan como encargados del tratamiento bajo instrucciones nuestras.",
+            "No vendemos ni cedemos tus datos personales con fines comerciales ajenos al servicio."
+          ]
+        },
+        {
+          "title": "Seguridad",
+          "paragraphs": [
+            "Aplicamos medidas técnicas y organizativas razonables para proteger la información frente a acceso no autorizado, pérdida o alteración.",
+            "Ningún sistema es infalible; te recomendamos usar contraseñas seguras si creás una cuenta y no compartir datos sensibles por canales no oficiales."
           ]
         },
         {
           "title": "Tus derechos",
           "paragraphs": [
-            "Podés solicitar acceso, rectificación, actualización o supresión cuando corresponda, oponerte a ciertos tratamientos u otros derechos previstos por la normativa aplicable.",
-            "Para ejercerlos o consultar por esta política, contactanos en edmartravelsas@gmail.com o al teléfono +54 9 261 757-3651."
+            "Podés solicitar acceso, rectificación, actualización o supresión de tus datos cuando corresponda, oponerte a ciertos tratamientos y revocar consentimientos, en los términos de la Ley 25.326 y normativa complementaria.",
+            "Para ejercer tus derechos escribinos a edmartravelsas@gmail.com indicando tu solicitud y un medio de contacto. Responderemos en un plazo razonable."
           ]
         },
         {
           "title": "Contacto",
           "paragraphs": [
-            "EDGAR DAVID NUÑEZ ZAVALLA — Edmar Travel. Email: edmartravelsas@gmail.com. Teléfono: +54 9 261 757-3651. Domicilio: Salta 1393, Piso 2, Depto. 8, Ciudad de Mendoza, Argentina."
+            "Edmar Travel S.A.S — edmartravelsas@gmail.com — edmartravel.tur.ar"
           ]
         }
       ],
-      "closing": "Revisamos esta política periódicamente para mantenerla alineada con nuestros servicios y la normativa aplicable."
+      "closing": "Podemos actualizar esta política; la versión vigente estará siempre publicada en el sitio."
     },
     "cookies": {
+      "kicker": "Cookies",
       "metaTitle": "Política de Cookies | Edmar Travel",
-      "metaDescription": "Uso de cookies en el sitio de Edmar Travel para funcionamiento, preferencias y mejora del servicio.",
+      "metaDescription": "Tipos de cookies utilizadas en edmartravel.tur.ar y cómo gestionarlas.",
       "title": "Política de Cookies",
-      "intro": "Las cookies ayudan a que el sitio de Edmar Travel funcione con fluidez y recuerde preferencias simples (por ejemplo, idioma). Las usamos con criterio.",
-      "updatedAt": "Última actualización: abril de 2026",
+      "intro": "Este sitio utiliza cookies y tecnologías similares para funcionar correctamente, recordar preferencias y, con tu consentimiento, analizar el uso de forma agregada.",
+      "updatedAt": "Última actualización: agosto de 2026",
       "sections": [
         {
           "title": "Qué son las cookies",
           "paragraphs": [
-            "Son pequeños archivos de texto que el navegador puede guardar en tu dispositivo para que el sitio funcione o recuerde ciertas preferencias."
+            "Son archivos de texto que el navegador almacena en tu dispositivo. Permiten que el sitio recuerde acciones o preferencias durante un tiempo determinado."
           ]
         },
         {
-          "title": "Cómo las usamos",
+          "title": "Cookies esenciales",
           "paragraphs": [
-            "Para mantener el sitio seguro y estable.",
-            "Para recordar ajustes básicos, como el idioma.",
-            "Para entender de forma agregada qué páginas son más útiles y mejorar la experiencia."
+            "Necesarias para el funcionamiento básico: seguridad, equilibrio de carga, idioma seleccionado y estado de consentimiento de cookies.",
+            "No requieren consentimiento previo porque son imprescindibles para prestar el servicio solicitado."
           ]
         },
         {
-          "title": "Tipos de cookies",
+          "title": "Cookies de preferencias",
           "paragraphs": [
-            "Cookies esenciales para funcionamiento y seguridad.",
-            "Cookies de preferencia (por ejemplo, idioma).",
-            "Cookies de analítica agregada, cuando se utilicen."
+            "Recuerdan opciones como idioma o configuraciones de interfaz para mejorar tu experiencia en visitas posteriores."
           ]
         },
         {
-          "title": "Gestión de cookies",
+          "title": "Cookies analíticas",
           "paragraphs": [
-            "Podés gestionar o eliminar cookies desde la configuración de tu navegador.",
-            "Desactivar cookies puede afectar algunas funciones del sitio."
+            "Cuando aceptás el banner de cookies, podemos utilizar herramientas de medición agregada para entender qué secciones del sitio son más visitadas.",
+            "No utilizamos cookies analíticas si rechazás el consentimiento."
           ]
         },
         {
-          "title": "Actualizaciones",
+          "title": "Cómo desactivarlas",
           "paragraphs": [
-            "Podemos actualizar esta política si cambian nuestros servicios o el uso de cookies."
+            "Podés rechazar cookies no esenciales desde el banner al ingresar al sitio.",
+            "También podés eliminar o bloquear cookies desde la configuración de tu navegador (Chrome, Safari, Firefox, Edge).",
+            "Desactivar cookies esenciales puede afectar el funcionamiento del sitio."
           ]
         },
         {
           "title": "Contacto",
           "paragraphs": [
-            "Consultas sobre cookies: edmartravelsas@gmail.com o +54 9 261 757-3651."
+            "Consultas: edmartravelsas@gmail.com"
           ]
         }
       ],
-      "closing": "Buscamos transparencia en el uso de cookies."
+      "closing": "Actualizaremos esta política si incorporamos nuevas categorías de cookies."
     },
     "terms": {
+      "kicker": "Condiciones",
       "metaTitle": "Términos y Condiciones | Edmar Travel",
-      "metaDescription": "Condiciones de uso del sitio y contratación de experiencias turísticas con Edmar Travel en Mendoza.",
+      "metaDescription": "Condiciones de uso de edmartravel.tur.ar y contratación de experiencias con Edmar Travel S.A.S.",
       "title": "Términos y Condiciones",
-      "intro": "Estos términos regulan el uso del sitio web de Edmar Travel y las condiciones generales de contratación de experiencias turísticas y servicios relacionados ofrecidos bajo dicha marca, prestados por o a través de EDGAR DAVID NUÑEZ ZAVALLA (CUIT 20-43925089-6), con domicilio en Salta 1393, Piso 2, Depto. 8, Ciudad de Mendoza, Argentina.",
-      "updatedAt": "Última actualización: abril de 2026",
+      "intro": "Estos términos regulan el acceso y uso del sitio edmartravel.tur.ar y las condiciones generales de contratación de experiencias turísticas ofrecidas por Edmar Travel S.A.S (CUIT 20-43925089-6, Legajo RNAVYT 2116).",
+      "updatedAt": "Última actualización: agosto de 2026",
       "sections": [
         {
-          "title": "Uso del sitio",
+          "title": "Aceptación y uso del sitio",
           "paragraphs": [
-            "Al usar este sitio aceptás hacerlo de forma lícita y respetuosa.",
-            "Podemos modificar el sitio o suspender funciones para mantener seguridad y calidad."
+            "Al navegar o utilizar el sitio aceptás estos términos y la normativa aplicable en Argentina.",
+            "Debés usar el sitio de forma lícita, sin intentar vulnerar su seguridad ni interferir con otros usuarios."
           ]
         },
         {
           "title": "Naturaleza del servicio",
           "paragraphs": [
-            "Edmar Travel organiza e intermedia experiencias turísticas en Mendoza y alrededores (por ejemplo experiencias de vino, aventura y ciudad), según lo publicado en el sitio.",
-            "Parte de la prestación puede ser realizada por terceros independientes (proveedores locales, guías, bodegas, transporte, etc.). En esos casos, las condiciones específicas de la experiencia contratada y la normativa aplicable prevalecen en lo que corresponda."
+            "Edmar Travel S.A.S organiza e intermedia experiencias turísticas en Mendoza. Parte de la prestación puede ser realizada por terceros (guías, bodegas, transportistas).",
+            "Las solicitudes enviadas por el sitio no implican confirmación definitiva hasta coordinación expresa y, cuando corresponda, pago acordado."
           ]
         },
         {
-          "title": "Reservas y disponibilidad",
+          "title": "Reservas y pagos",
           "paragraphs": [
-            "Las consultas y solicitudes a través del sitio no implican confirmación hasta que se acuerde expresamente la reserva y, cuando corresponda, el pago o señal según lo indicado para cada experiencia.",
-            "La disponibilidad, horarios, cupos y idioma pueden variar; te informaremos según la experiencia elegida."
-          ]
-        },
-        {
-          "title": "Precios y medios de pago",
-          "paragraphs": [
-            "Los precios publicados se muestran con la mayor claridad posible; pueden actualizarse antes de la confirmación definitiva de la reserva.",
-            "Podemos ofrecer pago mediante PayPal, transferencia bancaria y, cuando se acuerde, efectivo, según disponibilidad y tipo de servicio.",
-            "Los pagos a través de PayPal u otros proveedores se rigen también por los términos de dichos proveedores."
-          ]
-        },
-        {
-          "title": "Cancelaciones, cambios y reembolsos",
-          "paragraphs": [
-            "Las condiciones de cancelación, reprogramación y reembolso dependen de la experiencia contratada, del calendario del proveedor y de la normativa aplicable. Te comunicaremos plazos y reglas concretas al confirmar la reserva o en la ficha de la experiencia cuando estén disponibles.",
-            "En general, las cancelaciones con mayor antelación permiten más opciones de reprogramación o reembolso parcial, según política del proveedor y gastos ya incurridos; las cancelaciones cercanas a la fecha del servicio o la no presentación pueden implicar cargo total o parcial no reembolsable.",
-            "Si la imposibilidad de prestar el servicio obedece a causas de fuerza mayor, condiciones climáticas extremas u decisiones operativas de terceros, se buscará reprogramar u ofrecer alternativas razonables; el reembolso, cuando corresponda, se tratará de acuerdo con la normativa aplicable y las condiciones de la reserva.",
-            "Cualquier comisión bancaria, de pasarela de pago (incluido PayPal cuando aplique) o gasto administrativo ya devengado puede no ser reembolsable aun cuando el resto del importe sí lo sea, según el caso.",
-            "Para reclamos o consultas sobre cancelaciones y reembolsos: edmartravelsas@gmail.com o +54 9 261 757-3651."
+            "Los precios publicados son orientativos hasta confirmación. Te informaremos el importe final antes de cerrar la reserva.",
+            "Los medios de pago disponibles (transferencia, WhatsApp, otros acordados) se comunican al confirmar cada experiencia.",
+            "La reserva queda sujeta a disponibilidad del proveedor y condiciones específicas de la salida elegida."
           ]
         },
         {
           "title": "Participación en experiencias",
           "paragraphs": [
-            "Las actividades al aire libre, en bodegas, en vehículo o en entorno urbano conllevan riesgos propios. Quien contrata o participa debe evaluar su estado de salud, las condiciones del día y las indicaciones del guía o proveedor.",
-            "Debés seguir las instrucciones de seguridad y respetar las normas del lugar y de los terceros prestadores."
+            "Las actividades pueden implicar riesgos propios del entorno (clima, terreno, tránsito, consumo de alcohol en catas). Evaluá tu estado de salud y seguí las indicaciones del guía.",
+            "Menores deben contar con autorización y supervisión de un adulto responsable cuando la actividad lo requiera."
           ]
         },
         {
           "title": "Propiedad intelectual",
           "paragraphs": [
-            "Los textos, imágenes, marcas y diseño del sitio pertenecen a Edmar Travel o a terceros que autorizaron su uso, y no podés copiarlos o reutilizarlos sin permiso."
+            "Textos, imágenes, marcas, logotipos y diseño del sitio pertenecen a Edmar Travel S.A.S o a terceros licenciantes. Queda prohibida su reproducción sin autorización."
           ]
         },
         {
           "title": "Limitación de responsabilidad",
           "paragraphs": [
-            "En la medida permitida por la ley aplicable, no nos responsabilizamos por daños indirectos o consecuenciales derivados del uso del sitio o de la contratación, sin perjuicio de derechos que la normativa aplicable no permita limitar.",
-            "La responsabilidad por la ejecución de la experiencia puede corresponder en parte a terceros prestadores según el caso."
+            "En la medida permitida por la ley, no respondemos por daños indirectos derivados del uso del sitio, sin perjuicio de derechos irrenunciables del consumidor.",
+            "La ejecución en destino puede estar a cargo de terceros; aplican también sus condiciones operativas."
           ]
         },
         {
-          "title": "Cambios y contacto",
+          "title": "Modificaciones y jurisdicción",
           "paragraphs": [
-            "Podemos actualizar estos términos; la versión vigente será la publicada en el sitio.",
-            "Consultas: edmartravelsas@gmail.com — Tel.: +54 9 261 757-3651 — EDGAR DAVID NUÑEZ ZAVALLA, Edmar Travel, Salta 1393, Piso 2, Depto. 8, Mendoza, Argentina."
+            "Podemos actualizar estos términos; la versión vigente es la publicada en el sitio.",
+            "Ante controversias, serán competentes los tribunales ordinarios de la República Argentina, sin perjuicio de normas de defensa del consumidor que indiquen otro fuero.",
+            "Consultas: edmartravelsas@gmail.com"
           ]
         }
       ],
-      "closing": "Nuestro objetivo es que reserves y vivas Mendoza con información clara y trato directo."
+      "closing": "Gracias por elegir Edmar Travel para descubrir Mendoza."
     },
-    "disclaimer": {
-      "metaTitle": "Descargo de Responsabilidad | Edmar Travel",
-      "metaDescription": "Alcance informativo del sitio, riesgos de actividades turísticas y límites de responsabilidad de Edmar Travel.",
-      "title": "Descargo de Responsabilidad",
-      "intro": "Edmar Travel ofrece información y canal de contacto para experiencias turísticas. Este descargo aclara límites de responsabilidad e información general.",
-      "updatedAt": "Última actualización: abril de 2026",
+    "cancellations": {
+      "kicker": "Cancelaciones",
+      "metaTitle": "Política de Cancelaciones | Edmar Travel",
+      "metaDescription": "Condiciones de cancelación, cambios de fecha, reembolsos y fuerza mayor en reservas con Edmar Travel S.A.S.",
+      "title": "Política de Cancelaciones",
+      "intro": "Esta política complementa los Términos y Condiciones y detalla cómo gestionamos cancelaciones, cambios de fecha y reembolsos en las experiencias contratadas con Edmar Travel S.A.S.",
+      "updatedAt": "Última actualización: agosto de 2026",
       "sections": [
         {
-          "title": "Información general",
+          "title": "Solicitudes de reserva",
           "paragraphs": [
-            "El contenido del sitio es orientativo y no sustituye asesoramiento legal, médico ni técnico especializado.",
-            "Procuramos que la información sea correcta, pero puede haber cambios en servicios, precios o condiciones sin actualización inmediata en la web."
+            "Las solicitudes enviadas desde el sitio quedan sujetas a confirmación por WhatsApp o email. Hasta ese momento no se considera firme la reserva.",
+            "Te comunicaremos plazos y condiciones específicas al confirmar cada experiencia."
           ]
         },
         {
-          "title": "Actividades turísticas y riesgos",
+          "title": "Cambios de fecha",
           "paragraphs": [
-            "Excursiones, catas, traslados, actividades en montaña o ciudad implican riesgos variables (tráfico, clima, terreno, alimentos, alcohol en catas, etc.).",
-            "Quien participa asume la responsabilidad de evaluar si la actividad es adecuada a su condición y de seguir indicaciones del personal autorizado."
+            "Los cambios de fecha dependen de disponibilidad del proveedor y anticipación con la que nos avises.",
+            "Cuanto mayor sea la anticipación, más opciones de reprogramación sin penalidad suele haber.",
+            "Algunas experiencias de temporada alta o cupos limitados pueden no admitir cambios; te lo informaremos al reservar."
           ]
         },
         {
-          "title": "Terceros prestadores",
+          "title": "Cancelaciones por el pasajero",
           "paragraphs": [
-            "Muchas experiencias son prestadas o cofinanciadas por terceros. Edmar Travel no controla todos los aspectos operativos de esos terceros.",
-            "Cualquier reclamo relacionado con la ejecución en destino puede requerir coordinación con el prestador correspondiente, sin perjuicio de lo establecido en la normativa aplicable y en las condiciones de tu reserva."
+            "Las cancelaciones deben comunicarse por escrito a edmartravelsas@gmail.com indicando número de solicitud o datos de la reserva.",
+            "Con mayor antelación a la fecha del servicio, es posible obtener reprogramación o reembolso parcial según gastos ya incurridos con proveedores.",
+            "Cancelaciones con poca anticipación o inasistencia (no-show) pueden implicar cargo total o parcial no reembolsable, conforme a lo acordado al confirmar."
           ]
         },
         {
-          "title": "Enlaces externos",
+          "title": "Reembolsos",
           "paragraphs": [
-            "Enlaces a sitios de terceros se ofrecen por conveniencia; no somos responsables de su contenido ni de sus políticas."
+            "Cuando corresponda un reembolso, se realizará por el mismo medio acordado (transferencia u otro) en un plazo razonable tras confirmar la cancelación.",
+            "Comisiones bancarias, de pasarelas de pago o gastos administrativos ya devengados pueden no ser reembolsables.",
+            "Te enviaremos detalle del cálculo cuando aplique."
           ]
         },
         {
-          "title": "Limitación de responsabilidad",
+          "title": "Fuerza mayor y condiciones climáticas",
           "paragraphs": [
-            "En la medida permitida por la ley aplicable, EDGAR DAVID NUÑEZ ZAVALLA y Edmar Travel no serán responsables por pérdidas derivadas del uso del sitio o de la información en él, sin perjuicio de derechos irrenunciables.",
-            "Nada de este texto limita derechos que la ley no permita excluir."
-          ]
-        },
-        {
-          "title": "Normas locales",
-          "paragraphs": [
-            "Podés estar sujeto a normas locales o del lugar de la actividad (edad mínima, consumo de alcohol, accesos, etc.). Es tu responsabilidad informarte y cumplirlas."
+            "Si la experiencia no puede realizarse por clima extremo, corte de rutas, disposiciones oficiales u otras causas de fuerza mayor, priorizaremos reprogramar en fecha alternativa.",
+            "Si no fuera posible reprogramar, evaluaremos reembolso total o parcial según lo ya abonado a terceros y la normativa aplicable.",
+            "En actividades al aire libre, la seguridad de pasajeros y guías prevalece sobre la realización estricta del itinerario."
           ]
         },
         {
           "title": "Contacto",
           "paragraphs": [
-            "Consultas sobre este descargo: edmartravelsas@gmail.com o +54 9 261 757-3651."
+            "Para cancelaciones, cambios o consultas: edmartravelsas@gmail.com — Edmar Travel S.A.S — Legajo 2116."
           ]
         }
       ],
-      "closing": "Disfrutá Mendoza con respeto por el entorno, las personas y las normas del lugar."
+      "closing": "Nuestro equipo te acompañará para encontrar la mejor solución en cada caso."
     }
   },
   "footer": {
     "navigationTitle": "Navegación",
-    "companyTitle": "Compañía",
-    "legalTitle": "Legal",
-    "trustTitle": "Confianza",
-    "brandBlurb": "La Mejor forma de conocer Mendoza es con Nosotros.",
+    "legalTitle": "Información legal",
+    "contactTitle": "Contacto",
+    "brandBlurb": "Especialistas en experiencias y turismo en Mendoza. Diseñamos salidas premium con operadores locales y atención personalizada.",
+    "copyright": "© 2026 Edmar Travel S.A.S. Todos los derechos reservados.",
+    "contactLabels": {
+      "company": "Razón social",
+      "legajo": "Legajo RNAVYT",
+      "cuit": "CUIT",
+      "email": "Email"
+    },
     "links": {
       "home": "Inicio",
-      "products": "Productos",
-      "cart": "Carrito",
-      "checkout": "Checkout",
-      "about": "Sobre nosotros",
+      "experiences": "Experiencias",
+      "about": "Nosotros",
       "contact": "Contacto",
+      "legalInfo": "Información legal",
       "privacy": "Política de privacidad",
       "cookies": "Política de cookies",
       "terms": "Términos y condiciones",
-      "disclaimer": "Descargo de responsabilidad"
-    },
-    "trustItems": [
-      "Pagos: PayPal, transferencia o efectivo",
-      "Operadores y guías locales",
-      "Atención por email y WhatsApp",
-      "Reservas con información clara"
-    ],
-    "rights": "Todos los derechos reservados."
+      "cancellations": "Política de cancelaciones"
+    }
   },
   "cookieConsent": {
-    "text": "Usamos cookies mínimas para mejorar la experiencia. Nada invasivo.",
+    "text": "Usamos cookies esenciales y, con tu consentimiento, cookies analíticas para mejorar el sitio.",
     "accept": "Aceptar",
-    "decline": "Rechazar"
+    "decline": "Rechazar",
+    "policyLink": "Ver política de cookies"
   },
   "registrationCTA": {
     "title": "Descuento para nuevos usuarios",
@@ -2146,10 +2182,22 @@
     "copiedCode": "Copiado",
     "timelineTitle": "Próximos pasos",
     "timeline": {
-      "1": { "title": "Solicitud recibida", "desc": "Registramos tu pedido con todos los datos." },
-      "2": { "title": "Contacto por WhatsApp", "desc": "Enviá el mensaje precargado para que podamos responderte." },
-      "3": { "title": "Coordinación de detalles", "desc": "Ajustamos fecha, punto de encuentro y logística." },
-      "4": { "title": "Reserva asegurada", "desc": "Te confirmamos cuando todo quede cerrado." }
+      "1": {
+        "title": "Solicitud recibida",
+        "desc": "Registramos tu pedido con todos los datos."
+      },
+      "2": {
+        "title": "Contacto por WhatsApp",
+        "desc": "Enviá el mensaje precargado para que podamos responderte."
+      },
+      "3": {
+        "title": "Coordinación de detalles",
+        "desc": "Ajustamos fecha, punto de encuentro y logística."
+      },
+      "4": {
+        "title": "Reserva asegurada",
+        "desc": "Te confirmamos cuando todo quede cerrado."
+      }
     },
     "summaryRequestTitle": "Resumen de tu solicitud",
     "customerTitle": "Datos del pasajero",

@@ -4,7 +4,15 @@ import { getProducts } from "@/lib/products";
 import { getCategorySlugs } from "@/lib/categories";
 import { getMessages } from "@/lib/i18n/messages";
 import { blogSections } from "@/lib/blog-sections";
-import { LEGAL_SLUGS, getSiteUrl } from "@/lib/seo";
+import { LEGAL_SLUGS, getSiteUrl, type LegalPageKey } from "@/lib/seo";
+
+const LEGAL_PAGE_KEYS: LegalPageKey[] = [
+  "legal",
+  "privacy",
+  "cookies",
+  "terms",
+  "cancellations",
+];
 
 const BASE_PAGES = ["", "products", "categories", "about", "contact", "blog"];
 
@@ -61,21 +69,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   locales.forEach((locale) => {
-    urls.push({
-      url: `${baseUrl}/${locale}/${LEGAL_SLUGS.privacy[locale]}`,
-      lastModified: now,
-    });
-    urls.push({
-      url: `${baseUrl}/${locale}/${LEGAL_SLUGS.cookies[locale]}`,
-      lastModified: now,
-    });
-    urls.push({
-      url: `${baseUrl}/${locale}/${LEGAL_SLUGS.terms[locale]}`,
-      lastModified: now,
-    });
-    urls.push({
-      url: `${baseUrl}/${locale}/${LEGAL_SLUGS.disclaimer[locale]}`,
-      lastModified: now,
+    LEGAL_PAGE_KEYS.forEach((key) => {
+      urls.push({
+        url: `${baseUrl}/${locale}/${LEGAL_SLUGS[key][locale]}`,
+        lastModified: now,
+      });
     });
   });
 

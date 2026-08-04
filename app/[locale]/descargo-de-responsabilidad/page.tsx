@@ -1,2 +1,1 @@
-export { default, generateMetadata } from "../disclaimer/page";
-
+export { default, generateMetadata } from "../legal/page";

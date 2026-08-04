@@ -8,35 +8,82 @@ const OG_LOCALES: Record<Locale, string> = {
   it: "it_IT",
 };
 
-export const LEGAL_SLUGS: Record<
-  "privacy" | "cookies" | "terms" | "disclaimer",
-  Record<Locale, string>
-> = {
+export type LegalPageKey =
+  | "legal"
+  | "privacy"
+  | "cookies"
+  | "terms"
+  | "cancellations";
+
+export const LEGAL_SLUGS: Record<LegalPageKey, Record<Locale, string>> = {
+  legal: {
+    en: "legal",
+    es: "informacion-legal",
+    fr: "informations-legales",
+    it: "informazioni-legali",
+  },
   privacy: {
-    en: "privacy-policy",
-    es: "politica-de-privacidad",
-    fr: "politique-de-confidentialite",
-    it: "informativa-sulla-privacy",
+    en: "privacy",
+    es: "privacidad",
+    fr: "confidentialite",
+    it: "privacy",
   },
   cookies: {
-    en: "cookie-policy",
-    es: "politica-de-cookies",
-    fr: "politique-de-cookies",
-    it: "informativa-sui-cookie",
+    en: "cookies",
+    es: "cookies",
+    fr: "cookies",
+    it: "cookies",
   },
   terms: {
-    en: "terms-and-conditions",
-    es: "terminos-y-condiciones",
-    fr: "conditions-generales",
-    it: "termini-e-condizioni",
+    en: "terms",
+    es: "terminos",
+    fr: "conditions",
+    it: "termini",
   },
-  disclaimer: {
-    en: "disclaimer",
-    es: "descargo-de-responsabilidad",
-    fr: "avis-de-non-responsabilite",
-    it: "esclusione-di-responsabilita",
+  cancellations: {
+    en: "cancellations",
+    es: "cancelaciones",
+    fr: "annulations",
+    it: "cancellazioni",
   },
 };
+
+/** Slugs históricos — re-exportados como alias para no romper enlaces. */
+export const LEGAL_SLUG_ALIASES: Partial<Record<Locale, Record<string, LegalPageKey>>> = {
+  en: {
+    "privacy-policy": "privacy",
+    "cookie-policy": "cookies",
+    "terms-and-conditions": "terms",
+    disclaimer: "legal",
+  },
+  es: {
+    "politica-de-privacidad": "privacy",
+    "politica-de-cookies": "cookies",
+    "terminos-y-condiciones": "terms",
+    "descargo-de-responsabilidad": "legal",
+  },
+  fr: {
+    "politique-de-confidentialite": "privacy",
+    "politique-de-cookies": "cookies",
+    "conditions-generales": "terms",
+    "avis-de-non-responsabilite": "legal",
+  },
+  it: {
+    "informativa-sulla-privacy": "privacy",
+    "informativa-sui-cookie": "cookies",
+    "termini-e-condizioni": "terms",
+    "esclusione-di-responsabilita": "legal",
+  },
+};
+
+export function buildLegalPathByLocale(key: LegalPageKey): Record<Locale, string> {
+  return {
+    en: `/en/${LEGAL_SLUGS[key].en}`,
+    es: `/es/${LEGAL_SLUGS[key].es}`,
+    fr: `/fr/${LEGAL_SLUGS[key].fr}`,
+    it: `/it/${LEGAL_SLUGS[key].it}`,
+  };
+}
 
 export function getSiteUrl() {
   const envUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -81,6 +128,7 @@ export function buildMetadata({
   ogTitle,
   ogDescription,
   ogType = "website",
+  robotsIndex = true,
 }: {
   locale: Locale;
   title: string;
@@ -90,6 +138,7 @@ export function buildMetadata({
   ogTitle?: string;
   ogDescription?: string;
   ogType?: "website" | "article" | "product";
+  robotsIndex?: boolean;
 }): Metadata {
   const url = toAbsoluteUrl(pathByLocale[locale]);
   const imageUrl = toAbsoluteUrl(ogImage || "/assets/images/blog/blog-hero.webp");
@@ -98,6 +147,9 @@ export function buildMetadata({
   return {
     title,
     description,
+    robots: robotsIndex
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
     alternates: buildAlternates({ locale, pathByLocale }),
     openGraph: {
       title: ogTitle || title,

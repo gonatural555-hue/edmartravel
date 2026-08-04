@@ -1,2 +1,1 @@
-export { default, generateMetadata } from "../cookie-policy/page";
-
+export { default, generateMetadata } from "../cookies/page";

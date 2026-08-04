@@ -48,6 +48,13 @@ function isEditorialNavSurface(pathname: string) {
   if (isHomePath(pathname)) return true;
   if (/\/blog(\/|$)/.test(pathname)) return true;
   if (/\/(cart|checkout|order-success)(\/|$)/.test(pathname)) return true;
+  if (
+    /\/(legal|informacion-legal|informations-legales|informazioni-legali|privacy|privacidad|confidentialite|cookies|terms|terminos|conditions|termini|cancellations|cancelaciones|annulations|cancellazioni)(\/|$)/.test(
+      pathname
+    )
+  ) {
+    return true;
+  }
   return false;
 }
 
