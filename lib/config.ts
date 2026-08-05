@@ -48,7 +48,7 @@ export const SITE_CONFIG: {
     whatsappPhone: whatsappDigits,
   },
   company: {
-    legalName: "Edmar Travel S.A.S",
+    legalName: "Edgar David Nuñez Zavalla",
     cuit: "20-43925089-6",
     legajo: "2116",
     domain: siteDomain,
