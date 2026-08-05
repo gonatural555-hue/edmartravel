@@ -282,7 +282,7 @@ export default function ImmersiveHomeHeader({
 
   const logoImg = (
     <img
-      src="/assets/images/logo/logo.svg"
+      src={SITE_CONFIG.logo}
       alt={SITE_CONFIG.name}
       width={200}
       height={133}

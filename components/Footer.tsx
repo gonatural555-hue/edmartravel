@@ -96,7 +96,7 @@ export default function Footer() {
               aria-label={SITE_CONFIG.name}
             >
               <img
-                src="/assets/images/logo/logo.svg"
+                src={SITE_CONFIG.logo}
                 alt=""
                 width={160}
                 height={48}

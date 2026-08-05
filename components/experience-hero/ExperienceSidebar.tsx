@@ -7,6 +7,7 @@ import { directorOutline } from "./director/directorOutline";
 import { useExperienceDirectorMode } from "./director/useExperienceDirectorMode";
 import type { ExperienceWorldConfig } from "./experienceHeroConfig";
 import type { ExperienceWorldId } from "./types";
+import { SITE_CONFIG } from "@/lib/config";
 
 function CategoryIcon({ type }: { type: ExperienceWorldConfig["icon"] }) {
   const stroke = "currentColor";
@@ -84,7 +85,7 @@ export default function ExperienceSidebar({
         }
       >
         <Image
-          src="/assets/images/logo/logo.svg"
+          src={SITE_CONFIG.logo}
           alt="Edmar Travel"
           width={logo?.width ?? 120}
           height={logo?.height ?? 40}
