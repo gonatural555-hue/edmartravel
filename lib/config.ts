@@ -37,7 +37,7 @@ export const SITE_CONFIG: {
 } = {
   name: "Edmar Travel",
   tagline: "Experiencias únicas en Mendoza",
-  logo: "/assets/images/logo/logo.svg",
+  logo: "/assets/images/logo/logo.png",
   colors: {
     primary: "#1F4D3A",
     secondary: "#E8DDC7",
