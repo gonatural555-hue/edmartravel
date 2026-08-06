@@ -299,9 +299,9 @@ export default function ImmersiveHomeHeader({
     <img
       src={SITE_CONFIG.logo}
       alt={SITE_CONFIG.name}
-      width={200}
-      height={133}
-      className="h-[2.35rem] w-auto max-w-[9.5rem] object-contain object-left sm:h-[2.55rem] sm:max-w-[10.5rem] lg:h-[3rem] lg:max-w-[12.5rem] xl:h-[3.25rem] xl:max-w-[13.5rem]"
+      width={300}
+      height={200}
+      className="h-[3.525rem] w-auto max-w-[14.25rem] object-contain object-left sm:h-[3.825rem] sm:max-w-[15.75rem] lg:h-[4.5rem] lg:max-w-[18.75rem] xl:h-[4.875rem] xl:max-w-[20.25rem]"
       decoding="async"
     />
   );

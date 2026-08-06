@@ -99,9 +99,9 @@ export default function Footer() {
               <img
                 src={SITE_CONFIG.logo}
                 alt=""
-                width={160}
-                height={48}
-                className="h-12 w-auto max-w-[11rem] object-contain object-left opacity-95 transition-transform duration-300 ease-out group-hover:scale-[1.02] sm:h-14"
+                width={240}
+                height={72}
+                className="h-[4.5rem] w-auto max-w-[16.5rem] object-contain object-left opacity-95 transition-transform duration-300 ease-out group-hover:scale-[1.02] sm:h-[5.25rem]"
                 loading="lazy"
                 decoding="async"
               />
