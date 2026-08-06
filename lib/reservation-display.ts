@@ -46,14 +46,7 @@ export function formatReservationForLocale(
       party: fallbacks.party,
     };
   }
-  const loc =
-    locale === "es"
-      ? "es-AR"
-      : locale === "fr"
-        ? "fr-FR"
-        : locale === "it"
-          ? "it-IT"
-          : "en-US";
+  const loc = locale === "es" ? "es-AR" : "en-US";
   let datePart = fallbacks.date;
   if (reservation.preferredDate?.trim()) {
     const d = new Date(`${reservation.preferredDate.trim()}T12:00:00`);

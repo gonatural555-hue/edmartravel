@@ -20,8 +20,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en",
       es: "/es",
-      fr: "/fr",
-      it: "/it",
     },
   });
 }

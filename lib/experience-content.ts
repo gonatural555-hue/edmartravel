@@ -1,8 +1,6 @@
 import type { ExperienceRichContent } from "@/lib/experience-model";
 import type { Locale } from "@/lib/i18n/config";
 import { RICH_ES } from "@/lib/experience-rich/locale-es";
-import { RICH_FR } from "@/lib/experience-rich/locale-fr";
-import { RICH_IT } from "@/lib/experience-rich/locale-it";
 import { cabalgataPicadaPotrerillosEn } from "@/lib/pdp-entries/cabalgata-picada-potrerillos.en";
 import { monoCityTourMendozaEn } from "@/lib/pdp-entries/mono-city-tour-mendoza.en";
 import { privateWineryTransfersMendozaEn } from "@/lib/pdp-entries/private-winery-transfers-mendoza.en";
@@ -581,18 +579,13 @@ const BY_ID: Record<string, ExperienceRichContent> = {
   "epic-andes-adventure-trekking-hot-springs": EPIC_ANDES_TREK_THERMAL,
 };
 
-const RICH_BY_LOCALE: Record<
-  Exclude<Locale, "en">,
-  Record<string, ExperienceRichContent>
-> = {
+const RICH_BY_LOCALE: Record<"es", Record<string, ExperienceRichContent>> = {
   es: RICH_ES,
-  fr: RICH_FR,
-  it: RICH_IT,
 };
 
 /**
  * Contenido editorial enriquecido para la PDP. `en` usa la base inglesa;
- * `es` / `fr` / `it` usan mapas dedicados con fallback al inglés si falta una entrada.
+ * `es` usa mapa dedicado con fallback al inglés si falta una entrada.
  */
 export function getExperienceRichContent(
   productId: string,
@@ -601,5 +594,5 @@ export function getExperienceRichContent(
   const en = BY_ID[productId];
   if (!en) return null;
   if (locale === "en") return en;
-  return RICH_BY_LOCALE[locale][productId] ?? en;
+  return RICH_BY_LOCALE.es[productId] ?? en;
 }

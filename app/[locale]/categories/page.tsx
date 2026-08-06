@@ -22,8 +22,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en/categories",
       es: "/es/categories",
-      fr: "/fr/categories",
-      it: "/it/categories",
     },
   });
 }

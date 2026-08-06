@@ -15,6 +15,7 @@ import CategoryEditorialButton, {
 } from "@/components/category/CategoryEditorialButton";
 import { HOME_PAGE_BG } from "@/lib/category-page-assets";
 import { isHomePath } from "@/lib/is-home-path";
+import { switchLocalePath } from "@/lib/i18n/switch-locale-path";
 import {
   getAboutHref,
   getContactHref,
@@ -260,15 +261,9 @@ export default function ImmersiveHomeHeader({
   const homeHref = `/${locale}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
 
   const buildLocaleHref = (nextLocale: Locale) => {
-    const segments = pathname.split("/").filter(Boolean);
-    if (segments.length === 0) return `/${nextLocale}`;
-    if (locales.includes(segments[0] as Locale)) {
-      segments[0] = nextLocale;
-    } else {
-      segments.unshift(nextLocale);
-    }
+    const base = switchLocalePath(pathname, nextLocale);
     const query = searchParams.toString();
-    return `/${segments.join("/")}${query ? `?${query}` : ""}`;
+    return `${base}${query ? `?${query}` : ""}`;
   };
 
   const navItems: NavItem[] = [

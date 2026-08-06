@@ -57,8 +57,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en/products",
       es: "/es/products",
-      fr: "/fr/products",
-      it: "/it/products",
     },
   });
 }

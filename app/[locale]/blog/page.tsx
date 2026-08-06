@@ -24,8 +24,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en/blog",
       es: "/es/blog",
-      fr: "/fr/blog",
-      it: "/it/blog",
     },
     ogImage: BLOG_DEFAULT_HERO_IMAGE,
   });

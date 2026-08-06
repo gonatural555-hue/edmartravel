@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { defaultLocale, locales, type Locale } from "@/lib/i18n/config";
+import { defaultLocale, type Locale } from "@/lib/i18n/config";
 
 const OG_LOCALES: Record<Locale, string> = {
   en: "en_US",
   es: "es_ES",
-  fr: "fr_FR",
-  it: "it_IT",
 };
 
 export type LegalPageKey =
@@ -19,37 +17,29 @@ export const LEGAL_SLUGS: Record<LegalPageKey, Record<Locale, string>> = {
   legal: {
     en: "legal",
     es: "informacion-legal",
-    fr: "informations-legales",
-    it: "informazioni-legali",
   },
   privacy: {
     en: "privacy",
     es: "privacidad",
-    fr: "confidentialite",
-    it: "privacy",
   },
   cookies: {
     en: "cookies",
     es: "cookies",
-    fr: "cookies",
-    it: "cookies",
   },
   terms: {
     en: "terms",
     es: "terminos",
-    fr: "conditions",
-    it: "termini",
   },
   cancellations: {
     en: "cancellations",
     es: "cancelaciones",
-    fr: "annulations",
-    it: "cancellazioni",
   },
 };
 
 /** Slugs históricos — re-exportados como alias para no romper enlaces. */
-export const LEGAL_SLUG_ALIASES: Partial<Record<Locale, Record<string, LegalPageKey>>> = {
+export const LEGAL_SLUG_ALIASES: Partial<
+  Record<Locale, Record<string, LegalPageKey>>
+> = {
   en: {
     "privacy-policy": "privacy",
     "cookie-policy": "cookies",
@@ -62,26 +52,14 @@ export const LEGAL_SLUG_ALIASES: Partial<Record<Locale, Record<string, LegalPage
     "terminos-y-condiciones": "terms",
     "descargo-de-responsabilidad": "legal",
   },
-  fr: {
-    "politique-de-confidentialite": "privacy",
-    "politique-de-cookies": "cookies",
-    "conditions-generales": "terms",
-    "avis-de-non-responsabilite": "legal",
-  },
-  it: {
-    "informativa-sulla-privacy": "privacy",
-    "informativa-sui-cookie": "cookies",
-    "termini-e-condizioni": "terms",
-    "esclusione-di-responsabilita": "legal",
-  },
 };
 
-export function buildLegalPathByLocale(key: LegalPageKey): Record<Locale, string> {
+export function buildLegalPathByLocale(
+  key: LegalPageKey
+): Record<Locale, string> {
   return {
     en: `/en/${LEGAL_SLUGS[key].en}`,
     es: `/es/${LEGAL_SLUGS[key].es}`,
-    fr: `/fr/${LEGAL_SLUGS[key].fr}`,
-    it: `/it/${LEGAL_SLUGS[key].it}`,
   };
 }
 
@@ -112,8 +90,6 @@ export function buildAlternates({
     languages: {
       en: toAbsoluteUrl(pathByLocale.en),
       es: toAbsoluteUrl(pathByLocale.es),
-      fr: toAbsoluteUrl(pathByLocale.fr),
-      it: toAbsoluteUrl(pathByLocale.it),
       "x-default": toAbsoluteUrl(pathByLocale[defaultLocale]),
     },
   };
@@ -141,7 +117,9 @@ export function buildMetadata({
   robotsIndex?: boolean;
 }): Metadata {
   const url = toAbsoluteUrl(pathByLocale[locale]);
-  const imageUrl = toAbsoluteUrl(ogImage || "/assets/images/blog/blog-hero.webp");
+  const imageUrl = toAbsoluteUrl(
+    ogImage || "/assets/images/blog/blog-hero.webp"
+  );
   const openGraphType = ogType === "product" ? "website" : ogType;
 
   return {
@@ -168,10 +146,12 @@ export function buildMetadata({
   };
 }
 
-export function formatTemplate(template: string, params: Record<string, string>) {
+export function formatTemplate(
+  template: string,
+  params: Record<string, string>
+) {
   return Object.keys(params).reduce(
     (acc, key) => acc.replace(new RegExp(`\\{${key}\\}`, "g"), params[key]),
     template
   );
 }
-

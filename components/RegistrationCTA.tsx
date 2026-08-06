@@ -43,7 +43,10 @@ export default function RegistrationCTA() {
       setIsVisible(false);
       return;
     }
-    const isHome = pathname === "/es" || pathname === "/en" || pathname === "/fr" || pathname === "/it" || pathname.match(/^\/[a-z]{2}\/?$/);
+    const isHome =
+      pathname === "/es" ||
+      pathname === "/en" ||
+      pathname.match(/^\/[a-z]{2}\/?$/);
     const isProducts = pathname.includes("/products");
     const isCheckout = pathname.includes("/checkout");
     const isCart = pathname.includes("/cart");
@@ -82,7 +85,10 @@ export default function RegistrationCTA() {
       setIsVisible(false);
     } else if (!isLoggedIn && pathname) {
       // Check if should show on current page
-      const isHome = pathname === "/es" || pathname === "/en" || pathname === "/fr" || pathname === "/it" || pathname.match(/^\/[a-z]{2}\/?$/);
+      const isHome =
+      pathname === "/es" ||
+      pathname === "/en" ||
+      pathname.match(/^\/[a-z]{2}\/?$/);
       const isProducts = pathname.includes("/products");
       const isCheckout = pathname.includes("/checkout");
       const isCart = pathname.includes("/cart");
@@ -116,7 +122,10 @@ export default function RegistrationCTA() {
         setIsInputFocused(false);
         // Restore visibility if conditions are met
         if (!isLoggedIn && !authOpen && pathname) {
-          const isHome = pathname === "/es" || pathname === "/en" || pathname === "/fr" || pathname === "/it" || pathname.match(/^\/[a-z]{2}\/?$/);
+          const isHome =
+      pathname === "/es" ||
+      pathname === "/en" ||
+      pathname.match(/^\/[a-z]{2}\/?$/);
           const isProducts = pathname.includes("/products");
           if (isHome || isProducts) {
             const minimized = sessionStorage.getItem(SESSION_STORAGE_MINIMIZED) === "true";

@@ -1,11 +1,22 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { defaultLocale, locales, type Locale } from "@/lib/i18n/config";
+import {
+  defaultLocale,
+  isDeprecatedLocale,
+  locales,
+  type Locale,
+} from "@/lib/i18n/config";
+import { remapDeprecatedLocalePath } from "@/lib/i18n/switch-locale-path";
 
 function pathnameHasLocale(pathname: string): boolean {
   return locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   );
+}
+
+function pathnameHasDeprecatedLocale(pathname: string): boolean {
+  const segment = pathname.split("/").filter(Boolean)[0];
+  return segment ? isDeprecatedLocale(segment) : false;
 }
 
 function getLocaleFromPathname(pathname: string): Locale {
@@ -31,6 +42,13 @@ export function middleware(request: NextRequest) {
   /** Rutas de laboratorio fuera de i18n (app/lab/...) */
   if (pathname === "/lab" || pathname.startsWith("/lab/")) {
     return NextResponse.next();
+  }
+
+  /** Redirect legacy FR/IT → equivalente en español (301). */
+  if (pathnameHasDeprecatedLocale(pathname)) {
+    const url = request.nextUrl.clone();
+    url.pathname = remapDeprecatedLocalePath(pathname);
+    return NextResponse.redirect(url, 301);
   }
 
   if (!pathnameHasLocale(pathname)) {

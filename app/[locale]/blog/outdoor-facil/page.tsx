@@ -22,8 +22,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en/blog/outdoor-facil",
       es: "/es/blog/outdoor-facil",
-      fr: "/fr/blog/outdoor-facil",
-      it: "/it/blog/outdoor-facil",
     },
     ogImage: section?.image,
   });

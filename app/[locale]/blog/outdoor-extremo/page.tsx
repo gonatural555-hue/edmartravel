@@ -22,8 +22,6 @@ export async function generateMetadata({
     pathByLocale: {
       en: "/en/blog/outdoor-extremo",
       es: "/es/blog/outdoor-extremo",
-      fr: "/fr/blog/outdoor-extremo",
-      it: "/it/blog/outdoor-extremo",
     },
     ogImage: section?.image,
   });
