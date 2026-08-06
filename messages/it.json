@@ -3,10 +3,10 @@
     "nav": {
       "home": "Home",
       "products": "Prodotti",
-      "tours": "Tours",
+      "tours": "Esperienze",
       "blog": "Blog",
       "cart": "Prenotazioni",
-      "about": "About",
+      "about": "Chi siamo",
       "contact": "Contatti"
     },
     "greeting": "Ciao",
@@ -687,111 +687,131 @@
     "comingSoonWarning": "Questa esperienza sarà presto disponibile. La prenotazione online non è ancora attiva."
   },
   "contactPage": {
-    "title": "Contatto",
-    "backgroundAlt": "Paesaggio montano, sfondo della pagina contatti Edmar Travel",
-    "intro": "Domande sui nostri tour, su una prenotazione o altro? In Edmar Travel leggiamo ogni messaggio e rispondiamo il prima possibile — siamo un team locale a Mendoza.",
-    "emailTitle": "Email",
-    "hoursTitle": "Orari di assistenza",
-    "hoursLine1": "Lunedì a venerdì: 9:00 - 18:00",
-    "hoursLine2": "Sabato: 10:00 - 14:00",
-    "hoursLine3": "Domenica: chiuso",
-    "quickTitle": "Risposta rapida:",
-    "quickText": "Di solito rispondiamo entro 24–48 ore. Se è urgente, scrivi «urgente» nell’oggetto o all’inizio del messaggio e faremo il possibile per rispondere prima.",
+    "metaTitle": "Contatti | Edmar Travel",
+    "metaDescription": "Contatta Edmar Travel per domande su esperienze, disponibilità e attività turistiche a Mendoza.",
+    "hero": {
+      "eyebrow": "SIAMO QUI PER AIUTARTI",
+      "title": "Contatti",
+      "intro": "Hai una domanda sulle nostre esperienze, ti serve aiuto per scegliere un’attività o vuoi organizzare il tuo viaggio a Mendoza? Scrivici. Il nostro team ti aiuterà a trovare l’opzione più adatta a te.",
+      "imageAlt": "Paesaggio di Mendoza, vigneti e montagna — Edmar Travel"
+    },
+    "info": {
+      "emailLabel": "Email",
+      "attentionLabel": "Assistenza",
+      "attentionText": "Rispondiamo a domande su esperienze, disponibilità, prenotazioni e organizzazione del viaggio.",
+      "hoursText": "Scrivici quando ne hai bisogno. Ti risponderemo il prima possibile durante i nostri orari di assistenza.",
+      "quickTitle": "Risposta rapida:",
+      "quickText": "Per aiutarti meglio, indicaci quale esperienza ti interessa, la data approssimativa, il numero di persone e qualsiasi richiesta speciale.",
+      "whatsappLabel": "WhatsApp",
+      "whatsappCta": "Scrivi su WhatsApp"
+    },
     "form": {
+      "title": "Invia un messaggio",
+      "intro": "Compila il modulo e raccontaci come possiamo aiutarti. Più informazioni ci dai, più precisa potrà essere la nostra risposta.",
       "nameLabel": "Nome",
       "namePlaceholder": "Il tuo nome",
       "emailLabel": "Email",
       "emailPlaceholder": "tu@email.com",
+      "phoneLabel": "Telefono o WhatsApp",
+      "phonePlaceholder": "Facoltativo",
+      "experienceLabel": "Esperienza di interesse",
+      "experiencePlaceholder": "Seleziona un’esperienza",
+      "experienceOther": "Altra richiesta",
+      "dateLabel": "Data approssimativa",
+      "datePlaceholder": "Facoltativo",
+      "partySizeLabel": "Numero di persone",
+      "partySizePlaceholder": "Facoltativo",
       "messageLabel": "Messaggio",
-      "messagePlaceholder": "Dicci come possiamo aiutarti...",
+      "messagePlaceholder": "Dicci come possiamo aiutarti…",
       "submit": "Invia messaggio",
       "sending": "Invio in corso…",
-      "success": "Grazie — abbiamo ricevuto il messaggio e risponderemo presto.",
-      "error": "Non siamo riusciti a inviare il messaggio. Riprova tra qualche minuto."
+      "successTitle": "Messaggio inviato",
+      "successText": "Abbiamo ricevuto la tua richiesta. Ti contatteremo il prima possibile.",
+      "errorTitle": "Non siamo riusciti a inviare il messaggio",
+      "errorText": "Controlla i dati e riprova. Puoi anche scriverci direttamente via email.",
+      "validation": {
+        "nameMin": "Il nome deve avere almeno 2 caratteri.",
+        "emailInvalid": "Inserisci un’email valida.",
+        "messageMin": "Il messaggio deve avere almeno 10 caratteri.",
+        "partySizeInvalid": "Inserisci un numero valido di persone.",
+        "dateInvalid": "Inserisci una data valida."
+      }
     }
   },
   "aboutPage": {
-    "metaTitle": "Chi è Edmar Travel | Mendoza, esperienze e accoglienza locale",
-    "metaDescription": "Scopri Edmar Travel: team mendocino che progetta uscite con criterio — equitazione, vigneti, trekking ed esperienze su misura, con attenzione umana.",
-    "heroImageAlt": "Paesaggio di Mendoza, montagna e vigneti",
-    "heroTitle": "Mendoza, senza fretta e con voglia",
-    "heroSubtitle": "In Edmar Travel progettiamo uscite per chi cerca più di un circuito standard: paesaggio vero, buon vino e un accompagnamento dal primo messaggio all’ultimo chilometro.",
-    "whoTitle": "Chi siamo",
-    "whoParagraphs": [
-      "Siamo un team locale che lavora come agenzia di esperienze: pianifichiamo, coordiniamo e ci facciamo trovare quando serve. Il nostro obiettivo non è riempire pullman o ripetere lo stesso copione ogni giorno. Preferiamo gruppi gestibili, tempi umani e proposte che rispecchino ciò che Mendoza può offrire oggi: sentieri di montagna, tenute con storia, incontri con persone che amano il proprio lavoro.",
-      "Crediamo che un buon viaggio unisca un po’ di avventura, un asado o un calice versato bene, e la calma di sapere che dall’altra parte c’è qualcuno del posto. Questo mix — natura, cultura del vino e cura personale — è il cuore di Edmar Travel."
-    ],
-    "experiencesTitle": "Come vivi Mendoza con noi",
-    "experiencesIntro": "Ogni uscita ha il suo ritmo. Ecco le forme in cui di solito costruiamo il viaggio; in ciascuna caliamo i dettagli sul tuo tempo e su ciò che vuoi provare.",
-    "experienceCategories": [
-      {
-        "title": "Cavalli e sentieri",
-        "text": "Cavalcate e percorsi a cavallo per legarsi al paesaggio senza fretta: sentieri, silenzio, cielo ampio e la sensazione di stare davvero dentro il territorio."
-      },
-      {
-        "title": "Vigneti e cultura del vino",
-        "text": "Visite in cantina e mezze giornate tra i filari, con spazio per la conversazione, il buon vino e luoghi dove il tempo si allarga."
-      },
-      {
-        "title": "Trekking e avventura",
-        "text": "Uscite di trekking e proposte più attive per chi vuole muoversi e conquistare i belvedere: sforzo giusto, sicurezza e panorami che valgono la salita."
-      },
-      {
-        "title": "Esperienze su misura",
-        "text": "Quando il viaggio chiede un tono proprio: combiniamo attività, trasferimenti e momenti esclusivi perché la giornata sia tua, non presa da un catalogo."
-      }
-    ],
-    "whyTitle": "Perché viaggiare con Edmar Travel",
-    "whyParagraphs": [
-      "Perché siamo di qui e lavoriamo con criterio: conosciamo fornitori, percorsi e stagioni, e si vede in ogni coordinamento. Trattiamo viaggiatori internazionali e chi muove i primi passi nel mondo con la stessa chiarezza: risposte rapide, informazioni utili e zero sorprese inutili.",
-      "Non competiamo per essere i più grandi. Competiamo per essere chiari, caldi e coerenti: esperienze scelte con cura, gruppi che si possono seguire bene, e uno stile di viaggio più simile a un bel piano tra amici che a un circuito freddo."
-    ],
-    "valuesTitle": "Cosa ci guida",
-    "values": [
-      {
-        "title": "Autenticità",
-        "text": "Diamo priorità al reale del luogo rispetto alla scenografia turistica."
-      },
-      {
-        "title": "Calore",
-        "text": "L’accoglienza umana non è un extra: fa parte del servizio."
-      },
-      {
-        "title": "Legame locale",
-        "text": "Lavoriamo con chi vive e si prende cura di Mendoza."
-      },
-      {
-        "title": "Qualità dell’esperienza",
-        "text": "Meno cose, fatte meglio."
-      },
-      {
-        "title": "Fiducia",
-        "text": "Informazioni chiare, tempi onesti, supporto prima e durante il viaggio."
-      },
-      {
-        "title": "Flessibilità",
-        "text": "Ascoltiamo e adattiamo quando il viaggio lo chiede."
-      }
-    ],
-    "testimonialsTitle": "Voci di viaggiatori",
-    "testimonials": [
-      {
-        "name": "Lucía, Spagna",
-        "text": "La comunicazione è stata chiara dal primo messaggio. La giornata in cantina non è stata affrettata: abbiamo avuto tempo per parlare e capire il luogo. Si nota che scelgono bene i partner."
-      },
-      {
-        "name": "Martín, Buenos Aires",
-        "text": "Volevamo montagna senza complicarci la vita. Hanno spiegato bene il livello di sforzo e la giornata è stata come ce l’aspettavamo: impegnativa e bellissima."
-      },
-      {
-        "name": "Camille, Francia",
-        "text": "Abbiamo viaggiato in inglese senza problemi. Il team ha risposto in fretta e il giorno del tour era ben organizzato, con spazio per godere senza correre."
-      }
-    ],
-    "ctaTitle": "La tua prossima uscita inizia da una conversazione",
-    "ctaParagraph": "Se Mendoza ti chiama ma non vuoi il solito circuito stretto, guarda le nostre esperienze e scegli il ritmo che ti convince. Se preferisci parlarne prima di prenotare, scrivici: rispondiamo con la stessa calma con cui costruiamo ogni uscita.",
-    "ctaPrimary": "Vedi le esperienze",
-    "ctaSecondary": "Scrivici"
+    "metaTitle": "Chi è Edmar Travel | Agenzia di turismo a Mendoza",
+    "metaDescription": "Scopri Edmar Travel, un’agenzia creata da viaggiatori per connettere persone e offrire esperienze autentiche a Mendoza.",
+    "hero": {
+      "eyebrow": "LA NOSTRA STORIA",
+      "title": "Viaggiare si gusta di più quando si condivide",
+      "intro": "Edmar Travel è nata da un’idea semplice: le migliori esperienze non dipendono solo dal luogo che visitiamo, ma anche dalle persone con cui lo condividiamo. Siamo un’agenzia creata e guidata da viaggiatori. Conosciamo l’emozione di scoprire una nuova destinazione, l’attesa prima di ogni uscita e il valore di incontrare persone che condividono la stessa curiosità di viaggiare. Per questo progettiamo esperienze che riuniscono viaggiatori da luoghi diversi per scoprire Mendoza, connettersi con la sua cultura e godere ogni momento in modo vicino, autentico e memorabile.",
+      "imageAlt": "Viaggiatori che condividono una cavalcata a Mendoza",
+      "ctaPrimary": "Scopri le esperienze",
+      "ctaSecondary": "Parla con noi"
+    },
+    "who": {
+      "title": "Un’agenzia creata da viaggiatori",
+      "paragraphs": [
+        "Edmar Travel è un’agenzia di turismo creata e guidata da persone a cui piace viaggiare, scoprire nuovi luoghi e condividere esperienze con altri.",
+        "Il nostro obiettivo è riunire viaggiatori da diverse parti del mondo affinché possano scoprire Mendoza accompagnati da persone con interessi simili. Crediamo che un’esperienza diventi più preziosa quando si condivide: una conversazione durante il percorso, un pasto dopo un’escursione o l’emozione di ammirare un paesaggio insieme ad altri possono trasformare completamente un viaggio.",
+        "Non cerchiamo di offrire solo trasferimenti o attività. Vogliamo creare momenti ben organizzati, vicini e genuini, in cui ogni viaggiatore si senta accompagnato dal primo contatto fino alla fine dell’esperienza."
+      ],
+      "imageAlt": "Vigneti e Cordon del Plata nel Valle de Uco, Mendoza"
+    },
+    "pillars": {
+      "title": "Il nostro modo di intendere ogni esperienza",
+      "items": [
+        {
+          "title": "Esperienze condivise",
+          "text": "Creiamo attività pensate per riunire persone da luoghi diversi che condividono la stessa curiosità di scoprire, imparare e godere."
+        },
+        {
+          "title": "Conoscenza locale",
+          "text": "Lavoriamo con percorsi e proposte che permettono di conoscere Mendoza da una prospettiva vicina, collegando ogni paesaggio alla sua cultura, storia e gente."
+        },
+        {
+          "title": "Guide con vocazione",
+          "text": "Le nostre guide amano ciò che fanno. Il loro entusiasmo, conoscenza e attenzione aiutano a rendere ogni uscita dinamica, sicura e memorabile."
+        },
+        {
+          "title": "Assistenza vicina",
+          "text": "Accompagniamo ogni viaggiatore prima, durante e dopo l’esperienza, rispondendo alle domande e aiutandolo a scegliere la proposta più adatta al suo viaggio."
+        }
+      ]
+    },
+    "moreThan": {
+      "title": "Non si tratta solo di visitare un luogo",
+      "paragraphs": [
+        "Un’escursione può mostrarti un paesaggio. Una buona esperienza può farti ricordarlo per anni.",
+        "In Edmar Travel curiamo l’organizzazione, i tempi, l’accompagnamento e ogni punto di contatto con il viaggiatore. Vogliamo che le persone possano rilassarsi, godere del percorso e concentrarsi su ciò che conta davvero: conoscere, condividere e vivere il momento.",
+        "Selezioniamo esperienze che rappresentano la diversità di Mendoza e permettono di scoprirla attraverso i suoi paesaggi, sapori, tradizioni e protagonisti."
+      ],
+      "imageAlt": "Tour in alta montagna nelle Ande mendocine"
+    },
+    "guides": {
+      "title": "Persone a cui piace mostrare Mendoza",
+      "paragraphs": [
+        "Le guide sono una parte fondamentale di ogni esperienza. Non accompagnano solo un percorso: interpretano la destinazione, condividono conoscenze, gestiscono gli imprevisti e creano l’atmosfera affinché ogni gruppo possa godere.",
+        "Lavoriamo con guide entusiaste, attente e impegnate nella loro vocazione. Persone che conoscono il luogo e sanno trasmettere quella passione in modo vicino, chiaro e coinvolgente."
+      ],
+      "quote": "Conoscere una destinazione significa anche conoscere le storie e le persone che le danno identità.",
+      "imageAlt": "Guida che accompagna un’uscita a Mendoza"
+    },
+    "promise": {
+      "title": "Vogliamo che tu porti via qualcosa in più delle fotografie",
+      "text": "Vogliamo che ogni persona concluda la propria esperienza con bei ricordi, nuove storie e la sensazione di aver conosciuto Mendoza in modo autentico. Il nostro impegno è offrire proposte chiare, organizzate e accompagnate da persone che amano davvero condividere la destinazione.",
+      "points": [
+        "Organizzazione chiara e responsabile.",
+        "Accompagnamento vicino.",
+        "Esperienze pensate per godere e connettersi."
+      ]
+    },
+    "finalCta": {
+      "title": "La tua prossima esperienza può iniziare qui",
+      "text": "Scopri le nostre proposte e trova un modo diverso di conoscere Mendoza.",
+      "primary": "Vedi le esperienze",
+      "secondary": "Contattaci"
+    }
   },
   "blog": {
     "title": "Journal",

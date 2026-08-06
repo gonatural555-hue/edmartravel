@@ -15,6 +15,12 @@ import CategoryEditorialButton, {
 } from "@/components/category/CategoryEditorialButton";
 import { HOME_PAGE_BG } from "@/lib/category-page-assets";
 import { isHomePath } from "@/lib/is-home-path";
+import {
+  getAboutHref,
+  getContactHref,
+  isAboutPath,
+  isContactPath,
+} from "@/lib/page-slugs";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
 import { isAuthUiEnabled } from "@/lib/feature-flags";
 import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
@@ -47,6 +53,7 @@ function isCategoryPath(pathname: string) {
 function isEditorialNavSurface(pathname: string) {
   if (isHomePath(pathname)) return true;
   if (/\/blog(\/|$)/.test(pathname)) return true;
+  if (isAboutPath(pathname) || isContactPath(pathname)) return true;
   if (/\/(cart|checkout|order-success)(\/|$)/.test(pathname)) return true;
   if (
     /\/(legal|informacion-legal|informations-legales|informazioni-legali|privacy|privacidad|confidentialite|cookies|terms|terminos|conditions|termini|cancellations|cancelaciones|annulations|cancellazioni)(\/|$)/.test(
@@ -270,6 +277,14 @@ export default function ImmersiveHomeHeader({
       href: `/${locale}/products`,
       label: t("header.nav.tours"),
       matchPrefix: true,
+    },
+    {
+      href: getAboutHref(locale),
+      label: t("header.nav.about"),
+    },
+    {
+      href: getContactHref(locale),
+      label: t("header.nav.contact"),
     },
     {
       href: `/${locale}/blog`,

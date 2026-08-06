@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { SITE_CONFIG } from "@/lib/config";
 import { CATEGORY_PAGE_BG } from "@/lib/category-page-assets";
 import { LEGAL_SLUGS, type LegalPageKey } from "@/lib/seo";
+import { getAboutHref, getContactHref } from "@/lib/page-slugs";
 
 const FOOTER_LINK_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
@@ -68,8 +69,8 @@ export default function Footer() {
   const navigationLinks = [
     { href: `/${locale}`, label: t("footer.links.home") },
     { href: `/${locale}/products`, label: t("footer.links.experiences") },
-    { href: `/${locale}/about`, label: t("footer.links.about") },
-    { href: `/${locale}/contact`, label: t("footer.links.contact") },
+    { href: getAboutHref(locale), label: t("footer.links.about") },
+    { href: getContactHref(locale), label: t("footer.links.contact") },
   ];
 
   const legalLinks: { key: LegalPageKey; label: string }[] = [

@@ -5,6 +5,7 @@ import { getCategorySlugs } from "@/lib/categories";
 import { getMessages } from "@/lib/i18n/messages";
 import { blogSections } from "@/lib/blog-sections";
 import { LEGAL_SLUGS, getSiteUrl, type LegalPageKey } from "@/lib/seo";
+import { ABOUT_SLUGS, CONTACT_SLUGS } from "@/lib/page-slugs";
 
 const LEGAL_PAGE_KEYS: LegalPageKey[] = [
   "legal",
@@ -14,7 +15,7 @@ const LEGAL_PAGE_KEYS: LegalPageKey[] = [
   "cancellations",
 ];
 
-const BASE_PAGES = ["", "products", "categories", "about", "contact", "blog"];
+const BASE_PAGES = ["", "products", "categories", "blog"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
@@ -25,6 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     BASE_PAGES.forEach((path) => {
       const url = `${baseUrl}/${locale}${path ? `/${path}` : ""}`;
       urls.push({ url, lastModified: now });
+    });
+    urls.push({
+      url: `${baseUrl}/${locale}/${ABOUT_SLUGS[locale]}`,
+      lastModified: now,
+    });
+    urls.push({
+      url: `${baseUrl}/${locale}/${CONTACT_SLUGS[locale]}`,
+      lastModified: now,
     });
   });
 
