@@ -243,7 +243,7 @@ export default function ContactPageContent({
               >
                 {hero.title}
               </h1>
-              <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-white/78 sm:text-base">
+              <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-white sm:text-base">
                 {hero.intro}
               </p>
             </div>
