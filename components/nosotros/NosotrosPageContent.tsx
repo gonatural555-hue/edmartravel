@@ -161,7 +161,7 @@ export default function NosotrosPageContent({
                 <h1 className="font-theater max-w-2xl text-[2rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-[2.5rem] lg:text-[2.875rem]">
                   {hero.title}
                 </h1>
-                <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-white/78 sm:text-base">
+                <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-white sm:text-base">
                   {hero.intro}
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
