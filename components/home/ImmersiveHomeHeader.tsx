@@ -14,6 +14,7 @@ import CategoryEditorialButton, {
   headerUtilityCtaClass,
 } from "@/components/category/CategoryEditorialButton";
 import { HOME_PAGE_BG } from "@/lib/category-page-assets";
+import { usesLightHeaderLogo } from "@/lib/header-logo";
 import { isHomePath } from "@/lib/is-home-path";
 import { switchLocalePath } from "@/lib/i18n/switch-locale-path";
 import {
@@ -228,6 +229,7 @@ export default function ImmersiveHomeHeader({
 
   const isHomeEditorial = variant === "immersive";
   const isCategoryPage = isCategoryPath(pathname);
+  const isLightLogo = usesLightHeaderLogo(pathname);
   const isEditorialNav = isEditorialNavSurface(pathname);
   const isEditorialHeader = isHomeEditorial || isEditorialNav;
   const navLinkClass = isCategoryPage
@@ -292,7 +294,7 @@ export default function ImmersiveHomeHeader({
 
   const logoImg = (
     <img
-      src={SITE_CONFIG.logo}
+      src={isLightLogo ? SITE_CONFIG.logoLight : SITE_CONFIG.logo}
       alt={SITE_CONFIG.name}
       width={300}
       height={200}

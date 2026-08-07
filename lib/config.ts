@@ -12,6 +12,8 @@ export const SITE_CONFIG: {
   name: string;
   tagline: string;
   logo: string;
+  /** Logo claro para headers sobre fondos oscuros (categorías y PDP). */
+  logoLight: string;
   colors: {
     primary: string;
     secondary: string;
@@ -38,6 +40,7 @@ export const SITE_CONFIG: {
   name: "Edmar Travel",
   tagline: "Experiencias únicas en Mendoza",
   logo: "/assets/images/logo/logo.png",
+  logoLight: "/assets/images/logo/logo-blanco.png",
   colors: {
     primary: "#1F4D3A",
     secondary: "#E8DDC7",
