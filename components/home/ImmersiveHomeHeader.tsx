@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "@/components/i18n/LocaleProvider";
 import { usePathname, useSearchParams } from "next/navigation";
 import { locales, type Locale } from "@/lib/i18n/config";
@@ -14,7 +14,11 @@ import CategoryEditorialButton, {
   headerUtilityCtaClass,
 } from "@/components/category/CategoryEditorialButton";
 import { HOME_PAGE_BG } from "@/lib/category-page-assets";
-import { usesLightHeaderLogo } from "@/lib/header-logo";
+import {
+  getExperienceLightHeaderLogoSnapshot,
+  resolveHeaderLogoSrc,
+  subscribeExperienceLightHeaderLogo,
+} from "@/lib/header-logo";
 import { isHomePath } from "@/lib/is-home-path";
 import { switchLocalePath } from "@/lib/i18n/switch-locale-path";
 import {
@@ -229,7 +233,21 @@ export default function ImmersiveHomeHeader({
 
   const isHomeEditorial = variant === "immersive";
   const isCategoryPage = isCategoryPath(pathname);
-  const isLightLogo = usesLightHeaderLogo(pathname);
+  const forceLightLogo = useSyncExternalStore(
+    subscribeExperienceLightHeaderLogo,
+    getExperienceLightHeaderLogoSnapshot,
+    () => false
+  );
+  const [headerLogoSrc, setHeaderLogoSrc] = useState(() =>
+    resolveHeaderLogoSrc(pathname, false)
+  );
+
+  useLayoutEffect(() => {
+    const path =
+      typeof window !== "undefined" ? window.location.pathname : pathname;
+    setHeaderLogoSrc(resolveHeaderLogoSrc(path, forceLightLogo));
+  }, [pathname, forceLightLogo]);
+
   const isEditorialNav = isEditorialNavSurface(pathname);
   const isEditorialHeader = isHomeEditorial || isEditorialNav;
   const navLinkClass = isCategoryPage
@@ -294,7 +312,8 @@ export default function ImmersiveHomeHeader({
 
   const logoImg = (
     <img
-      src={isLightLogo ? SITE_CONFIG.logoLight : SITE_CONFIG.logo}
+      key={headerLogoSrc}
+      src={headerLogoSrc}
       alt={SITE_CONFIG.name}
       width={300}
       height={200}

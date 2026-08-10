@@ -6,6 +6,7 @@ import CategoryTestimonialsSection, {
   type CategoryTestimonial,
 } from "./CategoryTestimonialsSection";
 import CategoryFinalCtaSection from "./CategoryFinalCtaSection";
+import ExperienceLightHeaderLogo from "@/components/home/ExperienceLightHeaderLogo";
 import type { CategoryExperienceItem } from "./CategoryExperienceCard";
 
 export type CategoryPageCopy = {
@@ -52,6 +53,7 @@ export default function CategoryPageView({
 }: CategoryPageViewProps) {
   return (
     <main className="category-page relative isolate min-h-screen overflow-x-hidden">
+      <ExperienceLightHeaderLogo />
       <CategoryHero
         title={copy.heroTitle}
         imageSrc={heroImage}

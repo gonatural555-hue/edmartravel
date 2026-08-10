@@ -31,6 +31,7 @@ import {
 } from "@/components/experience/ExperienceLayoutParts";
 import { WhatsAppButtonLabel, WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { pdpHeroTitleClass, pdpReserveCtaClass } from "@/lib/pdp-title-styles";
+import ExperienceLightHeaderLogo from "@/components/home/ExperienceLightHeaderLogo";
 
 type ProductSummary = {
   id: string;
@@ -376,6 +377,7 @@ export default function ExperiencePageClient({
 
   return (
     <article className="overflow-x-hidden">
+      <ExperienceLightHeaderLogo />
       {/* Hero inmersivo */}
       <header className="relative min-h-[min(88vh,920px)] w-full">
         <div className="absolute inset-0">
