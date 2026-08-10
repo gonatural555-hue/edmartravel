@@ -12,7 +12,7 @@ export const SITE_CONFIG: {
   name: string;
   tagline: string;
   logo: string;
-  /** Logo claro para headers sobre fondos oscuros (categorías y PDP). */
+  /** Logo blanco — header en PDP de experiencias (`/products/[id]`). */
   logoLight: string;
   colors: {
     primary: string;

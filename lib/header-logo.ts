@@ -1,7 +1,7 @@
 /**
- * Header global: logo blanco sobre heroes oscuros (categorías wine/adventure/city y PDP).
+ * Logo blanco en el header global solo en PDP de experiencias (hero oscuro).
+ * Resto de rutas (home, categorías, nosotros, contacto, etc.) usan logo estándar.
  */
 export function usesLightHeaderLogo(pathname: string): boolean {
-  if (/\/category(\/|$)/.test(pathname)) return true;
   return /\/products\/[^/?#]+/.test(pathname);
 }
