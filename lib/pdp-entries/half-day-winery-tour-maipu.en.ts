@@ -3,7 +3,7 @@
  * Afternoon circuit: artisan + industrial wineries, olive oil, sweet wine.
  */
 export const halfDayWineryTourMaipuEn = {
-  title: "Half-Day Winery Tour – Maipú",
+  title: "Tour Bodegas",
   slug: "half-day-winery-tour-maipu",
   subtitle:
     "Maipú in one relaxed afternoon: small-lot character, industrial scale, golden olive oil, and a sweet-wine finale—four curated stops, every tasting and entrance included, so you only decide which bottle follows you home.",
@@ -14,7 +14,7 @@ export const halfDayWineryTourMaipuEn = {
     "You’ll start with the intimacy of an artisanal bodega, then step into the rhythm of a larger Maipú winery where volume and precision tell their own story. A dedicated olive oil stop adds aroma and texture to the day—think peppery finishes and the quiet craft behind every bottle. The last visit leans into Mendoza’s gift for dessert and fortified styles: a sweet-wine winery that closes the circuit on a memorable note.",
     "Pickups begin at 14:00 across Mendoza hotels; the city-wide collection can take around 45 minutes before the route settles into Maipú’s lanes. All entrance fees and tastings on the itinerary are included in your fare—clear, friendly, and easy to recommend for first nights in town or first contact with Argentine wine country.",
   ].join("\n\n"),
-  priceFrom: 48_000,
+  priceFrom: 53_000,
   currency: "ARS" as const,
   duration:
     "Half-day afternoon · ~14:00 hotel pickup · ~20:00 return (~6 h incl. pickup rounds)",

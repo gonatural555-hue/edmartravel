@@ -50,6 +50,8 @@ export type Product = {
   slug?: string;
   title: string;
   price: number;
+  /** Precio de referencia anterior (descuentos en PDP y cards). */
+  compareAtPrice?: number;
   category: string;
   images: string[];
   description: string;

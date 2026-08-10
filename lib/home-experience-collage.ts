@@ -74,9 +74,9 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-2",
     experienceId: "city",
-    productId: "city-tour-mendoza",
-    src: "/assets/images/products/CityTour/city-tour-2.webp",
-    alt: "Ciudad de Mendoza",
+    productId: "mono-city-tour-mendoza",
+    src: "/assets/images/products/MonoCityTour/featuredmonocitytour.webp",
+    alt: "Mono City Tour Mendoza",
     left: "68%",
     top: "52%",
     rotate: -5,

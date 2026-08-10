@@ -13,12 +13,6 @@ import type {
 /* ------------------------------------------------------------------ */
 /* SCENE 01 — WINE TOURS & BODEGAS                                     */
 /* ------------------------------------------------------------------ */
-/*
- * Orden de capas (de fondo a frente). Cada capa expone `layerId`
- * (→ data-layer) para que la futura coreografía de scroll pueda
- * targetearla por separado. Las posiciones viven en `className` para
- * poder refinar la composición fácilmente.
- */
 export const wineScene: CinematicSceneDef = {
   id: "wine",
   cta: {
@@ -28,7 +22,6 @@ export const wineScene: CinematicSceneDef = {
   layers: [
     {
       layerId: "contact-shadow",
-      // Sombra de contacto bajo botella/copa para anclarlas a la mesa.
       src: WINE_ASSETS.contactShadow,
       alt: "",
       zIndex: 14,
@@ -46,7 +39,6 @@ export const wineScene: CinematicSceneDef = {
     },
     {
       layerId: "cheese-board",
-      // Tabla de quesos a la izquierda, sobre la superficie.
       src: WINE_ASSETS.cheeseBoard,
       alt: "Tabla de quesos regionales",
       zIndex: 18,
@@ -56,7 +48,6 @@ export const wineScene: CinematicSceneDef = {
     },
     {
       layerId: "grapes",
-      // Uvas conectando la tabla de quesos con la base de la botella.
       src: WINE_ASSETS.grapes,
       alt: "Racimo de uvas",
       zIndex: 19,
@@ -66,7 +57,6 @@ export const wineScene: CinematicSceneDef = {
     },
     {
       layerId: "glass",
-      // Copa emparejada con la botella, ligeramente a su derecha.
       src: WINE_ASSETS.glass,
       alt: "Copa de vino tinto",
       zIndex: 28,
@@ -76,7 +66,6 @@ export const wineScene: CinematicSceneDef = {
     },
     {
       layerId: "bottle",
-      // Punto focal principal: botella Edmar, apoyada sobre la mesa.
       src: WINE_ASSETS.bottle,
       alt: "Botella de vino Edmar",
       zIndex: 30,
@@ -84,14 +73,11 @@ export const wineScene: CinematicSceneDef = {
       className: "block",
       placeholder: { label: "Botella Edmar" },
     },
-    // NOTA: la capa "particles" se reactivará cuando exista un PNG transparente
-    // real en effects/wine-atmospheric-particles-01.png (zIndex 40, inset-0,
-    // imageClassName "opacity-50 mix-blend-screen").
   ],
 };
 
 /* ------------------------------------------------------------------ */
-/* EXPERIENCE NAVIGATOR — datos por categoría                          */
+/* EXPERIENCE NAVIGATOR — datos por categoría (catálogo oficial: 10)   */
 /* ------------------------------------------------------------------ */
 
 export const experienceCategories: Record<SceneId, ExperienceCategory> = {
@@ -102,12 +88,12 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
     cta: "Explorar experiencias",
     experiences: [
       {
-        id: "luxury-wine",
-        productId: "luxury-wine-experience-bodega-boutique",
-        title: "Luxury Wine Experience",
+        id: "half-day",
+        productId: "half-day-winery-tour-maipu",
+        title: "Tour Bodegas",
         description:
-          "Bodega boutique, degustación guiada y una experiencia relajada entre viñedos.",
-        image: WINE_CARD_IMAGES.luxuryWine,
+          "Media tarde por Maipú: 3 bodegas con degustación, aceite de oliva y traslado incluido.",
+        image: WINE_CARD_IMAGES.halfDay,
       },
       {
         id: "private-transfers",
@@ -118,20 +104,12 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
         image: WINE_CARD_IMAGES.privateTransfers,
       },
       {
-        id: "valle-de-uco",
-        productId: "valle-de-uco-cordon-del-plata",
-        title: "Valle de Uco y Cordón del Plata",
+        id: "luxury-wine",
+        productId: "luxury-wine-experience-bodega-boutique",
+        title: "Luxury Wine Experience",
         description:
-          "Paisajes de montaña, cultura local y una ruta escénica por una de las regiones más imponentes de Mendoza.",
-        image: WINE_CARD_IMAGES.valleDeUco,
-      },
-      {
-        id: "half-day",
-        productId: "half-day-winery-tour-maipu",
-        title: "Bodegas Medio Día",
-        description:
-          "Una salida simple y completa para conocer bodegas, degustaciones y sabores locales.",
-        image: WINE_CARD_IMAGES.halfDay,
+          "Bodega boutique, degustación guiada y una experiencia relajada entre viñedos.",
+        image: WINE_CARD_IMAGES.luxuryWine,
       },
     ],
   },
@@ -142,6 +120,38 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
     cta: "Explorar experiencias",
     experiences: [
       {
+        id: "villavicencio",
+        productId: "villavicencio-nature-reserve-tour",
+        title: "Reserva Natural Villavicencio",
+        description:
+          "Naturaleza, historia y mirador en los caracoles de la precordillera.",
+        image: "/assets/images/products/Villavicencio/villavicencio-4.webp",
+      },
+      {
+        id: "canon-atuel",
+        productId: "canon-del-atuel-san-rafael-tour",
+        title: "Cañón del Atuel y San Rafael",
+        description:
+          "Ruta 40 al sur: San Rafael, el cañón y Valle Grande en día completo.",
+        image: "/assets/images/products/CañonDelAtuel/cañon-del-atuel-3.webp",
+      },
+      {
+        id: "andes-experience",
+        productId: "andes-experience-horseback-sunset-picnic",
+        title: "Andes Experience",
+        description:
+          "Alta montaña icónica + cabalgata y picnic con vino en Potrerillos.",
+        image: ADVENTURE_CARD_IMAGES.andesExperience,
+      },
+      {
+        id: "alta-montana",
+        productId: "high-mountain-tour-mendoza",
+        title: "Alta Montaña",
+        description:
+          "La ruta de los gigantes hasta el corazón de la cordillera.",
+        image: ADVENTURE_CARD_IMAGES.altaMontana,
+      },
+      {
         id: "cabalgata-picada",
         productId: "cabalgata-picada-potrerillos",
         title: "Cabalgata + Picada",
@@ -149,23 +159,9 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
         image: ADVENTURE_CARD_IMAGES.cabalgataPicada,
       },
       {
-        id: "andes-experience",
-        productId: "andes-experience-horseback-sunset-picnic",
-        title: "Andes Experience",
-        description: "Cabalgata al atardecer con picnic frente a los Andes.",
-        image: ADVENTURE_CARD_IMAGES.andesExperience,
-      },
-      {
-        id: "alta-montana",
-        productId: "high-mountain-tour-mendoza",
-        title: "Alta Montaña",
-        description: "La ruta de los gigantes hasta el corazón de la cordillera.",
-        image: ADVENTURE_CARD_IMAGES.altaMontana,
-      },
-      {
         id: "trekking-cacheuta",
         productId: "epic-andes-adventure-trekking-hot-springs",
-        title: "Trekking Cacheuta",
+        title: "Trekking + Termas",
         description: "Senderismo andino y termas naturales para reconectar.",
         image: ADVENTURE_CARD_IMAGES.trekkingCacheuta,
       },
@@ -180,23 +176,9 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
       {
         id: "scooter-city-tour",
         productId: "mono-city-tour-mendoza",
-        title: "Scooter City Tour",
-        description: "Recorre la ciudad sobre dos ruedas eléctricas.",
+        title: "Mono City Tour",
+        description: "Recorre la ciudad sobre monopatín eléctrico a tu ritmo.",
         image: DISCOVER_CARD_IMAGES.scooterCityTour,
-      },
-      {
-        id: "city-tour",
-        productId: "city-tour-mendoza",
-        title: "City Tour",
-        description: "Plazas, parques y la historia viva de Mendoza.",
-        image: DISCOVER_CARD_IMAGES.cityTour,
-      },
-      {
-        id: "villavicencio",
-        productId: "villavicencio-nature-reserve-tour",
-        title: "Villavicencio",
-        description: "Reserva natural, manantiales y caminos serpenteantes.",
-        image: DISCOVER_CARD_IMAGES.villavicencio,
       },
     ],
   },

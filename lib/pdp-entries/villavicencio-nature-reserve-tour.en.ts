@@ -8,18 +8,19 @@ export const villavicencioNatureReserveTourEn = {
   subtitle:
     "Leave the city’s grid for the high-desert silence of Villavicencio—native shrubs and guanacos in the distance, interpretive trails, and the romantic shell of a historic hotel where travelers once arrived by carriage. A calm, elevated half-day that feels nothing like a tasting room.",
   shortDescription:
-    "Half-day guided visit to Villavicencio Natural Reserve: trails with reserve guides, interpretation centre, historic hotel grounds and chapel, and the famous caracoles road to a viewpoint. Hotel pickups from 8:00; return ~13:00. Wednesdays & Saturdays. Tour AR$ 50.000 pp — reserve entrance not included (approx. AR$ 25.000 pp, paid on site).",
+    "Half-day guided visit to Villavicencio Natural Reserve: trails with reserve guides, interpretation centre, historic hotel grounds and chapel, and the famous caracoles road to a viewpoint. Hotel pickups from 8:00; return ~13:00. Wednesdays & Saturdays. Tour AR$ 44.000 pp — reserve entrance not included (approx. AR$ 10.000 pp, paid on site).",
   longDescription: [
     "Villavicencio is Mendoza’s best-known nature reserve for a reason: it sits where the Andes begin to rise in earnest—open skies, aromatic scrub, and wildlife that rewards quiet observation. This half-day is designed for travellers who want oxygen, perspective, and a touch of heritage without committing to a gruelling trek.",
     "On arrival, reserve guides lead you through the protected landscape—reading soil, altitude, and the plants and animals that make this ecosystem distinct. The interpretation centre adds context before you wander the grounds of the old Villavicencio hotel and its chapel, where stone walls and silence tell the story of early tourism in the mountains.",
     "The route climbs briefly on the iconic caracoles (switchbacks)—a short ascent to a viewpoint that frames the cordillera in layers. It’s scenic, not extreme: comfortable walking shoes are enough for most guests. Please note: the reserve’s own entrance ticket is not included in the tour price; budget approximately AR$ 25.000 per person, payable at the gate according to current reserve rules.",
   ].join("\n\n"),
-  priceFrom: 50_000,
+  priceFrom: 44_000,
+  compareAtPrice: 55_000,
   extraCosts: [
     {
       item: "Villavicencio Natural Reserve entrance ticket",
       note: "Not included in the tour price — paid directly at the reserve",
-      approximateAmount: 25_000,
+      approximateAmount: 10_000,
       currency: "ARS" as const,
     },
   ],

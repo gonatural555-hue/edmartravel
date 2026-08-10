@@ -14,7 +14,7 @@ export const cabalgataPicadaPotrerillosEn = {
     "The ride lasts about an hour, but the outing is measured in half-day windows—pickup in Mendoza, time at the stables, the trail, and a final pause where the mountains meet the water. That last moment is the signature: a regional picada set by the dam, one glass of wine in hand, the lake surface catching the light.",
     "It’s an easy fit for couples and friends, and genuinely welcoming if you’ve never sat a saddle. We handle the transfer from central Mendoza so you can focus on the views—and on arriving unhurried for the picnic.",
   ].join("\n\n"),
-  priceFrom: 100_000,
+  priceFrom: 130_000,
   currency: "ARS" as const,
   duration:
     "About 4.5 hours full outing (~1 hour on horseback; includes transfer & picnic)",
@@ -31,9 +31,9 @@ export const cabalgataPicadaPotrerillosEn = {
     {
       label: "Full outing",
       value:
-        "≈4.5 h · Morning 8:30–13:00 or afternoon 16:00–20:30 (including transfer & picnic)",
+        "≈4.5 h · Morning 10:00–15:00 or afternoon 15:00–20:30 (including transfer & picnic)",
     },
-    { label: "On horseback", value: "≈1 hour guided ride" },
+    { label: "On horseback", value: "≈2 hours guided ride" },
     { label: "Stables", value: "Los Camperitos, Potrerillos" },
     {
       label: "Finale",

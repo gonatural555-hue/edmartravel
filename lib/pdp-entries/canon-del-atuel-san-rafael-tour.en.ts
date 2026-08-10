@@ -14,7 +14,8 @@ export const canonDelAtuelSanRafaelTourEn = {
     "In San Rafael you’ll connect with the city and its historic core before the landscape turns cinematic at Cañón del Atuel, where cliffs and colour bands frame the water. The route then opens into Valle Grande: a natural playground with room to breathe. Here you’ll have free time to add a catamaran ride, a rafting run, or simply sit down for lunch—optional experiences with their own local rates, booked and paid on site.",
     "The day is long by design—hotel pickups from 7:00 (allow ~45 minutes for city-wide collection), roughly three hours on the road to San Rafael, and a return that typically reaches Mendoza around 21:00. If you opt into activities, we may pause earlier for snacks or supplies. Come rested, charged, and ready for big skies.",
   ].join("\n\n"),
-  priceFrom: 99_000,
+  priceFrom: 88_000,
+  compareAtPrice: 110_000,
   currency: "ARS" as const,
   duration:
     "Full day · ~07:00 hotel pickup · ~21:00 return (~14 h incl. pickup rounds & breaks)",

@@ -3,7 +3,7 @@
  * Classic full-day Andes circuit by road (no trekking summit).
  */
 export const highMountainTourMendozaEn = {
-  title: "High Mountain Tour – Mendoza",
+  title: "Alta Montaña",
   slug: "high-mountain-tour-mendoza",
   subtitle:
     "Follow the road that threads Mendoza’s greatest hits—thermal valleys, high-desert towns, and the commanding presence of the Andes—on a full day built for first-time visitors who want the icons without guesswork.",
@@ -14,7 +14,7 @@ export const highMountainTourMendozaEn = {
     "You’ll pause at viewpoints and villages long enough to feel the landscape—free time in Uspallata, a wander through the artisan market at Puente del Inca, and a dedicated window in Las Cuevas for lunch on your own (typical restaurant menus in the area are often around AR$ 26.000—bring cash or card).",
     "Aconcagua’s massif anchors the story: the tour includes Aconcagua Provincial Park with its celebrated viewpoints and interpretation of the peak—not a summit climb. Cristo Redentor may appear on the route in summer only, when roads, weather, and authorizations align; it is never guaranteed. Throughout the day, the team prioritises safety—stops and timings flex with weather, traffic, road conditions, and controls.",
   ].join("\n\n"),
-  priceFrom: 86_000,
+  priceFrom: 95_000,
   currency: "ARS" as const,
   duration:
     "Full day · pickups from ~7:15 · return ~19:00 (exact times vary; pickup rounds ~45 min)",

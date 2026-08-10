@@ -36,6 +36,7 @@ type ProductSummary = {
   id: string;
   title: string;
   price: number;
+  compareAtPrice?: number;
   category: string;
   description: string;
   shortDescription?: string;
@@ -462,6 +463,12 @@ export default function ExperiencePageClient({
               <p className="mt-1 text-4xl font-bold tabular-nums text-accent-gold sm:text-5xl">
                 {formatPriceARS(resolvedPrice)}
               </p>
+              {product.compareAtPrice != null &&
+              product.compareAtPrice > resolvedPrice ? (
+                <p className="mt-1 text-lg text-white/50 line-through tabular-nums">
+                  {formatPriceARS(product.compareAtPrice)}
+                </p>
+              ) : null}
               <p className="mt-1 text-xs text-white/60">{labels.perPerson}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

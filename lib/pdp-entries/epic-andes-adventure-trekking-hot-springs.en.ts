@@ -3,17 +3,16 @@
  * Cacheuta; limited availability; coming-soon booking window.
  */
 export const epicAndesAdventureTrekkingHotSpringsEn = {
-  title: "Epic Andes Adventure – Trekking + Hot Springs",
+  title: "Trekking + Hot Springs",
   slug: "epic-andes-adventure-trekking-hot-springs",
   subtitle:
     "Earn the view—then soak it off. In Cacheuta, a compact but punchy trek threads high-desert trails toward Andes and Potrerillos panoramas, before thermal waters ease the burn. Fewer seats than demand: an energetic, premium-feeling day for guests who like their wellness earned.",
   shortDescription:
-    "Full-day adventure in Cacheuta: moderate-to-challenging guided trekking (~5 km total) with standout Andes and Potrerillos vistas, followed by restorative hot springs. Includes transport from Mendoza, lunch, photo set, and accident insurance. Departure ~9:00 · return ~19:00. Limited spots — available soon; message us to join the priority list.",
+    "Full-day adventure in Cacheuta: moderate-to-challenging guided trekking (~5 km total) with standout Andes and Potrerillos vistas, followed by restorative hot springs. Includes round-trip transport from Mendoza, lunch, photos, and accident insurance. Departure ~9:00 · return ~19:00.",
   longDescription: [
     "Cacheuta sits where the city’s heat thins and the cordillera begins to assert itself—rock, scrub, and sudden depth of view. This itinerary is built for travellers who want more than a lookout stop: a deliberate trek with real gradient, air you can taste, and sightlines that stretch toward Potrerillos and the high Andes.",
     "The route covers roughly five kilometres in total—enough to feel like a workout, paced by guides who read the group and the mountain weather. You’ll move through moderate-to-challenging terrain (not technical mountaineering, but not a flat stroll either). The reward isn’t only the summit-feeling moments; it’s the contrast that follows.",
     "After the trail, thermal pools welcome you back into your body—warm water, slower breath, the day’s effort translated into calm. Lunch is included on the programme, professional photos help you relive the drama without living behind a lens, and accident insurance is part of the package so you can focus on the steps ahead.",
-    "Capacity stays intentionally small. We’re opening bookings in controlled waves—if dates aren’t live yet, add your name early: the first departures tend to fill quickly once released.",
   ].join("\n\n"),
   priceFrom: 95_000,
   currency: "ARS" as const,
@@ -27,7 +26,7 @@ export const epicAndesAdventureTrekkingHotSpringsEn = {
   languages:
     "Spanish-led with English support where available — confirm when booking",
   availability:
-    "Available soon — limited departures; priority list open via Edmar Travel",
+    "Daily departures subject to weather and trail conditions — confirm when booking",
   idealFor:
     "Fit travellers, couples, and small groups who want a high-energy Andes day with a thermal payoff—not a passive bus tour",
   quickFacts: [

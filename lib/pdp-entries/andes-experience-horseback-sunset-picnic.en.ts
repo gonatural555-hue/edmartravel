@@ -14,7 +14,7 @@ export const andesExperienceHorsebackSunsetPicnicEn = {
     "The route is designed to feel complete without rushing the mountains. You’ll have free time in Uspallata, browse the artisan stalls at Puente del Inca, and take a dedicated lunch window in Las Cuevas (meal at your own cost). In the austral summer, a visit to Cristo Redentor may be possible when roads and permits allow—it is never guaranteed and always subject to weather, traffic, and authority decisions.",
     "Then the day turns intimate. Back in Potrerillos, you trade highway scale for trail rhythm: a guided horseback ride suited to all levels, followed by a regional picnic and a glass of wine with the water at your feet—sunset tones optional, memory guaranteed. Private round-trip transport from central Mendoza bookends the experience so you can focus on views, not logistics.",
   ].join("\n\n"),
-  priceFrom: 150_000,
+  priceFrom: 180_000,
   currency: "ARS" as const,
   duration: "Full day · approx. 7:15–19:30 (~12 h door-to-door; timing may vary)",
   location:

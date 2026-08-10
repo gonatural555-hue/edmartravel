@@ -19,19 +19,19 @@ export const PRODUCT_LOCALE_FIELDS: Partial<
       location:
         "Potrerillos, Mendoza — Establos Los Camperitos · picada junto al Dique de Potrerillos",
       schedule: [
-        "08:30 (mañana) o 16:00 (tarde) — Retiro en Mendoza centro (hotel o punto acordado)",
+        "10:00 (mañana) o 15:00 (tarde) — Retiro en Mendoza centro (hotel o punto acordado)",
         "Llegada a Los Camperitos — saludo al caballo, orientación breve y ajuste de montura si hace falta",
-        "≈1 h de cabalgata guiada — senderos de montaña y vistas abiertas sobre Potrerillos",
+        "≈2 h de cabalgata guiada — senderos de montaña y vistas abiertas sobre Potrerillos",
         "Picada junto al dique — picada regional y copa de vino frente al agua",
-        "≈13:00 (mañana) o ≈20:30 (tarde) — Regreso a Mendoza",
+        "≈15:00 (mañana) o ≈20:30 (tarde) — Regreso a Mendoza",
       ],
       variants: {
         type: "shift",
         label: "Turno",
         default: "morning",
         options: [
-          { label: "Mañana · 8:30–13:00", value: "morning" },
-          { label: "Tarde · 16:00–20:30", value: "afternoon" },
+          { label: "Mañana · 10:00–15:00", value: "morning" },
+          { label: "Tarde · 15:00–20:30", value: "afternoon" },
         ],
       },
     },
@@ -182,36 +182,6 @@ export const PRODUCT_LOCALE_FIELDS: Partial<
         "Sector histórico — recorrido por el hotel histórico y la capilla",
         "Caracoles — breve ascenso por la ruta de curvas al mirador",
         "≈13:00 — Regreso a Mendoza (aproximado; sujeto a tráfico)",
-      ],
-    },
-    "city-tour-mendoza": {
-      duration:
-        "Media jornada · retiro en hotel ≈8:30 · regreso ≈13:00 (~4,5 h incluyendo traslados)",
-      location:
-        "Gran Mendoza — núcleo fundacional, centro, parque y Cerro de la Gloria",
-      schedule: [
-        "≈8:30 — Retiros en hoteles de Mendoza (horario confirmado al reservar)",
-        "Área fundacional — orígenes de la traza urbana y primer Mendoza",
-        "Ciudad nueva y plazas principales — corazón peatonal, hitos y Mendoza contemporánea",
-        "Distrito cívico — arquitectura gubernamental e institucional",
-        "Parque General San Martín — recorrido escénico por sectores clave del parque",
-        "Cerro de la Gloria — mirador y monumento (tiempo para fotos)",
-        "≈13:00 — Regreso a Mendoza (aproximado; el orden puede variar)",
-      ],
-    },
-    "valle-de-uco-cordon-del-plata": {
-      duration:
-        "Día completo · salida ≈7:30 · regreso ≈17:00 (~9,5 h; horarios pueden variar)",
-      location:
-        "Valle de Uco — Cristo Rey, Manzano Histórico, corredor productivo, Bodega Atamisque (telón del Cordón del Plata)",
-      schedule: [
-        "≈7:30 — Salida desde Mendoza (punto de retiro confirmado al reservar)",
-        "Cristo Rey — monumento y mirador panorámico (paradas fotográficas)",
-        "Manzano Histórico — visita patrimonial y tiempo libre para explorar",
-        "Almuerzo — restaurante local (no incluido; ≈AR$ 25.000 por persona aprox.)",
-        "Corredor productivo del Valle de Uco — ruta escénica entre viñedos y campo uco",
-        "Bodega Atamisque — parada programada; visita y degustación opcionales (no incluidas; ≈AR$ 25.000 pp aprox., pago en sitio si participás)",
-        "≈17:00 — Regreso a Mendoza (aproximado; puede variar por tráfico)",
       ],
     },
     "epic-andes-adventure-trekking-hot-springs": {

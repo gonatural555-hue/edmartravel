@@ -10,8 +10,6 @@ import { highMountainTourMendozaEn } from "@/lib/pdp-entries/high-mountain-tour-
 import { halfDayWineryTourMaipuEn } from "@/lib/pdp-entries/half-day-winery-tour-maipu.en";
 import { canonDelAtuelSanRafaelTourEn } from "@/lib/pdp-entries/canon-del-atuel-san-rafael-tour.en";
 import { villavicencioNatureReserveTourEn } from "@/lib/pdp-entries/villavicencio-nature-reserve-tour.en";
-import { cityTourMendozaEn } from "@/lib/pdp-entries/city-tour-mendoza.en";
-import { valleDeUcoCordonDelPlataEn } from "@/lib/pdp-entries/valle-de-uco-cordon-del-plata.en";
 import { epicAndesAdventureTrekkingHotSpringsEn } from "@/lib/pdp-entries/epic-andes-adventure-trekking-hot-springs.en";
 
 const POTRERILLOS: ExperienceRichContent = {
@@ -430,104 +428,12 @@ const VILLAVICENCIO_RESERVE: ExperienceRichContent = {
     "Per voucher terms; reserve policies may affect access—confirm when booking.",
 };
 
-const CITY_TOUR_MENDOZA: ExperienceRichContent = {
-  subtitle: cityTourMendozaEn.subtitle,
-  badges: [
-    "Half day",
-    "Classic route",
-    "Plazas & park",
-    "Tue · Thu · Sat",
-  ],
-  whyLove: [...cityTourMendozaEn.highlights],
-  editorial: cityTourMendozaEn.longDescription
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean),
-  places: [
-    "Foundational quarter & main plazas",
-    "Civic district",
-    "Parque General San Martín",
-    "Cerro de la Gloria",
-  ],
-  included: [...cityTourMendozaEn.includes],
-  excluded: [...cityTourMendozaEn.excludes],
-  practical: {
-    whatToBring: [...cityTourMendozaEn.practicalInfo.whatToBring],
-    restrictions: cityTourMendozaEn.practicalInfo.restrictions,
-    weather: cityTourMendozaEn.practicalInfo.weather,
-    pickupDetails: cityTourMendozaEn.practicalInfo.pickupDetails,
-  },
-  faq: cityTourMendozaEn.faq.map((item) => ({
-    question: item.question,
-    answer: item.answer,
-  })),
-  testimonials: [
-    {
-      name: "Daniel K.",
-      text: "We finally understood the grid—San Martín and the hill view made the rest of the trip click.",
-      rating: 5,
-    },
-  ],
-  language: cityTourMendozaEn.languages,
-  groupSize: cityTourMendozaEn.groupSize,
-  season: "Year-round (Tue, Thu, Sat departures)",
-  pickup: "Mendoza hotels — from ~08:30 (confirmed at booking)",
-  cancellation:
-    "Per voucher terms; notify changes in advance when possible.",
-};
-
-const VALLE_UCO_CORDON_PLATA: ExperienceRichContent = {
-  subtitle: valleDeUcoCordonDelPlataEn.subtitle,
-  badges: [
-    "Full day",
-    "Valle de Uco",
-    "Scenic + optional wine",
-    "Fridays",
-  ],
-  whyLove: [...valleDeUcoCordonDelPlataEn.highlights],
-  editorial: valleDeUcoCordonDelPlataEn.longDescription
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean),
-  places: [
-    "Cristo Rey viewpoint",
-    "Manzano Histórico",
-    "Valle de Uco productive corridor",
-    "Bodega Atamisque (optional tasting)",
-  ],
-  included: [...valleDeUcoCordonDelPlataEn.includes],
-  excluded: [...valleDeUcoCordonDelPlataEn.excludes],
-  practical: {
-    whatToBring: [...valleDeUcoCordonDelPlataEn.practicalInfo.whatToBring],
-    restrictions: valleDeUcoCordonDelPlataEn.practicalInfo.restrictions,
-    weather: valleDeUcoCordonDelPlataEn.practicalInfo.weather,
-    pickupDetails: valleDeUcoCordonDelPlataEn.practicalInfo.pickupDetails,
-  },
-  faq: valleDeUcoCordonDelPlataEn.faq.map((item) => ({
-    question: item.question,
-    answer: item.answer,
-  })),
-  testimonials: [
-    {
-      name: "Sophie & Marc",
-      text: "We wanted the Uco without a packed tasting schedule—the drive and the light were enough; Atamisque was the cherry on top.",
-      rating: 5,
-    },
-  ],
-  language: valleDeUcoCordonDelPlataEn.languages,
-  groupSize: valleDeUcoCordonDelPlataEn.groupSize,
-  season: "Fridays + possible seasonal departures",
-  pickup: "Mendoza — departure ~07:30 (confirm at booking)",
-  cancellation:
-    "Per voucher terms; winery optional fees may change—confirm when booking.",
-};
-
 const EPIC_ANDES_TREK_THERMAL: ExperienceRichContent = {
   subtitle: epicAndesAdventureTrekkingHotSpringsEn.subtitle,
   badges: [
-    "Available soon",
-    "Limited spots",
+    "Full day",
     "Trek + hot springs",
+    "Moderate / challenging",
     "Cacheuta",
   ],
   whyLove: [...epicAndesAdventureTrekkingHotSpringsEn.highlights],
@@ -558,10 +464,10 @@ const EPIC_ANDES_TREK_THERMAL: ExperienceRichContent = {
   testimonials: [],
   language: epicAndesAdventureTrekkingHotSpringsEn.languages,
   groupSize: epicAndesAdventureTrekkingHotSpringsEn.groupSize,
-  season: "Launching soon — dates released in waves",
-  pickup: "Mendoza — ~09:00 departure (confirmed when booking opens)",
+  season: "Daily departures (subject to weather and trail conditions)",
+  pickup: "Mendoza — ~09:00 departure (confirmed at booking)",
   cancellation:
-    "Per voucher terms; confirm with Edmar Travel when reservations go live.",
+    "Per voucher terms; confirm with Edmar Travel when booking.",
 };
 
 const BY_ID: Record<string, ExperienceRichContent> = {
@@ -574,8 +480,6 @@ const BY_ID: Record<string, ExperienceRichContent> = {
   "half-day-winery-tour-maipu": HALF_DAY_MAIPU_WINE,
   "canon-del-atuel-san-rafael-tour": ATUEL_SAN_RAFAEL,
   "villavicencio-nature-reserve-tour": VILLAVICENCIO_RESERVE,
-  "city-tour-mendoza": CITY_TOUR_MENDOZA,
-  "valle-de-uco-cordon-del-plata": VALLE_UCO_CORDON_PLATA,
   "epic-andes-adventure-trekking-hot-springs": EPIC_ANDES_TREK_THERMAL,
 };
 

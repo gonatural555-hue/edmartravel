@@ -244,232 +244,77 @@ export const RICH_ES_B: Record<string, ExperienceRichContent> = {
       "Según voucher; políticas de la reserva pueden afectar accesos — confirmá al reservar.",
   },
 
-  "city-tour-mendoza": {
-    subtitle:
-      "Media mañana urbana: ciudad fundacional, plazas, distrito cívico, Parque General San Martín y Cerro de la Gloria.",
-    badges: [
-      "Media jornada",
-      "Ruta clásica",
-      "Plazas y parque",
-      "Mar · Jue · Sáb",
-    ],
-    whyLove: [
-      "Entendés la trama de Mendoza en pocas horas: damero, historia y espacio verde.",
-      "Subida al Cerro de la Gloria para una vista amplia de la ciudad.",
-      "Salidas martes, jueves y sábados: fácil de insertar en la agenda.",
-      "Buen primer día para ubicarte antes de bodegas o montaña.",
-    ],
-    editorial: [
-      "Mendoza se explica por sus plazas y su parque: un diseño de ciudad que invita a circular y a entender por qué todo “está a diez cuadras”.",
-      "El tour conecta el centro fundacional con el distrito cívico y culmina en el pulmón verde más grande, con tiempo para miradores y fotos.",
-      "Es un recorrido accesible, con ritmo pausado y paradas para hidratarte: el sol local pega fuerte incluso en primavera.",
-    ],
-    places: [
-      "Sector fundacional y plazas principales",
-      "Distrito cívico",
-      "Parque General San Martín",
-      "Cerro de la Gloria",
-    ],
-    included: [
-      "Transporte y recorrido según programa",
-      "Guía / coordinación según operador",
-    ],
-    excluded: [
-      "Comidas y bebidas",
-      "Entradas a museos si hubiera parada opcional con costo",
-    ],
-    practical: {
-      whatToBring: [
-        "Calzado cómodo para caminar",
-        "Gorra, protector solar y agua",
-        "Cámara o celular cargado",
-      ],
-      restrictions:
-        "Personas con movilidad reducida: consultá accesos en Cerro de la Gloria.",
-      weather:
-        "Lluvia ligera no suele cancelar; tormenta fuerte puede modificar paradas.",
-      pickupDetails:
-        "Retiros desde hoteles ~8:30; confirmá al reservar.",
-    },
-    faq: [
-      {
-        question: "¿Cuánto caminamos?",
-        answer:
-          "Hay tramos a pie en centro y parque; el ritmo es moderado con pausas.",
-      },
-      {
-        question: "¿Incluye entradas?",
-        answer:
-          "El circuito clásico no suele requerir entradas; si se agrega museo, se informa costo aparte.",
-      },
-      {
-        question: "¿Es apto para niños?",
-        answer:
-          "Sí, con hidratación y protector solar; el día puede ser cálido.",
-      },
-    ],
-    testimonials: [
-      {
-        name: "Daniel K.",
-        text: "Por fin entendimos la grilla: San Martín y la vista desde el cerro hicieron clic el resto del viaje.",
-        rating: 5,
-      },
-    ],
-    language: "Español / inglés según fecha (confirmar)",
-    groupSize: "Grupo regular",
-    season: "Todo el año (mar, jue, sáb)",
-    pickup: "Hoteles de Mendoza — desde ~08:30 (confirmar)",
-    cancellation:
-      "Según voucher; avisá cambios con anticipación cuando sea posible.",
-  },
-
-  "valle-de-uco-cordon-del-plata": {
-    subtitle:
-      "Día escénico al Valle de Uco: mirador Cristo Rey, Manzano Histórico, corredor productivo y parada opcional en Bodega Atamisque.",
-    badges: [
-      "Día completo",
-      "Valle de Uco",
-      "Paisaje + vino opcional",
-      "Viernes",
-    ],
-    whyLove: [
-      "El Uco en panorámica: cordillera, viñedos y pueblos sin apuro de micro.",
-      "Parada en Atamisque para degustación opcional (no incluida en la tarifa base).",
-      "Ideal si querés paisaje primero y bodega después, no un tour solo de copas.",
-      "Salidas viernes: planificá la semana con claridad.",
-    ],
-    editorial: [
-      "El Valle de Uco se disfruta en curvas: miradores altos, historia del Manzano y la sensación de valle abierto hacia el Cordón del Plata.",
-      "Este circuito equilibra conducción escénica con tiempo para fotos y una parada opcional en una bodega reconocida, pagando aparte la experiencia en copas si querés sumarla.",
-      "El almuerzo no está incluido: hay opciones en ruta según el cronograma del día.",
-    ],
-    places: [
-      "Mirador Cristo Rey",
-      "Manzano Histórico",
-      "Corredor productivo del Valle de Uco",
-      "Bodega Atamisque (degustación opcional)",
-    ],
-    included: [
-      "Transporte desde Mendoza según programa del viernes",
-      "Recorrido escénico con paradas",
-      "Coordinación por Edmar Travel",
-    ],
-    excluded: [
-      "Almuerzo y bebidas",
-      "Degustación y consumos en Atamisque u otras paradas opcionales",
-    ],
-    practical: {
-      whatToBring: [
-        "Capas y anteojos de sol; día largo en ruta",
-        "Dinero para almuerzo y opcionales",
-        "Agua y snacks",
-      ],
-      restrictions:
-        "Largas horas en vehículo; informá mareos o condiciones médicas.",
-      weather:
-        "Viento y sol fuerte; lluvia ocasional puede cambiar visibilidad en miradores.",
-      pickupDetails:
-        "Salida ~7:30 desde Mendoza; confirmá punto al reservar.",
-    },
-    faq: [
-      {
-        question: "¿Puedo hacer solo el paisaje sin bodega?",
-        answer:
-          "Sí: la bodega es opcional. Avisá preferencias al coordinar.",
-      },
-      {
-        question: "¿Cuánto demora el día?",
-        answer:
-          "Jornada completa con regreso por la tarde; horarios exactos según temporada.",
-      },
-      {
-        question: "¿Hay otras salidas además del viernes?",
-        answer:
-          "Pueden abrirse fechas estacionales; consultá disponibilidad.",
-      },
-    ],
-    testimonials: [
-      {
-        name: "Sophie y Marc",
-        text: "Queríamos el Uco sin agenda cargada de catas: el viaje y la luz alcanzaron; Atamisque fue el broche extra.",
-        rating: 5,
-      },
-    ],
-    language: "Español / inglés según operador (confirmar)",
-    groupSize: "Grupo regular",
-    season: "Viernes + posibles salidas estacionales",
-    pickup: "Mendoza — salida ~07:30 (confirmar)",
-    cancellation:
-      "Según voucher; tarifas opcionales en bodega pueden cambiar — confirmá al reservar.",
-  },
-
   "epic-andes-adventure-trekking-hot-springs": {
     subtitle:
-      "Día aventura en Cacheuta: trekking con vistas a los Andes y Potrerillos, cierre en termas — próximamente disponible.",
+      "Día aventura en Cacheuta: trekking guiado de 5 km con vistas a los Andes y Potrerillos, cierre en termas.",
     badges: [
-      "Próximamente",
-      "Cupos limitados",
+      "Día completo",
       "Trekking + termas",
+      "Moderado / desafiante",
       "Cacheuta",
     ],
     whyLove: [
       "Combinación de esfuerzo moderado–alto y relajación en aguas termales.",
       "Paisajes amplios de cordillera y valle en una misma jornada.",
-      "Incluirá traslado, almuerzo y cobertura de accidentes según programa al lanzarse.",
-      "Pensado para quien busca naturaleza activa cerca de Mendoza.",
+      "Incluye traslado, almuerzo, fotos y seguro contra accidentes.",
+      "Ideal para conocer gente y mover el cuerpo lejos de la rutina.",
     ],
     editorial: [
-      "Esta experiencia está en preparación: trekking por senderos de Cacheuta con miradas hacia los Andes y el valle, terminando con tiempo en termas para recuperar piernas y mente.",
-      "El día será completo, con horarios tempranos y retorno al atardecer. Los detalles finales (distancia exacta, dificultad y servicios incluidos) se publicarán al abrir reservas.",
-      "Si querés avisos de lanzamiento, escribinos: habilitaremos cupos limitados para mantener grupos chicos y seguridad.",
+      "Salimos de la rutina para meternos de lleno en los Andes y Potrerillos: trekking guiado, fotos increíbles y un cierre reparador en termas.",
+      "El día va de 9:00 a 19:00 aproximadamente, con almuerzo incluido y ritmo pensado para grupos que disfrutan caminar con vistas.",
+      "Dificultad moderada a desafiante: consultá condición física al reservar.",
     ],
     places: [
       "Senderos y miradores de Cacheuta",
       "Panoramas hacia los Andes y Potrerillos",
-      "Complejo de termas (según programa final)",
+      "Termas al cierre del día",
     ],
     included: [
-      "Por confirmar al lanzamiento: traslado, trekking guiado, termas según programa",
+      "Traslado ida y vuelta",
+      "Trekking guiado (~5 km)",
+      "Almuerzo",
+      "Fotos de la experiencia",
+      "Seguro contra accidentes",
     ],
     excluded: [
-      "Detalle de exclusiones al publicarse la ficha final",
+      "Bebidas extra fuera del almuerzo incluido",
+      "Propinas (opcionales)",
     ],
     practical: {
       whatToBring: [
         "Calzado de trekking, mochila, agua y capas",
-        "Traje de baño y toalla para termas (cuando aplique)",
+        "Traje de baño y toalla para termas",
         "Protector solar y gorra",
       ],
       restrictions:
-        "Evaluación de condición física al reservar; no apto para quien no pueda caminar senderos irregulares.",
+        "Evaluación de condición física al reservar; terreno irregular.",
       weather:
         "Montaña y sol intenso; puede haber viento frío incluso en verano.",
       pickupDetails:
-        "Horario tentativo ~9:00 desde Mendoza — se confirmará al abrir ventas.",
+        "Salida ~9:00 desde Mendoza — confirmá al reservar.",
     },
     faq: [
       {
-        question: "¿Cuándo habrá reservas?",
-        answer:
-          "Estamos cerrando operadores y protocolos. Anunciaremos fechas por WhatsApp y web.",
-      },
-      {
         question: "¿Qué nivel de trekking es?",
         answer:
-          "Será moderado a exigente según tramo final; publicaremos desnivel y tiempo estimado.",
+          "Moderado a desafiante: ~5 km con desnivel y terreno irregular.",
       },
       {
         question: "¿Incluye comida?",
+        answer: "Sí, almuerzo incluido en el programa.",
+      },
+      {
+        question: "¿Incluye termas?",
         answer:
-          "La propuesta apunta a incluir almuerzo según programa; confirmaremos al lanzar.",
+          "Sí, tiempo en termas al finalizar la caminata según operación del día.",
       },
     ],
     testimonials: [],
-    language: "Español / inglés (a confirmar)",
-    groupSize: "Grupos chicos — cupos limitados",
-    season: "Lanzamiento próximo — fechas por oleadas",
-    pickup: "Mendoza — salida tentativa ~09:00 (confirmar al abrir reservas)",
+    language: "Español / inglés (confirmar al reservar)",
+    groupSize: "Grupos regulares",
+    season: "Salidas según calendario — confirmá disponibilidad",
+    pickup: "Mendoza — salida ~09:00 (confirmar al reservar)",
     cancellation:
-      "Según voucher; confirmá con Edmar Travel cuando se activen reservas.",
+      "Según voucher; confirmá con Edmar Travel al reservar.",
   },
 };
