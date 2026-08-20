@@ -4,6 +4,7 @@ export * from "./product-types";
 
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { cache } from "react";
 import {
   CATALOG_PRODUCTS,
   getCatalogProductById,
@@ -21,13 +22,26 @@ type ProductScriptJson = {
   };
 };
 
+const scriptJsonCache = new Map<string, ProductScriptJson | undefined>();
+
 function readProductScriptJson(productId: string): ProductScriptJson | undefined {
+  if (scriptJsonCache.has(productId)) {
+    return scriptJsonCache.get(productId);
+  }
+
   const jsonPath = join(process.cwd(), "scripts", "products", `${productId}.json`);
-  if (!existsSync(jsonPath)) return undefined;
+  if (!existsSync(jsonPath)) {
+    scriptJsonCache.set(productId, undefined);
+    return undefined;
+  }
+
   try {
     const raw = readFileSync(jsonPath, "utf8");
-    return JSON.parse(raw) as ProductScriptJson;
+    const parsed = JSON.parse(raw) as ProductScriptJson;
+    scriptJsonCache.set(productId, parsed);
+    return parsed;
   } catch {
+    scriptJsonCache.set(productId, undefined);
     return undefined;
   }
 }
@@ -72,12 +86,18 @@ function mergeScriptAssets(base: Product): Product {
   };
 }
 
-export function getProducts(): Product[] {
-  return CATALOG_PRODUCTS.map(mergeScriptAssets);
+let mergedCatalog: Product[] | null = null;
+
+function buildMergedCatalog(): Product[] {
+  if (mergedCatalog) return mergedCatalog;
+  mergedCatalog = CATALOG_PRODUCTS.map(mergeScriptAssets);
+  return mergedCatalog;
 }
 
-export function getProductById(id: string): Product | undefined {
+export const getProducts = cache((): Product[] => buildMergedCatalog());
+
+export const getProductById = cache((id: string): Product | undefined => {
   const base = getCatalogProductById(id);
   if (!base) return undefined;
   return mergeScriptAssets(base);
-}
+});

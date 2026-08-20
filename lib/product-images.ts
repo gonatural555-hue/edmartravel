@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { unstable_cache } from "next/cache";
 
 export interface ProductImages {
   featured: string | null;
@@ -37,6 +38,16 @@ interface ProductJson {
  * @returns Objeto con las imágenes organizadas por categoría
  */
 export async function getProductImages(
+  productId: string
+): Promise<ProductImages> {
+  return unstable_cache(
+    () => loadProductImagesFromDisk(productId),
+    ["product-images", productId],
+    { revalidate: false }
+  )();
+}
+
+async function loadProductImagesFromDisk(
   productId: string
 ): Promise<ProductImages> {
   const result: ProductImages = {

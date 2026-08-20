@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import { join } from "path";
+import { unstable_cache } from "next/cache";
 
 /**
  * Opción individual de una variante
@@ -64,6 +65,16 @@ interface ProductJson {
  * @returns Objeto con las variantes normalizadas, o null si no hay variantes
  */
 export async function getProductVariants(
+  productId: string
+): Promise<ProductVariants | null> {
+  return unstable_cache(
+    () => loadProductVariantsFromDisk(productId),
+    ["product-variants", productId],
+    { revalidate: false }
+  )();
+}
+
+async function loadProductVariantsFromDisk(
   productId: string
 ): Promise<ProductVariants | null> {
   try {

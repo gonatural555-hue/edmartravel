@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import type { Locale } from "@/lib/i18n/config";
 import { SITE_CONFIG } from "@/lib/config";
 
@@ -23,7 +24,7 @@ function replaceBrandText(value: unknown): unknown {
   return value;
 }
 
-export async function getMessages(locale: Locale) {
+async function loadMessages(locale: Locale): Promise<Record<string, any>> {
   const messages = (await import(`@/messages/${locale}.json`)).default as Record<
     string,
     any
@@ -31,3 +32,13 @@ export async function getMessages(locale: Locale) {
   return replaceBrandText(messages) as Record<string, any>;
 }
 
+const getCachedMessages = (locale: Locale) =>
+  unstable_cache(
+    () => loadMessages(locale),
+    ["i18n-messages", locale],
+    { revalidate: false }
+  )();
+
+export async function getMessages(locale: Locale): Promise<Record<string, any>> {
+  return getCachedMessages(locale);
+}

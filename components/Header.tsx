@@ -2,11 +2,11 @@
 
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
-import AuthModal from "@/components/AuthModal";
+import LazyAuthModal from "@/components/lazy/LazyAuthModal";
 import { useAuth } from "@/context/AuthContext";
 import ImmersiveHomeHeader from "@/components/home/ImmersiveHomeHeader";
 import { isAuthUiEnabled } from "@/lib/feature-flags";
-import ExperienceHeroDebugPanel from "@/components/experience-hero/director/ExperienceHeroDebugPanel";
+import LazyExperienceHeroDebugPanel from "@/components/lazy/LazyExperienceHeroDebugPanel";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
 import { isHomePath } from "@/lib/is-home-path";
 
@@ -22,9 +22,9 @@ export default function Header() {
       <Suspense fallback={null}>
         <ImmersiveHomeHeader variant={variant} />
       </Suspense>
-      {isDirector ? <ExperienceHeroDebugPanel /> : null}
+      {isDirector ? <LazyExperienceHeroDebugPanel /> : null}
       {authUiEnabled ? (
-        <AuthModal
+        <LazyAuthModal
           open={authOpen}
           onClose={() => setAuthOpen(false)}
           initialTab={initialTab}

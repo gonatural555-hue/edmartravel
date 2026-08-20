@@ -284,19 +284,44 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    const supabase = createBrowserSupabaseClient();
+    let cancelled = false;
+    let subscription: { unsubscribe: () => void } | undefined;
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      void applySessionUser(session?.user ?? null);
-    });
+    const initAuth = () => {
+      if (cancelled) return;
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      void applySessionUser(session?.user ?? null);
-    });
+      const supabase = createBrowserSupabaseClient();
 
-    return () => subscription.unsubscribe();
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!cancelled) void applySessionUser(session?.user ?? null);
+      });
+
+      const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (!cancelled) void applySessionUser(session?.user ?? null);
+      });
+
+      subscription = data.subscription;
+    };
+
+    let idleCallbackId: number | undefined;
+    let timeoutId: number | undefined;
+
+    if (typeof requestIdleCallback !== "undefined") {
+      idleCallbackId = requestIdleCallback(initAuth, { timeout: 2500 });
+    } else {
+      timeoutId = window.setTimeout(initAuth, 500);
+    }
+
+    return () => {
+      cancelled = true;
+      subscription?.unsubscribe();
+      if (idleCallbackId !== undefined && typeof cancelIdleCallback !== "undefined") {
+        cancelIdleCallback(idleCallbackId);
+      }
+      if (timeoutId !== undefined) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, [applySessionUser]);
 
   const login = useCallback(

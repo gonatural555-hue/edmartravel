@@ -12,8 +12,6 @@ import {
   type ToursWorldId,
 } from "@/lib/tours-page-config";
 
-export const dynamic = "force-dynamic";
-
 type ToursWorldCopy = {
   titleLines: string[];
   description: string;
