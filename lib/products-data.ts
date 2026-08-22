@@ -1,6 +1,5 @@
 import type { TourismExperience } from "@/lib/product-types";
 import { cabalgataPicadaPotrerillosEn } from "@/lib/pdp-entries/cabalgata-picada-potrerillos.en";
-import { monoCityTourMendozaEn } from "@/lib/pdp-entries/mono-city-tour-mendoza.en";
 import { privateWineryTransfersMendozaEn } from "@/lib/pdp-entries/private-winery-transfers-mendoza.en";
 import { luxuryWineExperienceBodegaBoutiqueEn } from "@/lib/pdp-entries/luxury-wine-experience-bodega-boutique.en";
 import { andesExperienceHorsebackSunsetPicnicEn } from "@/lib/pdp-entries/andes-experience-horseback-sunset-picnic.en";
@@ -11,7 +10,7 @@ import { villavicencioNatureReserveTourEn } from "@/lib/pdp-entries/villavicenci
 import { epicAndesAdventureTrekkingHotSpringsEn } from "@/lib/pdp-entries/epic-andes-adventure-trekking-hot-springs.en";
 
 /**
- * Catálogo oficial Edmar Travel (10 experiencias públicas).
+ * Catálogo oficial Edmar Travel (9 experiencias públicas).
  * Fuente única para `getProducts` vía `lib/products.ts`.
  */
 export const PRODUCTS_DATA: TourismExperience[] = [
@@ -254,75 +253,6 @@ export const PRODUCTS_DATA: TourismExperience[] = [
           title: "Trekking y termas Cacheuta | Edmar Travel",
           description:
             "Aventura de día completo en los Andes mendocinos. Consultá disponibilidad.",
-        },
-      },
-    },
-  },
-  {
-    id: "mono-city-tour-mendoza",
-    slug: monoCityTourMendozaEn.slug,
-    title: monoCityTourMendozaEn.title,
-    location: monoCityTourMendozaEn.location,
-    duration: monoCityTourMendozaEn.duration,
-    price: monoCityTourMendozaEn.priceOptions[0].price,
-    description: monoCityTourMendozaEn.shortDescription,
-    shortDescription: monoCityTourMendozaEn.shortDescription,
-    longDescription: monoCityTourMendozaEn.longDescription
-      .split(/\n\n+/)
-      .map((p) => p.trim())
-      .filter(Boolean),
-    images: ["/assets/images/products/MonoCityTour/featuredmonocitytour.webp"],
-    features: [...monoCityTourMendozaEn.highlights],
-    category: "city",
-    difficulty: "easy",
-    schedule: [...monoCityTourMendozaEn.itinerary],
-    variants: [
-      {
-        type: "scooter",
-        label: "Scooter",
-        default: "small",
-        options: [
-          {
-            label: "Small · AR$ 20.000",
-            value: "small",
-            priceModifier: 0,
-          },
-          {
-            label: "Large · AR$ 25.000",
-            value: "large",
-            priceModifier: 5_000,
-          },
-        ],
-      },
-      {
-        type: "session",
-        label: "Session",
-        default: "morning",
-        options: [
-          {
-            label: "11:00–12:30",
-            value: "morning",
-            priceModifier: 0,
-          },
-          {
-            label: "17:00–18:30",
-            value: "afternoon",
-            priceModifier: 0,
-          },
-        ],
-      },
-    ],
-    translations: {
-      es: {
-        title: "Mono City Tour – Mendoza",
-        description:
-          "Explorá Mendoza en monopatín eléctrico a tu ritmo. Vos elegís el recorrido y el ritmo, sin guías ni tiempos rígidos. La forma más canchera y divertida de conocer la ciudad.",
-        shortDescription:
-          "Recorré Mendoza en monopatín eléctrico: plazas, centro y lago en el Parque San Martín. Autoguiado. Desde AR$ 20.000 (chico) · AR$ 25.000 (grande).",
-        seo: {
-          title: "Mono City Tour Mendoza | Monopatín eléctrico | Edmar Travel",
-          description:
-            "City tour en monopatín eléctrico autoguiado en Mendoza. Plazas, centro y Parque San Martín. Casco y mapa. Dos horarios. Reservá tu turno.",
         },
       },
     },

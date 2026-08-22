@@ -19,7 +19,7 @@
       "cabalgataPotrerillos": "Cabalgata + Picada en Potrerillos",
       "andesSunset": "Andes Experience + Cabalgata + Sunset Picnic",
       "luxuryWine": "Luxury Wine Experience",
-      "monoCity": "Mono City Tour",
+      "halfDayMaipu": "Tour Bodegas Medio Día Maipú",
       "traslados": "Traslados Privados"
     }
   },
@@ -212,9 +212,9 @@
       },
       "city": {
         "category": "CONOCER LA CIUDAD",
-        "title": "Scooters, historia y cultura.",
-        "description": "Recorridos urbanos por lugares emblemáticos de Mendoza.",
-        "details": "Desde $25.000 ARS · Monopatín eléctrico",
+        "title": "Historia, plazas y cultura.",
+        "description": "Estamos preparando nuevas experiencias urbanas en Mendoza.",
+        "details": "Próximamente",
         "cta": "Explorar la ciudad"
       }
     },
@@ -286,8 +286,8 @@
           "LA",
           "CIUDAD"
         ],
-        "description": "Scooters, parques históricos y los lugares más emblemáticos.",
-        "imageAlt": "Tour en scooter por Mendoza"
+        "description": "Próximamente: nuevas experiencias urbanas en Mendoza.",
+        "imageAlt": "Vista de la ciudad de Mendoza"
       }
     }
   },
@@ -347,6 +347,8 @@
       "editorialHeading": "Empezar por Mendoza",
       "editorialBody": "Antes de la montaña o el vino, la ciudad te da contexto: el damero fundacional, el verde del Parque San Martín, la calma de las plazas. Estas experiencias son la puerta de entrada ideal — claras, accesibles y pensadas para orientarte sin perder el encanto boutique que define a Edmar Travel.",
       "collectionTitle": "La colección",
+      "emptyTitle": "Próximamente",
+      "emptyText": "Estamos trabajando en nuevas experiencias para ofrecerte.",
       "finalCtaTitle": "¿Listo para descubrir Mendoza?",
       "finalCtaSubtitle": "Recorré la ciudad con experiencias curadas y reservá en pocos pasos.",
       "testimonials": [
@@ -356,7 +358,7 @@
           "location": "Reino Unido"
         },
         {
-          "quote": "El monopatín por el parque fue lo más divertido del viaje.",
+          "quote": "Una forma ideal de orientarse antes de salir a la montaña o el vino.",
           "author": "Marco",
           "location": "Italia"
         }

@@ -153,14 +153,25 @@ export default function ExperienceNavigator({
               animate="visible"
               exit="exit"
             >
-              {category.experiences.map((card) => (
-                <ExperienceNavigatorCard
-                  key={card.id}
-                  card={card}
-                  href={`/${locale}/products/${card.productId}`}
-                  onNavigate={onClose}
-                />
-              ))}
+              {category.experiences.length === 0 ? (
+                <li className="rounded-2xl border border-white/10 bg-white/5 px-6 py-10 text-center">
+                  <p className="text-lg font-medium text-white">
+                    Próximamente
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">
+                    Estamos trabajando en nuevas experiencias para ofrecerte.
+                  </p>
+                </li>
+              ) : (
+                category.experiences.map((card) => (
+                  <ExperienceNavigatorCard
+                    key={card.id}
+                    card={card}
+                    href={`/${locale}/products/${card.productId}`}
+                    onNavigate={onClose}
+                  />
+                ))
+              )}
             </motion.ul>
         </motion.div>
       ) : null}

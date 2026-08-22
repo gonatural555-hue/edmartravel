@@ -41,7 +41,6 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-1",
     experienceId: "city",
-    productId: "mono-city-tour-mendoza",
     src: "/assets/scenes/city-tours/collage-scooter.webp",
     alt: "Scooter en Mendoza",
     left: "70%",
@@ -74,7 +73,6 @@ export const COLLAGE_ITEMS: CollageItemDef[] = [
   {
     id: "city-2",
     experienceId: "city",
-    productId: "mono-city-tour-mendoza",
     src: "/assets/images/products/MonoCityTour/featuredmonocitytour.webp",
     alt: "Mono City Tour Mendoza",
     left: "68%",

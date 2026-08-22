@@ -152,21 +152,28 @@ export default async function CategoryPage({ params }: Props) {
   const bookFallbackHref =
     experiences[0]?.bookHref ?? productsHref;
 
-  const pageLabels = messages.categoriesPage as Record<string, string>;
+  const pageLabels = messages.categoriesPage as Record<string, unknown>;
+  const categoryBlock = pageLabels[categorySlug] as
+    | Record<string, unknown>
+    | undefined;
 
   return (
     <CategoryPageView
       copy={copy}
       labels={{
-        scrollLabel: pageLabels.scrollLabel ?? "Explore",
-        collectionEyebrow: pageLabels.collectionEyebrow ?? "",
-        fromPrice: pageLabels.fromPrice ?? t("experiencePage.fromPrice"),
+        scrollLabel: String(pageLabels.scrollLabel ?? "Explore"),
+        collectionEyebrow: String(pageLabels.collectionEyebrow ?? ""),
+        fromPrice: String(pageLabels.fromPrice ?? t("experiencePage.fromPrice")),
         viewExperience: t("common.viewExperience"),
         bookExperience: t("common.bookExperience"),
-        emptyTitle: pageLabels.emptyTitle ?? "",
-        emptyText: pageLabels.emptyText ?? "",
-        finalCtaPrimary: pageLabels.finalCtaPrimary ?? "",
-        finalCtaSecondary: pageLabels.finalCtaSecondary ?? "",
+        emptyTitle: String(
+          categoryBlock?.emptyTitle ?? pageLabels.emptyTitle ?? ""
+        ),
+        emptyText: String(
+          categoryBlock?.emptyText ?? pageLabels.emptyText ?? ""
+        ),
+        finalCtaPrimary: String(pageLabels.finalCtaPrimary ?? ""),
+        finalCtaSecondary: String(pageLabels.finalCtaSecondary ?? ""),
         exploreAll: t("hero.ctaPrimary", "Ver experiencias"),
       }}
       heroImage={heroImage}

@@ -2,7 +2,6 @@ import type { ExperienceRichContent } from "@/lib/experience-model";
 import type { Locale } from "@/lib/i18n/config";
 import { RICH_ES } from "@/lib/experience-rich/locale-es";
 import { cabalgataPicadaPotrerillosEn } from "@/lib/pdp-entries/cabalgata-picada-potrerillos.en";
-import { monoCityTourMendozaEn } from "@/lib/pdp-entries/mono-city-tour-mendoza.en";
 import { privateWineryTransfersMendozaEn } from "@/lib/pdp-entries/private-winery-transfers-mendoza.en";
 import { luxuryWineExperienceBodegaBoutiqueEn } from "@/lib/pdp-entries/luxury-wine-experience-bodega-boutique.en";
 import { andesExperienceHorsebackSunsetPicnicEn } from "@/lib/pdp-entries/andes-experience-horseback-sunset-picnic.en";
@@ -55,51 +54,6 @@ const POTRERILLOS: ExperienceRichContent = {
   pickup: "Central Mendoza — hotel or agreed meeting point",
   cancellation:
     "Per voucher terms; ask at booking for changes, holds, or weather-related options.",
-};
-
-const MONO_CITY: ExperienceRichContent = {
-  subtitle: monoCityTourMendozaEn.subtitle,
-  badges: [
-    "Self-guided",
-    "E-scooter",
-    "Helmet + map",
-    "Two daily slots",
-  ],
-  whyLove: [...monoCityTourMendozaEn.highlights],
-  editorial: monoCityTourMendozaEn.longDescription
-    .split(/\n\n+/)
-    .map((p) => p.trim())
-    .filter(Boolean),
-  places: [
-    "Mendoza’s five main plazas",
-    "Downtown streets & urban landmarks",
-    "Lake loop in Parque General San Martín",
-  ],
-  included: [...monoCityTourMendozaEn.includes],
-  excluded: [...monoCityTourMendozaEn.excludes],
-  practical: {
-    whatToBring: [...monoCityTourMendozaEn.practicalInfo.whatToBring],
-    restrictions: monoCityTourMendozaEn.practicalInfo.restrictions,
-    weather: monoCityTourMendozaEn.practicalInfo.weather,
-    pickupDetails: monoCityTourMendozaEn.practicalInfo.pickupDetails,
-  },
-  faq: monoCityTourMendozaEn.faq.map((item) => ({
-    question: item.question,
-    answer: item.answer,
-  })),
-  testimonials: [
-    {
-      name: "Nico & Flo",
-      text: "Felt like the city unlocked—no tour bus, just us, the park, and the lake.",
-      rating: 5,
-    },
-  ],
-  language: monoCityTourMendozaEn.languages,
-  groupSize: monoCityTourMendozaEn.groupSize,
-  season: "Year-round (subject to weather & operator availability)",
-  pickup: "Central Mendoza — meeting point confirmed at booking",
-  cancellation:
-    "Per voucher terms; ask at booking for changes or weather-related holds.",
 };
 
 const WINERY_TRANSFERS: ExperienceRichContent = {
@@ -472,7 +426,6 @@ const EPIC_ANDES_TREK_THERMAL: ExperienceRichContent = {
 
 const BY_ID: Record<string, ExperienceRichContent> = {
   "cabalgata-picada-potrerillos": POTRERILLOS,
-  "mono-city-tour-mendoza": MONO_CITY,
   "private-winery-transfers-mendoza": WINERY_TRANSFERS,
   "luxury-wine-experience-bodega-boutique": LUXURY_BOUTIQUE_WINE,
   "andes-experience-horseback-sunset-picnic": ANDES_HORSE_PICNIC,

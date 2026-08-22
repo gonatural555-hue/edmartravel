@@ -47,7 +47,7 @@ export default function FeaturedProductsSection({
 
   const featuredIds = [
     "cabalgata-picada-potrerillos",
-    "mono-city-tour-mendoza",
+    "half-day-winery-tour-maipu",
     "private-winery-transfers-mendoza",
   ];
 

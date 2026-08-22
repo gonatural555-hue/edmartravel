@@ -35,38 +35,6 @@ export const PRODUCT_LOCALE_FIELDS: Partial<
         ],
       },
     },
-    "mono-city-tour-mendoza": {
-      duration:
-        "≈1,5 h por turno (desde la entrega hasta la devolución; ritmo libre en el circuito sugerido)",
-      location:
-        "Mendoza centro y Parque General San Martín (circuito recomendado)",
-      schedule: [
-        "Check-in y briefing de seguridad — entrega del monopatín, casco y mapa del circuito",
-        "Tramo urbano — conectá las cinco plazas principales y la trama de la ciudad a tu ritmo",
-        "Parque General San Martín — circuito del lago, árboles y vistas abiertas antes de volver",
-        "Devolución dentro de tu turno reservado (11:00–12:30 o 17:00–18:30)",
-      ],
-      variants: [
-        {
-          type: "scooter",
-          label: "Monopatín",
-          default: "small",
-          options: [
-            { label: "Chico · AR$ 20.000", value: "small", priceModifier: 0 },
-            { label: "Grande · AR$ 25.000", value: "large", priceModifier: 5_000 },
-          ],
-        },
-        {
-          type: "session",
-          label: "Turno",
-          default: "morning",
-          options: [
-            { label: "11:00–12:30", value: "morning", priceModifier: 0 },
-            { label: "17:00–18:30", value: "afternoon", priceModifier: 0 },
-          ],
-        },
-      ],
-    },
     "private-winery-transfers-mendoza": {
       duration:
         "Flexible — típicamente media jornada o día completo, según tus reservas en bodegas (confirmar ventana al reservar)",

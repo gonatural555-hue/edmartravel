@@ -26,7 +26,7 @@ import { isAuthUiEnabled } from "@/lib/feature-flags";
 
 const RECOMMEND_IDS = [
   "cabalgata-picada-potrerillos",
-  "mono-city-tour-mendoza",
+  "half-day-winery-tour-maipu",
   "andes-experience-horseback-sunset-picnic",
 ] as const;
 

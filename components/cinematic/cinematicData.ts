@@ -1,6 +1,5 @@
 import {
   ADVENTURE_CARD_IMAGES,
-  DISCOVER_CARD_IMAGES,
   WINE_ASSETS,
   WINE_CARD_IMAGES,
 } from "./cinematicAssets";
@@ -77,7 +76,7 @@ export const wineScene: CinematicSceneDef = {
 };
 
 /* ------------------------------------------------------------------ */
-/* EXPERIENCE NAVIGATOR — datos por categoría (catálogo oficial: 10)   */
+/* EXPERIENCE NAVIGATOR — datos por categoría (catálogo oficial: 9)   */
 /* ------------------------------------------------------------------ */
 
 export const experienceCategories: Record<SceneId, ExperienceCategory> = {
@@ -172,15 +171,7 @@ export const experienceCategories: Record<SceneId, ExperienceCategory> = {
     title: "Discover Mendoza",
     subtitle: "La Mendoza urbana, joven y relajada",
     cta: "Explorar experiencias",
-    experiences: [
-      {
-        id: "scooter-city-tour",
-        productId: "mono-city-tour-mendoza",
-        title: "Mono City Tour",
-        description: "Recorre la ciudad sobre monopatín eléctrico a tu ritmo.",
-        image: DISCOVER_CARD_IMAGES.scooterCityTour,
-      },
-    ],
+    experiences: [],
   },
 };
 

@@ -19,7 +19,7 @@
       "cabalgataPotrerillos": "Horseback ride + Picada in Potrerillos",
       "andesSunset": "Andes Experience + Horseback + Sunset Picnic",
       "luxuryWine": "Luxury Wine Experience",
-      "monoCity": "Mono City Tour",
+      "halfDayMaipu": "Half Day Winery Tour Maipú",
       "traslados": "Private transfers"
     }
   },
@@ -212,9 +212,9 @@
       },
       "city": {
         "category": "DISCOVER THE CITY",
-        "title": "Scooters, history and culture.",
-        "description": "Urban tours through iconic places in Mendoza.",
-        "details": "From $25,000 ARS · Electric scooter",
+        "title": "History, plazas and culture.",
+        "description": "We're preparing new urban experiences in Mendoza.",
+        "details": "Coming soon",
         "cta": "Explore the city"
       }
     },
@@ -286,8 +286,8 @@
           "THE",
           "CITY"
         ],
-        "description": "Scooters, historic parks, and Mendoza's most iconic places.",
-        "imageAlt": "Scooter tour in Mendoza"
+        "description": "Coming soon: new urban experiences in Mendoza.",
+        "imageAlt": "View of Mendoza city"
       }
     }
   },
@@ -347,6 +347,8 @@
       "editorialHeading": "Start with Mendoza",
       "editorialBody": "Before the mountains or the wine, the city gives you context: the foundational grid, the green of Parque San Martín, the calm of the plazas. These experiences are the ideal entry point — clear, accessible, and designed to orient you without losing the boutique feel that defines Edmar Travel.",
       "collectionTitle": "The collection",
+      "emptyTitle": "Coming soon",
+      "emptyText": "We're working on new experiences for you.",
       "finalCtaTitle": "Ready to discover Mendoza?",
       "finalCtaSubtitle": "Explore the city with curated experiences and book in a few steps.",
       "testimonials": [
@@ -356,7 +358,7 @@
           "location": "United Kingdom"
         },
         {
-          "quote": "The scooter loop through the park was the most fun part of the trip.",
+          "quote": "A great way to get oriented before heading to the mountains or wine country.",
           "author": "Marco",
           "location": "Italy"
         }
