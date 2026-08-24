@@ -164,7 +164,7 @@
       "subtitle": "Scooters, Parques Historicos y los\nlugares más emblematícos.",
       "ctaLabel": "Explorar la ciudad",
       "layout": {
-        "leftPct": 0,
+        "leftPct": 0.5,
         "offsetXPx": 0,
         "offsetYPx": 18,
         "widthPct": 58,
@@ -175,7 +175,7 @@
         "padTopPct": 8,
         "padBottomPct": 8,
         "contentJustifyPct": 100,
-        "contentAlign": "right",
+        "contentAlign": "center",
         "titleFontMinRem": 2.5,
         "titleFontVw": 5.4,
         "titleFontMaxRem": 3,

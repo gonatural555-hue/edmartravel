@@ -14,42 +14,42 @@ import type { ExperienceWorldId, SpatialSlot } from "./types";
  * (npm run hero-layout:sync)
  */
 export const HERO_HEADER_UTILITIES: HeaderUtilitiesDebugValues = {
-  home: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
+  "home": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
   },
-  tours: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
+  "tours": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
   },
-  blog: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
+  "blog": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
   },
-  language: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
+  "language": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
   },
-  login: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
+  "login": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
   },
-  reservations: {
-    offsetX: 0,
-    offsetY: 0,
-    marginTop: 0,
-    marginLeft: 0,
-  },
+  "reservations": {
+    "offsetX": 0,
+    "offsetY": 0,
+    "marginTop": 0,
+    "marginLeft": 0
+  }
 };
 
 export const HERO_LOGO_LAYOUT: LogoDebugValues = {
@@ -184,7 +184,7 @@ export const HERO_PANEL_COPY: Record<ExperienceWorldId, PanelCopyDebugValues> = 
     "subtitle": "Scooters, Parques Historicos y los\nlugares más emblematícos.",
     "ctaLabel": "Explorar la ciudad",
     "layout": {
-      "leftPct": 0,
+      "leftPct": 0.5,
       "offsetXPx": 0,
       "offsetYPx": 18,
       "widthPct": 58,
@@ -195,7 +195,7 @@ export const HERO_PANEL_COPY: Record<ExperienceWorldId, PanelCopyDebugValues> = 
       "padTopPct": 8,
       "padBottomPct": 8,
       "contentJustifyPct": 100,
-      "contentAlign": "right",
+      "contentAlign": "center",
       "titleFontMinRem": 2.5,
       "titleFontVw": 5.4,
       "titleFontMaxRem": 3,
