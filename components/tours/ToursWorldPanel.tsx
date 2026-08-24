@@ -144,21 +144,21 @@ export default function ToursWorldPanel({
         aria-hidden
       />
 
-      {/* Overlay legibilidad — sutil, no negro */}
+      {/* Overlay legibilidad — oscurece borde superior (título) e inferior (CTA) */}
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{
           background: isActive
-            ? "linear-gradient(to top, rgba(5,6,6,0.52) 0%, rgba(5,6,6,0.18) 42%, rgba(5,6,6,0.06) 100%)"
-            : "linear-gradient(to top, rgba(5,6,6,0.58) 0%, rgba(5,6,6,0.22) 45%, rgba(5,6,6,0.08) 100%)",
+            ? "linear-gradient(to bottom, rgba(5,6,6,0.42) 0%, rgba(5,6,6,0.1) 28%, rgba(5,6,6,0.08) 48%, rgba(5,6,6,0.18) 68%, rgba(5,6,6,0.52) 100%)"
+            : "linear-gradient(to bottom, rgba(5,6,6,0.48) 0%, rgba(5,6,6,0.12) 28%, rgba(5,6,6,0.1) 48%, rgba(5,6,6,0.22) 68%, rgba(5,6,6,0.58) 100%)",
           opacity: isActive ? 0.92 : 1,
         }}
         aria-hidden
       />
 
-      {/* Contenido editorial — anclado al borde inferior de la imagen */}
+      {/* Contenido editorial — título arriba; subtítulo + CTA abajo */}
       <div
-        className={`absolute inset-0 z-10 flex flex-col items-center justify-end px-5 pb-10 pt-20 text-center sm:px-8 sm:pb-12 lg:items-stretch lg:px-12 lg:pb-14 lg:pt-[var(--experience-header-height,5.5rem)] lg:text-left xl:px-16 xl:pb-16 ${
+        className={`absolute inset-0 z-10 flex flex-col items-center justify-between px-5 pb-10 pt-24 text-center sm:px-8 sm:pb-12 sm:pt-28 lg:items-stretch lg:px-12 lg:pb-14 lg:pt-[calc(var(--experience-header-height,5.5rem)+1.5rem)] lg:text-left xl:px-16 xl:pb-16 ${
           isNavigating ? "opacity-0" : ""
         }`}
         style={{
@@ -167,29 +167,29 @@ export default function ToursWorldPanel({
             : `opacity ${TOURS_NAV_TRANSITION_MS}ms ${TOURS_PANEL_EASE}`,
         }}
       >
-        <div className="flex w-full max-w-[min(92vw,26rem)] flex-col items-center lg:max-w-none lg:items-stretch">
-          <h2
-            className="font-theater font-bold uppercase leading-[0.98] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:font-normal lg:leading-[0.92] lg:drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)] lg:group-hover/panel:-translate-y-2.5"
-            style={{
-              fontSize: isDesktop
-                ? "clamp(5.625rem, 7vw, 8.75rem)"
-                : "clamp(2.25rem, 11.25vw, 3rem)",
-              transform: isDesktop && isActive ? "translateY(-10px)" : undefined,
-            }}
-          >
-            {world.titleLines.map((line, i) => (
-              <span
-                key={`${line}-${i}`}
-                className="block"
-                style={{ marginTop: i > 0 ? (isDesktop ? "0.06em" : 4) : 0 }}
-              >
-                {line}
-              </span>
-            ))}
-          </h2>
+        <h2
+          className="w-full max-w-[min(92vw,26rem)] font-theater font-bold uppercase leading-[0.98] tracking-[-0.03em] text-[#F5F0E6] drop-shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:max-w-none lg:font-normal lg:leading-[0.92] lg:drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)] lg:group-hover/panel:-translate-y-2.5"
+          style={{
+            fontSize: isDesktop
+              ? "clamp(6.875rem, 10vw, 13.75rem)"
+              : "clamp(2.75rem, 14vw, 3.75rem)",
+            transform: isDesktop && isActive ? "translateY(-10px)" : undefined,
+          }}
+        >
+          {world.titleLines.map((line, i) => (
+            <span
+              key={`${line}-${i}`}
+              className="block"
+              style={{ marginTop: i > 0 ? (isDesktop ? "0.06em" : 4) : 0 }}
+            >
+              {line}
+            </span>
+          ))}
+        </h2>
 
+        <div className="flex w-full max-w-[min(92vw,26rem)] flex-col items-center lg:max-w-none lg:items-stretch">
           <p
-            className="mt-3 max-w-[28ch] font-sans text-sm font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/82 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:mt-4 lg:max-w-md lg:text-[#F5F0E6]/78 sm:text-base md:max-w-lg md:text-[1.05rem] lg:group-hover/panel:text-[#F5F0E6]/88"
+            className="max-w-[28ch] font-sans text-sm font-normal leading-relaxed tracking-[0.02em] text-[#F5F0E6]/82 transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] lg:max-w-md lg:text-[#F5F0E6]/78 sm:text-base md:max-w-lg md:text-[1.05rem] lg:group-hover/panel:text-[#F5F0E6]/88"
             style={{
               opacity: isDesktop && isActive ? 1 : isDesktop ? 0.78 : 1,
               transform: isDesktop && isActive ? "translateY(-4px)" : undefined,
