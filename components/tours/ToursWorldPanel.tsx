@@ -156,9 +156,9 @@ export default function ToursWorldPanel({
         aria-hidden
       />
 
-      {/* Contenido editorial — mobile: centrado en el panel */}
+      {/* Contenido editorial — anclado al borde inferior (mobile y desktop) */}
       <div
-        className={`relative z-10 flex h-full flex-col items-center justify-center px-5 py-8 text-center sm:px-8 lg:items-stretch lg:justify-end lg:px-12 lg:py-0 lg:pb-14 lg:pt-[var(--experience-header-height,5.5rem)] lg:text-left xl:px-16 xl:pb-16 ${
+        className={`relative z-10 flex h-full flex-col items-center justify-end px-5 pb-10 pt-20 text-center sm:px-8 sm:pb-12 lg:items-stretch lg:px-12 lg:pb-14 lg:pt-[var(--experience-header-height,5.5rem)] lg:text-left xl:px-16 xl:pb-16 ${
           isNavigating ? "opacity-0" : ""
         }`}
         style={{
