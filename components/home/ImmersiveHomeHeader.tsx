@@ -29,6 +29,7 @@ import {
 } from "@/lib/page-slugs";
 import { useExperienceDirectorMode } from "@/components/experience-hero/director/useExperienceDirectorMode";
 import { isAuthUiEnabled } from "@/lib/feature-flags";
+import InstagramIcon from "@/components/icons/InstagramIcon";
 import { useHeaderUtilitiesFromStorage } from "@/components/experience-hero/director/useHeaderUtilitiesFromStorage";
 import type {
   HeaderUtilityId,
@@ -255,6 +256,16 @@ export default function ImmersiveHomeHeader({
     : isEditorialNav
       ? NAV_LINK_EDITORIAL
       : NAV_LINK;
+  const instagramLinkClass = `group relative inline-flex items-center gap-2 ${HEADER_TYPE} transition-colors duration-[400ms] ${
+    isCategoryPage
+      ? "text-[#FFFFFF]/78 hover:text-[#FFFFFF]"
+      : isEditorialNav
+        ? "text-[#1a1a1a]/80 hover:text-[#1a1a1a]"
+        : "text-[#F5F1E8]/78 hover:text-[#F5F1E8]"
+  }`;
+  const instagramFabClass = isEditorialHeader
+    ? "border-[#1a1a1a]/14 bg-white/90 text-[#1a1a1a]/80 hover:border-[#1a1a1a]/25 hover:text-[#1a1a1a]"
+    : "border-white/[0.14] bg-black/40 text-white/85 hover:border-white/25 hover:text-white";
   const [menuOpen, setMenuOpen] = useState(false);
 
   const labels = IMMERSIVE_HEADER_LABELS[locale];
@@ -262,6 +273,8 @@ export default function ImmersiveHomeHeader({
   const reservationsLabel = t("header.reservations", labels.reservations);
   const myAccountLabel = t("header.myAccount", labels.myAccount);
   const closeMenuLabel = t("header.closeMenu", "Cerrar menú");
+  const followInstagramLabel = t("header.followInstagram", "Seguinos en Instagram");
+  const followInstagramAria = t("header.followInstagramAria", followInstagramLabel);
   const authHref = `/${locale}/auth?tab=login`;
 
   useEffect(() => {
@@ -376,6 +389,15 @@ export default function ImmersiveHomeHeader({
 
           {/* Desktop — utilidades derecha */}
           <div className="pointer-events-auto hidden w-full min-w-0 items-center justify-end gap-5 xl:gap-7 lg:flex">
+            <a
+              href={SITE_CONFIG.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={instagramLinkClass}
+            >
+              <InstagramIcon size={16} className="shrink-0" />
+              <span>{followInstagramLabel}</span>
+            </a>
             <div
               style={
                 isDirector
@@ -469,6 +491,19 @@ export default function ImmersiveHomeHeader({
           </button>
         </div>
       </header>
+
+      {/* Mobile — Instagram flotante (solo icono) */}
+      <a
+        href={SITE_CONFIG.social.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={followInstagramAria}
+        className={`pointer-events-auto fixed right-4 top-[calc(var(--experience-header-height,5.5rem)+0.75rem)] z-[95] flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_8px_24px_rgba(0,0,0,0.12)] backdrop-blur-md transition-[colors,opacity] duration-[400ms] lg:hidden ${instagramFabClass} ${
+          menuOpen ? "pointer-events-none opacity-0" : ""
+        }`}
+      >
+        <InstagramIcon size={20} />
+      </a>
 
       {menuOpen ? (
         <div

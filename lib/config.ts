@@ -24,6 +24,9 @@ export const SITE_CONFIG: {
     /** Dígitos E.164 sin + (p. ej. 5492614123456). Vacío si no hay NEXT_PUBLIC_WHATSAPP_PHONE. */
     whatsappPhone: string;
   };
+  social: {
+    instagram: string;
+  };
   company: {
     legalName: string;
     cuit: string;
@@ -49,6 +52,9 @@ export const SITE_CONFIG: {
   contact: {
     email: "edmartravelsas@gmail.com",
     whatsappPhone: whatsappDigits,
+  },
+  social: {
+    instagram: "https://www.instagram.com/edmartravel/?hl=es",
   },
   company: {
     legalName: "Edgar David Nuñez Zavalla",

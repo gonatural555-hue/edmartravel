@@ -11,6 +11,8 @@ type VariantSelectorProps = {
   variants: ProductVariants;
   value?: Record<string, string>;
   onChange?: (selections: Record<string, string>) => void;
+  /** `editorial` para paneles sobre fondo claro (PDP). */
+  theme?: "dark" | "editorial";
 };
 
 /**
@@ -75,6 +77,7 @@ export default function VariantSelector({
   variants,
   value,
   onChange,
+  theme = "dark",
 }: VariantSelectorProps) {
   const { variants: variantDefinitions, variantMatrix } = variants;
 
@@ -138,6 +141,17 @@ export default function VariantSelector({
     return null;
   }
 
+  const isEditorial = theme === "editorial";
+  const titleClass = isEditorial
+    ? "text-base font-semibold text-[#1a1a1a]"
+    : "text-base font-semibold text-text-primary";
+  const hintClass = isEditorial
+    ? "text-sm text-[#1a1a1a]/55"
+    : "text-sm text-text-muted";
+  const ringOffset = isEditorial
+    ? "focus-visible:ring-offset-[#F8F5EE]"
+    : "focus-visible:ring-offset-dark-base";
+
   return (
     <div className="space-y-6">
       {variantDefinitions.map((variant) => {
@@ -150,11 +164,9 @@ export default function VariantSelector({
         return (
           <section key={variant.type} className="space-y-3">
             <div className="flex items-center gap-2">
-              <h3 className="text-base font-semibold text-text-primary">
-                {variant.label}
-              </h3>
+              <h3 className={titleClass}>{variant.label}</h3>
               {currentValue && (
-                <span className="text-sm text-text-muted">
+                <span className={hintClass}>
                   {variant.options.find(
                     (opt) =>
                       (opt.value || opt.label) === currentValue
@@ -184,12 +196,19 @@ export default function VariantSelector({
                     disabled={!isValid}
                     className={[
                       "w-full rounded-lg border px-3 py-2 text-sm font-medium transition-colors duration-200 ease-out",
-                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 focus-visible:ring-offset-dark-base",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2",
+                      ringOffset,
                       !isValid
-                        ? "opacity-40 cursor-not-allowed border-white/10 bg-dark-surface/40 text-text-muted"
+                        ? isEditorial
+                          ? "cursor-not-allowed border-[#1a1a1a]/8 bg-[#1a1a1a]/4 text-[#1a1a1a]/35 opacity-60"
+                          : "cursor-not-allowed border-white/10 bg-dark-surface/40 text-text-muted opacity-40"
                         : isActive
-                        ? "border-accent-gold bg-dark-surface text-text-primary ring-1 ring-accent-gold/50"
-                        : "border-white/15 bg-dark-surface/60 text-text-primary hover:border-white/30",
+                          ? isEditorial
+                            ? "border-[#7A6248] bg-white text-[#1a1a1a] ring-1 ring-[#C89B3C]/40"
+                            : "border-accent-gold bg-dark-surface text-text-primary ring-1 ring-accent-gold/50"
+                          : isEditorial
+                            ? "border-[#1a1a1a]/12 bg-white text-[#1a1a1a] hover:border-[#1a1a1a]/25"
+                            : "border-white/15 bg-dark-surface/60 text-text-primary hover:border-white/30",
                     ].join(" ")}
                     aria-pressed={isActive}
                     aria-disabled={!isValid}

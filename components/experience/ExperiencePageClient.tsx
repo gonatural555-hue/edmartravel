@@ -32,6 +32,10 @@ import {
 import { WhatsAppButtonLabel, WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { pdpHeroTitleClass, pdpReserveCtaClass } from "@/lib/pdp-title-styles";
 import ExperienceLightHeaderLogo from "@/components/home/ExperienceLightHeaderLogo";
+import { categoryEditorialButtonClass } from "@/components/category/CategoryEditorialButton";
+
+const PDP_PANEL =
+  "rounded-3xl border border-[#1a1a1a]/8 bg-white p-6 shadow-[0_8px_40px_rgba(26,26,26,0.08)]";
 
 type ProductSummary = {
   id: string;
@@ -91,30 +95,31 @@ function BookingPanel({
   return (
     <div id={anchorId} className={`scroll-mt-32 space-y-4 ${className}`}>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted/80">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#1a1a1a]/50">
           {labels.fromPrice}
         </p>
-        <p className="mt-2 text-3xl font-bold tabular-nums text-accent-gold">
+        <p className="mt-2 text-3xl font-bold tabular-nums text-[#C89B3C]">
           {formatPriceARS(resolvedPrice)}
         </p>
-        <p className="mt-1 text-xs text-text-muted">{labels.perPerson}</p>
+        <p className="mt-1 text-xs text-[#1a1a1a]/55">{labels.perPerson}</p>
       </div>
       {isComingSoon ? (
-        <p className="text-xs leading-relaxed text-amber-200/90">
+        <p className="text-xs leading-relaxed text-amber-800/90">
           {labels.comingSoonHint}
         </p>
       ) : (
-        <p className="text-xs text-text-muted/90">{labels.stickyTrust}</p>
+        <p className="text-xs text-[#1a1a1a]/55">{labels.stickyTrust}</p>
       )}
       {productVariants && !isComingSoon ? (
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-text-muted/80">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#1a1a1a]/50">
             {labels.variantTitle}
           </p>
           <VariantSelector
             variants={productVariants}
             onChange={setSelections}
             value={selections}
+            theme="editorial"
           />
         </div>
       ) : null}
@@ -126,16 +131,16 @@ function BookingPanel({
         variantSelections={variantSelections}
         label={isComingSoon ? labels.ctaAvailableSoon : labels.ctaReserve}
         disabled={isComingSoon}
-        variant="invert"
+        variant="editorial"
         openDrawerOnAdd={!isComingSoon}
-        className="w-full rounded-xl py-3.5 text-base font-semibold"
+        className="w-full py-3.5 text-base font-semibold"
       />
       {whatsappLinkWithText ? (
         <a
           href={whatsappLinkWithText}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-full items-center justify-center gap-2 rounded-xl border-2 border-white/30 bg-white/5 px-4 py-3 text-sm font-semibold text-text-primary transition hover:bg-white/10"
+          className={`${categoryEditorialButtonClass("secondary", "w-full gap-2 py-3 text-sm font-semibold")}`}
         >
           <WhatsAppButtonLabel label={labels.ctaWhatsApp} />
         </a>
@@ -513,7 +518,8 @@ export default function ExperiencePageClient({
         </div>
       </header>
 
-      {/* Galería + sticky layout */}
+      {/* Cuerpo editorial — estilo home/categorías */}
+      <div className="category-page relative isolate">
       <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] xl:gap-14 xl:items-start">
           <div className="min-w-0">
@@ -525,11 +531,11 @@ export default function ExperiencePageClient({
               >
                 <h2
                   id="gallery-heading"
-                  className="text-xl font-semibold text-text-primary md:text-2xl"
+                  className="text-xl font-semibold text-[#1a1a1a] md:text-2xl"
                 >
                   {labels.galleryTitle}
                 </h2>
-                <div className="relative mt-6 overflow-x-hidden rounded-2xl bg-dark-surface/40 p-3 md:p-6">
+                <div className="relative mt-6 overflow-x-hidden rounded-2xl border border-[#1a1a1a]/8 bg-white p-3 shadow-[0_4px_24px_rgba(26,26,26,0.06)] md:p-6">
                   <ProductImageGallery
                     featured={activeImages.featured}
                     gallery={activeImages.gallery}
@@ -550,7 +556,7 @@ export default function ExperiencePageClient({
 
             {/* Reserva: visible en mobile / tablet (misma lógica que sticky desktop) */}
             <div className="xl:hidden">
-              <div className="mt-10 rounded-3xl border border-white/10 bg-dark-surface/50 p-6 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-md">
+              <div className={`mt-10 ${PDP_PANEL}`}>
                 <BookingPanel
                   product={product}
                   labels={labels}
@@ -572,7 +578,7 @@ export default function ExperiencePageClient({
           <aside className="relative z-10 hidden xl:block xl:pt-14">
             <div
               id="experience-book-desktop"
-              className="sticky top-28 rounded-3xl border border-white/10 bg-dark-surface/50 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.35)] backdrop-blur-md"
+              className={`sticky top-28 ${PDP_PANEL}`}
             >
               <BookingPanel
                 product={product}
@@ -700,15 +706,16 @@ export default function ExperiencePageClient({
           </div>
         </div>
       </div>
+      </div>
 
-      {/* Mobile sticky bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-dark-base/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md xl:hidden">
+      {/* Mobile sticky bar — editorial claro */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#1a1a1a]/10 bg-[#F8F5EE]/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md xl:hidden">
         <div className="mx-auto flex max-w-lg items-center gap-3">
           <div className="min-w-0 flex-1">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted/80">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1a1a1a]/50">
               {labels.fromPrice}
             </p>
-            <p className="truncate text-xl font-bold tabular-nums text-accent-gold">
+            <p className="truncate text-xl font-bold tabular-nums text-[#C89B3C]">
               {formatPriceARS(resolvedPrice)}
             </p>
           </div>
@@ -718,19 +725,19 @@ export default function ExperiencePageClient({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={labels.ctaWhatsApp}
-              className="inline-flex shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 p-2.5"
+              className="inline-flex shrink-0 items-center justify-center rounded-full border border-[#1a1a1a]/15 bg-white p-2.5 shadow-sm"
             >
               <WhatsAppIcon size={24} />
             </a>
           ) : null}
           {comingSoon ? (
-            <span className="inline-flex flex-1 cursor-not-allowed items-center justify-center rounded-xl bg-accent-gold/35 px-4 py-3 text-sm font-semibold text-dark-base/80">
+            <span className="inline-flex flex-1 cursor-not-allowed items-center justify-center rounded-full border border-[#1a1a1a]/10 bg-[#1a1a1a]/8 px-4 py-3 text-sm font-semibold text-[#1a1a1a]/45">
               {labels.ctaAvailableSoon}
             </span>
           ) : (
             <a
               href="#experience-book"
-              className={`${pdpReserveCtaClass} flex-1 px-4 py-3 text-sm`}
+              className={`${categoryEditorialButtonClass("primary", "flex-1 px-4 py-3 text-sm")}`}
             >
               {labels.ctaReserve}
             </a>

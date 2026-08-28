@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReviewSeed } from "@/lib/reviews-data";
 
 type ProductReviewsProps = {
@@ -23,7 +25,7 @@ function renderStars(rating: number) {
       <svg
         key={`star-${index}`}
         viewBox="0 0 20 20"
-        className={`h-4 w-4 ${isFilled ? "text-accent-gold" : "text-white/20"}`}
+        className={`h-4 w-4 ${isFilled ? "text-[#C89B3C]" : "text-[#1a1a1a]/15"}`}
         fill="currentColor"
         aria-hidden="true"
       >
@@ -48,21 +50,21 @@ export default function ProductReviews({
   const averageLabel = average.toFixed(1);
 
   return (
-    <section className="border-t border-white/10 py-16 md:py-20">
-      <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
-        <h2 className="text-2xl md:text-3xl font-semibold text-text-primary">
+    <section className="border-t border-[#1a1a1a]/8 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
+        <h2 className="text-2xl font-semibold text-[#1a1a1a] md:text-3xl">
           {title}
         </h2>
 
         {productReviews.length === 0 ? (
-          <p className="mt-3 text-sm text-text-muted">{emptyText}</p>
+          <p className="mt-3 text-sm text-[#1a1a1a]/65">{emptyText}</p>
         ) : (
           <>
-            <div className="mt-3 flex items-center gap-3 text-sm text-text-muted">
+            <div className="mt-3 flex items-center gap-3 text-sm text-[#1a1a1a]/65">
               <div className="flex items-center gap-1">
                 {renderStars(average)}
               </div>
-              <span className="text-text-primary">{averageLabel}</span>
+              <span className="text-[#1a1a1a]">{averageLabel}</span>
               <span aria-hidden="true">•</span>
               <span>
                 {productReviews.length} {countLabel}
@@ -73,30 +75,37 @@ export default function ProductReviews({
               {productReviews.map((review) => (
                 <article
                   key={review.id}
-                  className="rounded-2xl border border-white/10 bg-dark-surface/30 p-5"
+                  className="rounded-2xl border border-[#1a1a1a]/8 bg-white p-5 shadow-[0_4px_24px_rgba(26,26,26,0.06)]"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-1">
                       {renderStars(review.rating)}
                     </div>
-                    <span className="text-xs text-text-muted">{review.date}</span>
+                    {review.verified ? (
+                      <span className="rounded-full border border-[#1a1a1a]/10 bg-[#F8F5EE] px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#7A6248]">
+                        {verifiedLabel}
+                      </span>
+                    ) : null}
                   </div>
-                  <p className="mt-3 text-sm font-semibold text-text-primary">
-                    {review.author}
-                  </p>
-                  {review.title && (
-                    <p className="mt-1 text-sm text-text-primary">
+                  {review.title ? (
+                    <h3 className="mt-3 text-base font-semibold text-[#1a1a1a]">
                       {review.title}
-                    </p>
-                  )}
-                  <p className="mt-3 text-sm text-text-muted leading-relaxed">
+                    </h3>
+                  ) : null}
+                  <p className="mt-2 text-sm leading-relaxed text-[#1a1a1a]/70">
                     {review.comment}
                   </p>
-                  {review.verified && (
-                    <span className="mt-4 inline-flex rounded-full border border-white/10 px-3 py-1 text-xs text-text-muted">
-                      {verifiedLabel}
+                  <footer className="mt-4 flex flex-wrap items-center gap-2 text-xs text-[#1a1a1a]/50">
+                    <span className="font-medium text-[#1a1a1a]/75">
+                      {review.author}
                     </span>
-                  )}
+                    {review.date ? (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <time dateTime={review.date}>{review.date}</time>
+                      </>
+                    ) : null}
+                  </footer>
                 </article>
               ))}
             </div>

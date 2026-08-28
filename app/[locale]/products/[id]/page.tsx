@@ -240,29 +240,30 @@ export default async function ProductPage({ params }: Props) {
           noImageLabel={t("common.noImage")}
         />
 
-        <ProductReviews
-          productSlug={productSlug}
-          reviews={REVIEWS_SEED}
-          title={t("productPage.reviewsTitle")}
-          emptyText={t("productPage.reviewsEmptyText")}
-          countLabel={t("productPage.reviewsCountLabel")}
-          verifiedLabel={t("productPage.reviewsVerifiedBadge")}
-        />
+        <div className="category-page relative isolate">
+          <ProductReviews
+            productSlug={productSlug}
+            reviews={REVIEWS_SEED}
+            title={t("productPage.reviewsTitle")}
+            emptyText={t("productPage.reviewsEmptyText")}
+            countLabel={t("productPage.reviewsCountLabel")}
+            verifiedLabel={t("productPage.reviewsVerifiedBadge")}
+          />
+          <RelatedExperiences
+            title={t("experiencePage.relatedTitle")}
+            items={relatedProducts}
+            locale={locale}
+            viewLabel={t("common.viewExperience")}
+            bookLabel={t("common.bookExperience")}
+            noImageLabel={t("common.noImage")}
+          />
+        </div>
         {reviewsSchema && (
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewsSchema) }}
           />
         )}
-
-        <RelatedExperiences
-          title={t("experiencePage.relatedTitle")}
-          items={relatedProducts}
-          locale={locale}
-          viewLabel={t("common.viewExperience")}
-          bookLabel={t("common.bookExperience")}
-          noImageLabel={t("common.noImage")}
-        />
       </main>
     </>
   );

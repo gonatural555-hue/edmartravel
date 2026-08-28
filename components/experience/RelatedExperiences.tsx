@@ -23,13 +23,13 @@ export default function RelatedExperiences({
 
   return (
     <section
-      className="border-t border-white/10 bg-dark-surface/40 py-16 md:py-20"
+      className="border-t border-[#1a1a1a]/8 py-16 md:py-20"
       aria-labelledby="related-experiences-heading"
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16">
         <h2
           id="related-experiences-heading"
-          className="text-2xl font-semibold tracking-tight text-text-primary md:text-3xl"
+          className="text-2xl font-semibold tracking-tight text-[#1a1a1a] md:text-3xl"
         >
           {title}
         </h2>
